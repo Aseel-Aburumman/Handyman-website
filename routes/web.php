@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    // 'middleware' => ['auth', 'admin']  // Apply the 'admin' middleware
+], function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'navbar'])->name('admin.dashboard');
+    Route::get('/admin/notification', [AdminController::class, 'notification'])->name('admin.notification');
+
+    // Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    // Add more admin routes here
 });
