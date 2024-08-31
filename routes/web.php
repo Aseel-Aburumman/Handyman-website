@@ -21,9 +21,16 @@ Route::get('/', function () {
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['web', 'share.notifications', 'share.messages'],
+    // 'middleware' => ['auth', 'admin', 'share.notifications', 'share.messages'],  // Apply the 'auth', 'admin', and 'share.notifications' middleware
+
     // 'middleware' => ['auth', 'admin']  // Apply the 'admin' middleware
 ], function () {
     Route::get('/admin/dashboard', [AdminController::class, 'navbar'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    Route::get('/admin/manage_customers', [AdminController::class, 'showCustomers'])->name('admin.manage_customers');
+
     Route::get('/admin/notification', [AdminController::class, 'notification'])->name('admin.notification');
 
     // Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');

@@ -19,7 +19,6 @@ class ProductsTableSeeder extends Seeder
             'stock_quantity' => 50,
         ]);
         // Add more products as needed
-
-        // Product::factory(10)->create();
+        Product::factory()->count(50)->create();
     }
 }
