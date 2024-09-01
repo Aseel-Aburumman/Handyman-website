@@ -87,6 +87,10 @@ class User extends Authenticatable
         return $this->hasMany(Sale::class);
     }
 
+    public function deliveryInfo()
+    {
+        return $this->hasOne(DeliveryInfo::class);
+    }
 
 
     /**

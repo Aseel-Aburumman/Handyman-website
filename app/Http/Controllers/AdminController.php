@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
@@ -12,6 +14,7 @@ use App\Models\Gig;
 use App\Models\Sale;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\DeliveryInfo;
 
 
 use Illuminate\Http\Request;
@@ -196,12 +199,74 @@ class AdminController extends Controller
     }
 
 
-    public function showCustomers()
+    public function showCustomers(Request $request)
     {
-        // Fetch users with role_id = 2
-        $users = User::where('role_id', 2)->get();
+        $search = $request->input('search');
 
-        // Pass the users to the view
+        $users = User::where('role_id', 2) // Assuming role_id 2 is for customers
+        ->when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })
+            ->get();
+
         return view('admin.manage_customers', compact('users'));
+    }
+
+
+    public function editCustomer($id)
+    {
+        $customer = User::findOrFail($id);
+        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
+
+        return view('admin.edit_customer', compact('customer', 'deliveryInfo'));
+    }
+
+    public function updateCustomer(Request $request, $id)
+    {
+        $customer = User::findOrFail($id);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('user_images'), $imageName);
+
+            // Update user's image path in the database
+            $customer->image = $imageName;
+        }
+
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+
+        if ($request->filled('password')) {
+            $customer->password = Hash::make($request->password);
+        }
+
+        $customer->save();
+
+        // Update or create delivery info
+        DeliveryInfo::updateOrCreate(
+            ['user_id' => $customer->id],
+            [
+                'phone' => $request->phone,
+                'city' => $request->city,
+                'location' => $request->location,
+                'building_no' => $request->building_no,
+            ]
+        );
+        return redirect()->route('admin.manage_customers')->with('success', 'Customer information updated successfully.');
+    }
+
+    public function deleteCustomer($id)
+    {
+        $customer = User::findOrFail($id);
+
+        // Optionally, delete any associated records
+        DeliveryInfo::where('user_id', $id)->delete();
+
+        // Delete the customer
+        $customer->delete();
+
+        return redirect()->route('admin.manage_customers')->with('success', 'Customer deleted successfully.');
     }
 }
