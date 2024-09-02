@@ -52,4 +52,9 @@ class Gig extends Model
     {
         return $this->belongsTo(Status::class);
     }
+    public function gigs()
+    {
+        return $this->hasMany(Gig::class);
+    }
+
 }

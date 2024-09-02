@@ -27,79 +27,93 @@
             <div class="card">
                 <div class="card-body profile-card pt-4">
 
-                    <div class="row w-100">
-                        <!-- Profile Image Column -->
-                        <div class="col-lg-4 d-flex justify-content-center align-items-center">
-                            <img src="<?php echo e($handyman->image ? url('/user_images/' . $handyman->image) : url('assets/img/profile-img.jpg')); ?>" alt="Profile" class="rounded-circle" width="150">
-                        </div>
+<div class="row w-100">
+    <!-- Profile Image Column -->
+    <div class="col-lg-4 d-flex justify-content-center align-items-center">
+        <img src="<?php echo e($handyman->image ? url('/user_images/' . $handyman->image) : url('assets/img/profile-img.jpg')); ?>" alt="Profile" class="rounded-circle" width="150">
+    </div>
 
-                        <!-- Profile Information Column -->
-                        <div class="col-lg-8">
-                            <h2><?php echo e($handyman->name); ?></h2>
+    <!-- Profile Information Column -->
+    <div class="col-lg-8">
+        <h2><?php echo e($handyman->name); ?></h2>
 
-                            <div class="tab-content pt-2">
-                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                    <h5 class="card-title">Profile Details</h5>
+        <div class="tab-content pt-2">
+            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <h5 class="card-title">Profile Details</h5>
 
-                                    <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Full Name</div>
-                                        <div class="col-lg-8 col-md-8"><?php echo e($handyman->name); ?></div>
-                                    </div>
+                <!-- User Details -->
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">Full Name</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($handyman->name); ?></div>
+                </div>
 
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">Email</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($handyman->email); ?></div>
+                </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Store Location</div>
-                                        <div class="col-lg-8 col-md-8"><?php echo e($handymans->handyman->store_location ?? 'Not provided'); ?></div>
-                                    </div>
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">Phone</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($deliveryInfo->phone ?? 'Not provided'); ?></div>
+                </div>
 
+                <!-- Handyman Details -->
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">Experience</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($handyman->handyman->experience ?? 'Not provided'); ?> years</div>
+                </div>
 
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">Bio</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($handyman->handyman->bio ?? 'Not provided'); ?></div>
+                </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Address</div>
-                                        <div class="col-lg-8 col-md-8"><?php echo e($deliveryInfo->location ?? 'Not provided'); ?>, <?php echo e($deliveryInfo->building_no ?? ''); ?></div>
-                                    </div>
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">Store Location</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($handyman->handyman->store_location ?? 'Not provided'); ?></div>
+                </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Phone</div>
-                                        <div class="col-lg-8 col-md-8"><?php echo e($deliveryInfo->phone ?? 'Not provided'); ?></div>
-                                    </div>
+                <!-- Delivery Info Details -->
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">Address</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($deliveryInfo->location ?? 'Not provided'); ?>, <?php echo e($deliveryInfo->building_no ?? ''); ?></div>
+                </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Email</div>
-                                        <div class="col-lg-8 col-md-8"><?php echo e($handyman->email); ?></div>
-                                    </div>
+                <div class="row mb-2">
+                    <div class="col-lg-4 col-md-4 label">City</div>
+                    <div class="col-lg-8 col-md-8"><?php echo e($deliveryInfo->city ?? 'Not provided'); ?></div>
+                </div>
 
-                                    <!-- Stylish Button for Chat Center -->
-                                    <div class="row mt-4">
-                                        <div class="col-lg-12 text-center">
-    <!-- Go to Chat Center Button -->
-    <a href="<?php echo e(route('admin.dashboard', ['id' => $handyman->id])); ?>" class="btn btn-primary btn-lg">
-        <i class="bi bi-chat-dots"></i> Go to Chat Center
-    </a>
+                <!-- Stylish Button for Chat Center, Edit, and Delete -->
+                <div class="row mt-4">
+                    <div class="col-lg-12 text-center">
+                        <!-- Go to Chat Center Button -->
+                        <a href="<?php echo e(route('admin.dashboard', ['id' => $handyman->id])); ?>" class="btn btn-primary btn-lg">
+                            <i class="bi bi-chat-dots"></i> Go to Chat Center
+                        </a>
 
-    <!-- Edit Button -->
-    <a href="<?php echo e(route('admin.edit_handyman', ['id' => $handyman->id])); ?>" class="btn btn-primary btn-lg">
-        <i class="fa-solid fa-pencil"></i> Edit
-    </a>
+                        <!-- Edit Button -->
+                        <a href="<?php echo e(route('admin.edit_handyman', ['id' => $handyman->id])); ?>" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-pencil"></i> Edit
+                        </a>
 
-    <!-- Delete Button -->
-    <form action="<?php echo e(route('admin.delete_handyman', ['id' => $handyman->id])); ?>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
-        <?php echo csrf_field(); ?>
-        <?php echo method_field('DELETE'); ?>
-        <button type="submit" class="btn btn-primary btn-lg" >
-            <i class="fa-solid fa-trash"></i> Delete
-        </button>
-    </form>
+                        <!-- Delete Button -->
+                        <form action="<?php echo e(route('admin.delete_handyman', ['id' => $handyman->id])); ?>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this handyman?');">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('DELETE'); ?>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa-solid fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Stylish Button -->
+
+            </div>
+        </div>
+    </div>
 </div>
 
-                                         
-                                    </div>
-                                    <!-- End Stylish Button -->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -165,17 +179,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $__currentLoopData = $handyman->gigs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <tr>
-                            <th scope="row"><?php echo e($loop->iteration); ?></th>
-                            <td><?php echo e($gig->title); ?></td>
-                            <td><?php echo e($gig->location); ?></td>
-                            <td><?php echo e($gig->estimated_time); ?> hours</td>
+                    <?php $__currentLoopData = $handyman->handyman->gigs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <!-- Display gig information here -->
+    <tr>
+        <td><?php echo e($gig->title); ?></td>
+        <td><?php echo e($gig->description); ?></td>
+        <td><?php echo e($gig->location); ?></td>
+        <td><?php echo e($gig->estimated_time); ?> hours</td>
                             <td>$<?php echo e($gig->price); ?></td>
                             <td><?php echo e($gig->status->name); ?></td>
                             <td><?php echo e(\Carbon\Carbon::parse($gig->created_at)->format('Y-m-d')); ?></td>
-                        </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </tr>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                     
                 </tbody>
             </table>
 

@@ -421,10 +421,12 @@ class AdminController extends Controller
 
         return redirect()->route('admin.manage_handymans')->with('success', 'handyman deleted successfully.');
     }
-
     public function viewHandyman($id)
     {
-        $handyman = User::with('purchases.product', 'gigs')->findOrFail($id);
+        // Fetch the handyman's user details, along with their associated gigs and purchases
+        $handyman = User::with(['purchases.product', 'handyman.gigs'])->findOrFail($id);
+
+        // Fetch the delivery info associated with the handyman
         $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
 
         return view('admin.view_handyman', compact('handyman', 'deliveryInfo'));
