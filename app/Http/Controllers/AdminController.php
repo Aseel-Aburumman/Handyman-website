@@ -16,8 +16,7 @@ use App\Models\Sale;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\DeliveryInfo;
-
-
+use App\Models\Handyman;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -292,6 +291,39 @@ class AdminController extends Controller
         return view('admin.view_customer', compact('customer', 'deliveryInfo'));
     }
 
+    public function createCustomer()
+    {
+        return view('admin.create_customer');
+    }
+
+
+    public function storeCustomer(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+
+
+        // Create the customer
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role_id' => 2, // Assuming role_id 2 is for customers
+            'date_created' => now(), // Set the current timestamp
+
+        ]);
+
+
+
+        return redirect()->route('admin.manage_customers')->with('success', 'Customer created successfully.');
+    }
+
     public function showHandymans(Request $request)
     {
         $search = $request->input('search');
@@ -308,7 +340,7 @@ class AdminController extends Controller
 
     public function editHandyman($id)
     {
-        $handyman = User::findOrFail($id);
+        $handyman = User::with('handyman')->findOrFail($id);
         $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
 
         return view('admin.edit_handyman', compact('handyman', 'deliveryInfo'));
@@ -327,6 +359,9 @@ class AdminController extends Controller
             'location' => 'nullable|string|max:255',
             'building_no' => 'nullable|string|max:255',
             'city' => 'nullable|string|max:255',
+            'experience' => 'nullable|integer',
+            'bio' => 'nullable|string|max:255',
+            'store_location' => 'nullable|string|max:255',
         ]);
 
         // Handle image upload
@@ -341,14 +376,24 @@ class AdminController extends Controller
             $handyman->image = $imageName;
         }
 
-        // Update customer information
+        // Update Handyman information in the `users` table
         $handyman->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'image' => $handyman->image, // Save the image name in the database
         ]);
 
-        // Update or create delivery info
+        // Update or create handyman-specific information in the `handymans` table
+        Handyman::updateOrCreate(
+            ['user_id' => $handyman->id],
+            [
+                'experience' => $request->input('experience'),
+                'bio' => $request->input('bio'),
+                'store_location' => $request->input('store_location'),
+            ]
+        );
+
+        // Update or create delivery information in the `delivery_infos` table
         DeliveryInfo::updateOrCreate(
             ['user_id' => $handyman->id],
             [
@@ -359,8 +404,9 @@ class AdminController extends Controller
             ]
         );
 
-        return redirect()->route('admin.manage_handymans')->with('success', 'handyman information updated successfully.');
+        return redirect()->route('admin.manage_handymans')->with('success', 'Handyman information updated successfully.');
     }
+
 
 
     public function deleteHandyman($id)
@@ -382,5 +428,39 @@ class AdminController extends Controller
         $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
 
         return view('admin.view_handyman', compact('handyman', 'deliveryInfo'));
+    }
+
+
+    public function createHandyman()
+    {
+        return view('admin.create_handyman');
+    }
+
+
+    public function storeHandyman(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+
+
+        // Create the customer
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role_id' => 4, 
+            'date_created' => now(), // Set the current timestamp
+
+        ]);
+
+
+
+        return redirect()->route('admin.manage_handymans')->with('success', 'handyman created successfully.');
     }
 }

@@ -10,8 +10,8 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
           <li class="breadcrumb-item ">User Control Center</li>
-          <li class="breadcrumb-item ">List of Customers</li>
-          <li class="breadcrumb-item active">Customer info edit</li>
+          <li class="breadcrumb-item ">List of Handymans</li>
+          <li class="breadcrumb-item active">Handyman info edit</li>
         </ol>
       </nav>
     </div>
@@ -31,12 +31,12 @@
                     <div class="row w-100">
                         <!-- Profile Image Column -->
                         <div class="col-lg-4 d-flex justify-content-center align-items-center">
-                            <img src="{{ $customer->image ? url('/user_images/' . $customer->image) : url('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle" width="150">
+                            <img src="{{ $handyman->image ? url('/user_images/' . $handyman->image) : url('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle" width="150">
                         </div>
 
                         <!-- Profile Information Column -->
                         <div class="col-lg-8">
-                            <h2>{{ $customer->name }}</h2>
+                            <h2>{{ $handyman->name }}</h2>
 
                             <div class="tab-content pt-2">
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -44,23 +44,16 @@
 
                                     <div class="row mb-2">
                                         <div class="col-lg-4 col-md-4 label">Full Name</div>
-                                        <div class="col-lg-8 col-md-8">{{ $customer->name }}</div>
+                                        <div class="col-lg-8 col-md-8">{{ $handyman->name }}</div>
                                     </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Company</div>
-                                        <div class="col-lg-8 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
-                                    </div>
 
                                     <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Job</div>
-                                        <div class="col-lg-8 col-md-8">Web Designer</div>
+                                        <div class="col-lg-4 col-md-4 label">Store Location</div>
+                                        <div class="col-lg-8 col-md-8">{{ $handymans->handyman->store_location ?? 'Not provided' }}</div>
                                     </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-lg-4 col-md-4 label">Country</div>
-                                        <div class="col-lg-8 col-md-8">USA</div>
-                                    </div>
+
 
                                     <div class="row mb-2">
                                         <div class="col-lg-4 col-md-4 label">Address</div>
@@ -74,16 +67,33 @@
 
                                     <div class="row mb-2">
                                         <div class="col-lg-4 col-md-4 label">Email</div>
-                                        <div class="col-lg-8 col-md-8">{{ $customer->email }}</div>
+                                        <div class="col-lg-8 col-md-8">{{ $handyman->email }}</div>
                                     </div>
 
                                     <!-- Stylish Button for Chat Center -->
                                     <div class="row mt-4">
                                         <div class="col-lg-12 text-center">
-                                            <a href="{{ route('admin.dashboard', ['id' => $customer->id]) }}" class="btn btn-primary btn-lg">
-                                                <i class="bi bi-chat-dots"></i> Go to Chat Center
-                                            </a>
-                                        </div>
+    <!-- Go to Chat Center Button -->
+    <a href="{{ route('admin.dashboard', ['id' => $handyman->id]) }}" class="btn btn-primary btn-lg">
+        <i class="bi bi-chat-dots"></i> Go to Chat Center
+    </a>
+
+    <!-- Edit Button -->
+    <a href="{{ route('admin.edit_handyman', ['id' => $handyman->id]) }}" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-pencil"></i> Edit
+    </a>
+
+    <!-- Delete Button -->
+    <form action="{{ route('admin.delete_handyman', ['id' => $handyman->id]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-primary btn-lg" >
+            <i class="fa-solid fa-trash"></i> Delete
+        </button>
+    </form>
+</div>
+
+                                         
                                     </div>
                                     <!-- End Stylish Button -->
 
@@ -118,7 +128,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($customer->purchases as $purchase)
+                    @foreach($handyman->purchases as $purchase)
                         <tr>
                             <th scope="row"><a href="#">#{{ $loop->iteration }}</a></th>
                             <td><a href="#" class="text-primary">{{ $purchase->product->name }}</a></td>
@@ -156,7 +166,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($customer->gigs as $gig)
+                    @foreach($handyman->gigs as $gig)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $gig->title }}</td>
