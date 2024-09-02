@@ -19,6 +19,9 @@ class Sale extends Model
         'status_id',
     ];
 
+    protected $dates = ['sale_date'];
+
+
     public function store()
     {
         return $this->belongsTo(Store::class);

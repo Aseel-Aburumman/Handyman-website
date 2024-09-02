@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\DB;
 
@@ -204,9 +205,9 @@ class AdminController extends Controller
         $search = $request->input('search');
 
         $users = User::where('role_id', 2) // Assuming role_id 2 is for customers
-        ->when($search, function ($query, $search) {
-            return $query->where('name', 'like', '%' . $search . '%');
-        })
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+            })
             ->get();
 
         return view('admin.manage_customers', compact('users'));
@@ -225,37 +226,50 @@ class AdminController extends Controller
     {
         $customer = User::findOrFail($id);
 
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'image' => 'nullable|image',
+            'location' => 'nullable|string|max:255',
+            'building_no' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+        ]);
+
         // Handle image upload
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('user_images'), $imageName);
+            // Delete old image if exists and it's not the default
+            if ($customer->image && $customer->image !== 'default.png') {
+                Storage::delete('/user_images/' . $customer->image);
+            }
 
-            // Update user's image path in the database
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('user_images'), $imageName);
             $customer->image = $imageName;
         }
 
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-
-        if ($request->filled('password')) {
-            $customer->password = Hash::make($request->password);
-        }
-
-        $customer->save();
+        // Update customer information
+        $customer->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'image' => $customer->image, // Save the image name in the database
+        ]);
 
         // Update or create delivery info
         DeliveryInfo::updateOrCreate(
             ['user_id' => $customer->id],
             [
-                'phone' => $request->phone,
-                'city' => $request->city,
-                'location' => $request->location,
-                'building_no' => $request->building_no,
+                'phone' => $request->input('phone'),
+                'location' => $request->input('location'),
+                'building_no' => $request->input('building_no'),
+                'city' => $request->input('city'),
             ]
         );
+
         return redirect()->route('admin.manage_customers')->with('success', 'Customer information updated successfully.');
     }
+
 
     public function deleteCustomer($id)
     {
@@ -268,5 +282,105 @@ class AdminController extends Controller
         $customer->delete();
 
         return redirect()->route('admin.manage_customers')->with('success', 'Customer deleted successfully.');
+    }
+
+    public function viewCustomer($id)
+    {
+        $customer = User::with('purchases.product', 'gigs')->findOrFail($id);
+        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
+
+        return view('admin.view_customer', compact('customer', 'deliveryInfo'));
+    }
+
+    public function showHandymans(Request $request)
+    {
+        $search = $request->input('search');
+
+        $users = User::where('role_id', 4)
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->get();
+
+        return view('admin.manage_handymans', compact('users'));
+    }
+
+
+    public function editHandyman($id)
+    {
+        $handyman = User::findOrFail($id);
+        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
+
+        return view('admin.edit_handyman', compact('handyman', 'deliveryInfo'));
+    }
+
+    public function updateHandyman(Request $request, $id)
+    {
+        $handyman = User::findOrFail($id);
+
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'image' => 'nullable|image',
+            'location' => 'nullable|string|max:255',
+            'building_no' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists and it's not the default
+            if ($handyman->image && $handyman->image !== 'default.png') {
+                Storage::delete('/user_images/' . $handyman->image);
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('user_images'), $imageName);
+            $handyman->image = $imageName;
+        }
+
+        // Update customer information
+        $handyman->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'image' => $handyman->image, // Save the image name in the database
+        ]);
+
+        // Update or create delivery info
+        DeliveryInfo::updateOrCreate(
+            ['user_id' => $handyman->id],
+            [
+                'phone' => $request->input('phone'),
+                'location' => $request->input('location'),
+                'building_no' => $request->input('building_no'),
+                'city' => $request->input('city'),
+            ]
+        );
+
+        return redirect()->route('admin.manage_handymans')->with('success', 'handyman information updated successfully.');
+    }
+
+
+    public function deleteHandyman($id)
+    {
+        $handyman = User::findOrFail($id);
+
+        // Optionally, delete any associated records
+        DeliveryInfo::where('user_id', $id)->delete();
+
+        // Delete the customer
+        $handyman->delete();
+
+        return redirect()->route('admin.manage_handymans')->with('success', 'handyman deleted successfully.');
+    }
+
+    public function viewHandyman($id)
+    {
+        $handyman = User::with('purchases.product', 'gigs')->findOrFail($id);
+        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
+
+        return view('admin.view_handyman', compact('handyman', 'deliveryInfo'));
     }
 }

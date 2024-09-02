@@ -86,10 +86,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Sale::class);
     }
+    public function gigs()
+    {
+        return $this->hasMany(Gig::class);
+    }
 
     public function deliveryInfo()
     {
         return $this->hasOne(DeliveryInfo::class);
+    }
+    public function purchases()
+    {
+        return $this->hasMany(Sale::class, 'user_id');
     }
 
 

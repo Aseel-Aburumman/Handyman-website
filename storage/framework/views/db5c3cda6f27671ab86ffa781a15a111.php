@@ -18,7 +18,7 @@
     <section class="section dashboard">
       <div class="row">
 
-        
+
 
         <div class="card">
             <div class="card-body">
@@ -51,6 +51,8 @@
                             <td><?php echo e($user->rating); ?></td>
                             <td><?php echo e($user->created_at->format('Y-m-d')); ?></td>
 <td class="actions">
+    <a href="<?php echo e(route('admin.view_customer', ['id' => $user->id])); ?>" class="fa-solid fa-eye"></a>
+
     <a href="<?php echo e(route('admin.edit_customer', ['id' => $user->id])); ?>" class="fa-solid fa-pencil"></a>
 <form action="<?php echo e(route('admin.delete_customer', ['id' => $user->id])); ?>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
     <?php echo csrf_field(); ?>

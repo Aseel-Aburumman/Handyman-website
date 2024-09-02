@@ -22,9 +22,9 @@
           </a>
         </li>
         <li>
-          <a href="components-accordion.html">
-            <i class="bi bi-circle"></i><span>Accordion</span>
-          </a>
+            <a href="<?php echo e(route('admin.manage_handymans')); ?>">
+                <i class="bi bi-circle"></i><span>Manage Handymans</span>
+              </a>
         </li>
         <li>
           <a href="components-badges.html">

@@ -26,7 +26,7 @@
         <h5 class="card-title">Update Customer Information</h5>
 
         <!-- Update Customer Information Form -->
-        <form class="row g-3" method="POST" action="{{ route('admin.update_customer', $customer->id) }}">
+        <form class="row g-3" method="POST" action="{{ route('admin.update_customer', $customer->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

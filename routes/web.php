@@ -31,8 +31,15 @@ Route::group([
 
     Route::get('/admin/manage_customers', [AdminController::class, 'showCustomers'])->name('admin.manage_customers');
     Route::get('/admin/edit_customer/{id}', [AdminController::class, 'editCustomer'])->name('admin.edit_customer');
-    Route::put('/admin/manage_customers', [AdminController::class, 'updateCustomer'])->name('admin.update_customer');
+    Route::put('/admin/update_customer/{id}', [AdminController::class, 'updateCustomer'])->name('admin.update_customer');
     Route::delete('/admin/delete_customer/{id}', [AdminController::class, 'deleteCustomer'])->name('admin.delete_customer');
+    Route::get('/admin/view_customer/{id}', [AdminController::class, 'viewCustomer'])->name('admin.view_customer');
+
+    Route::get('/admin/manage_handymans', [AdminController::class, 'showHandymans'])->name('admin.manage_handymans');
+    Route::get('/admin/edit_handyman/{id}', [AdminController::class, 'editHandyman'])->name('admin.edit_handyman');
+    Route::put('/admin/update_handyman/{id}', [AdminController::class, 'updateHandyman'])->name('admin.update_handyman');
+    Route::delete('/admin/delete_handyman/{id}', [AdminController::class, 'deleteHandyman'])->name('admin.delete_handyman');
+    Route::get('/admin/view_handyman/{id}', [AdminController::class, 'viewHandyman'])->name('admin.view_handyman');
 
 
     // Route::get('/admin/customer/{id}/edit', [AdminController::class, 'editCustomer'])->name('customer.edit');

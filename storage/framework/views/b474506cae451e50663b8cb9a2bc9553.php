@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 
 
@@ -26,7 +24,7 @@
         <h5 class="card-title">Update Customer Information</h5>
 
         <!-- Update Customer Information Form -->
-        <form class="row g-3" method="POST" action="<?php echo e(route('admin.update_customer', $customer->id)); ?>">
+        <form class="row g-3" method="POST" action="<?php echo e(route('admin.update_customer', $customer->id)); ?>" enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
             <?php echo method_field('PUT'); ?>
 
@@ -82,4 +80,5 @@
 
 
   <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.admin_master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Handyman-website\resources\views/admin/edit_customer.blade.php ENDPATH**/ ?>
