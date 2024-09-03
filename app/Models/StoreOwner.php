@@ -23,9 +23,9 @@ class StoreOwner extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function stores()
+    public function store()
     {
-        return $this->hasMany(Store::class);
+        return $this->hasOne(Store::class);
     }
 
     public function certificate()

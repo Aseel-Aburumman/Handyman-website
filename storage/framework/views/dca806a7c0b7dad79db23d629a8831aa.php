@@ -85,7 +85,9 @@
     
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
       <i class="bi bi-chat-left-text"></i>
-      <span class="badge bg-success badge-number"><?php echo e($messages->where('is_read', 0)->count()); ?></span>
+      <span id="unread-message-count" class="badge bg-success badge-number"><?php echo e($messages->where('is_read', 0)->count()); ?></span>
+      
+
     </a>
     
 
@@ -189,4 +191,20 @@
     </nav><!-- End Icons Navigation -->
 
   </header>
+<script>
+    function updateUnreadMessagesCount() {
+    $.ajax({
+        url: "<?php echo e(route('admin.unread_messages_count')); ?>",
+        method: 'GET',
+        success: function(data) {
+            $('#unread-message-count').text(data.unread_count); // Update the message count
+        }
+    });
+}
+
+// Call the function when a message is sent, or periodically
+updateUnreadMessagesCount();
+
+</script>
+
 <?php /**PATH C:\xampp\htdocs\Handyman-website\resources\views/partials/navbar_admin.blade.php ENDPATH**/ ?>

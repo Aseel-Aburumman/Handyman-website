@@ -22,6 +22,8 @@ class ShareNavbar
 
 
             $messages = Message::where('receiver_id', $userId)
+                ->where('is_read', 0)
+
                 ->with('sender') // Eager load the sender
                 ->orderBy('created_at', 'desc')
                 ->get();

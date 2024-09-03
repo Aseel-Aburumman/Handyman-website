@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->string('store_name');
-            $table->string('contact_number');
-            $table->string('address');
-            $table->tinyInteger('rating');
-            $table->unsignedBigInteger('certificate_id');
+            $table->string('store_name')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('address')->nullable();
+            $table->tinyInteger('rating')->default(0);
+            $table->unsignedBigInteger('certificate_id')->nullable();
             $table->foreign('certificate_id')->references('id')->on('certificates')->onDelete('cascade');
             $table->timestamps();
         });

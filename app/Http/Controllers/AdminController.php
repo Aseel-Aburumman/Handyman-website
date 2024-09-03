@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 use App\Models\Notification;
+use App\Models\StoreOwner;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Models\Gig;
@@ -16,6 +19,9 @@ use App\Models\Sale;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\DeliveryInfo;
+use App\Models\Store;
+use App\Models\Ticket;
+use App\Models\Status;
 use App\Models\Handyman;
 use Illuminate\Http\Request;
 
@@ -160,26 +166,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('topSellingProducts', 'products', 'recentSales', 'dates', 'gigsData', 'salesData', 'usersData', 'currentYearUsers', 'percentageChange', 'currentMonthRevenue', 'percentageChange',  'currentWeekTransactions', 'percentageChange'));
     }
 
-    public function navbar()
-    {
 
-
-
-        // $user_id = Auth::id();
-        $user_id = 1;
-
-        $notifications = Notification::where('user_id', $user_id)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $messages = Message::where('receiver_id', $user_id)
-            ->with('sender') // Eager load the sender
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-
-        return view('admin.dashboard', compact('notifications', 'messages'));
-    }
 
     public function notification()
     {
@@ -199,270 +186,90 @@ class AdminController extends Controller
     }
 
 
-    public function showCustomers(Request $request)
+
+    public function manageTickets()
     {
-        $search = $request->input('search');
+        // Fetch all tickets
+        $tickets = Ticket::with('status', 'user')->get();
+        $statuses = Status::where('status_category', 'ticket')->get();
 
-        $users = User::where('role_id', 2) // Assuming role_id 2 is for customers
-            ->when($search, function ($query, $search) {
-                return $query->where('name', 'like', '%' . $search . '%');
-            })
-            ->get();
-
-        return view('admin.manage_customers', compact('users'));
+        return view('admin.ticket_manage', compact('tickets', 'statuses'));
     }
 
 
-    public function editCustomer($id)
+    public function updateTicketStatus(Request $request, $id)
     {
-        $customer = User::findOrFail($id);
-        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
+        // Find the ticket and update its status
+        $ticket = Ticket::findOrFail($id);
+        $ticket->status_id = $request->input('status_id');
+        $ticket->save();
 
-        return view('admin.edit_customer', compact('customer', 'deliveryInfo'));
+        return redirect()->route('admin.manage_tickets')->with('success', 'Ticket status updated successfully.');
     }
 
-    public function updateCustomer(Request $request, $id)
+    public function viewTicket($id)
     {
-        $customer = User::findOrFail($id);
+        $ticket = Ticket::with('status', 'user')->findOrFail($id);
 
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'image' => 'nullable|image',
-            'location' => 'nullable|string|max:255',
-            'building_no' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:255',
-        ]);
+        return view('admin.view_ticket', compact('ticket'));
+    }
 
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete old image if exists and it's not the default
-            if ($customer->image && $customer->image !== 'default.png') {
-                Storage::delete('/user_images/' . $customer->image);
-            }
+    public function messageUser($user_id, $ticketId)
+    {
+        $user = User::findOrFail($user_id);
+        $messages = Message::where('receiver_id', $user_id)->orWhere('sender_id', $user_id)->get();
+        $ticket = Ticket::findOrFail($ticketId);
 
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('user_images'), $imageName);
-            $customer->image = $imageName;
+        return view('admin.message_center', compact('user', 'messages', 'ticket'));
+    }
+
+    public function sendMessage(Request $request, $user_id)
+    {
+
+
+
+        // Save the message
+        $newmessage = new Message();
+        // $message->sender_id = auth()->id();
+
+        $newmessage->sender_id = 1; // Static ID for the admin (replace with auth()->id() after implementing authentication)
+        $newmessage->receiver_id = $request->user_id; // ID of the user receiving the message
+        $newmessage->message_content = $request->input('message_content');
+        $newmessage->save();
+
+        // Log message save
+        Log::info('Message saved with ID: ' . $newmessage->id);
+
+        // Fetch the related ticket subject
+        $ticket = Ticket::find($request->input('ticket_id'));
+
+        if (!$ticket) {
+            // Log if the ticket was not found
+            Log::error('Ticket not found with ID: ' . $request->input('ticket_id'));
+
+            // If the ticket is not found, redirect back with an error message
+            return redirect()->back()->with('error', 'Ticket not found.');
         }
 
-        // Update customer information
-        $customer->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'image' => $customer->image, // Save the image name in the database
-        ]);
+        // Log that the ticket was found
+        Log::info('Ticket found with subject: ' . $ticket->subject);
 
-        // Update or create delivery info
-        DeliveryInfo::updateOrCreate(
-            ['user_id' => $customer->id],
-            [
-                'phone' => $request->input('phone'),
-                'location' => $request->input('location'),
-                'building_no' => $request->input('building_no'),
-                'city' => $request->input('city'),
-            ]
-        );
-
-        return redirect()->route('admin.manage_customers')->with('success', 'Customer information updated successfully.');
-    }
-
-
-    public function deleteCustomer($id)
-    {
-        $customer = User::findOrFail($id);
-
-        // Optionally, delete any associated records
-        DeliveryInfo::where('user_id', $id)->delete();
-
-        // Delete the customer
-        $customer->delete();
-
-        return redirect()->route('admin.manage_customers')->with('success', 'Customer deleted successfully.');
-    }
-
-    public function viewCustomer($id)
-    {
-        $customer = User::with('purchases.product', 'gigs')->findOrFail($id);
-        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
-
-        return view('admin.view_customer', compact('customer', 'deliveryInfo'));
-    }
-
-    public function createCustomer()
-    {
-        return view('admin.create_customer');
-    }
-
-
-    public function storeCustomer(Request $request)
-    {
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'phone' => 'nullable|string|max:20',
-        ]);
-
-
-
-        // Create the customer
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'role_id' => 2, // Assuming role_id 2 is for customers
-            'date_created' => now(), // Set the current timestamp
-
-        ]);
-
-
-
-        return redirect()->route('admin.manage_customers')->with('success', 'Customer created successfully.');
-    }
-
-    public function showHandymans(Request $request)
-    {
-        $search = $request->input('search');
-
-        $users = User::where('role_id', 4)
-            ->when($search, function ($query, $search) {
-                return $query->where('name', 'like', '%' . $search . '%');
-            })
-            ->get();
-
-        return view('admin.manage_handymans', compact('users'));
-    }
-
-
-    public function editHandyman($id)
-    {
-        $handyman = User::with('handyman')->findOrFail($id);
-        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
-
-        return view('admin.edit_handyman', compact('handyman', 'deliveryInfo'));
-    }
-
-    public function updateHandyman(Request $request, $id)
-    {
-        $handyman = User::findOrFail($id);
-
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'image' => 'nullable|image',
-            'location' => 'nullable|string|max:255',
-            'building_no' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:255',
-            'experience' => 'nullable|integer',
-            'bio' => 'nullable|string|max:255',
-            'store_location' => 'nullable|string|max:255',
-        ]);
-
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete old image if exists and it's not the default
-            if ($handyman->image && $handyman->image !== 'default.png') {
-                Storage::delete('/user_images/' . $handyman->image);
-            }
-
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('user_images'), $imageName);
-            $handyman->image = $imageName;
+        // Create a notification for the user
+        $notification = new Notification();
+        $notification->user_id = $newmessage->receiver_id; // Assign the notification to the user
+        $notification->message = 'You have received a message from the support team regarding the ticket: ' . $ticket->subject;
+        $notification->category = 'primary'; // Set the notification category as 'primary'
+        $notification->is_read = 0; // Mark the notification as unread
+        $notification->save();
+        if ($notification->save()) {
+            // Log if the notification was successfully saved
+            Log::info('Notification created with ID: ' . $notification->id);
+        } else {
+            // Log if the notification saving failed
+            Log::error('Failed to create notification for user ID: ' . $newmessage->receiver_id);
         }
 
-        // Update Handyman information in the `users` table
-        $handyman->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'image' => $handyman->image, // Save the image name in the database
-        ]);
 
-        // Update or create handyman-specific information in the `handymans` table
-        Handyman::updateOrCreate(
-            ['user_id' => $handyman->id],
-            [
-                'experience' => $request->input('experience'),
-                'bio' => $request->input('bio'),
-                'store_location' => $request->input('store_location'),
-            ]
-        );
-
-        // Update or create delivery information in the `delivery_infos` table
-        DeliveryInfo::updateOrCreate(
-            ['user_id' => $handyman->id],
-            [
-                'phone' => $request->input('phone'),
-                'location' => $request->input('location'),
-                'building_no' => $request->input('building_no'),
-                'city' => $request->input('city'),
-            ]
-        );
-
-        return redirect()->route('admin.manage_handymans')->with('success', 'Handyman information updated successfully.');
-    }
-
-
-
-    public function deleteHandyman($id)
-    {
-        $handyman = User::findOrFail($id);
-
-        // Optionally, delete any associated records
-        DeliveryInfo::where('user_id', $id)->delete();
-
-        // Delete the customer
-        $handyman->delete();
-
-        return redirect()->route('admin.manage_handymans')->with('success', 'handyman deleted successfully.');
-    }
-    public function viewHandyman($id)
-    {
-        // Fetch the handyman's user details, along with their associated gigs and purchases
-        $handyman = User::with(['purchases.product', 'handyman.gigs'])->findOrFail($id);
-
-        // Fetch the delivery info associated with the handyman
-        $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
-
-        return view('admin.view_handyman', compact('handyman', 'deliveryInfo'));
-    }
-
-
-    public function createHandyman()
-    {
-        return view('admin.create_handyman');
-    }
-
-
-    public function storeHandyman(Request $request)
-    {
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'phone' => 'nullable|string|max:20',
-        ]);
-
-
-
-        // Create the customer
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'role_id' => 4, 
-            'date_created' => now(), // Set the current timestamp
-
-        ]);
-
-
-
-        return redirect()->route('admin.manage_handymans')->with('success', 'handyman created successfully.');
+        return redirect()->back();
     }
 }

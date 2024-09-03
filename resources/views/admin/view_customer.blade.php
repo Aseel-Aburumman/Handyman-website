@@ -77,15 +77,31 @@
                                         <div class="col-lg-8 col-md-8">{{ $customer->email }}</div>
                                     </div>
 
-                                    <!-- Stylish Button for Chat Center -->
+                                    <!-- Stylish Button for Chat Center, Edit, and Delete -->
                                     <div class="row mt-4">
                                         <div class="col-lg-12 text-center">
+                                            <!-- Go to Chat Center Button -->
                                             <a href="{{ route('admin.dashboard', ['id' => $customer->id]) }}" class="btn btn-primary btn-lg">
                                                 <i class="bi bi-chat-dots"></i> Go to Chat Center
                                             </a>
+
+                                            <!-- Edit Button -->
+                                            <a href="{{ route('admin.edit_customer', ['id' => $customer->id]) }}" class="btn btn-primary btn-lg">
+                                                <i class="fa-solid fa-pencil"></i> Edit
+                                            </a>
+
+                                            <!-- Delete Button -->
+                                            <form action="{{ route('admin.delete_customer', ['id' => $customer->id]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this handyman?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-primary btn-lg">
+                                                    <i class="fa-solid fa-trash"></i> Delete
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                     <!-- End Stylish Button -->
+
 
                                 </div>
                             </div>
