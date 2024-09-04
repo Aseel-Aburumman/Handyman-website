@@ -23,6 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('certificate_id')->nullable();
             $table->foreign('certificate_id')->references('id')->on('certificates')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes(); // Adds a 'deleted_at' column
+
         });
     }
 

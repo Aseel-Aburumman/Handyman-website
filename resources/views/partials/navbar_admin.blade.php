@@ -38,20 +38,20 @@
     {{--  <!-- Start Notification Icon -->  --}}
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
       <i class="bi bi-bell"></i>
-      <span class="badge bg-primary badge-number">{{ $notifications->where('is_read', 0)->count() }}</span>
+<span class="badge bg-primary badge-number">{{ $adminNotifications->where('is_read', 0)->count() }}</span>
     </a>
     {{--  <!-- End Notification Icon -->  --}}
 
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
       <li class="dropdown-header">
-        You have {{ $notifications->where('is_read', 0)->count() }} new notifications
+        You have {{ $adminNotifications->where('is_read', 0)->count() }} new notifications
         <a href="{{ route('admin.notification') }}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
       </li>
       <li>
         <hr class="dropdown-divider">
       </li>
 
-      @forelse ($notifications as $notification)
+      @forelse ($adminNotifications as $notification)
       <li class="notification-item">
         @if ($notification->category == 'primary')
           <i class="bi bi-exclamation-circle text-primary"></i>
@@ -90,11 +90,11 @@
     {{--  <!-- Start Messages Icon -->  --}}
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
       <i class="bi bi-chat-left-text"></i>
-      <span class="badge bg-success badge-number">{{ $messages->where('is_read', 0)->count() }}</span>
+      <span class="badge bg-success badge-number">{{ $unreadMessages->where('is_read', 0)->count() }}</span>
     </a>
     {{--  <!-- End Messages Icon -->  --}}
 
-    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+    {{-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
       <li class="dropdown-header">
         You have {{ $messages->where('is_read', 0)->count() }} new messages
         <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -128,11 +128,48 @@
       <li class="dropdown-footer">
         <a href="#">Show all messages</a>
       </li>
-    </ul>
+    </ul> --}}
+
+<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+    <li class="dropdown-header">
+        You have {{ $unreadMessages->count() }} new messages
+        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+    </li>
+    <li>
+        <hr class="dropdown-divider">
+    </li>
+
+    @forelse ($unreadMessages as $unreadMessage)
+    <li class="message-item">
+        <a href="#">
+            <img src="assets/img/default-avatar.png" alt="" class="rounded-circle">
+            <div>
+                <h4>{{ $unreadMessage->sender->name }}</h4> <!-- Display the sender's name -->
+                <p>{{ Str::limit($unreadMessage->message_content, 50) }}</p>
+                <p>{{ $unreadMessage->created_at->diffForHumans() }}</p>
+            </div>
+        </a>
+    </li>
+    <li>
+        <hr class="dropdown-divider">
+    </li>
+    @empty
+    <li class="message-item">
+        <div>
+            <h4>No new messages</h4>
+        </div>
+    </li>
+    @endforelse
+
+    <li class="dropdown-footer">
+        <a href="#">Show all messages</a>
+    </li>
+</ul>
+
     <!-- End Messages Dropdown Items -->
   </li>
   {{--  <!-- End Messages nav -->  --}}
-    <!-- End Messages Nav -->  --}}
+    <!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
 

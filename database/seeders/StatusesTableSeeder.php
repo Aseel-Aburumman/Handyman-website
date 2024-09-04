@@ -21,6 +21,8 @@ class StatusesTableSeeder extends Seeder
         Status::create(['status_category' => 'gig', 'name' => 'In Progress', 'description' => 'Gig is in progress']);
         Status::create(['status_category' => 'gig', 'name' => 'Completed', 'description' => 'Gig is completed']);
         Status::create(['status_category' => 'gig', 'name' => 'Canceled', 'description' => 'Gig is Canceled']);
+        Status::create(['status_category' => 'gig', 'name' => 'Reported', 'description' => 'Gig is Reported']);
+
 
 
         Status::create(['status_category' => 'ticket', 'name' => 'Open', 'description' => 'Ticket is open']);

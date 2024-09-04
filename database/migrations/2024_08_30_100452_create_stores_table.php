@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->float('rating');
             $table->timestamps();
+            $table->softDeletes(); // Adds a 'deleted_at' column
+
         });
     }
 

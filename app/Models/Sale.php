@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes; // Import SoftDeletes trait
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,8 +20,9 @@ class Sale extends Model
         'sale_date',
         'status_id',
     ];
+    use SoftDeletes; // Use the SoftDeletes trait
 
-    protected $dates = ['sale_date'];
+    protected $dates = ['sale_date', 'deleted_at'];
 
 
     public function store()

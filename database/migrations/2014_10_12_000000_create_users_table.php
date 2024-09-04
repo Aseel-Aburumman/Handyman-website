@@ -23,6 +23,8 @@ return new class extends Migration
             $table->rememberToken(); //used by the framework to help against Remember Me cookie hijacking. The value is refreshed upon login and logout.
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes(); // Adds a 'deleted_at' column
+
         });
     }
 

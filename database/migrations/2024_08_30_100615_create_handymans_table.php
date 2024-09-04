@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('store_location')->nullable();
             $table->text('bio')->nullable();
             $table->timestamps();
+            $table->softDeletes(); // Adds a 'deleted_at' column
+
         });
     }
 

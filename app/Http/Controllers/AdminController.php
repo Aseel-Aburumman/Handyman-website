@@ -15,6 +15,8 @@ use App\Models\StoreOwner;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Models\Gig;
+use App\Models\Category;
+
 use App\Models\Sale;
 use App\Models\User;
 use App\Models\Product;
@@ -214,14 +216,28 @@ class AdminController extends Controller
         return view('admin.view_ticket', compact('ticket'));
     }
 
-    public function messageUser($user_id, $ticketId)
+ 
+    public function messageUser($recipient_id, $ticketId)
     {
-        $user = User::findOrFail($user_id);
-        $messages = Message::where('receiver_id', $user_id)->orWhere('sender_id', $user_id)->get();
-        $ticket = Ticket::findOrFail($ticketId);
+        $adminId = 1; // This should be replaced with `auth()->id()` after authentication is implemented
 
-        return view('admin.message_center', compact('user', 'messages', 'ticket'));
+        $recipient = User::findOrFail($recipient_id);
+
+        // Get all messages where either the admin or the recipient is involved
+        $chatMessages = Message::where(function ($query) use ($recipient_id) {
+            $query->where('receiver_id', $recipient_id)
+                ->orWhere('sender_id', $recipient_id);
+        })
+            ->orderBy('created_at', 'asc') // Ensure the messages are ordered chronologically
+            ->get();
+
+        $ticketDetail = Ticket::findOrFail($ticketId);
+
+        return view('admin.message_center', compact('recipient', 'chatMessages', 'ticketDetail', 'adminId'));
     }
+
+
+
 
     public function sendMessage(Request $request, $user_id)
     {
@@ -237,23 +253,13 @@ class AdminController extends Controller
         $newmessage->message_content = $request->input('message_content');
         $newmessage->save();
 
-        // Log message save
-        Log::info('Message saved with ID: ' . $newmessage->id);
 
         // Fetch the related ticket subject
         $ticket = Ticket::find($request->input('ticket_id'));
 
-        if (!$ticket) {
-            // Log if the ticket was not found
-            Log::error('Ticket not found with ID: ' . $request->input('ticket_id'));
+        
 
-            // If the ticket is not found, redirect back with an error message
-            return redirect()->back()->with('error', 'Ticket not found.');
-        }
-
-        // Log that the ticket was found
-        Log::info('Ticket found with subject: ' . $ticket->subject);
-
+        
         // Create a notification for the user
         $notification = new Notification();
         $notification->user_id = $newmessage->receiver_id; // Assign the notification to the user
@@ -261,15 +267,53 @@ class AdminController extends Controller
         $notification->category = 'primary'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();
-        if ($notification->save()) {
-            // Log if the notification was successfully saved
-            Log::info('Notification created with ID: ' . $notification->id);
-        } else {
-            // Log if the notification saving failed
-            Log::error('Failed to create notification for user ID: ' . $newmessage->receiver_id);
-        }
+
 
 
         return redirect()->back();
+    }
+
+    public function manageGigs()
+    {
+        $gigs = Gig::with('status')->orderBy('created_at', 'desc')->get();
+        $statuses = Status::where('status_category', 'gig')->get(); // Filter status for gigs
+
+        return view('admin.gigs_manage', compact('gigs', 'statuses'));
+    }
+
+    public function updateGigStatus(Request $request, $id)
+    {
+        $gig = Gig::findOrFail($id);
+
+        // Validate the status ID
+        $request->validate([
+            'status_id' => 'required|exists:statuses,id',
+        ]);
+
+        // Update the status
+        $gig->status_id = $request->input('status_id');
+        $gig->save();
+
+        return redirect()->back()->with('success', 'Gig status updated successfully.');
+    }
+
+    public function editCategory($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('admin.edit_category', compact('category'));
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return redirect()->route('admin.gig_categories')->with('success', 'Category updated successfully.');
+    }
+
+    public function destroyCategory($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('admin.gig_categories')->with('success', 'Category deleted successfully.');
     }
 }

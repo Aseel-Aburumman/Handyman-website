@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserControlCenter;
+use App\Http\Controllers\GigController;
 
 
 /*
@@ -20,6 +21,8 @@ use App\Http\Controllers\UserControlCenter;
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Http\Controllers\Admin\AdminCategoryController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -61,6 +64,30 @@ Route::group([
 
     Route::post('/admin/send_message/{user_id}', [AdminController::class, 'sendMessage'])->name('admin.send_message');
 
+    Route::get('/manage-gigs', [AdminController::class, 'manageGigs'])->name('admin.manage_gigs');
+    Route::put('/update-gig-status/{id}', [AdminController::class, 'updateGigStatus'])->name('admin.update_gig_status');
+
+    Route::get('/gigs-overview', [GigController::class, 'gigsOverview'])->name('admin.gigs_overview');
+    Route::get('/all-gigs', [GigController::class, 'allGigs'])->name('admin.all_gigs');
+    Route::get('/reported-gigs', [GigController::class, 'reportedGigs'])->name('admin.reported_gigs');
+    Route::get('/gig-categories', [GigController::class, 'gigCategories'])->name('admin.gig_categories');
+    Route::get('/handyman-performance', [GigController::class, 'handymanPerformance'])->name('admin.handyman_performance');
+    Route::get('/gig-policy', [GigController::class, 'gigPolicy'])->name('admin.gig_policy');
+    Route::get('/communication-center', [GigController::class, 'communicationCenter'])->name('admin.communication_center');
+
+    Route::get('gigs', [GigController::class, 'index'])->name('manage_gigs');
+    Route::get('gig/{id}', [GigController::class, 'view'])->name('admin.view_gig');
+    Route::get('gig/{id}/edit', [GigController::class, 'edit'])->name('admin.edit_gig');
+    Route::put('gig/{id}', [GigController::class, 'update'])->name('admin.update_gig');
+    Route::delete('gig/{id}', [GigController::class, 'destroy'])->name('admin.delete_gig');
+
+    Route::post('gig/{id}/resolve', [GigController::class, 'resolveGig'])->name('admin.resolve_gig');
+    Route::post('gig/{id}/cancel', [GigController::class, 'cancelGig'])->name('admin.cancel_gig');
+
+    
+    Route::get('category/{id}/edit', [AdminController::class, 'editCategory'])->name('admin.edit_category');
+    Route::put('category/{id}', [AdminController::class, 'updateCategory'])->name('admin.update_category');
+    Route::delete('category/{id}', [AdminController::class, 'destroyCategory'])->name('admin.delete_category');
 
     // Route::get('/admin/customer/{id}/edit', [AdminController::class, 'editCustomer'])->name('customer.edit');
     // Route::put('/admin/customer/{id}', [AdminController::class, 'updateCustomer'])->name('customer.update');

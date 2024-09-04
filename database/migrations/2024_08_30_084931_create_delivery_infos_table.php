@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('location');
             $table->string('building_no');
             $table->timestamps();
+            $table->softDeletes(); // Adds a 'deleted_at' column
+
         });
     }
 

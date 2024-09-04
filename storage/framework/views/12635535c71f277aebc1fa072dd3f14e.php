@@ -15,30 +15,27 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Messages with <?php echo e($user->name); ?></h5>
+                <h5 class="card-title">Messages with <?php echo e($recipient->name); ?></h5>
 
                 <div class="message">
-                    <?php $__currentLoopData = $messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php if($message->sender_id == 1): ?> <!-- Static ID for the admin -->
-
-                        
-                            <p><strong>You</strong>: <?php echo e($message->message_content); ?></p>
+                    <?php $__currentLoopData = $chatMessages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chatMessage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($chatMessage->sender_id == $adminId): ?>
+                            <p><strong>You</strong>: <?php echo e($chatMessage->message_content); ?></p>
                         <?php else: ?>
-                            <p><strong><?php echo e($message->sender->name); ?></strong>: <?php echo e($message->message_content); ?></p>
+                            <p><strong><?php echo e($chatMessage->sender->name); ?></strong>: <?php echo e($chatMessage->message_content); ?></p>
                         <?php endif; ?>
-                        <span><?php echo e($message->created_at->format('Y-m-d H:i')); ?></span>
+                        <span><?php echo e($chatMessage->created_at->format('Y-m-d H:i')); ?></span>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
 
-                <form action="<?php echo e(route('admin.send_message', $user->id)); ?>" method="POST">
+                <form action="<?php echo e(route('admin.send_message', $recipient->id)); ?>" method="POST">
                     <?php echo csrf_field(); ?>
                     <div class="form-group">
-                        <input type="hidden" name="ticket_id" value="<?php echo e($ticket->id); ?>">
+                        <input type="hidden" name="ticket_id" value="<?php echo e($ticketDetail->id); ?>">
                         <textarea name="message_content" class="form-control" rows="3" placeholder="Type your message..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Send</button>
                 </form>
-
 
             </div>
         </div>

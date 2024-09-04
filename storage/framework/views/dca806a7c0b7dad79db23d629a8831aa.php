@@ -33,20 +33,20 @@
     
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
       <i class="bi bi-bell"></i>
-      <span class="badge bg-primary badge-number"><?php echo e($notifications->where('is_read', 0)->count()); ?></span>
+<span class="badge bg-primary badge-number"><?php echo e($adminNotifications->where('is_read', 0)->count()); ?></span>
     </a>
     
 
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
       <li class="dropdown-header">
-        You have <?php echo e($notifications->where('is_read', 0)->count()); ?> new notifications
+        You have <?php echo e($adminNotifications->where('is_read', 0)->count()); ?> new notifications
         <a href="<?php echo e(route('admin.notification')); ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
       </li>
       <li>
         <hr class="dropdown-divider">
       </li>
 
-      <?php $__empty_1 = true; $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+      <?php $__empty_1 = true; $__currentLoopData = $adminNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
       <li class="notification-item">
         <?php if($notification->category == 'primary'): ?>
           <i class="bi bi-exclamation-circle text-primary"></i>
@@ -85,51 +85,52 @@
     
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
       <i class="bi bi-chat-left-text"></i>
-      <span id="unread-message-count" class="badge bg-success badge-number"><?php echo e($messages->where('is_read', 0)->count()); ?></span>
-      
-
+      <span class="badge bg-success badge-number"><?php echo e($unreadMessages->where('is_read', 0)->count()); ?></span>
     </a>
     
 
-    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-      <li class="dropdown-header">
-        You have <?php echo e($messages->where('is_read', 0)->count()); ?> new messages
-        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-      </li>
-      <li>
-        <hr class="dropdown-divider">
-      </li>
+    
 
-      <?php $__empty_1 = true; $__currentLoopData = $messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-        <li class="message-item">
-          <a href="#">
+<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+    <li class="dropdown-header">
+        You have <?php echo e($unreadMessages->count()); ?> new messages
+        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+    </li>
+    <li>
+        <hr class="dropdown-divider">
+    </li>
+
+    <?php $__empty_1 = true; $__currentLoopData = $unreadMessages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unreadMessage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+    <li class="message-item">
+        <a href="#">
             <img src="assets/img/default-avatar.png" alt="" class="rounded-circle">
             <div>
-            <h4><?php echo e($message->sender->name); ?></h4> <!-- Display the sender's name -->
-              <p><?php echo e(Str::limit($message->message_content, 50)); ?></p>
-              <p><?php echo e($message->created_at->diffForHumans()); ?></p>
+                <h4><?php echo e($unreadMessage->sender->name); ?></h4> <!-- Display the sender's name -->
+                <p><?php echo e(Str::limit($unreadMessage->message_content, 50)); ?></p>
+                <p><?php echo e($unreadMessage->created_at->diffForHumans()); ?></p>
             </div>
-          </a>
-        </li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
-      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-        <li class="message-item">
-          <div>
+        </a>
+    </li>
+    <li>
+        <hr class="dropdown-divider">
+    </li>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+    <li class="message-item">
+        <div>
             <h4>No new messages</h4>
-          </div>
-        </li>
-      <?php endif; ?>
+        </div>
+    </li>
+    <?php endif; ?>
 
-      <li class="dropdown-footer">
+    <li class="dropdown-footer">
         <a href="#">Show all messages</a>
-      </li>
-    </ul>
+    </li>
+</ul>
+
     <!-- End Messages Dropdown Items -->
   </li>
   
-    <!-- End Messages Nav -->  --}}
+    <!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
 
@@ -191,20 +192,4 @@
     </nav><!-- End Icons Navigation -->
 
   </header>
-<script>
-    function updateUnreadMessagesCount() {
-    $.ajax({
-        url: "<?php echo e(route('admin.unread_messages_count')); ?>",
-        method: 'GET',
-        success: function(data) {
-            $('#unread-message-count').text(data.unread_count); // Update the message count
-        }
-    });
-}
-
-// Call the function when a message is sent, or periodically
-updateUnreadMessagesCount();
-
-</script>
-
 <?php /**PATH C:\xampp\htdocs\Handyman-website\resources\views/partials/navbar_admin.blade.php ENDPATH**/ ?>

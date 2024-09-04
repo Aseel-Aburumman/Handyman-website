@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('message_content');
             $table->boolean('is_read')->default(false);
             $table->timestamps();
+            $table->softDeletes(); // Adds a 'deleted_at' column
+
         });
     }
 
