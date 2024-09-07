@@ -43,4 +43,8 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'client_id');
     }
+    public function gig()
+    {
+        return $this->belongsTo(Gig::class);
+    }
 }

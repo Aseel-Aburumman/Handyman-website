@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="pagetitle">
     <h1>All Gigs</h1>

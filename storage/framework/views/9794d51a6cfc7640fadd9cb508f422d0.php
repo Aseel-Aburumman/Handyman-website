@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="pagetitle">
     <h1>Reported Gigs</h1>
@@ -30,7 +28,7 @@
                                 <td><?php echo e($gig->status->name); ?></td>
                                 <td>Reported for issue</td>
                                 <td>
-                                    <a href="<?php echo e(route('admin.resolve_gig', $gig->id)); ?>" class="btn btn-success btn-sm">Resolve</a>
+                                    <a href="<?php echo e(route('admin.view_gig', $gig->id)); ?>" class="btn btn-success btn-sm">Resolve</a>
                                     <a href="<?php echo e(route('admin.cancel_gig', $gig->id)); ?>" class="btn btn-danger btn-sm">Cancel</a>
                                 </td>
                             </tr>

@@ -40,5 +40,10 @@ class Handyman extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'handyman_id');
+    }
+
     protected $table = 'handymans';
 }

@@ -26,6 +26,11 @@ class Store extends Model
     {
         return $this->belongsTo(StoreOwner::class);
     }
+    // A StoreOwner's User (the actual user who owns the store)
+    public function ownerUser()
+    {
+        return $this->hasOneThrough(User::class, StoreOwner::class, 'id', 'id', 'store_owner_id', 'user_id');
+    }
 
     public function products()
     {
@@ -54,6 +59,11 @@ class Store extends Model
 
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'store_id');
     }
 }

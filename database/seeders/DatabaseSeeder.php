@@ -36,6 +36,10 @@ class DatabaseSeeder extends Seeder
             NotificationsTableSeeder::class,
             FollowsTableSeeder::class,
             GigsTableSeeder::class,
+            GigPolicySeeder::class,
+            ReportsSeeder::class,
+
+
         ]);
     }
 }

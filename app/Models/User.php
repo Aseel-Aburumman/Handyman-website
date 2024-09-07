@@ -32,6 +32,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'user_id');
+    }
 
     public function messagesSent()
     {
@@ -66,6 +70,11 @@ class User extends Authenticatable
     public function reviewsWritten()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'handyman_id');
     }
 
     public function handyman()

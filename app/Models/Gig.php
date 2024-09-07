@@ -61,4 +61,13 @@ class Gig extends Model
         return $this->hasMany(Gig::class);
     }
 
+    public function handymanReviews()
+    {
+        return $this->hasManyThrough(Review::class, Handyman::class, 'id', 'handyman_id', 'handyman_id', 'id');
+    }
+
+    public function reports()
+{
+    return $this->hasMany(Report::class, 'gig_id');
+}
 }

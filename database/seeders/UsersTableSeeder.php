@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 1, // Assuming role 1 is Admin
             'rating' => 5.0,
+            'reported' => false,
             'date_created' => now(),
         ]);
 
@@ -26,6 +27,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 2, // Assuming role 2 is User
             'rating' => 4.5,
+            'reported' => false,
+
             'date_created' => now(),
         ]);
 
@@ -35,6 +38,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 4, // Assuming role 2 is User
             'rating' => 4.5,
+            'reported' => false,
+
             'date_created' => now(),
         ]);
 
@@ -44,6 +49,19 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 3, // Assuming role 3 is User
             'rating' => 4.5,
+            'reported' => false,
+
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'suspended Handyman User',
+            'email' => 'suspendedhandyman@example.com',
+            'password' => bcrypt('password'),
+            'role_id' => 4, // Assuming role 2 is User
+            'rating' => 4.5,
+            'reported' => true,
+
             'date_created' => now(),
         ]);
 

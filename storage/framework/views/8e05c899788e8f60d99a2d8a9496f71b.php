@@ -69,6 +69,8 @@
   <script src="<?php echo e(asset('admin/vendor/simple-datatables/simple-datatables.js')); ?>"></script>
   <script src="<?php echo e(asset('admin/vendor/tinymce/tinymce.min.js')); ?>"></script>
   <script src="<?php echo e(asset('admin/vendor/php-email-form/validate.js')); ?>"></script>
+  <!-- Add this to the head or before the closing </body> tag -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="<?php echo e(asset('admin/js/main.js')); ?>"></script>

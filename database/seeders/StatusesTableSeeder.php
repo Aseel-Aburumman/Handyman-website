@@ -34,6 +34,10 @@ class StatusesTableSeeder extends Seeder
         Status::create(['status_category' => 'sale', 'name' => 'Confirmed', 'description' => 'sale is Confirmed']);
         Status::create(['status_category' => 'sale', 'name' => 'Delivered', 'description' => 'sale is Delivered']);
         Status::create(['status_category' => 'sale', 'name' => 'Canceled', 'description' => 'sale is Canceled']);
+
+        Status::create(['status_category' => 'store', 'name' => 'Suspended', 'description' => 'store is Suspended']);
+
+
         // Add more statuses as needed
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->timestamps();
             $table->softDeletes(); // Adds a 'deleted_at' column
-
+            $table->boolean('suspended')->default(false);
         });
     }
 

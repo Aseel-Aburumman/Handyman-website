@@ -5,6 +5,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserControlCenter;
 use App\Http\Controllers\GigController;
+use App\Http\Controllers\CommunicationController;
+use App\Http\Controllers\StoresController;
+
+
 
 
 /*
@@ -72,8 +76,22 @@ Route::group([
     Route::get('/reported-gigs', [GigController::class, 'reportedGigs'])->name('admin.reported_gigs');
     Route::get('/gig-categories', [GigController::class, 'gigCategories'])->name('admin.gig_categories');
     Route::get('/handyman-performance', [GigController::class, 'handymanPerformance'])->name('admin.handyman_performance');
-    Route::get('/gig-policy', [GigController::class, 'gigPolicy'])->name('admin.gig_policy');
-    Route::get('/communication-center', [GigController::class, 'communicationCenter'])->name('admin.communication_center');
+    // Gig Policy Routes
+    Route::get('/admin/gig-policies', [GigController::class, 'indexPolicy'])->name('gig-policies.index');
+    Route::get('/admin/gig-policies/create', [GigController::class, 'createPolicy'])->name('gig-policies.create');
+    Route::post('/admin/gig-policies', [GigController::class, 'storePolicy'])->name('gig-policies.store');
+    Route::get('/admin/gig-policies/{id}/edit', [GigController::class, 'editPolicy'])->name('gig-policies.edit');
+    Route::put('/admin/gig-policies/{id}', [GigController::class, 'updatePolicy'])->name('gig-policies.update');
+    Route::delete('/admin/gig-policies/{id}', [GigController::class, 'destroyPolicy'])->name('gig-policies.destroy');
+    Route::post('/admin/gig-policies/search', [GigController::class, 'searchPolicy'])->name('gig-policies.search');
+
+    // Communication center route
+    Route::get('/admin/communication-center', [CommunicationController::class, 'communicationCenter'])->name('admin.communication_center');
+
+    // Route to get the conversation between sender and receiver
+    Route::get('/admin/conversation/{senderId}/{receiverId}', [CommunicationController::class, 'getConversation']);
+
+
 
     Route::get('gigs', [GigController::class, 'index'])->name('manage_gigs');
     Route::get('gig/{id}', [GigController::class, 'view'])->name('admin.view_gig');
@@ -81,13 +99,39 @@ Route::group([
     Route::put('gig/{id}', [GigController::class, 'update'])->name('admin.update_gig');
     Route::delete('gig/{id}', [GigController::class, 'destroy'])->name('admin.delete_gig');
 
-    Route::post('gig/{id}/resolve', [GigController::class, 'resolveGig'])->name('admin.resolve_gig');
-    Route::post('gig/{id}/cancel', [GigController::class, 'cancelGig'])->name('admin.cancel_gig');
+    Route::post('/admin/gigs/resolve/{id}', [GigController::class, 'resolveGig'])->name('admin.resolve_gig');
 
-    
+    // Route::post('gig/{id}/resolve', [GigController::class, 'resolveGig'])->name('admin.resolve_gig');
+    Route::post('gig/{id}/cancel', [GigController::class, 'cancelGig'])->name('admin.cancel_gig');
+    Route::post('reported-gigs/resolve/{id}', [GigController::class, 'resolve'])->name('admin.resolve');
+
+
     Route::get('category/{id}/edit', [AdminController::class, 'editCategory'])->name('admin.edit_category');
     Route::put('category/{id}', [AdminController::class, 'updateCategory'])->name('admin.update_category');
     Route::delete('category/{id}', [AdminController::class, 'destroyCategory'])->name('admin.delete_category');
+
+
+    Route::post('handyman/{id}/suspend', [UserControlCenter::class, 'suspendHandyman'])->name('admin.suspend_handyman');
+    Route::post('handyman/{id}/unsuspend', [UserControlCenter::class, 'unsuspendHandyman'])->name('admin.unsuspend_handyman');
+
+
+
+    Route::get('store_control_center', [StoresController::class, 'dashboard'])->name('store_control_center.dashboard');
+    Route::get('store_control_center/all-stores', [StoresController::class, 'allStores'])->name('store_control_center.all_stores');
+    Route::get('all-stores/{id}', [StoresController::class, 'viewStore'])->name('store_control_center.view_store');
+    Route::get('all-stores/{id}/edit', [StoresController::class, 'edit'])->name('store_control_center.edit_store');
+    Route::put('all-stores/{id}', [StoresController::class, 'update'])->name('store_control_center.update_store');
+    Route::delete('all-stores/{id}', [StoresController::class, 'destroy'])->name('store_control_center.delete_store');
+    Route::post('store/suspend/{id}', [StoresController::class, 'suspendStore'])->name('store_control_center.suspend_store');
+    Route::post('store/unsuspend/{id}', [StoresController::class, 'unsuspendStore'])->name('store_control_center.unsuspend_store');
+    Route::get('/reported-stores', [StoresController::class, 'reportedStores'])->name('store_control_center.reported_stores');
+    Route::post('/admin/store_control_center/resolve/{id}', [StoresController::class, 'resolveStore'])->name('admin.resolve_store');
+    Route::delete('admin/store/{storeId}/clearReport', [StoresController::class, 'clearReportStore'])->name('store_control_center.clearReportStore');
+
+
+    Route::get('profile', [AdminController::class, 'showProfile'])->name('admin.profile');
+    Route::post('profile/update', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
+
 
     // Route::get('/admin/customer/{id}/edit', [AdminController::class, 'editCustomer'])->name('customer.edit');
     // Route::put('/admin/customer/{id}', [AdminController::class, 'updateCustomer'])->name('customer.update');

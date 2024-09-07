@@ -216,7 +216,7 @@ class AdminController extends Controller
         return view('admin.view_ticket', compact('ticket'));
     }
 
- 
+
     public function messageUser($recipient_id, $ticketId)
     {
         $adminId = 1; // This should be replaced with `auth()->id()` after authentication is implemented
@@ -257,9 +257,9 @@ class AdminController extends Controller
         // Fetch the related ticket subject
         $ticket = Ticket::find($request->input('ticket_id'));
 
-        
 
-        
+
+
         // Create a notification for the user
         $notification = new Notification();
         $notification->user_id = $newmessage->receiver_id; // Assign the notification to the user
@@ -315,5 +315,74 @@ class AdminController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
         return redirect()->route('admin.gig_categories')->with('success', 'Category deleted successfully.');
+    }
+
+
+    public function showProfile()
+    {
+
+        // $user = Auth::user();
+        $user = User::find(1);
+        // $deliveryInfo = DeliveryInfo::where('user_id', $user->id)->first();
+        $deliveryInfo = DeliveryInfo::where('user_id', $user->id)->first();
+
+        // dd($user);
+        return view('admin.profile', compact('user', 'deliveryInfo'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'fullName' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:255',
+            'location' => 'nullable|string',
+            'city' => 'nullable|string',
+            'building_no' => 'nullable|string',
+            'profile_image' => 'nullable|image', // Validate image
+        ]);
+
+        // $user = Auth::user();
+        $user = User::find(1);
+
+        // Update User Info
+        $user->name = $request->input('fullName');
+        $user->email = $request->input('email');
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists and it's not the default
+            if ($user->image && $user->image !== 'default.png') {
+                Storage::delete('/user_images/' . $user->image);
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('user_images'), $imageName);
+            $user->image = $imageName;
+        }
+
+
+
+        $user->save();
+
+        // Update Delivery Info
+        $deliveryInfo = DeliveryInfo::where('user_id', $user->id)->first();
+        if ($deliveryInfo) {
+            $deliveryInfo->phone = $request->input('phone');
+            $deliveryInfo->city = $request->input('city');
+            $deliveryInfo->location = $request->input('location');
+            $deliveryInfo->building_no = $request->input('building_no');
+            $deliveryInfo->save();
+        } else {
+            DeliveryInfo::create([
+                'user_id' => $user->id,
+                'phone' => $request->input('phone'),
+                'city' => $request->input('city'),
+                'location' => $request->input('location'),
+                'building_no' => $request->input('building_no'),
+            ]);
+        }
+
+        return redirect()->route('admin.profile')->with('success', 'Profile updated successfully');
     }
 }

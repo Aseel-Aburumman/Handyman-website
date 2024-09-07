@@ -91,17 +91,49 @@
             </a>
         </li>
         <li>
-            <a href="<?php echo e(route('admin.gig_policy')); ?>">
+            <a href="<?php echo e(route('gig-policies.index')); ?>">
+
                 <i class="bi bi-circle"></i><span>Gig Policy and Terms Management</span>
             </a>
         </li>
     </ul>
 </li>
 
+
+<li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-gem"></i><span>Stores Control Center</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="<?php echo e(route('store_control_center.dashboard')); ?>">
+          <i class="bi bi-circle"></i><span>Dashboard</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="<?php echo e(route('store_control_center.all_stores')); ?>">
+          <i class="bi bi-circle"></i><span>All Stores List</span>
+        </a>
+      </li>
+
+
+      <li>
+        <a href="<?php echo e(route('store_control_center.reported_stores')); ?>">
+          <i class="bi bi-circle"></i><span>Reported Stores</span>
+        </a>
+      </li>
+
+    </ul>
+  </li>
+
+
+
+
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="<?php echo e(route('admin.profile')); ?>">
                     <i class="bi bi-person"></i>
                     <span>Profile</span>
                 </a>

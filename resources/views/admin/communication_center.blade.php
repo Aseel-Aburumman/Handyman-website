@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Communication Center</h1>
+    <h1>Message List</h1>
 </div>
 
 <section class="section">
@@ -17,24 +17,68 @@
                             <tr>
                                 <th>Sender</th>
                                 <th>Receiver</th>
-                                <th>Message</th>
+                                <th>Preview</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($messages as $message)
+                            @foreach($groupedMessages as $messageGroup)
                             <tr>
-                                <td>{{ $message->sender->name }}</td>
-                                <td>{{ $message->receiver->name }}</td>
-                                <td>{{ $message->message_content }}</td>
-                                <td>{{ $message->created_at->format('Y-m-d H:i') }}</td>
+                                <td>{{ $messageGroup->sender->name }}</td>
+                                <td>{{ $messageGroup->receiver->name }}</td>
+                                <td>
+                                    <button class="btn btn-info" onclick="showConversation({{ $messageGroup->sender_id }}, {{ $messageGroup->receiver_id }})">View Message</button>
+                                </td>
+                                <td>{{ $messageGroup->last_message_time }}</td>
+
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <!-- Modal to show full conversation -->
+                    <div class="modal fade" id="conversationModal" tabindex="-1" aria-labelledby="conversationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="conversationModalLabel">Conversation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="conversationBody">
+                                    <!-- Conversation content will be loaded here -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Make sure to add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+function showConversation(senderId, receiverId) {
+    // Make AJAX call to get the full conversation
+    $.ajax({
+        url: '/admin/conversation/' + senderId + '/' + receiverId,
+        method: 'GET',
+        success: function (data) {
+            let conversationHTML = '';
+            data.forEach(function (message) {
+                conversationHTML += '<p><strong>' + message.sender.name + ':</strong> ' + message.message_content + '</p>';
+
+            });
+            $('#conversationBody').html(conversationHTML);
+            $('#conversationModal').modal('show');
+        }
+    });
+}
+</script>
 @endsection

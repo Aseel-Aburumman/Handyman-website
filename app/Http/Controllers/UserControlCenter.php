@@ -36,7 +36,7 @@ class UserControlCenter extends Controller
             })
             ->get();
 
-        return view('admin.manage_customers', compact('users'));
+        return view('admin.customers.manage_customers', compact('users'));
     }
 
 
@@ -45,7 +45,7 @@ class UserControlCenter extends Controller
         $customer = User::findOrFail($id);
         $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
 
-        return view('admin.edit_customer', compact('customer', 'deliveryInfo'));
+        return view('admin.customers.edit_customer', compact('customer', 'deliveryInfo'));
     }
 
     public function updateCustomer(Request $request, $id)
@@ -115,12 +115,12 @@ class UserControlCenter extends Controller
         $customer = User::with('purchases.product', 'gigs')->findOrFail($id);
         $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
 
-        return view('admin.view_customer', compact('customer', 'deliveryInfo'));
+        return view('admin.customers.view_customer', compact('customer', 'deliveryInfo'));
     }
 
     public function createCustomer()
     {
-        return view('admin.create_customer');
+        return view('admin.customers.create_customer');
     }
 
 
@@ -161,7 +161,7 @@ class UserControlCenter extends Controller
             })
             ->get();
 
-        return view('admin.manage_handymans', compact('users'));
+        return view('admin.handymans.manage_handymans', compact('users'));
     }
 
 
@@ -170,7 +170,7 @@ class UserControlCenter extends Controller
         $handyman = User::with('handyman')->findOrFail($id);
         $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
 
-        return view('admin.edit_handyman', compact('handyman', 'deliveryInfo'));
+        return view('admin.handymans.edit_handyman', compact('handyman', 'deliveryInfo'));
     }
 
     public function updateHandyman(Request $request, $id)
@@ -256,16 +256,48 @@ class UserControlCenter extends Controller
         // Fetch the delivery info associated with the handyman
         $deliveryInfo = DeliveryInfo::where('user_id', $id)->first();
 
-        return view('admin.view_handyman', compact('handyman', 'deliveryInfo'));
+        return view('admin.handymans.view_handyman', compact('handyman', 'deliveryInfo'));
     }
 
 
     public function createHandyman()
     {
-        return view('admin.create_handyman');
+        return view('admin.handymans.create_handyman');
     }
 
+    public function suspendHandyman(Request $request, $id)
+    {
+        $handyman = Handyman::findOrFail($id);
+        $handyman->suspended = true;  // Assuming you have a 'suspended' column in the 'handymans' table
+        $handyman->save();
+        session()->flash('success', 'Handyman ' . $handyman->user->name . ' with ID #' . $handyman->id . ' is now suspended.');
 
+        // Create a notification for the user
+        $notification = new Notification();
+        $notification->user_id = $handyman->user_id; // Assign the notification to the user
+        $notification->message = 'Your account has been supended due a TOS violation ';
+        $notification->category = 'danger'; // Set the notification category as 'primary'
+        $notification->is_read = 0; // Mark the notification as unread
+        $notification->save();
+
+        return redirect()->route('admin.handyman_performance');
+    }
+    public function unsuspendHandyman(Request $request, $id)
+    {
+        $handyman = Handyman::findOrFail($id);
+        $handyman->suspended = false;  // Unsuspend the handyman
+        $handyman->save();
+
+        // Create a notification for the user
+        $notification = new Notification();
+        $notification->user_id = $handyman->user_id; // Assign the notification to the user
+        $notification->message = 'Your account has been unsupended!';
+        $notification->category = 'success'; // Set the notification category as 'primary'
+        $notification->is_read = 0; // Mark the notification as unread
+        $notification->save();
+
+        return redirect()->route('admin.handyman_performance')->with('success', 'Handyman "' . $handyman->user->name . '" with ID #' . $handyman->id . ' is now unsuspended.');
+    }
     public function storeHandyman(Request $request)
     {
         // Validate the request data
@@ -312,7 +344,7 @@ class UserControlCenter extends Controller
             })
             ->get();
 
-        return view('admin.manage_store_owners', compact('users'));
+        return view('admin.storeowner.manage_store_owners', compact('users'));
     }
 
 
@@ -323,7 +355,7 @@ class UserControlCenter extends Controller
         $storeOwnerDetails = $store_owner->storeOwner;
         $storeDetails = $storeOwnerDetails->store ?? null;
 
-        return view('admin.edit_store_owner', compact('store_owner', 'deliveryInfo', 'storeOwnerDetails', 'storeDetails'));
+        return view('admin.storeowner.edit_store_owner', compact('store_owner', 'deliveryInfo', 'storeOwnerDetails', 'storeDetails'));
     }
 
 
@@ -435,14 +467,14 @@ class UserControlCenter extends Controller
         $store = $store_owner->storeOwner->store ?? null;
         $storePurchases = $store ? $store->sales : collect(); // Fetch the store's purchases or return an empty collection
 
-        return view('admin.view_store_owner', compact('store_owner', 'deliveryInfo', 'store', 'storePurchases'));
+        return view('admin.storeowner.view_store_owner', compact('store_owner', 'deliveryInfo', 'store', 'storePurchases'));
     }
 
 
 
     public function createStoreOwner()
     {
-        return view('admin.create_store_owner');
+        return view('admin.storeowner.create_store_owner');
     }
 
 

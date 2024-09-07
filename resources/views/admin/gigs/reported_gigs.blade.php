@@ -6,6 +6,12 @@
 </div>
 
 <section class="section">
+                {{-- Display success message --}}
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -30,8 +36,10 @@
                                 <td>{{ $gig->status->name }}</td>
                                 <td>Reported for issue</td>
                                 <td>
-                                    <a href="{{ route('admin.resolve_gig', $gig->id) }}" class="btn btn-success btn-sm">Resolve</a>
-                                    <a href="{{ route('admin.cancel_gig', $gig->id) }}" class="btn btn-danger btn-sm">Cancel</a>
+                                    <form action="{{ route('admin.resolve_gig', $gig->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Resolve</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
