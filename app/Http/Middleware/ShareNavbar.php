@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Support\Facades\View;
 use App\Models\Notification;
 use App\Models\Message;
+use App\Models\User;
+
 
 
 class ShareNavbar
@@ -36,8 +38,9 @@ class ShareNavbar
 
     public function handle($request, Closure $next)
     {
-        $adminId = 1; // Replace with `auth()->id()` when authentication is in place
-
+        // $adminId = 1; // Replace with `auth()->id()` when authentication is in place
+        $adminId = auth()->id();
+        // dd($adminId);
         if ($adminId) {
             $adminNotifications = Notification::where('user_id', $adminId)
                 ->orderBy('created_at', 'desc')
@@ -50,11 +53,16 @@ class ShareNavbar
                 ->orderBy('created_at', 'desc')
                 ->get();
 
-            View::share('adminNotifications', $adminNotifications);
-            View::share('unreadMessages', $unreadMessages);
-        }
+            $admindata = User::where('id', $adminId)->first();
+
+            // Share the data with all views
+            View::share([
+                'adminNotifications' => $adminNotifications,
+                'unreadMessages' => $unreadMessages,
+                'admindata' => $admindata,
+            ]);
+        } 
 
         return $next($request);
     }
-
 }

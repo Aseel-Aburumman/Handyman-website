@@ -21,7 +21,7 @@
       <div class="col-xl-4">
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-            <img src="<?php echo e($user->image ? url('/user_images/' . $user->image) : url('assets/img/profile-img.jpg')); ?>" alt="Profile" class="rounded-circle" width="150">
+            <img src="<?php echo e(asset('storage/' . $user->image)); ?>" alt="Profile" class="img-thumbnail">
 
             
             <h2><?php echo e($user->name); ?></h2>
@@ -86,7 +86,7 @@
                     <div class="row mb-3">
                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                         <div class="col-md-8 col-lg-9">
-                            <img src="<?php echo e($user->image ? url('/user_images/' . $user->image) : url('assets/img/profile-img.jpg')); ?>" alt="Profile" class="rounded-circle" width="150">
+                            <img src="<?php echo e(asset('storage/' . $user->image)); ?>" alt="Profile" class="img-thumbnail">
 
                             
                             <div class="pt-2">

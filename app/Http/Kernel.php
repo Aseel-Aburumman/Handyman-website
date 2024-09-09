@@ -69,6 +69,8 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'share.notifications' => \App\Http\Middleware\ShareNavbar::class,
         'share.messages' => \App\Http\Middleware\ShareNavbar::class,
+        'share.admindata' => \App\Http\Middleware\ShareNavbar::class,
+
 
 
     ];

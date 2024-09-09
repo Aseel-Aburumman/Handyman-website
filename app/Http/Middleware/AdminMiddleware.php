@@ -18,11 +18,12 @@ class AdminMiddleware
     {
         // Check if the user is authenticated
         if (!Auth::check()) {
-            return redirect('/login');
+            return redirect('admin/b4login');
         }
 
         // Check if the authenticated user has the 'admin' role
-        if (Auth::user()->role !== 'admin') {
+        if (Auth::user()->role->name !== 'Admin') {
+            // dd(Auth::user()->role);
             abort(403, 'Unauthorized access.');
         }
 

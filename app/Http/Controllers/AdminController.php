@@ -29,6 +29,24 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function main()
+    {
+        // echo 'ghjgj';
+
+        return view('admin.b4login');
+    }
+
+
+public function profileNavbar(){
+
+
+        $user = Auth::user();
+        $deliveryInfo = DeliveryInfo::where('user_id', $user->id)->first();
+
+        // dd($user);
+        return view('admin.profile', compact('user', 'deliveryInfo'));
+
+}
     public function dashboard()
     {
         // $user_id = Auth::id();
@@ -321,8 +339,8 @@ class AdminController extends Controller
     public function showProfile()
     {
 
-        // $user = Auth::user();
-        $user = User::find(1);
+        $user = Auth::user();
+        // $user = User::find(1);
         // $deliveryInfo = DeliveryInfo::where('user_id', $user->id)->first();
         $deliveryInfo = DeliveryInfo::where('user_id', $user->id)->first();
 
@@ -342,23 +360,18 @@ class AdminController extends Controller
             'profile_image' => 'nullable|image', // Validate image
         ]);
 
-        // $user = Auth::user();
-        $user = User::find(1);
+        $user = Auth::user();
+        // $user = User::find(1);
 
         // Update User Info
         $user->name = $request->input('fullName');
         $user->email = $request->input('email');
 
         // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete old image if exists and it's not the default
-            if ($user->image && $user->image !== 'default.png') {
-                Storage::delete('/user_images/' . $user->image);
-            }
-
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('user_images'), $imageName);
-            $user->image = $imageName;
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $imagePath = $image->store('profile_images', 'public'); // Save image in storage/app/public/profile_images
+            $user->image = $imagePath; // Save image path to the user
         }
 
 

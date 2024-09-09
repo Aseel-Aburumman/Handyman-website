@@ -4,9 +4,8 @@
 
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+      <a style="justify-content: space-around;" href="<?php echo e(route('admin.dashboard')); ?>" class="logo d-flex align-items-center">
+        <img style="width:150px; max-height: 49px;" src="<?php echo e(asset('pic/logoHorizantal.png')); ?>" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
@@ -105,7 +104,8 @@
         <a href="#">
             <img src="assets/img/default-avatar.png" alt="" class="rounded-circle">
             <div>
-                <h4><?php echo e($unreadMessage->sender->name); ?></h4> <!-- Display the sender's name -->
+                <h4><?php echo e($unreadMessage->sender->name); ?></h4>
+                 
                 <p><?php echo e(Str::limit($unreadMessage->message_content, 50)); ?></p>
                 <p><?php echo e($unreadMessage->created_at->diffForHumans()); ?></p>
             </div>
@@ -127,63 +127,55 @@
     </li>
 </ul>
 
-    <!-- End Messages Dropdown Items -->
+    
   </li>
   
-    <!-- End Messages Nav -->
+    
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
+            
+
+            <img src="<?php echo e(asset('storage/' . $admindata->image)); ?>" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo e($admindata->name); ?></span>
+          </a>
+          
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6><?php echo e($admindata->name); ?></h6>
+              
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="<?php echo e(route('admin.profile')); ?>">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
             </li>
+            
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
+                <form action="<?php echo e(route('admin.logout')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <button type="submit" class="dropdown-item d-flex align-items-center" style="border:none; background:none;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                    </button>
+                </form>
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->

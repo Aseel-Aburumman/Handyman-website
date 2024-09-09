@@ -7,7 +7,7 @@ use App\Http\Controllers\UserControlCenter;
 use App\Http\Controllers\GigController;
 use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\StoresController;
-
+use App\Http\Controllers\AuthAdminController;
 
 
 
@@ -28,13 +28,26 @@ Route::get('/', function () {
 
 use App\Http\Controllers\Admin\AdminCategoryController;
 
+Route::get('/admin_portal', [AdminController::class, 'main'])->name('admin.main');
+Route::get('/admin_portal/login', [AuthAdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/login', [AuthAdminController::class, 'login'])->name('Admin_login');
+
+
+Route::get('/admin_portal//register', [AuthAdminController::class, 'showRegistrationForm'])->name('admin.register');
+Route::post('/register', [AuthAdminController::class, 'register'])->name('Admin_register');
+
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['web', 'share.notifications', 'share.messages'],
-    // 'middleware' => ['auth', 'admin', 'share.notifications', 'share.messages'],  // Apply the 'auth', 'admin', and 'share.notifications' middleware
+    // 'middleware' => ['web','auth', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],
+    'middleware' => ['auth', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],  // Apply the 'auth', 'admin', and 'share.notifications' middleware
 
     // 'middleware' => ['auth', 'admin']  // Apply the 'admin' middleware
 ], function () {
+
+
+    Route::post('/admin/logout', [AuthAdminController::class, 'logout'])->name('admin.logout');
+
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     Route::get('/admin/manage_customers', [UserControlCenter::class, 'showCustomers'])->name('admin.manage_customers');
