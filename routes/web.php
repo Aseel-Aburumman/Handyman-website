@@ -40,7 +40,7 @@ Route::post('/register', [AuthAdminController::class, 'register'])->name('Admin_
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     // 'middleware' => ['web','auth', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],
-    'middleware' => ['auth', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],  // Apply the 'auth', 'admin', and 'share.notifications' middleware
+    'middleware' => ['authAdmin', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],  // Apply the 'auth', 'admin', and 'share.notifications' middleware
 
     // 'middleware' => ['auth', 'admin']  // Apply the 'admin' middleware
 ], function () {
