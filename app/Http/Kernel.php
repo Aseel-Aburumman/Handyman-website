@@ -30,14 +30,26 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\LocaleMiddleware::class,
+            // \App\Http\Middleware\LocaleMiddleware::class,
+            // \App\Http\Middleware\EncryptCookies::class,
+            // \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            // //
+            // \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            // \App\Http\Middleware\VerifyCsrfToken::class,
+            // \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \App\Http\Middleware\ShareNavbar::class,
+
+
+
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\StartSession::class, // Session starts here
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\LocaleMiddleware::class, // LocaleMiddleware after session starts
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\ShareNavbar::class,
+
         ],
 
         'api' => [

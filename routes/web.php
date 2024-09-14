@@ -8,25 +8,32 @@ use App\Http\Controllers\GigController;
 use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\AuthAdminController;
+use Illuminate\Support\Facades\Log;
+
+use App\Http\Controllers\MasterController;
 
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
+// language routs
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ar'])) {
+        session(['locale' => $locale]); // Set locale in session
+        Log::info('Locale stored in session: ' . $locale);
+    } else {
+        Log::info('Invalid locale: ' . $locale);
+    }
+    return redirect()->route('home'); // or another route that you know is safe
 });
 
-use App\Http\Controllers\Admin\AdminCategoryController;
+
+
+// Main structure routs
+
+
+Route::get('/', [MasterController::class, 'index'])->name('home');
+Route::get('/service', [MasterController::class, 'service'])->name('service');
+
+
 
 Route::get('/admin_portal', [AdminController::class, 'main'])->name('admin.main');
 Route::get('/admin_portal/login', [AuthAdminController::class, 'showLoginForm'])->name('admin.login');
@@ -39,10 +46,8 @@ Route::post('/register', [AuthAdminController::class, 'register'])->name('Admin_
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    // 'middleware' => ['web','auth', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],
     'middleware' => ['authAdmin', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],  // Apply the 'auth', 'admin', and 'share.notifications' middleware
 
-    // 'middleware' => ['auth', 'admin']  // Apply the 'admin' middleware
 ], function () {
 
 
@@ -114,7 +119,6 @@ Route::group([
 
     Route::post('/admin/gigs/resolve/{id}', [GigController::class, 'resolveGig'])->name('admin.resolve_gig');
 
-    // Route::post('gig/{id}/resolve', [GigController::class, 'resolveGig'])->name('admin.resolve_gig');
     Route::post('gig/{id}/cancel', [GigController::class, 'cancelGig'])->name('admin.cancel_gig');
     Route::post('reported-gigs/resolve/{id}', [GigController::class, 'resolve'])->name('admin.resolve');
 
@@ -146,12 +150,7 @@ Route::group([
     Route::post('profile/update', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
 
 
-    // Route::get('/admin/customer/{id}/edit', [AdminController::class, 'editCustomer'])->name('customer.edit');
-    // Route::put('/admin/customer/{id}', [AdminController::class, 'updateCustomer'])->name('customer.update');
 
 
     Route::get('/admin/notification', [AdminController::class, 'notification'])->name('admin.notification');
-
-    // Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
-    // Add more admin routes here
 });
