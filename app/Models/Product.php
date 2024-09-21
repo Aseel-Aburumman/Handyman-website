@@ -11,9 +11,11 @@ class Product extends Model
 
     protected $fillable = [
         'store_id',
-        'name',
+        'name', // English name
+        'name_ar', // Arabic name
         'rating',
-        'description',
+        'description', // English description
+        'description_ar', // Arabic description
         'price',
         'availability',
         'stock_quantity',
@@ -48,5 +50,17 @@ class Product extends Model
     public function reports()
     {
         return $this->hasMany(Report::class, 'product_id');
+    }
+
+    // Dynamic getter for product name
+    public function getNameAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->name_ar : $this->attributes['name'];
+    }
+
+    // Dynamic getter for product description
+    public function getDescriptionAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->description_ar : $this->attributes['description'];
     }
 }

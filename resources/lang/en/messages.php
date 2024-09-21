@@ -1,8 +1,6 @@
 <?php
 
 return [
-    // test
-    'serviveTitle' => 'What services we offer',
     // banner
     'bannerTitleA1' => 'Your Trusted Partner',
     'bannerTitleA2' => 'for Home Repairs',
@@ -20,6 +18,11 @@ return [
     'bannerTitleC2' => 'Expertise to Your Home',
     'bannerTitleC3' => 'At the push of a button',
     'bannerSubTitleC1' => 'Every problem is solved with just a push of a button, giving you fast, reliable solutions whenever you need them, right at your fingertips.',
+
+    // services slider
+    'serviceSmallTitle' => 'Our Services',
+    'serviveTitle' => 'What services we offer',
+    'serviveDescription' => 'We bring people together—thats the core of what we do. Whether its someone needing their pipes fixed , a nursery set up for a newborn, or a TV mounted for game day, theres always someone nearby, ready and eager to help, right when its needed. When these two people connect, they make a meaningful impact on each others lives, creating a better way to live.',
 
 
 

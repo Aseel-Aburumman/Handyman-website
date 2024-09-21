@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('name'); // English name
+            $table->string('name_ar'); // Arabic name
+            $table->text('description')->nullable(); // English description
+            $table->text('description_ar')->nullable(); // Arabic description
             $table->timestamps();
             $table->softDeletes(); // Adds a 'deleted_at' column
-
         });
     }
 

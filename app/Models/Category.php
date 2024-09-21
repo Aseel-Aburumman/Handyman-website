@@ -13,6 +13,8 @@ class Category extends Model
 
     protected $fillable = [
         'name',
+        'name_ar',
+        'description_ar',
         'description',
     ];
     use SoftDeletes; // Use the SoftDeletes trait
@@ -26,5 +28,16 @@ class Category extends Model
     public function skills()
     {
         return $this->hasMany(Skill::class);
+    }
+
+    // Dynamic getters for localized content
+    public function getNameAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->name_ar : $this->attributes['name'];
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->description_ar : $this->attributes['description'];
     }
 }

@@ -2,31 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes; // Import SoftDeletes trait
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Store extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'store_owner_id',
-        'name',
+        'name', // English store name
+        'name_ar', // Arabic store name
         'location',
-        'description',
+        'description', // English description
+        'description_ar', // Arabic description
         'status_id',
         'rating',
     ];
-    use SoftDeletes; // Use the SoftDeletes trait
 
-    protected $dates = ['deleted_at']; // Specify that 'deleted_at' is a date
+    protected $dates = ['deleted_at'];
+
     public function storeOwner()
     {
         return $this->belongsTo(StoreOwner::class);
     }
-    // A StoreOwner's User (the actual user who owns the store)
+
     public function ownerUser()
     {
         return $this->hasOneThrough(User::class, StoreOwner::class, 'id', 'id', 'store_owner_id', 'user_id');
@@ -65,5 +66,17 @@ class Store extends Model
     public function reports()
     {
         return $this->hasMany(Report::class, 'store_id');
+    }
+
+    // Dynamic getter for store name
+    public function getNameAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->name_ar : $this->attributes['name'];
+    }
+
+    // Dynamic getter for description
+    public function getDescriptionAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->description_ar : $this->attributes['description'];
     }
 }

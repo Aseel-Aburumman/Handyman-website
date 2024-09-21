@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_ar'); // Arabic name
+
             $table->text('description')->nullable();
+            $table->text('description_ar')->nullable(); // Arabic description
+
             $table->timestamps();
             $table->softDeletes(); // Adds a 'deleted_at' column
 

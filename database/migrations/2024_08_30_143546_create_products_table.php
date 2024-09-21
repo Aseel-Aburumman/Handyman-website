@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('store_id');
-            $table->string('name');
+            $table->string('name'); // English name
+            $table->string('name_ar'); // Arabic name
             $table->float('rating');
-            $table->text('description')->nullable();
+            $table->text('description')->nullable(); // English description
+            $table->text('description_ar')->nullable(); // Arabic description
             $table->integer('price');
-            $table->boolean('Availability')->default(false);
+            $table->boolean('availability')->default(false);
             $table->integer('stock_quantity');
             $table->string('image')->nullable();
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');

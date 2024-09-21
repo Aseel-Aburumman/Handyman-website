@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('gig_policys', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
+            $table->text('content'); // English content
+            $table->text('content_ar'); // Arabic content
             $table->boolean('visible')->default(true);
             $table->timestamps();
             $table->softDeletes(); // Adds a 'deleted_at' column
-
         });
     }
 
