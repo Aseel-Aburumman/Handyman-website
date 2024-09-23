@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Category;
 use App\Models\Store;
+use App\Models\Gig;
+
 
 use Illuminate\Http\Request;
 
@@ -25,8 +27,15 @@ class MasterController extends Controller
             ->take(5)
             ->get();
 
+        $topHandymen = Gig::select('handyman_id', DB::raw('COUNT(*) as gig_count'))
+            ->groupBy('handyman_id')
+            ->orderBy('gig_count', 'DESC')
+            ->take(6)
+            ->with(['handyman.user']) // Assuming you have the relationship between handymen and users set up
+            ->get();
 
-        return view('index', compact('categories', 'topStores'));
+
+        return view('index', compact('categories', 'topStores', 'topHandymen'));
     }
 
 

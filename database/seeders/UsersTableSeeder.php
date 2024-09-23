@@ -246,7 +246,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'name' => 'Tom Brown',
-            'email' => 'tombrown@example.com',
+            'email' => 'tomybrown@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
             'rating' => 4.9,
@@ -257,7 +257,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'name' => 'Lucy Davis',
-            'email' => 'lucydavis@example.com',
+            'email' => 'lucyydavis@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
             'rating' => 4.8,
@@ -269,7 +269,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'name' => 'Mark Evans',
-            'email' => 'markevans@example.com',
+            'email' => 'markyevans@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
             'rating' => 4.6,
@@ -281,51 +281,41 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'name' => 'Anna Johnson',
-            'email' => 'annajohnson@example.com',
+            'email' => 'annayjohnson@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
             'rating' => 4.7,
             'reported' => false,
-            'image'=>'tomPic.jpg',
+            'image'=> 'AnnaPic.jpg',
 
             'date_created' => now(),
         ]);
 
         User::create([
             'name' => 'Ahmed Ali',
-            'email' => 'ahmedali@example.com',
+            'email' => 'ahmedyali@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
             'rating' => 4.8,
             'reported' => false,
-            'image'=>'tomPic.jpg',
+            'image'=> 'AhmedPic.jpg',
 
             'date_created' => now(),
         ]);
 
         User::create([
-            'name' => 'Fatima Hassan',
-            'email' => 'fatimahassan@example.com',
+            'name' => 'Fadi Hassan',
+            'email' => 'fadiyhassan@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
             'rating' => 4.7,
             'reported' => false,
-            'image'=>'tomPic.jpg',
+            'image'=> 'FadiPic.jpg',
 
             'date_created' => now(),
         ]);
 
-        User::create([
-            'name' => 'Omar Khaled',
-            'email' => 'omarkhaled@example.com',
-            'password' => bcrypt('password123'),
-            'role_id' => 4,
-            'rating' => 4.9,
-            'reported' => false,
-            'image'=>'tomPic.jpg',
 
-            'date_created' => now(),
-        ]);
         // Create additional users using a factory
         // User::factory(10)->create(); // Creates 10 dummy users
     }

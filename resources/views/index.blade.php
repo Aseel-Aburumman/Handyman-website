@@ -769,6 +769,34 @@
             <div class="slider-area">
                 <div class="swiper th-slider has-shadow" id="teamSlider1"
                     data-slider-options='{"paginationType":"progressbar","breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"}}}'>
+                    
+                    <div class="swiper-wrapper">
+    @foreach($topHandymen as $handyman)
+        <!-- Single Item -->
+        <div class="swiper-slide">
+            <div class="th-team team-card">
+                <div class="box-img">
+                    <img src="{{ $handyman->handyman->user->image ? url('/user_images/' . $handyman->handyman->user->image) : url('assets/img/profile-img.jpg') }}" alt="{{ $handyman->handyman->user->name }}">
+                </div>
+                <div class="box-content">
+                    <div class="box-social">
+                        <div class="box-btn"><i class="far fa-plus"></i></div>
+                        <div class="th-social">
+                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="box-title"><a href="#">{{ $handyman->handyman->user->name }}</a></h3>
+                    <p class="box-desig">{{ $handyman->handyman->bio }}</p>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
+{{--                     
                     <div class="swiper-wrapper">
                         <!-- Single Item -->
                         <div class="swiper-slide">
@@ -796,137 +824,8 @@
                             </div>
                         </div>
 
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-card">
-                                <div class="box-img">
-                                    <img src="assets/img/team/team_1_2.jpg" alt="Team">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-social">
-                                        <div class="box-btn"><i class="far fa-plus"></i></div>
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i
-                                                    class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-instagram"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <h3 class="box-title"><a href="team-details.html">Michel Jack</a></h3>
-                                    <p class="box-desig">Best Technician of Home Service and Maintenance</p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-card">
-                                <div class="box-img">
-                                    <img src="assets/img/team/team_1_3.jpg" alt="Team">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-social">
-                                        <div class="box-btn"><i class="far fa-plus"></i></div>
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i
-                                                    class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-instagram"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <h3 class="box-title"><a href="team-details.html">Mackolin Smith</a></h3>
-                                    <p class="box-desig">Best Technician of AC Installation and Maintenance</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-card">
-                                <div class="box-img">
-                                    <img src="assets/img/team/team_1_4.jpg" alt="Team">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-social">
-                                        <div class="box-btn"><i class="far fa-plus"></i></div>
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i
-                                                    class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-instagram"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <h3 class="box-title"><a href="team-details.html">Ralph Edwards</a></h3>
-                                    <p class="box-desig">Best Technician of Home Service and Maintenance</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-card">
-                                <div class="box-img">
-                                    <img src="assets/img/team/team_1_5.jpg" alt="Team">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-social">
-                                        <div class="box-btn"><i class="far fa-plus"></i></div>
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i
-                                                    class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-instagram"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <h3 class="box-title"><a href="team-details.html">Guy Hawkins</a></h3>
-                                    <p class="box-desig">Best Technician of AC Installation and Maintenance</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-card">
-                                <div class="box-img">
-                                    <img src="assets/img/team/team_1_6.jpg" alt="Team">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-social">
-                                        <div class="box-btn"><i class="far fa-plus"></i></div>
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i
-                                                    class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-instagram"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <h3 class="box-title"><a href="team-details.html">Jacob Jones</a></h3>
-                                    <p class="box-desig">Best Technician of Home Service and Maintenance</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    </div> --}}
                     <div class="slider-pagination"></div>
                 </div>
             </div>

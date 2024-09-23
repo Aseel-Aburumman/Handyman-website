@@ -23,5 +23,7 @@ class GigsTableSeeder extends Seeder
             'status_id' => 7, // Assuming Status ID 1 is 'Open'
         ]);
         // Add more gigs as needed
+        Gig::factory()->count(50)->create();
+
     }
 }
