@@ -34,8 +34,12 @@ class MasterController extends Controller
             ->with(['handyman.user']) // Assuming you have the relationship between handymen and users set up
             ->get();
 
+        $totalGigs = DB::table('gigs')->count();
+        $totalUsers = DB::table('users')->count();
+        $totalHandymen = DB::table('handymans')->count();
+        $totalStores = DB::table('stores')->count();
 
-        return view('index', compact('categories', 'topStores', 'topHandymen'));
+        return view('index', compact('categories', 'topStores', 'topHandymen', 'totalGigs', 'totalUsers', 'totalHandymen', 'totalStores'));
     }
 
 

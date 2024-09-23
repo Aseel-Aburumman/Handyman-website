@@ -68,6 +68,12 @@ return [
     'process4' => 'Chat, pay, tip, and review all in one place.',
     'processTitle4' => 'Get It Done!',
 
+    // Counter
+    'gigsNumber' => 'Completed Projects',
+    'UsersNumber' => 'Happy Clients',
+    'HandymansNumber' => 'Expert Handyman',
+    'StoresNumber' => 'Stores',
+
 
 
 

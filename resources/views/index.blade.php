@@ -115,8 +115,8 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                            Brand Area
-                                                            ==============================-->
+                                                                                Brand Area
+                                                                                ==============================-->
     <div class="brand-sec1">
         <div class="top-shape"><img src="assets/img/shape/triangle_shape_1.svg" alt="shape"></div>
         <div class="brand-list-area">
@@ -162,8 +162,8 @@
         </div>
     </div>
     <!--==============================
-                                                            Service Area
-                                                            ==============================-->
+                                                                                Service Area
+                                                                                ==============================-->
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img src="assets/img/shape/lines_1.png"
                 alt="shape"></div>
@@ -358,8 +358,8 @@
 
 
     <!--==============================
-                                                            About Area
-                                                            ==============================-->
+                                                                                About Area
+                                                                                ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img src="assets/img/shape/dots_1.svg"
                 alt="shape"></div>
@@ -438,8 +438,8 @@
             </div>
         </div>
     </div><!--==============================
-                                                            Stores Area
-                                                            ==============================-->
+                                                                                Stores Area
+                                                                                ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup spin" data-top="5%" data-left="0%"><img src="assets/img/shape/lines_1.png"
                 alt="shape"></div>
@@ -559,8 +559,8 @@
         </div>
     </section>
     <!--==============================
-                                                            Devider Area
-                                                            ==============================-->
+                                                                                Devider Area
+                                                                                ==============================-->
     <div class="overflow-hidden bg-white">
         <h3> </h3>
         {{--  <div class="shape-mockup spin" data-top="5%" data-right="0%"><img src="assets/img/shape/lines_1.png"
@@ -620,8 +620,8 @@
     </div>
     <!--==============================
 
-                                                            Feature Area
-                                                            ==============================-->
+                                                                                Feature Area
+                                                                                ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup" data-top="0%" data-left="0%"><img src="assets/img/bg/why_bg_2.png" alt="shape">
         </div>
@@ -698,8 +698,8 @@
     </section>
     <!--==============================
 
-                                                            Process Area
-                                                            ==============================-->
+                                                                                Process Area
+                                                                                ==============================-->
     <section class="space" id="process-sec" data-bg-src="assets/img/bg/process_bg_2.jpg">
         <div class="container">
             <div class="row justify-content-center">
@@ -748,8 +748,8 @@
     <!--==============================
 
 
-                                                                Team Area
-                                                            ==============================-->
+                                                                                    Team Area
+                                                                                ==============================-->
     <section class="space">
         <div class="container z-index-common">
             <div class="row justify-content-between align-items-center">
@@ -769,73 +769,98 @@
             <div class="slider-area">
                 <div class="swiper th-slider has-shadow" id="teamSlider1"
                     data-slider-options='{"paginationType":"progressbar","breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"}}}'>
-                    
-                    <div class="swiper-wrapper">
-    @foreach($topHandymen as $handyman)
-        <!-- Single Item -->
-        <div class="swiper-slide">
-            <div class="th-team team-card">
-                <div class="box-img">
-                    <img src="{{ $handyman->handyman->user->image ? url('/user_images/' . $handyman->handyman->user->image) : url('assets/img/profile-img.jpg') }}" alt="{{ $handyman->handyman->user->name }}">
-                </div>
-                <div class="box-content">
-                    <div class="box-social">
-                        <div class="box-btn"><i class="far fa-plus"></i></div>
-                        <div class="th-social">
-                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="box-title"><a href="#">{{ $handyman->handyman->user->name }}</a></h3>
-                    <p class="box-desig">{{ $handyman->handyman->bio }}</p>
-                </div>
-            </div>
-        </div>
-    @endforeach
-</div>
 
-{{--                     
                     <div class="swiper-wrapper">
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-card">
-                                <div class="box-img">
-                                    <img src="assets/img/team/team_1_1.jpg" alt="Team">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-social">
-                                        <div class="box-btn"><i class="far fa-plus"></i></div>
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i
-                                                    class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i
-                                                    class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-instagram"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a>
-                                        </div>
+                        @foreach ($topHandymen as $handyman)
+                            <!-- Single Item -->
+                            <div class="swiper-slide">
+                                <div class="th-team team-card">
+                                    <div class="box-img">
+                                        <img src="{{ $handyman->handyman->user->image ? url('/user_images/' . $handyman->handyman->user->image) : url('assets/img/profile-img.jpg') }}"
+                                            alt="{{ $handyman->handyman->user->name }}">
                                     </div>
-                                    <h3 class="box-title"><a href="team-details.html">John Simon</a></h3>
-                                    <p class="box-desig">Best Technician of Office Repair and Maintenance</p>
+                                    <div class="box-content">
+                                        <div class="box-social">
+                                            <div class="box-btn"><i class="far fa-plus"></i></div>
+                                            <div class="th-social">
+                                                <a target="_blank" href="https://facebook.com/"><i
+                                                        class="fab fa-facebook-f"></i></a>
+                                                <a target="_blank" href="https://twitter.com/"><i
+                                                        class="fab fa-twitter"></i></a>
+                                                <a target="_blank" href="https://instagram.com/"><i
+                                                        class="fab fa-instagram"></i></a>
+                                                <a target="_blank" href="https://linkedin.com/"><i
+                                                        class="fab fa-linkedin-in"></i></a>
+                                            </div>
+                                        </div>
+                                        <h3 class="box-title"><a href="#">{{ $handyman->handyman->user->name }}</a>
+                                        </h3>
+                                        <p class="box-desig">{{ $handyman->handyman->bio }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
+                    </div>
 
 
-                    </div> --}}
                     <div class="slider-pagination"></div>
                 </div>
             </div>
         </div>
     </section>
     <!--==============================
-                                                            Counter Area
-                                                            ==============================-->
+                                                                                Counter Area
+                                                                                ==============================-->
     <div class="space-bottom">
+
+
         <div class="container">
+            <div class="counter-card-wrap">
+                <div class="counter-card">
+                    <div class="box-icon">
+                        <img src="assets/img/icon/counter_card_1.svg" alt="Icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="box-number"><span class="counter-number">{{ $totalGigs }}</span>+</h2>
+                        <p class="box-text">{{ __('messages.gigsNumber') }}</p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="counter-card">
+                    <div class="box-icon">
+                        <img src="assets/img/icon/counter_card_2.svg" alt="Icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="box-number"><span class="counter-number">{{ $totalUsers }}</span>+</h2>
+                        <p class="box-text">{{ __('messages.UsersNumber') }}</p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="counter-card">
+                    <div class="box-icon">
+                        <img src="assets/img/icon/counter_card_3.svg" alt="Icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="box-number"><span class="counter-number">{{ $totalHandymen }}</span>+</h2>
+                        <p class="box-text">{{ __('messages.HandymansNumber') }}</p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="counter-card">
+                    <div class="box-icon">
+                        <img src="assets/img/icon/counter_card_4.svg" alt="Icon">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="box-number"><span class="counter-number">{{ $totalStores }}</span>+</h2>
+                        <p class="box-text">{{ __('messages.StoresNumber') }}</p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+        </div>
+
+
+        {{--  <div class="container">
             <div class="counter-card-wrap">
                 <div class="counter-card">
                     <div class="box-icon">
@@ -873,15 +898,15 @@
                     </div>
                     <div class="media-body">
                         <h2 class="box-number"><span class="counter-number">158</span>+</h2>
-                        <p class="box-text">Awards Won</p>
+                        <p class="box-text">Store</p>
                     </div>
                 </div>
                 <div class="divider"></div>
             </div>
-        </div>
+        </div>  --}}
     </div><!--==============================
-                                                            Contact Area
-                                                            ==============================-->
+                                                                                Contact Area
+                                                                                ==============================-->
     <div class="overflow-hidden bg-white">
         <div class="shape-mockup moving d-none d-xxl-block" data-bottom="0%" data-right="0%"><img
                 src="assets/img/shape/man_shape_1.png" alt="shape"></div>
@@ -976,8 +1001,8 @@
         </div>
     </div>
     <!--==============================
-                                                            Gallery Area
-                                                            ==============================-->
+                                                                                Gallery Area
+                                                                                ==============================-->
     <div class="overflow-hidden space">
         <div class="container text-center">
             <div class="title-area text-center">
@@ -1188,8 +1213,8 @@
         </div>
     </div>
     <!--==============================
-                                                            Testimonial Area
-                                                            ==============================-->
+                                                                                Testimonial Area
+                                                                                ==============================-->
     <section class="space" id="testi-sec" data-bg-src="assets/img/bg/pattern_bg_1.png">
         <div class="container">
             <div class="row justify-content-between align-items-center">
@@ -1331,8 +1356,8 @@
     </section>
 
     <!--==============================
-                                                            Price Area
-                                                            ==============================-->
+                                                                                Price Area
+                                                                                ==============================-->
     <section class="space" data-bg-src="assets/img/bg/pattern_bg_2.jpg">
         <div class="shape-mockup spin" data-top="15%" data-right="6%"><img src="assets/img/shape/dots_1.svg"
                 alt="shape"></div>
@@ -1371,8 +1396,7 @@
                             </ul>
                         </div>
                         <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i
-                                    class="far fa-arrow-right ms-2"></i></a>
+                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1395,8 +1419,7 @@
                             </ul>
                         </div>
                         <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i
-                                    class="far fa-arrow-right ms-2"></i></a>
+                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1418,8 +1441,7 @@
                             </ul>
                         </div>
                         <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i
-                                    class="far fa-arrow-right ms-2"></i></a>
+                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1441,8 +1463,7 @@
                             </ul>
                         </div>
                         <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i
-                                    class="far fa-arrow-right ms-2"></i></a>
+                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1450,8 +1471,8 @@
         </div>
     </section>
     <!--==============================
-                                                            Blog Area
-                                                            ==============================-->
+                                                                                Blog Area
+                                                                                ==============================-->
     <section class="space" id="blog-sec">
         <div class="container">
             <div class="row justify-content-between align-items-center">
