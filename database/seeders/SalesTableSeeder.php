@@ -16,8 +16,8 @@ class SalesTableSeeder extends Seeder
             'quantity_sold' => 2,
             'total_amount' => 298, // 2 * 149
             'sale_date' => now(),
-            'status_id' => 15, //  15 is 'Pending',16 is 'Confirmed',17 is 'Delivered',18 is 'Canceled'
+            'status_id' => 16, //  16 is 'Pending',17 is 'Confirmed',18 is 'Delivered',19 is 'Canceled'
         ]);
-        Sale::factory()->count(50)->create();
+        Sale::factory()->count(60)->create();
     }
 }

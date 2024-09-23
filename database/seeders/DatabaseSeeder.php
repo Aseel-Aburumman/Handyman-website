@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
             GigsTableSeeder::class,
             GigPolicySeeder::class,
             ReportsSeeder::class,
+            ImageSeeder::class,
+
 
 
         ]);

@@ -132,5 +132,75 @@ class StoreOwnersTableSeeder extends Seeder
             'rating' => 4.7,
             'certificate_id' => 3,
         ]);
+
+        StoreOwner::create([
+            'user_id' => 17,
+            'store_name' => 'Bashiti Depot',
+            'store_name_ar' => 'البشيتي',
+            'contact_number' => '555-5678',
+            'address' => '789 Central St',
+            'address_ar' => 'شارع 789 المركزي',
+            'rating' => 4.7,
+            'certificate_id' => 3,
+        ]);
+
+        StoreOwner::create([
+            'user_id' => 18,
+            'store_name' => 'Manaseer Group',
+            'store_name_ar' => 'المناصير',
+            'contact_number' => '555-5678',
+            'address' => '789 Central St',
+            'address_ar' => 'شارع 789 المركزي',
+            'rating' => 4.3,
+            'certificate_id' => 3,
+        ]);
+
+
+        StoreOwner::create([
+            'user_id' => 19,
+            'store_name' => 'Subhi Abu Ghallous',
+            'store_name_ar' => 'صبحي ابو غلوس ',
+            'contact_number' => '555-5678',
+            'address' => '789 Central St',
+            'address_ar' => 'شارع 789 المركزي',
+            'rating' => 4.5,
+            'certificate_id' => 3,
+        ]);
+
+
+        StoreOwner::create([
+            'user_id' => 20,
+            'store_name' => 'Almemari',
+            'store_name_ar' => 'المعماري',
+            'contact_number' => '555-5678',
+            'address' => '789 Central St',
+            'address_ar' => 'شارع 789 المركزي',
+            'rating' => 4.7,
+            'certificate_id' => 3,
+        ]);
+
+
+        StoreOwner::create([
+            'user_id' => 21,
+            'store_name' => 'Jotun',
+            'store_name_ar' => 'دهانات جوتن',
+            'contact_number' => '555-5678',
+            'address' => '789 Central St',
+            'address_ar' => 'شارع 789 المركزي',
+            'rating' => 4.0,
+            'certificate_id' => 3,
+        ]);
+
+
+        StoreOwner::create([
+            'user_id' => 22,
+            'store_name' => 'Lafarge',
+            'store_name_ar' => 'لافارج للاسمنت',
+            'contact_number' => '555-5678',
+            'address' => '789 Central St',
+            'address_ar' => 'شارع 789 المركزي',
+            'rating' => 4.9,
+            'certificate_id' => 3,
+        ]);
     }
 }

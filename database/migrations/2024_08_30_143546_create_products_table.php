@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('price');
             $table->boolean('availability')->default(false);
             $table->integer('stock_quantity');
-            $table->string('image')->nullable();
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->timestamps();
         });

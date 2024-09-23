@@ -142,5 +142,71 @@ class StoresTableSeeder extends Seeder
             'status_id' => 4, // Assuming Status ID 4 is 'Open'
             'rating' => 4.8,
         ]);
+
+        Store::create([
+            'store_owner_id' => 12,
+            'name' => 'Bashiti Depot',
+            'name_ar' => 'البشيتي',
+            'location' => '456 Central Ave',
+            'description' => 'Your one-stop shop for hardware essentials',
+            'description_ar' => 'محلك الوحيد لكل المستلزمات الأساسية للأدوات',
+            'status_id' => 4, // Assuming Status ID 4 is 'Open'
+            'rating' => 4.7,
+        ]);
+
+        Store::create([
+            'store_owner_id' => 13,
+            'name' => 'Manaseer Group',
+            'name_ar' => 'المناصير',
+            'location' => '456 Central Ave',
+            'description' => 'Your one-stop shop for hardware essentials',
+            'description_ar' => 'محلك الوحيد لكل المستلزمات الأساسية للأدوات',
+            'status_id' => 4, // Assuming Status ID 4 is 'Open'
+            'rating' => 4.8,
+        ]);
+
+        Store::create([
+            'store_owner_id' => 14,
+            'name' => 'Subhi Abu Ghallous',
+            'name_ar' => 'صبحي ابو غلوس ',
+            'location' => '456 Central Ave',
+            'description' => 'Your one-stop shop for hardware essentials',
+            'description_ar' => 'محلك الوحيد لكل المستلزمات الأساسية للأدوات',
+            'status_id' => 4, // Assuming Status ID 4 is 'Open'
+            'rating' => 4.5,
+        ]);
+
+        Store::create([
+            'store_owner_id' => 15,
+            'name' => 'Almemari',
+            'name_ar' => 'المعماري',
+            'location' => '456 Central Ave',
+            'description' => 'Your one-stop shop for hardware essentials',
+            'description_ar' => 'محلك الوحيد لكل المستلزمات الأساسية للأدوات',
+            'status_id' => 4, // Assuming Status ID 4 is 'Open'
+            'rating' => 4.7,
+        ]);
+
+        Store::create([
+            'store_owner_id' => 16,
+            'name' => 'Jotun',
+            'name_ar' => 'دهانات جوتن',
+            'location' => '456 Central Ave',
+            'description' => 'Your one-stop shop for hardware essentials',
+            'description_ar' => 'محلك الوحيد لكل المستلزمات الأساسية للأدوات',
+            'status_id' => 4, // Assuming Status ID 4 is 'Open'
+            'rating' => 4.0,
+        ]);
+
+        Store::create([
+            'store_owner_id' => 17,
+            'name' =>  'Lafarge',
+            'name_ar' => 'لافارج للاسمنت',
+            'location' => '456 Central Ave',
+            'description' => 'Your one-stop shop for hardware essentials',
+            'description_ar' => 'محلك الوحيد لكل المستلزمات الأساسية للأدوات',
+            'status_id' => 4, // Assuming Status ID 4 is 'Open'
+            'rating' => 4.9,
+        ]);
     }
 }

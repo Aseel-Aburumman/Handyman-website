@@ -32,6 +32,8 @@ Route::get('lang/{locale}', function ($locale) {
 
 Route::get('/', [MasterController::class, 'index'])->name('home');
 Route::get('/service', [MasterController::class, 'service'])->name('service');
+Route::get('/about-us', [MasterController::class, 'aboutUs'])->name('aboutUs');
+
 
 
 

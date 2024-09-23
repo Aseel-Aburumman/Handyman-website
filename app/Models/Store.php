@@ -68,6 +68,12 @@ class Store extends Model
         return $this->hasMany(Report::class, 'store_id');
     }
 
+    public function image()
+    {
+        return $this->hasOne(Image::class, 'store_id');
+    }
+
+
     // Dynamic getter for store name
     public function getNameAttribute()
     {
