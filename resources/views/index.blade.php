@@ -115,8 +115,8 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                                                Brand Area
-                                                                                ==============================-->
+                                                                                                                                                            Brand Area
+                                                                                                                                                            ==============================-->
     <div class="brand-sec1">
         <div class="top-shape"><img src="assets/img/shape/triangle_shape_1.svg" alt="shape"></div>
         <div class="brand-list-area">
@@ -162,8 +162,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                Service Area
-                                                                                ==============================-->
+                                                                                                                                                            Service Area
+                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img src="assets/img/shape/lines_1.png"
                 alt="shape"></div>
@@ -174,6 +174,8 @@
                         <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg"
                                 alt="Icon">{{ __('messages.serviceSmallTitle') }}</span>
                         <h2 class="sec-title">{{ __('messages.serviveTitle') }}</h2>
+
+
                         <p class="sec-text">{{ __('messages.serviveDescription') }}</p>
 
                         <div class="filter-menu style2 mt-0 indicator-active filter-menu-active">
@@ -182,6 +184,47 @@
                                     type="button">{{ $category->name }}</button>
                             @endforeach
                         </div>
+
+                        <div class="search-container">
+                            <input type="text" id="service-search" class="form-control"
+                                placeholder="What do you need help with?">
+                            <div id="service-suggestions" class="dropdown-menu aseel-dropdown-menu"
+                                style="display:none;">
+                                <!-- Dynamic service suggestions will be inserted here -->
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function() {
+                                // Trigger on typing in search box
+                                $('#service-search').on('keyup', function() {
+                                    let query = $(this).val();
+                                    if (query.length > 1) {
+                                        $.ajax({
+                                            url: '{{ route('search.services') }}', // Define the route for searching services
+                                            method: 'GET',
+                                            data: {
+                                                query: query
+                                            },
+                                            success: function(data) {
+                                                $('#service-suggestions').html(data).show();
+                                            }
+                                        });
+                                    } else {
+                                        $('#service-suggestions').hide();
+                                    }
+                                });
+
+                                // Redirect to step one page when a suggestion is clicked
+                                $(document).on('click', '.suggestion-item', function() {
+                                    let serviceId = $(this).data('service-id');
+                                    let categoryId = $(this).data('category-id');
+                                    window.location.href = '/step-one/' + categoryId + '/' + serviceId;
+                                });
+                            });
+                        </script>
+
+
+
                     </div>
                 </div>
             </div>
@@ -358,8 +401,8 @@
 
 
     <!--==============================
-                                                                                About Area
-                                                                                ==============================-->
+                                                                                                                                                            About Area
+                                                                                                                                                            ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img src="assets/img/shape/dots_1.svg"
                 alt="shape"></div>
@@ -437,9 +480,10 @@
                 </div>
             </div>
         </div>
-    </div><!--==============================
-                                                                                Stores Area
-                                                                                ==============================-->
+    </div>
+    <!--==============================
+                                                                                                                                                            Stores Area
+                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup spin" data-top="5%" data-left="0%"><img src="assets/img/shape/lines_1.png"
                 alt="shape"></div>
@@ -559,8 +603,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                Devider Area
-                                                                                ==============================-->
+                                                                                                                                                            Devider Area
+                                                                                                                                                            ==============================-->
     <div class="overflow-hidden bg-white">
         <h3> </h3>
         {{--  <div class="shape-mockup spin" data-top="5%" data-right="0%"><img src="assets/img/shape/lines_1.png"
@@ -620,8 +664,8 @@
     </div>
     <!--==============================
 
-                                                                                Feature Area
-                                                                                ==============================-->
+                                                                                                                                                            Feature Area
+                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup" data-top="0%" data-left="0%"><img src="assets/img/bg/why_bg_2.png" alt="shape">
         </div>
@@ -698,8 +742,8 @@
     </section>
     <!--==============================
 
-                                                                                Process Area
-                                                                                ==============================-->
+                                                                                                                                                            Process Area
+                                                                                                                                                            ==============================-->
     <section class="space" id="process-sec" data-bg-src="assets/img/bg/process_bg_2.jpg">
         <div class="container">
             <div class="row justify-content-center">
@@ -748,8 +792,8 @@
     <!--==============================
 
 
-                                                                                    Team Area
-                                                                                ==============================-->
+                                                                                                                                                                Team Area
+                                                                                                                                                            ==============================-->
     <section class="space">
         <div class="container z-index-common">
             <div class="row justify-content-between align-items-center">
@@ -809,8 +853,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                Counter Area
-                                                                                ==============================-->
+                                                                                                                                                            Counter Area
+                                                                                                                                                            ==============================-->
     <div class="space-bottom">
 
 
@@ -858,9 +902,9 @@
                 <div class="divider"></div>
             </div>
         </div>
+    </div>
 
-
-        {{--  <div class="container">
+    {{--  <div class="container">
             <div class="counter-card-wrap">
                 <div class="counter-card">
                     <div class="box-icon">
@@ -904,317 +948,10 @@
                 <div class="divider"></div>
             </div>
         </div>  --}}
-    </div><!--==============================
-                                                                                Contact Area
-                                                                                ==============================-->
-    <div class="overflow-hidden bg-white">
-        <div class="shape-mockup moving d-none d-xxl-block" data-bottom="0%" data-right="0%"><img
-                src="assets/img/shape/man_shape_1.png" alt="shape"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="img-box3">
-                        <div class="img1">
-                            <img src="assets/img/normal/contact_1.jpg" alt="Image">
-                        </div>
-                        <div class="contact-process-wrap">
-                            <div class="contact-process">
-                                <div class="box-number">01</div>
-                                <div class="media-body">
-                                    <h3 class="box-title">Book Online</h3>
-                                    <p class="box-text">Willing to go the extra mile to provide a quality job & service.
-                                        Although we are based in the Manchester area.</p>
-                                </div>
-                            </div>
-                            <div class="contact-process">
-                                <div class="box-number">02</div>
-                                <div class="media-body">
-                                    <h3 class="box-title">Detailed Estimate</h3>
-                                    <p class="box-text">Although we are based in the Manchester area, we work with fit out
-                                        companies and contractors across the country.</p>
-                                </div>
-                            </div>
-                            <div class="contact-process">
-                                <div class="box-number">03</div>
-                                <div class="media-body">
-                                    <h3 class="box-title">Work Planning</h3>
-                                    <p class="box-text">We work with fit out companies and other contractors across the
-                                        country.Although we are based in the Manchester area.</p>
-                                </div>
-                            </div>
-                            <div class="contact-process">
-                                <div class="box-number">04</div>
-                                <div class="media-body">
-                                    <h3 class="box-title">Get Delivery</h3>
-                                    <p class="box-text">Delivery with fit out companies and other contractors across the
-                                        country.Although we are based in the Manchester area.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 text-center text-xl-start align-self-center space-extra">
-                    <div class="title-area">
-                        <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg" alt="shape">Book an
-                            appointment</span>
-                        <h2 class="sec-title">Request a quote</h2>
-                    </div>
-                    <form action="mail.php" method="POST" class="input-light ajax-contact pb-30 pb-md-0">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Your Name">
-                                <i class="fal fa-user"></i>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Email Address">
-                                <i class="fal fa-envelope"></i>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="tel" class="form-control" name="number" id="number"
-                                    placeholder="Phone Number">
-                                <i class="fal fa-phone"></i>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <select name="subject" id="subject" class="form-select">
-                                    <option value="" disabled selected hidden>Select Subject</option>
-                                    <option value="General Query">General Query</option>
-                                    <option value="Help Support">Help Support</option>
-                                    <option value="Sales Support">Sales Support</option>
-                                </select>
-                                <i class="fal fa-chevron-down"></i>
-                            </div>
-                            <div class="form-group col-12">
-                                <textarea name="message" id="message" cols="30" rows="3" class="form-control"
-                                    placeholder="Your Message"></textarea>
-                                <i class="fal fa-pencil"></i>
-                            </div>
-                            <div class="form-btn col-12">
-                                <button class="th-btn">Send Message Now<i class="far fa-arrow-right ms-2"></i></button>
-                            </div>
-                        </div>
-                        <p class="form-messages mb-0 mt-3"></p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--==============================
-                                                                                Gallery Area
-                                                                                ==============================-->
-    <div class="overflow-hidden space">
-        <div class="container text-center">
-            <div class="title-area text-center">
-                <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg" alt="Icon">Best Gallery</span>
-                <h2 class="sec-title">Our Awesome Gallery</h2>
-            </div>
-            <div class="row gy-30 filter-active overlay-direction load-more-active">
-                <div class="cat2 col-xl-3 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_1.jpg">
-                            <img src="assets/img/gallery/gallery_1_1.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="cat1 cat5 col-xl-3 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_2.jpg">
-                            <img src="assets/img/gallery/gallery_1_2.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat3 cat5 col-xl-6 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_3.jpg">
-                            <img src="assets/img/gallery/gallery_1_3.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat2 col-xl-6 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_4.jpg">
-                            <img src="assets/img/gallery/gallery_1_4.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat4 cat3 col-xl-3 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_5.jpg">
-                            <img src="assets/img/gallery/gallery_1_5.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat1 col-xl-3 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_6.jpg">
-                            <img src="assets/img/gallery/gallery_1_6.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat5 cat4 col-xl-3 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_7.jpg">
-                            <img src="assets/img/gallery/gallery_1_7.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat2 col-xl-6 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_8.jpg">
-                            <img src="assets/img/gallery/gallery_1_8.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat1 cat3 col-xl-3 col-md-6 filter-item">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_9.jpg">
-                            <img src="assets/img/gallery/gallery_1_9.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat2 col-xl-3 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_1.jpg">
-                            <img src="assets/img/gallery/gallery_1_1.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat1 cat5 col-xl-3 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_2.jpg">
-                            <img src="assets/img/gallery/gallery_1_2.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat3 cat5 col-xl-6 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_3.jpg">
-                            <img src="assets/img/gallery/gallery_1_3.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat2 col-xl-6 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_4.jpg">
-                            <img src="assets/img/gallery/gallery_1_4.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat4 cat3 col-xl-3 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_5.jpg">
-                            <img src="assets/img/gallery/gallery_1_5.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat1 col-xl-3 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_6.jpg">
-                            <img src="assets/img/gallery/gallery_1_6.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat5 cat4 col-xl-3 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_7.jpg">
-                            <img src="assets/img/gallery/gallery_1_7.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat2 col-xl-6 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_8.jpg">
-                            <img src="assets/img/gallery/gallery_1_8.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cat1 cat3 col-xl-3 col-md-6 filter-item d-none">
-                    <div class="gallery-card">
-                        <a class="box-img popup-image" href="assets/img/gallery/gallery_1_9.jpg">
-                            <img src="assets/img/gallery/gallery_1_9.jpg" alt="gallery image">
-                            <div class="box-content">
-                                <span class="box-btn"><i class="fal fa-plus"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-            <button class="th-btn load-more-btn">Load More<i class="fa-duotone fa-spinner ms-2"></i></button>
-        </div>
-    </div>
-    <!--==============================
-                                                                                Testimonial Area
-                                                                                ==============================-->
+    {{--  <!--==============================
+                                                                                    Testimonial Area
+                                                                                    ==============================-->
     <section class="space" id="testi-sec" data-bg-src="assets/img/bg/pattern_bg_1.png">
         <div class="container">
             <div class="row justify-content-between align-items-center">
@@ -1353,11 +1090,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>  --}}
 
-    <!--==============================
-                                                                                Price Area
-                                                                                ==============================-->
+    {{--  <!--==============================
+                                                                                    Price Area
+                                                                                    ==============================-->
     <section class="space" data-bg-src="assets/img/bg/pattern_bg_2.jpg">
         <div class="shape-mockup spin" data-top="15%" data-right="6%"><img src="assets/img/shape/dots_1.svg"
                 alt="shape"></div>
@@ -1471,8 +1208,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                Blog Area
-                                                                                ==============================-->
+                                                                                    Blog Area
+                                                                                    ==============================-->
     <section class="space" id="blog-sec">
         <div class="container">
             <div class="row justify-content-between align-items-center">
@@ -1550,5 +1287,5 @@
 
             </div>
         </div>
-    </section>
+    </section>  --}}
 @endsection

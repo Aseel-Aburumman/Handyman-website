@@ -7,8 +7,13 @@ use App\Http\Controllers\UserControlCenter;
 use App\Http\Controllers\GigController;
 use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AuthAdminController;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StoreOwnerController;
+use App\Http\Controllers\HandymanController;
+use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\MasterController;
 
@@ -33,6 +38,46 @@ Route::get('lang/{locale}', function ($locale) {
 Route::get('/', [MasterController::class, 'index'])->name('home');
 Route::get('/service', [MasterController::class, 'service'])->name('service');
 Route::get('/about-us', [MasterController::class, 'aboutUs'])->name('aboutUs');
+Route::get('/search-services', [ServiceController::class, 'search'])->name('search.services');
+
+Route::get('/step-one/{categoryId}/{serviceId}', [ServiceController::class, 'stepOne'])->name('step.one');
+
+// Route::get('/gig/step1', [ServiceController::class, 'showStep1'])->name('gig.step1');
+Route::post('/gig/step1', [ServiceController::class, 'storeStep1'])->name('gig.storeStep1');
+
+Route::get('/gig/step2', [ServiceController::class, 'showStep2'])->name('gig.step2');
+Route::post('/gig/step2', [ServiceController::class, 'storeStep2'])->name('gig.storeStep2');
+
+Route::get('/gig/filter', [ServiceController::class, 'showStep2'])->name('gig.filterHandymen');
+
+
+Route::get('/gig/step3', [ServiceController::class, 'showStep3'])->name('gig.step3');
+Route::post('/gig/step3', [ServiceController::class, 'storeStep3'])->name('gig.storeStep3');
+
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['auth'],  // Apply the 'auth'
+
+], function () {
+
+    Route::get('/gig/step4', [ServiceController::class, 'showStep4'])->name('gig.step4');
+    Route::post('/gig/step4', [ServiceController::class, 'storeStep4'])->name('gig.storeStep4');
+
+
+    Route::get('/storeowner/dashboard', [StoreOwnerController::class, 'index'])->name('storeowner.dashboard')->middleware('role:3');
+    Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.dashboard')->middleware('role:2');
+    Route::get('/handyman/dashboard', [HandymanController::class, 'index'])->name('handyman.dashboard')->middleware('role:4');
+});
+
+
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 
 

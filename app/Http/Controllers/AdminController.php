@@ -360,8 +360,8 @@ public function profileNavbar(){
             'profile_image' => 'nullable|image', // Validate image
         ]);
 
-        $user = Auth::user();
-        // $user = User::find(1);
+        // $user = Auth::user();
+        $user = User::find(1);
 
         // Update User Info
         $user->name = $request->input('fullName');

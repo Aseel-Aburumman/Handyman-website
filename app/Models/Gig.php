@@ -24,6 +24,13 @@ class Gig extends Model
         'location',
         'estimated_time',
         'price',
+        'end_address',
+        'car_req',
+        'task_date',
+        'task_time',
+        'total',
+
+
         'status_id',
     ];
 
@@ -67,7 +74,7 @@ class Gig extends Model
     }
 
     public function reports()
-{
-    return $this->hasMany(Report::class, 'gig_id');
-}
+    {
+        return $this->hasMany(Report::class, 'gig_id');
+    }
 }

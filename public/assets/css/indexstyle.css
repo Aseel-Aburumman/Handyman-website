@@ -2,3 +2,37 @@
     flex: 1;
 }
 
+#search-suggestions ul {
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#search-suggestions li {
+    padding: 10px;
+
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+#search-suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+.aseel-dropdown-menu {
+    margin-top: 10px;
+
+    width: 100%;
+    border-radius: 24px;
+    border: 1px solid #ccc;
+}
+
+#service-search {
+    border-radius: 24px;
+    height: 65px;
+    margin-bottom: 30px;
+
+    border: 1px solid #ccc;
+}

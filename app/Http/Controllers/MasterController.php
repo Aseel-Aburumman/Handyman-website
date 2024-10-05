@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Category;
 use App\Models\Store;
+use App\Models\Service;
+
 use App\Models\Gig;
 
 
@@ -51,5 +53,14 @@ class MasterController extends Controller
     public function aboutUs()
     {
         return view('main_strc.about');
+    }
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $services = Service::where('name', 'LIKE', "%{$query}%")->orWhere('name_ar', 'LIKE', "%{$query}%")->get();
+
+        return response()->json($services);
     }
 }

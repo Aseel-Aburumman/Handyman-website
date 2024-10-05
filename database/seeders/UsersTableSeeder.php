@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'rating' => 5.0,
             'reported' => false,
             'date_created' => now(),
+            'image' => 'sadcat.png',
         ]);
 
         // Create a regular user
@@ -27,11 +28,12 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 2, // Assuming role 2 is User
             'rating' => 4.5,
+            'image' => 'sadcat.png',
             'reported' => false,
 
             'date_created' => now(),
         ]);
-// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         User::create([
             'name' => 'Handyman User',
             'email' => 'handyman@example.com',
@@ -39,6 +41,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4, // Assuming role 2 is User
             'rating' => 4.5,
             'reported' => false,
+            'image' => 'sadcat.png',
 
             'date_created' => now(),
         ]);
@@ -50,10 +53,11 @@ class UsersTableSeeder extends Seeder
             'role_id' => 3, // Assuming role 3 is User
             'rating' => 4.5,
             'reported' => false,
+            'image' => 'sadcat.png',
 
             'date_created' => now(),
         ]);
-// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         User::create([
             'name' => 'suspended Handyman User',
@@ -251,7 +255,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4,
             'rating' => 4.9,
             'reported' => false,
-            'image'=>'tomPic.jpg',
+            'image' => 'tomPic.jpg',
             'date_created' => now(),
         ]);
 
@@ -262,7 +266,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4,
             'rating' => 4.8,
             'reported' => false,
-            'image'=>'LucyPic.jpg',
+            'image' => 'LucyPic.jpg',
 
             'date_created' => now(),
         ]);
@@ -274,7 +278,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4,
             'rating' => 4.6,
             'reported' => false,
-            'image'=>'MarkPic.jpg',
+            'image' => 'MarkPic.jpg',
 
             'date_created' => now(),
         ]);
@@ -286,7 +290,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4,
             'rating' => 4.7,
             'reported' => false,
-            'image'=> 'AnnaPic.jpg',
+            'image' => 'AnnaPic.jpg',
 
             'date_created' => now(),
         ]);
@@ -298,7 +302,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4,
             'rating' => 4.8,
             'reported' => false,
-            'image'=> 'AhmedPic.jpg',
+            'image' => 'AhmedPic.jpg',
 
             'date_created' => now(),
         ]);
@@ -310,7 +314,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4,
             'rating' => 4.7,
             'reported' => false,
-            'image'=> 'FadiPic.jpg',
+            'image' => 'FadiPic.jpg',
 
             'date_created' => now(),
         ]);

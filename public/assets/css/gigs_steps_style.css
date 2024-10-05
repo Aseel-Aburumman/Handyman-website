@@ -1,0 +1,317 @@
+/* Container for step one page */
+.step-one-container {
+    padding: 20px;
+}
+
+/* Progress Bar (number 3) */
+.progress-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.progress-bar-step {
+    width: 40px; /* Increase size */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.progress-bar-line {
+    height: 4px;
+    width: 150px;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+
+.progress-bar-step.active {
+    background-color: var(--theme-color); /* Active step color */
+}
+
+/* Service Info (number 4 and number 1) */
+.service-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.service-info h2 {
+    /* font-size: 24px; */
+    font-weight: bold;
+}
+
+.explanation-text {
+    font-size: 16px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Task Form (number 2) */
+.task-form {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-form h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.task-form input.form-control {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #00b894;
+    border-color: #00b894;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+.step2Form {
+    display: flex;
+}
+
+.filter-step2-section {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 110%;
+}
+
+.handyman-list {
+    flex: 2;
+    margin-left: 20px;
+}
+.filter-step2-date-options .filter-step2-date-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.filter-step2-date-btn {
+    width: 45%;
+    margin-bottom: 5px;
+}
+.filter-step2-time-options .filter-step2-checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.filter-step2-flexible-time select {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.filter-step2-price-range {
+    margin-top: 10px;
+}
+
+.filter-step2-slider {
+    width: 100%;
+}
+
+.filter-step2-price-values {
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 10px; */
+}
+
+.filter-step2-average-price {
+    margin-top: 10px;
+    color: #666;
+}
+
+.filter-step2-checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.filter-step2-checkbox-group input {
+    margin-right: 10px;
+}
+
+.btn-secondary {
+    background-color: #ccc;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-step2-handyman-card {
+    border: 1px solid #e6e6e6;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.handyman-profile-section {
+    display: flex;
+    align-items: center;
+}
+.handyman-pic-section {
+    width: 40%;
+}
+.handyman-profile-img {
+    width: 70%;
+    /* height: 80px; */
+    border-radius: 50%;
+}
+
+.handyman-thepic-section {
+    text-align: center;
+}
+
+.handyman-details h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+.handyman-details {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+}
+.handyman-detailsData-section {
+    display: flex;
+}
+
+.handyman-rating {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.handyman-rating .rating-star {
+    color: #ffc107;
+    margin-right: 5px;
+}
+
+.handyman-tasks {
+    font-size: 14px;
+    color: #666;
+}
+
+.handyman-price-section {
+    margin-left: auto;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    align-self: start;
+}
+
+.handyman-description {
+    margin-top: 20px;
+    background-color: #f5f7f6;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.read-more-link {
+    color: #f47629;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.handyman-review {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    border-top: 1px solid #e6e6e6;
+    padding-top: 10px;
+}
+
+.reviewer-img {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.reviewer-details {
+    font-size: 14px;
+    color: #666;
+    width: 15%;
+}
+.reviewer-detailsText {
+    width: 75%;
+    margin-left: 20px;
+}
+.reviewer-name {
+    margin-bottom: 1px;
+}
+.reviewer-author {
+    width: 10%;
+}
+.review-text {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.select-tasker-section {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.select-tasker-btn {
+    background-color: #f47629;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.chat-info {
+    font-size: 12px;
+    color: #666;
+    margin-top: 30px;
+}
+
+.skipBtn {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.skipBtn:hover {
+    background-color: #f47629;
+}
+
+.flatpickr-calendar {
+    top: 100% !important; /* Ensure the calendar appears below the button */
+    left: 0 !important; /* Align the calendar to the left of the button */
+}
+
+.filter-step2-form-group {
+    margin-top: 10px;
+}

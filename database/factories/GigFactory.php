@@ -22,7 +22,13 @@ class GigFactory extends Factory
             'location' => $this->faker->address(), // Random location
             'estimated_time' => $this->faker->numberBetween(1, 8), // Estimated time in hours (random between 1 and 8)
             'price' => $this->faker->numberBetween(20, 500), // Random price between $20 and $500
-            'status_id' => 7, // Assuming Status ID 7 is 'Open'
+
+            // Ensure task_date is between 2nd Sep 2024 and 1st Dec 2024
+            'task_date' => $this->faker->dateTimeBetween('2024-09-02', '2024-12-01')->format('Y-m-d'),
+
+            'task_time' => $this->faker->time('H:i:s'), // Random time in HH:MM:SS format
+            'total' => $this->faker->numberBetween(20, 500), // Random total between $20 and $500
+            'status_id' => $this->faker->numberBetween(7, 9), // Assuming Status ID 7 is 'Open' and 9 is 'Done'
         ];
     }
 }

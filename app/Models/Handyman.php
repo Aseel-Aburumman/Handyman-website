@@ -15,6 +15,10 @@ class Handyman extends Model
         'user_id',
         'experience',
         'store_location',
+        'price_per_hour',
+        'suspended',
+        // 'car',
+
         'bio',
     ];
     use SoftDeletes; // Use the SoftDeletes trait
@@ -22,7 +26,7 @@ class Handyman extends Model
     protected $dates = ['deleted_at']; // Specify that 'deleted_at' is a date
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function skillCertificates()
@@ -43,6 +47,18 @@ class Handyman extends Model
     public function reports()
     {
         return $this->hasMany(Report::class, 'handyman_id');
+    }
+
+    // for the select handyman card-> services controller
+    public function latest_review()
+    {
+        return $this->hasOne(Review::class)->latestOfMany();
+    }
+
+
+    public function availability()
+    {
+        return $this->hasMany(HandymanAvailability::class, 'handyman_id');
     }
 
     protected $table = 'handymans';

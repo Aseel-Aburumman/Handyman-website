@@ -16,8 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('experience')->default(0);
+            $table->integer('price_per_hour')->default(0);
+
             $table->string('store_location')->nullable();
             $table->text('bio')->nullable();
+            // $table->text('car')->nullable();
+
             $table->timestamps();
             $table->softDeletes(); // Adds a 'deleted_at' column
             $table->boolean('suspended')->default(false);

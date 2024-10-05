@@ -30,8 +30,16 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('location');
+            $table->string('end_address')->nullable(); //for the moving
+            $table->boolean('car_req')->nullable(); //for the moving
+
             $table->integer('estimated_time')->nullable();
+            $table->date('task_date');
+            $table->time('task_time');
+
             $table->integer('price');
+            $table->integer('total');
+
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();

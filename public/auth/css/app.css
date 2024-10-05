@@ -1,0 +1,55 @@
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0;
+}
+
+.auth-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 350px;
+    text-align: center;
+}
+
+.auth-box-inner h2 {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="password_confirmation"] {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button.btn-primary {
+    background-color: #f47629;
+    color: white;
+    padding: 0.75rem;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+button.btn-primary:hover {
+    background-color: #101840;
+}
+
+a {
+    color: #f47629;
+}
+
+.loginlogo {
+    width: 100%;
+}
