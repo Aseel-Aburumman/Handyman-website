@@ -181,4 +181,135 @@ class ShopsController extends Controller
             'cartItem' => $cartItem,
         ]);
     }
+
+
+    public function addToCartSmaller(Request $request)
+    {
+        // Get the current authenticated user
+        $user = Auth::user();
+
+        // Retrieve the cart items for this user
+        $existingCartItems = ShoppingCart::where('user_id', $user->id)->get();
+
+        // Check if the user already has items from a different store
+        $differentStoreItems = $existingCartItems->where('store_id', '!=', $request->store_id);
+
+        if ($differentStoreItems->isNotEmpty()) {
+            // If the cart contains items from another store, return a response that indicates this
+            return response()->json([
+                'status' => 'warning',
+                'message' => 'Your cart contains items from another store. Do you want to clear your cart and add this item?',
+            ]);
+        }
+
+        // Otherwise, add the product to the cart
+        ShoppingCart::create([
+            'user_id' => $user->id,
+            'product_id' => $request->product_id,
+            'store_id' => $request->store_id,
+            'quantity' => 1,
+        ]);
+
+        return response()->json(['status' => 'success', 'message' => 'Item added to cart']);
+    }
+
+    public function clearCart(Request $request)
+    {
+        // Clear the cart for the current user
+        ShoppingCart::where('user_id', Auth::id())->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Cart cleared']);
+    }
+
+
+
+
+    public function getCart()
+    {
+        $userId = Auth::id();
+
+        // Get all shopping cart items for the logged-in user
+        $shoppingCarts = ShoppingCart::with('product')->where('user_id', $userId)->get();
+
+        // Calculate the total amount for the cart
+        $totalCartAmount = $shoppingCarts->sum(function ($cartItem) {
+            return $cartItem->product->price * $cartItem->quantity;
+        });
+
+        // Pass the shopping cart items and total cart amount to the view
+        return view('shops.cart', compact('shoppingCarts', 'totalCartAmount'));
+    }
+
+    public function updateCart(Request $request)
+    {
+        $userId = Auth::id();
+        $productId = $request->productId;
+        $quantity = $request->quantity;
+
+        // Find the shopping cart item
+        $cartItem = ShoppingCart::where('user_id', $userId)
+            ->where('product_id', $productId)
+            ->first();
+
+        if ($cartItem) {
+            // Update quantity
+            $cartItem->quantity = $quantity;
+            $cartItem->save();
+
+            // Recalculate the total for the item
+            $newTotal = $cartItem->product->price * $cartItem->quantity;
+
+            // Recalculate the overall cart total
+            $cartTotal = ShoppingCart::where('user_id', $userId)
+                ->with('product')
+                ->get()
+                ->sum(function ($item) {
+                    return $item->product->price * $item->quantity;
+                });
+
+            return response()->json([
+                'newTotal' => $newTotal,
+                'cartTotal' => $cartTotal
+
+            ]);
+        }
+
+        return response()->json(['error' => 'Cart item not found'], 404);
+    }
+
+
+    public function removeFromCart(Request $request)
+    {
+        $userId = Auth::id();
+        $productId = $request->productId;
+
+        // Find the shopping cart item
+        $cartItem = ShoppingCart::where('user_id', $userId)
+            ->where('product_id', $productId)
+            ->first();
+
+        if ($cartItem) {
+            $cartItem->delete();
+
+            // Recalculate the overall cart total
+            $cartTotal = ShoppingCart::where('user_id', $userId)
+                ->with('product')
+                ->get()
+                ->sum(function ($item) {
+                    return $item->product->price * $item->quantity;
+                });
+
+            return response()->json([
+                'cartTotal' => $cartTotal
+            ]);
+        }
+
+        return response()->json(['error' => 'Cart item not found'], 404);
+    }
+
+    public function checkout()
+    {
+        $userId = Auth::id();
+        return view('shops.checkout');
+    }
 }

@@ -106,7 +106,7 @@
                                 </ul>
                                 @auth
                                     <ul style="margin-right:10px;">
-                                        <li><a href="{{ route('service') }}"><i class="fa-solid fa-cart-shopping fa-lg"
+                                        <li><a href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fa-lg"
                                                     style="top:50%;color: #f47629;"></i>
                                             </a></li>
                                     </ul>

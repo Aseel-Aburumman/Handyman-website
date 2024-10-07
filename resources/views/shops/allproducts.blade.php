@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
@@ -56,28 +56,30 @@
 
 
 
+                        <!-- Your blade template with products -->
                         @foreach ($products as $product)
                             <div class="col-xl-3 col-lg-4 col-sm-6">
                                 <div class="th-product product-grid">
                                     <div class="product-img">
                                         <img src="{{ $product->image ? asset('storage/product_images/' . $product->image->name) : asset('assets/img/product/product_1_2.png') }}"
                                             alt="{{ $product->name }} pic">
-                                        {{--  <img src="assets/img/product/product_1_2.png" alt="Product Image">  --}}
                                         <div class="actions">
                                             <a href="#QuickView" class="icon-btn popup-content"><i
                                                     class="far fa-eye"></i></a>
 
                                             @if (Auth::check())
                                                 <!-- If the user is logged in, show the Add to Cart button -->
-                                                <form action="{{ route('cart.add') }}" method="POST"
-                                                    class="add-to-cart-form">
+                                                <form id="add-to-cart-form-{{ $product->id }}" class="add-to-cart-form">
                                                     @csrf
+                                                    <!-- This directive outputs a hidden input containing the CSRF token -->
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
                                                     <input type="hidden" name="quantity" value="1">
-                                                    <!-- Default quantity is 1 -->
-                                                    <button type="submit" class="icon-btn"><i
-                                                            class="fa-solid fa-cart-plus"></i></button>
+                                                    <button type="button" class="icon-btn add-to-cart-btn"
+                                                        data-product-id="{{ $product->id }}"
+                                                        data-store-id="{{ $product->store_id }}">
+                                                        <i class="fa-solid fa-cart-plus"></i>
+                                                    </button>
                                                 </form>
                                             @else
                                                 <!-- If the user is not logged in, redirect to the login page -->
@@ -90,10 +92,10 @@
                                         <!-- Star Rating -->
                                         <div class="list-rating" style="color : #E2B93B;">
                                             @php
-                                                $wholeStars = floor($product->rating); // Number of filled stars
-                                                $fraction = $product->rating - $wholeStars; // Fractional part of the rating
-                                                $halfStar = $product->rating - $wholeStars >= 0.5; // Whether to show a half star
-                                                $emptyStars = 5 - $wholeStars - ($halfStar ? 1 : 0); // Number of empty stars
+                                                $wholeStars = floor($product->rating);
+                                                $fraction = $product->rating - $wholeStars;
+                                                $halfStar = $product->rating - $wholeStars >= 0.5;
+                                                $emptyStars = 5 - $wholeStars - ($halfStar ? 1 : 0);
                                             @endphp
 
                                             @for ($i = 0; $i < $wholeStars; $i++)
@@ -109,7 +111,6 @@
                                             @endfor
 
                                             <span>({{ number_format($product->rating, 1) }})</span>
-                                            <!-- Display the exact rating -->
                                         </div>
                                         <h3 class="product-title"><a
                                                 href="{{ route('product', ['productId' => $product->id]) }}">{{ $product->name }}</a>
@@ -118,49 +119,81 @@
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                                document.querySelectorAll('.add-to-cart-form').forEach(function(form) {
-                                    form.addEventListener('submit', function(event) {
-                                        event.preventDefault(); // Prevent default form submission
-
-                                        var formData = new FormData(this);
-
-                                        fetch('{{ route('cart.add') }}', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                                    'Accept': 'application/json',
-                                                },
-                                                body: formData
-                                            })
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                if (data.status === 'error') {
-                                                    // Show the confirmation dialog if there is an error
-                                                    if (confirm(data.message)) {
-                                                        // If the user confirms, reset the cart and add the new product
-                                                        fetch('{{ route('cart.resetAndAdd') }}', {
-                                                                method: 'POST',
-                                                                headers: {
-                                                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                                                    'Accept': 'application/json',
-                                                                },
-                                                                body: formData
-                                                            })
-                                                            .then(response => response.json())
-                                                            .then(data => {
-                                                                alert(data.message);
-                                                            });
-                                                    }
-                                                } else {
-                                                    // Success, the product was added to the cart
-                                                    alert(data.message);
-                                                }
-                                            });
-                                    });
-                                });
-                            </script>
                         @endforeach
+
+                        <script>
+                            // Add event listeners to all "Add to Cart" buttons
+                            document.querySelectorAll('.add-to-cart-btn').forEach(function(btn) {
+                                btn.addEventListener('click', function() {
+                                    let productId = btn.getAttribute('data-product-id');
+                                    let storeId = btn.getAttribute('data-store-id');
+
+                                    // Find the form that this button belongs to
+                                    let form = btn.closest('form');
+
+                                    // Retrieve the CSRF token from the form's hidden input field
+                                    let csrfToken = form.querySelector('input[name="_token"]').value;
+
+                                    // Call the function to handle the Add to Cart logic
+                                    handleAddToCart(productId, storeId, csrfToken);
+                                });
+                            });
+
+                            // Function to handle Add to Cart logic
+                            function handleAddToCart(productId, storeId, csrfToken) {
+                                // Log the product ID and store ID for debugging
+                                console.log('Product ID:', productId, 'Store ID:', storeId);
+
+                                // Prepare the form data
+                                let formData = new FormData();
+                                formData.append('product_id', productId);
+                                formData.append('store_id', storeId);
+                                formData.append('quantity', 1); // Default quantity is 1
+
+                                // Include the CSRF token
+                                formData.append('_token', csrfToken);
+
+                                // Perform the AJAX request to add the product to the cart
+                                fetch('/cart/addsmaller', {
+                                        method: 'POST',
+                                        body: formData,
+                                        headers: {
+                                            // The CSRF token is now included in the form data, no need for extra headers
+                                        }
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.status === 'warning') {
+                                            // If there are items from another store, ask the user to confirm
+                                            if (confirm(data.message)) {
+                                                // Clear the cart if the user confirms
+                                                fetch('/cart/clear', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'X-CSRF-TOKEN': csrfToken // Send the CSRF token for the clear cart request
+                                                        }
+                                                    })
+                                                    .then(response => response.json())
+                                                    .then(clearData => {
+                                                        if (clearData.status === 'success') {
+                                                            // Now add the product to the cart after clearing
+                                                            fetch('/cart/add', {
+                                                                    method: 'POST',
+                                                                    body: formData
+                                                                })
+                                                                .then(response => response.json())
+                                                                .then(data => {
+                                                                    alert(data.message); // Notify the user
+                                                                });
+                                                        }
+                                                    });
+                                            }
+                                        } else if (data.status === 'success') {
+                                            alert(data.message); // Notify the user that the item was added
+                                        }
+                                    });
+                            }
+                        </script>
 
 
 

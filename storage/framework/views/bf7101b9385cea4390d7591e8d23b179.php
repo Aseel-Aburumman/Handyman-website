@@ -106,7 +106,7 @@
                                 </ul>
                                 <?php if(auth()->guard()->check()): ?>
                                     <ul style="margin-right:10px;">
-                                        <li><a href="<?php echo e(route('service')); ?>"><i class="fa-solid fa-cart-shopping fa-lg"
+                                        <li><a href="<?php echo e(route('cart')); ?>"><i class="fa-solid fa-cart-shopping fa-lg"
                                                     style="top:50%;color: #f47629;"></i>
                                             </a></li>
                                     </ul>

@@ -9,6 +9,21 @@
         </div>
         <div class="th-mobile-menu">
             <ul>
+                <?php if(auth()->guard()->check()): ?>
+                    <?php if(Auth::user()->role_id == 2): ?>
+                        <!-- Customer Dashboard -->
+                        <li><a href="<?php echo e(route('customer.dashboard')); ?>">Dashboard</a></li>
+                    <?php elseif(Auth::user()->role_id == 3): ?>
+                        <!-- Store Owner Dashboard -->
+                        <li><a href="<?php echo e(route('storeowner.dashboard')); ?>">Dashboard</a></li>
+                    <?php elseif(Auth::user()->role_id == 4): ?>
+                        <!-- Handyman Dashboard -->
+                        <li><a href="<?php echo e(route('handyman.dashboard')); ?>">Dashboard</a></li>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if(auth()->guard()->guest()): ?>
+                    <li><a href="<?php echo e(route('register')); ?>">Register</a></li>
+                <?php endif; ?>
                 <li>
                     <a href="<?php echo e(route('home')); ?>">Home</a>
 
@@ -18,9 +33,8 @@
                 <li><a href="<?php echo e(route('shops.index')); ?>">Shops</a></li>
                 <li><a href="<?php echo e(route('products.index')); ?>">Products</a></li>
                 <li><a href="<?php echo e(route('handymen.index')); ?>">Handymen</a></li>
-                <li><a href="<?php echo e(route('register')); ?>">Register</a></li>
 
-            </ul>
+            </ul>f47629
         </div>
     </div>
 </div><!--==============================
@@ -85,10 +99,33 @@
                                 class="fa-solid fa-bars"></i></button>
 
                     </div>
-                    <div class="col-auto d-none d-xxl-block">
-                        <a href="<?php echo e(route('register')); ?>" class="th-btn style3">Register<i
-                                class="fas fa-arrow-right ms-2"></i></a>
-                    </div>
+                    <?php if(auth()->guard()->guest()): ?>
+                        <div class="col-auto d-none d-xxl-block">
+                            <a href="<?php echo e(route('register')); ?>" class="th-btn style3">Register
+                                <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(auth()->guard()->check()): ?>
+                        <div class="col-auto d-none d-xxl-block">
+                            <?php if(Auth::user()->role_id == 2): ?>
+                                <!-- Customer Dashboard -->
+                                <a href="<?php echo e(route('customer.dashboard')); ?>" class="th-btn style3">Dashboard
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            <?php elseif(Auth::user()->role_id == 3): ?>
+                                <!-- Store Owner Dashboard -->
+                                <a href="<?php echo e(route('storeowner.dashboard')); ?>" class="th-btn style3">Dashboard
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            <?php elseif(Auth::user()->role_id == 4): ?>
+                                <!-- Handyman Dashboard -->
+                                <a href="<?php echo e(route('handyman.dashboard')); ?>" class="th-btn style3">Dashboard
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

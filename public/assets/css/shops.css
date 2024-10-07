@@ -98,3 +98,9 @@
     background-color: #ccc; /* Customize the color of the scrollbar */
     border-radius: 10px;
 }
+
+.amount-total-cart {
+    font-size: 2rem; /* Larger font size to catch attention */
+    font-weight: bold; /* Bold for emphasis */
+    color: #f47629; /* Bright red color to stand out */
+}

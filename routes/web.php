@@ -75,6 +75,10 @@ Route::group([
     Route::get('/storeowner/dashboard', [StoreOwnerController::class, 'index'])->name('storeowner.dashboard')->middleware('role:3');
     Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.dashboard')->middleware('role:2');
     Route::get('/handyman/dashboard', [HandymanController::class, 'index'])->name('handyman.dashboard')->middleware('role:4');
+    Route::get('/cart', [ShopsController::class, 'getCart'])->name('cart');
+    Route::post('/cart/update', [ShopsController::class, 'updateCart'])->name('cart.update');
+    Route::post('/cart/remove', [ShopsController::class, 'removeFromCart'])->name('cart.remove');
+    Route::get('/cart/checkout', [ShopsController::class, 'checkout'])->name('checkout');
 });
 
 Route::get('/allshops', [ShopsController::class, 'index'])->name('shops.index');
@@ -85,6 +89,9 @@ Route::get('/shops/{shopId}', [ShopsController::class, 'getOne'])->name('Oneshop
 Route::get('/product/{productId}', [ShopsController::class, 'getOneProduct'])->name('product');
 Route::post('/reviews', [ShopsController::class, 'storeReview'])->name('reviews.product');
 Route::post('/cart/add', [ShopsController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/addsmaller', [ShopsController::class, 'addToCartSmaller'])->name('cart.addsmaller');
+Route::post('/cart/clear', [ShopsController::class, 'clearCart'])->name('cart.clear');
+
 Route::post('/cart/reset-and-add', [ShopsController::class, 'resetCartAndAdd'])->name('cart.resetAndAdd');
 
 
