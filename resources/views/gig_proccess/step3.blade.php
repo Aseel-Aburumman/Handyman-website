@@ -1,6 +1,24 @@
 @extends('layouts.inside')
 
 @section('content')
+    <!--==============================
+                                                Breadcumb
+                                            ============================== -->
+    <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
+
+        <div class="container">
+            <div class="breadcumb-content">
+                <h1 class="breadcumb-title">Book A Gig</h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li>Book A Gig</li>
+
+                    <li>Step 3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <section class="overflow-hidden space" id="service-sec">
         <div class="container">
             <div class="step-three-container">
@@ -19,21 +37,64 @@
                     @csrf
 
                     <!-- Date -->
-                    <div class="form-group">
-                        <label for="date">Choose Task Date</label>
-                        <input type="date" name="date" id="date" class="form-control"
-                            min="{{ now()->toDateString() }}" required>
-                    </div>
+                    @if (!$handyman)
+                        <div class="form-group">
+                            <label class="checkBudgetLabel" for="date">Choose Task Date</label>
+                            <input type="date" name="date" id="date" class="form-control"
+                                min="{{ now()->toDateString() }}" required>
+                        </div>
+                    @else
+                        <label class="checkBudgetLabel" for="date">Choose Task Date</label>
 
+                        <input type="text" name="date" id="task_date" class="form-control" required
+                            placeholder="DD-MM-YYYY">
+                        <!-- Hidden input field for the date range -->
+                        <input type="text" id="choose_dates_input" name="choose_dates" class="d-none">
+                    @endif
                     <!-- Time -->
                     <div class="form-group">
-                        <label for="time">Choose Start Time</label>
+                        <label class="checkBudgetLabel" for="time">Choose Start Time</label>
                         <input type="time" name="time" id="time" class="form-control" required>
                     </div>
+
+                    @if (!$handyman)
+                        <label class="checkBudgetLabel">Choose Your Budget</label>
+
+                        <div class="checkBudget form-check form-group">
+                            <input type="radio" class="form-check-input" id="budget1" name="budget" value="5"
+                                checked>
+                            <label class=" form-check-label" for="budget1">5-10 JD</label>
+                        </div>
+
+                        <div class="checkBudget form-check form-group">
+                            <input type="radio" class="form-check-input" id="budget2" name="budget" value="10">
+                            <label class=" form-check-label" for="budget2">10-20 JD</label>
+                        </div>
+
+                        <div class="checkBudget form-check form-group">
+                            <input type="radio" class="form-check-input" id="budget3" name="budget" value="20">
+                            <label class=" form-check-label" for="budget3">20+ JD</label>
+                        </div>
+                    @endif
 
                     <button type="submit" class="btn btn-primary">Continue to Step 4</button>
                 </form>
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookedDates = @json($bookedDates); // Assuming this array is passed from the server
+
+            flatpickr("#task_date", {
+                dateFormat: "Y-m-d", // format of the date (same as Laravel format)
+                minDate: "{{ now()->toDateString() }}", // Disable dates before today
+                disable: bookedDates, // Disable booked dates
+                locale: {
+                    firstDayOfWeek: 1 // Monday as the first day of the week (optional)
+                }
+
+            });
+        });
+    </script>
 @endsection

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('description')->nullable(); // English description
             $table->text('description_ar')->nullable(); // Arabic description
             $table->integer('price');
+            $table->integer('discounted_price')->nullable();
+
             $table->boolean('availability')->default(false);
             $table->integer('stock_quantity');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');

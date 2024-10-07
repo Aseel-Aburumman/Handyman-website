@@ -48,7 +48,7 @@ class ServiceController extends Controller
         $request->validate([
             'category_id' => 'required',
             'service_id' => 'required',
-
+            'title' => 'required',
             'car_req' => 'nullable|boolean',
             'location' => 'required|string',
             'end_address' => 'nullable|string',
@@ -58,6 +58,7 @@ class ServiceController extends Controller
 
         // Save the gig data temporarily in session
         session([
+            'title' => $request->title,
             'category_id' => $request->category_id,
             'service_id' => $request->service_id,
             'car_req' => $request->car_req,
@@ -203,6 +204,37 @@ class ServiceController extends Controller
         $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
         session()->put('from_step_3', true);
 
+
+        // Check if a handyman is selected
+        // if ($handyman) {
+        //     // Retrieve handyman's availability
+        //     $availableDates = HandymanAvailability::where('handyman_id', 1)
+        //         ->whereDate('start_time', '>=', now()) // Only future dates
+        //         ->get();
+
+        //     // Retrieve handyman's booked gigs
+        //     $bookedDates = Gig::where('handyman_id', 1)
+        //         ->whereDate('task_date', '>=', now()) // Only future dates
+        //         ->get();
+        //     // dd($bookedDates);
+        //     // Pass the available and booked dates to the view
+        //     return view('gig_proccess.step3', compact('availableDates', 'bookedDates', 'handyman'));
+        // }
+
+
+        if ($handyman) {
+            $handymanid = session('handyman_id'); // Get the service ID from the session
+            $bookedDates = Gig::where('handyman_id', $handymanid)
+                ->pluck('task_date')
+                ->toArray(); // Fetch the booked dates as an array
+            // dd($bookedDates);
+            return view('gig_proccess.step3', compact('bookedDates', 'handyman'));
+        } else {
+            $bookedDates = [];
+            return view('gig_proccess.step3', compact('bookedDates', 'handyman'));
+        }
+
+
         // dd(session('handyman_id'));
         return view('gig_proccess.step3', compact('handyman'));
     }
@@ -213,13 +245,18 @@ class ServiceController extends Controller
         $request->validate([
             'date' => 'required|date|after_or_equal:today',
             'time' => 'required|date_format:H:i',
+            'budget' => 'nullable|string', // Ensure that 'budget' is passed
+
         ]);
+
+        // Capture the budget option from the form
+        $budget = $request->input('budget');
 
         // Store the date and time in the session
         session([
             'task_date' => $request->date,
             'task_time' => $request->time,
-            'budget' => $request->budget ?? null,
+            'budget' => $budget ?? null,
         ]);
 
         return redirect()->route('gig.step4');
@@ -239,8 +276,15 @@ class ServiceController extends Controller
             return redirect()->route('login');
         }
 
+        $categoryId = session('category_id'); // Get the category ID from the session
+        $category = Category::findOrFail($categoryId);
 
-        $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
+        $service_id = session('service_id'); // Get the service ID from the session
+        $service = Service::findOrFail($service_id);
+
+        // {{ session('location') }}
+
+        $handyman = session('handyman_id') ? Handyman::with('user')->find(session('handyman_id')) : null;
         $total = 0;
 
         if ($handyman) {
@@ -249,12 +293,14 @@ class ServiceController extends Controller
             $estimatedTime = session('estimated_time');
             $total = ($hourlyRate * $estimatedTime) + ($hourlyRate * $estimatedTime * 0.16); // Trust fee 16%
         } else {
-            $total = session('budget') + (session('budget') * 0.16); // Trust fee 16%
+            $hourlyRate = session('budget');
+            $estimatedTime = session('estimated_time');
+            $total = ($hourlyRate * $estimatedTime) + ($hourlyRate * $estimatedTime * 0.16); // Trust fee 16%
         }
 
 
 
-        return view('gig_proccess.step4', compact('total', 'handyman'));
+        return view('gig_proccess.step4', compact('total', 'handyman', 'category', 'service', 'hourlyRate', 'estimatedTime'));
     }
 
     public function storeStep4(Request $request)
@@ -262,10 +308,25 @@ class ServiceController extends Controller
         // Here you can handle the payment logic
 
         // Validate the payment form inputs (e.g., card number)
-        $request->validate([
-            'card_number' => 'required|string',
-            // You can also add validation for the promo code or any other fields
-        ]);
+        // $request->validate([
+        //     'card_number' => 'required|string',
+        //     // You can also add validation for the promo code or any other fields
+        // ]);
+
+
+        $paymentMethod = $request->input('payment_method');
+
+        if ($paymentMethod === 'card') {
+            // Validate card payment fields
+            $request->validate([
+                'card_number' => 'required|string|size:16',
+                'card_expiry' => ['required', 'string', 'regex:/^(0[1-9]|1[0-2])\/?([0-9]{2})$/'], // Format MM/YY
+                'card_cvc'    => 'required|string|size:3',
+                'card_name'   => 'required|string|max:255',
+            ]);
+        }
+
+
 
         // Retrieve the handyman, if selected
         $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
@@ -289,11 +350,15 @@ class ServiceController extends Controller
 
         $gig->handyman_id = session('handyman_id') ?? null;
         $gig->category_id = session('category_id');
+        $gig->service_id = session('service_id');
+
         $gig->location = session('location');
         $gig->end_address = session('end_address');
         $gig->car_req = session('car_req');
         $gig->estimated_time = session('estimated_time');
         $gig->description = session('description');
+        $gig->title = session('title');
+
         $gig->task_date = session('task_date');
         $gig->task_time = session('task_time');
 
@@ -304,6 +369,6 @@ class ServiceController extends Controller
         $gig->status_id = 7; // Default status ( open)
         $gig->save();
 
-        return redirect()->route('dashboard')->with('success', 'Gig successfully created!');
+        return redirect()->route('customer.dashboard')->with('success', 'Gig successfully created!');
     }
 }

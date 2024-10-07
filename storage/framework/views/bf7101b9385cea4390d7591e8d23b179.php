@@ -5,65 +5,39 @@
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="home-handyman.html"><img src="<?php echo e(asset('assets/img/logoHorizantal.svg')); ?>" alt="Rakar"></a>
+            <a href="<?php echo e(route('home')); ?>"><img src="<?php echo e(asset('assets/img/logoHorizantal.svg')); ?>" alt="Rakar"></a>
         </div>
         <div class="th-mobile-menu">
             <ul>
-                <li class="menu-item-has-children">
-                    <a href="home-handyman.html">Home</a>
-                    <ul class="sub-menu">
-                        <li><a href="home-handyman.html">Home Handyman</a></li>
-                        <li><a href="home-office-repair.html">Home Office Repair</a></li>
-                        <li><a href="home-electrician.html">Home Electrician</a></li>
-                        <li><a href="home-air-condition.html">Home Air Condition</a></li>
-                        <li><a href="home-carpentry.html">Home Carpentry</a></li>
-                    </ul>
+                <?php if(auth()->guard()->check()): ?>
+                    <?php if(Auth::user()->role_id == 2): ?>
+                        <!-- Customer Dashboard -->
+                        <li><a href="<?php echo e(route('customer.dashboard')); ?>">Dashboard</a></li>
+                    <?php elseif(Auth::user()->role_id == 3): ?>
+                        <!-- Store Owner Dashboard -->
+                        <li><a href="<?php echo e(route('storeowner.dashboard')); ?>">Dashboard</a></li>
+                    <?php elseif(Auth::user()->role_id == 4): ?>
+                        <!-- Handyman Dashboard -->
+                        <li><a href="<?php echo e(route('handyman.dashboard')); ?>">Dashboard</a></li>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if(auth()->guard()->guest()): ?>
+                    <li><a href="<?php echo e(route('register')); ?>">Register</a></li>
+                <?php endif; ?>
+
+                <li>
+                    <a href="<?php echo e(route('home')); ?>">Home</a>
+
                 </li>
-                <li><a href="about.html">About Us</a></li>
-                <li class="menu-item-has-children">
-                    <a href="#">Our Services</a>
-                    <ul class="sub-menu">
-                        <li><a href="service.html">Our Services</a></li>
-                        <li><a href="service-details.html">Service Details</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Pages</a>
-                    <ul class="sub-menu">
-                        <li class="menu-item-has-children">
-                            <a href="#">Shop</a>
-                            <ul class="sub-menu">
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="shop-details.html">Shop Details</a></li>
-                                <li><a href="cart.html">Cart Page</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="team-details.html">Team Details</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="pricing.html">Price Plan</a></li>
-                        <li><a href="testimonial.html">Testimonials</a></li>
-                        <li><a href="faq.html">Faq Page</a></li>
-                        <li><a href="error.html">Error Page</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Blog</a>
-                    <ul class="sub-menu">
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Project</a>
-                    <ul class="sub-menu">
-                        <li><a href="project.html">Project</a></li>
-                        <li><a href="project-details.html">Project Details</a></li>
-                    </ul>
-                </li>
+
+                <li><a href="<?php echo e(route('aboutUs')); ?>">About Us</a></li>
+                <li><a href="<?php echo e(route('service')); ?>">Our Services</a></li>
+                <li><a href="<?php echo e(route('shops.index')); ?>">Shops</a></li>
+                <li><a href="<?php echo e(route('products.index')); ?>">Products</a></li>
+                <li><a href="<?php echo e(route('handymen.index')); ?>">Handymen</a></li>
+
+
+
             </ul>
         </div>
     </div>
@@ -88,14 +62,12 @@
                 <div class="col-auto">
                     <div class="header-links">
                         <ul>
-                            
 
-                            <li class="d-none d-md-inline-block"><i class="fas fa-messages"></i> <a
-                                    href="faq.html">FAQ</a></li>
-                            <li><i class="fas fa-headset"></i> <a href="contact.html">Support</a></li>
-                            <li><i class="fas fa-user"></i> <a href="contact.html">Sign In / Register</a></li>
-                            
-
+                            <li class="d-none d-md-inline-block"><i class="fa-solid fa-messages"></i> <a
+                                    href="<?php echo e(route('faq')); ?>">FAQ</a></li>
+                            <li><i class="fas fa-headset"></i> <a href="<?php echo e(route('contact')); ?>">Support</a></li>
+                            <li><i class="fas fa-user"></i> <a href="<?php echo e(route('login')); ?>">Sign In / </a><a
+                                    href="<?php echo e(route('register')); ?>">Register</a></li>
                         </ul>
                     </div>
                 </div>
@@ -109,7 +81,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
                         <div class="header-logo">
-                            <a href="home-handyman.html"><img src="<?php echo e(asset('assets/img/logoHorizantal.png')); ?>"
+                            <a href="<?php echo e(route('home')); ?>"><img src="<?php echo e(asset('assets/img/logoHorizantal.png')); ?>"
                                     alt="Rakar"></a>
 
                             
@@ -117,79 +89,63 @@
                     </div>
                     <div class="col">
                         <div class="menu-area">
-                            <nav class="main-menu d-none d-lg-inline-block">
+                            <nav class="navbarTest main-menu d-none d-lg-inline-block">
                                 <ul>
-                                    <li class="menu-item-has-children">
-                                        <a href="home-handyman.html">Home</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="home-handyman.html">Home Handyman</a></li>
-                                            <li><a href="home-office-repair.html">Home Office Repair</a></li>
-                                            <li><a href="home-electrician.html">Home Electrician</a></li>
-                                            <li><a href="home-air-condition.html">Home Air Condition</a></li>
-                                            <li><a href="home-carpentry.html">Home Carpentry</a></li>
-                                        </ul>
+                                    <li>
+                                        <a href="<?php echo e(route('home')); ?>">Home</a>
+
                                     </li>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Our Services</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="service.html">Our Services</a></li>
-                                            <li><a href="service-details.html">Service Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Shop</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="shop.html">Shop</a></li>
-                                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                                    <li><a href="cart.html">Cart Page</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="team.html">Team</a></li>
-                                            <li><a href="team-details.html">Team Details</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="gallery.html">Gallery</a></li>
-                                            <li><a href="pricing.html">Price Plan</a></li>
-                                            <li><a href="testimonial.html">Testimonials</a></li>
-                                            <li><a href="faq.html">Faq Page</a></li>
-                                            <li><a href="error.html">Error Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Project</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="project.html">Project</a></li>
-                                            <li><a href="project-details.html">Project Details</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="<?php echo e(route('aboutUs')); ?>">About Us</a></li>
+                                    <li><a href="<?php echo e(route('service')); ?>">Our Services</a></li>
+                                    <li><a href="<?php echo e(route('shops.index')); ?>">Shops</a></li>
+                                    <li><a href="<?php echo e(route('products.index')); ?>">Products</a></li>
+                                    <li><a href="<?php echo e(route('handymen.index')); ?>">Handymen</a></li>
+
+
+
                                 </ul>
+                                <?php if(auth()->guard()->check()): ?>
+                                    <ul style="margin-right:10px;">
+                                        <li><a href="<?php echo e(route('service')); ?>"><i class="fa-solid fa-cart-shopping fa-lg"
+                                                    style="top:50%;color: #f47629;"></i>
+                                            </a></li>
+                                    </ul>
+                                <?php endif; ?>
+
+
                             </nav>
-                            <div class="header-button">
-                                <form action="#" class="header-search">
-                                    <input type="text" placeholder="Search Services...">
-                                    <button type="button" class="icon-btn"><i class="fal fa-search"></i></button>
-                                </form>
-                                <button type="button" class="th-menu-toggle d-block d-lg-none"><i
-                                        class="far fa-bars"></i></button>
-                            </div>
+                            <button type="button" class="th-menu-toggle d-block d-lg-none"><i
+                                    class="fa-solid fa-bars"></i></button>
+
                         </div>
                     </div>
-                    <div class="col-auto d-none d-xxl-block">
-                        <a href="contact.html" class="th-btn style3">Get A Quote<i
-                                class="fas fa-arrow-right ms-2"></i></a>
-                    </div>
+                    <?php if(auth()->guard()->guest()): ?>
+                        <div class="col-auto d-none d-xxl-block">
+                            <a href="<?php echo e(route('register')); ?>" class="th-btn style3">Register
+                                <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(auth()->guard()->check()): ?>
+                        <div class="col-auto d-none d-xxl-block">
+                            <?php if(Auth::user()->role_id == 2): ?>
+                                <!-- Customer Dashboard -->
+                                <a href="<?php echo e(route('customer.dashboard')); ?>" class="th-btn style3">Dashboard
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            <?php elseif(Auth::user()->role_id == 3): ?>
+                                <!-- Store Owner Dashboard -->
+                                <a href="<?php echo e(route('storeowner.dashboard')); ?>" class="th-btn style3">Dashboard
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            <?php elseif(Auth::user()->role_id == 4): ?>
+                                <!-- Handyman Dashboard -->
+                                <a href="<?php echo e(route('handyman.dashboard')); ?>" class="th-btn style3">Dashboard
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

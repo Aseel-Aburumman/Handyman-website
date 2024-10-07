@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Store;
 use App\Models\Service;
+use App\Models\Handyman;
+
 
 use App\Models\Gig;
 
@@ -44,10 +46,35 @@ class MasterController extends Controller
         return view('index', compact('categories', 'topStores', 'topHandymen', 'totalGigs', 'totalUsers', 'totalHandymen', 'totalStores'));
     }
 
+    public function indexHandymen(Request $request)
+    {
+        $search = $request->input('search');
+
+        // If there's a search query, filter the stores based on the name
+        if ($search) {
+            $handymans = Handyman::with('image')->where('name', 'like', '%' . $search . '%')->paginate(12);
+        } else {
+            // If no search query, just fetch all stores
+            $handymans = Handyman::with('image')->paginate(12);
+        }
+
+        // Return view with the stores (filtered or not)
+        return view('main_strc.allhandymans', compact('handymans'));
+    }
 
     public function service()
     {
         return view('main_strc.service');
+    }
+
+    public function faq()
+    {
+        return view('main_strc.faq');
+    }
+
+    public function contact()
+    {
+        return view('main_strc.contact');
     }
 
     public function aboutUs()

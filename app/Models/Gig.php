@@ -17,7 +17,7 @@ class Gig extends Model
         'user_id',
         'handyman_id',
         'category_id',
-        'skill_id',
+        // 'skill_id',
         'service_id',
         'title',
         'description',
@@ -49,10 +49,10 @@ class Gig extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function skill()
-    {
-        return $this->belongsTo(Skill::class);
-    }
+    // public function skill()
+    // {
+    //     return $this->belongsTo(Skill::class);
+    // }
 
     public function service()
     {

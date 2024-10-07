@@ -115,8 +115,8 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                                                                                                                            Brand Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                Brand Area
+                                                                                                                                                                                                                                ==============================-->
     <div class="brand-sec1">
         <div class="top-shape"><img src="assets/img/shape/triangle_shape_1.svg" alt="shape"></div>
         <div class="brand-list-area">
@@ -162,8 +162,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                            Service Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                Service Area
+                                                                                                                                                                                                                                ==============================-->
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img src="assets/img/shape/lines_1.png"
                 alt="shape"></div>
@@ -367,8 +367,36 @@
                                         <h3 class="box-title"><a href="service-details.html">{{ $service->name }}</a>
                                         </h3>
                                         <p class="box-text">{{ $service->description }}</p>
-                                        <a href="service-details.html" class="th-btn btn-sm">Read More<i
+                                        <a href="javascript:void(0);" class="th-btn btn-sm">Read More<i
                                                 class="far fa-arrow-right ms-2"></i></a>
+
+                                        {{--  <a href="service-details.html" class="th-btn btn-sm">Read More<i
+                                                class="far fa-arrow-right ms-2"></i></a>  --}}
+                                        <script>
+                                            $(document).ready(function() {
+                                                // Event listener for tab buttons (filter categories)
+                                                $('.tab-btn').click(function() {
+                                                    var categoryClass = $(this).data('filter');
+                                                    $('.category-services').hide(); // Hide all categories
+                                                    $(categoryClass).show(); // Show the selected category
+                                                });
+
+                                                // Trigger the first category on page load
+                                                $('.tab-btn').first().trigger('click');
+
+                                                // Event listener for service card click
+                                                $(document).on('click', '.service-card', function() {
+                                                    let serviceId = {{ $service->id }};
+                                                    let categoryId = {{ $category->id }}; // Get the category ID from parent div
+
+                                                    // Redirect to step one with categoryId and serviceId
+                                                    window.location.href = '/step-one/' + categoryId + '/' + serviceId;
+                                                });
+                                            });
+                                        </script>
+
+
+
                                     </div>
                                 </div>
                             @endforeach
@@ -401,8 +429,8 @@
 
 
     <!--==============================
-                                                                                                                                                            About Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                About Area
+                                                                                                                                                                                                                                ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img src="assets/img/shape/dots_1.svg"
                 alt="shape"></div>
@@ -482,25 +510,25 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                            Stores Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                Stores Area
+                                                                                                                                                                                                                                ==============================-->
     <section class="overflow-hidden space">
-        <div class="shape-mockup spin" data-top="5%" data-left="0%"><img src="assets/img/shape/lines_1.png"
-                alt="shape"></div>
-        <div class="shape-mockup spin" data-bottom="5%" data-right="4%"><img src="assets/img/shape/dots_2.svg"
-                alt="shape"></div>
+        <div class="shape-mockup spin" data-top="5%" data-left="0%"><img
+                src="{{ asset('assets/img/shape/lines_1.png') }}" alt="shape"></div>
+        <div class="shape-mockup spin" data-bottom="5%" data-right="4%"><img
+                src="{{ asset('assets/img/shape/dots_2.svg') }}" alt="shape"></div>
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md">
                     <div class="title-area text-center text-md-start">
-                        <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg"
+                        <span class="sub-title"><img src="{{ asset('assets/img/theme-img/title_icon.svg') }}"
                                 alt="shape">{{ __('messages.storesSmallTitle') }}</span>
                         <h2 class="sec-title">{{ __('messages.storesBigTitle') }}</h2>
                     </div>
                 </div>
                 <div class="col-md-auto">
                     <div class="sec-btn mt-n3 mt-md-0">
-                        <a href="project.html" class="th-btn style4">{{ __('messages.storesBtn') }}<i
+                        <a href="{{ route('shops.index') }}" class="th-btn style4">{{ __('messages.storesBtn') }}<i
                                 class="far fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
@@ -528,9 +556,7 @@
                                                         href="store-details/{{ $store->id }}">{{ $store->name }}</a>
                                                 </h6>
                                                 <!-- Star Rating -->
-                                                <div class="star-rating" role="img"
-                                                    aria-label="Rated {{ $store->rating }} out of 5">
-
+                                                <div class="list-rating" style="color : #E2B93B;">
                                                     @php
                                                         $wholeStars = floor($store->rating); // Number of filled stars
                                                         $fraction = $store->rating - $wholeStars; // Fractional part of the rating
@@ -551,13 +577,13 @@
                                                     @endfor
 
                                                     <span>({{ number_format($store->rating, 1) }})</span>
-
+                                                    <!-- Display the exact rating -->
                                                 </div>
                                             </DIV>
 
                                             <!-- More details link -->
-                                            <a href="store-details/{{ $store->id }}" class="icon-btn"><i
-                                                    class="far fa-arrow-right"></i></a>
+                                            <a href="{{ route('Oneshops', ['shopId' => $store->id]) }}"
+                                                class="icon-btn"><i class="far fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -603,8 +629,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                            Devider Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                Devider Area
+                                                                                                                                                                                                                                ==============================-->
     <div class="overflow-hidden bg-white">
         <h3> </h3>
         {{--  <div class="shape-mockup spin" data-top="5%" data-right="0%"><img src="assets/img/shape/lines_1.png"
@@ -664,8 +690,8 @@
     </div>
     <!--==============================
 
-                                                                                                                                                            Feature Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                Feature Area
+                                                                                                                                                                                                                                ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup" data-top="0%" data-left="0%"><img src="assets/img/bg/why_bg_2.png" alt="shape">
         </div>
@@ -742,8 +768,8 @@
     </section>
     <!--==============================
 
-                                                                                                                                                            Process Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                Process Area
+                                                                                                                                                                                                                                ==============================-->
     <section class="space" id="process-sec" data-bg-src="assets/img/bg/process_bg_2.jpg">
         <div class="container">
             <div class="row justify-content-center">
@@ -792,8 +818,8 @@
     <!--==============================
 
 
-                                                                                                                                                                Team Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                    Team Area
+                                                                                                                                                                                                                                ==============================-->
     <section class="space">
         <div class="container z-index-common">
             <div class="row justify-content-between align-items-center">
@@ -853,8 +879,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                            Counter Area
-                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                Counter Area
+                                                                                                                                                                                                                                ==============================-->
     <div class="space-bottom">
 
 

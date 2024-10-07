@@ -56,15 +56,20 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/gigs_steps_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shops.css') }}">
+
     <script src="https://kit.fontawesome.com/5009c5b097.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <!-- Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    {{--  <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">  --}}
 
 </head>
 
@@ -188,21 +193,7 @@
     @include('partials.navbar_inside')
     <!-- End Navbar -->
 
-    <!--==============================
-    Breadcumb
-============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
-        <div class="container">
-            <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Our Services</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="home-handyman.html">Home</a></li>
-                    <li>Our Services</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
 
 

@@ -1,6 +1,26 @@
 @extends('layouts.inside')
 
 @section('content')
+    <!--==============================
+                                            Breadcumb
+                                        ============================== -->
+    <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
+
+        <div class="container">
+            <div class="breadcumb-content">
+                <h1 class="breadcumb-title">Book A Gig</h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li>Book A Gig</li>
+
+                    <li>Step 1</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-top="0%" data-right="0%"><img src="{{ asset('assets/img/shape/lines_1.png') }}"
                 alt="shape"></div>
@@ -62,6 +82,12 @@
                                 <option value="2">Medium - Est. 2-3 hrs</option>
                                 <option value="4">Large - Est. 4+ hrs</option>
                             </select>
+                        </div>
+
+                        <!-- Task title -->
+                        <div class="form-group">
+                            <label for="title">Tilte of the task</label>
+                            <textarea name="title" id="title" class="form-control" required></textarea>
                         </div>
 
                         <!-- Task Description -->

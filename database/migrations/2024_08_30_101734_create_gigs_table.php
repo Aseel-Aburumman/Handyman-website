@@ -16,14 +16,14 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('handyman_id')->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('skill_id');
+            // $table->unsignedBigInteger('skill_id');
             $table->unsignedBigInteger('service_id');
 
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('handyman_id')->references('id')->on('handymans')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
+            // $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
 
 

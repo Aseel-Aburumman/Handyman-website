@@ -15,7 +15,7 @@ class GigFactory extends Factory
             'user_id' => $this->faker->numberBetween(6, 22), // Random User ID between 6 and 22
             'handyman_id' => $this->faker->numberBetween(3, 8), // Random Handyman ID between 3 and 8
             'category_id' => 1, // Assuming Category ID 1 exists
-            'skill_id' => 1, // Assuming Skill ID 1 exists
+            // 'skill_id' => 1, // Assuming Skill ID 1 exists
             'service_id' => 1, // Assuming Service ID 1 exists
             'title' => $this->faker->sentence(), // Random title for the gig
             'description' => $this->faker->paragraph(), // Random description for the gig

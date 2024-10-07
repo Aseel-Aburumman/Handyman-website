@@ -14,6 +14,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StoreOwnerController;
 use App\Http\Controllers\HandymanController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ShopsController;
+
 
 use App\Http\Controllers\MasterController;
 
@@ -38,6 +40,12 @@ Route::get('lang/{locale}', function ($locale) {
 Route::get('/', [MasterController::class, 'index'])->name('home');
 Route::get('/service', [MasterController::class, 'service'])->name('service');
 Route::get('/about-us', [MasterController::class, 'aboutUs'])->name('aboutUs');
+Route::get('/allhandymen', [MasterController::class, 'indexHandymen'])->name('handymen.index');
+Route::get('/faq', [MasterController::class, 'faq'])->name('faq');
+Route::get('/contact', [MasterController::class, 'contact'])->name('contact');
+
+
+
 Route::get('/search-services', [ServiceController::class, 'search'])->name('search.services');
 
 Route::get('/step-one/{categoryId}/{serviceId}', [ServiceController::class, 'stepOne'])->name('step.one');
@@ -68,6 +76,17 @@ Route::group([
     Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.dashboard')->middleware('role:2');
     Route::get('/handyman/dashboard', [HandymanController::class, 'index'])->name('handyman.dashboard')->middleware('role:4');
 });
+
+Route::get('/allshops', [ShopsController::class, 'index'])->name('shops.index');
+Route::get('/allproducts', [ShopsController::class, 'indexProducts'])->name('products.index');
+
+
+Route::get('/shops/{shopId}', [ShopsController::class, 'getOne'])->name('Oneshops');
+Route::get('/product/{productId}', [ShopsController::class, 'getOneProduct'])->name('product');
+Route::post('/reviews', [ShopsController::class, 'storeReview'])->name('reviews.product');
+Route::post('/cart/add', [ShopsController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/reset-and-add', [ShopsController::class, 'resetCartAndAdd'])->name('cart.resetAndAdd');
+
 
 
 

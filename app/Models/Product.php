@@ -19,6 +19,8 @@ class Product extends Model
         'price',
         'availability',
         'stock_quantity',
+        'discounted_price',
+
         'image',
     ];
 
@@ -50,6 +52,11 @@ class Product extends Model
     public function reports()
     {
         return $this->hasMany(Report::class, 'product_id');
+    }
+
+    public function image()
+    {
+        return $this->hasOne(Image::class, 'product_id');
     }
 
     // Dynamic getter for product name

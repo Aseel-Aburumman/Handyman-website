@@ -315,3 +315,146 @@
 .filter-step2-form-group {
     margin-top: 10px;
 }
+
+.checkBudget {
+    background-color: #f8f8f8;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+}
+
+.checkBudgetLabel {
+    margin-top: 10px;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+.step4-confirm-details-section {
+    padding: 40px 0;
+    background-color: #f7f7f7;
+}
+
+.step4-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-method-section,
+.task-details-summary {
+    width: 48%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-method-section {
+    width: 58%;
+    height: 100%;
+    padding: 40px;
+}
+.task-details-summary {
+    width: 40%;
+}
+
+.payment-method-section h3,
+.task-details-summary h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.task-details-summary .tasker-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.tasker-info {
+    flex-direction: column;
+}
+.p-taskinfo {
+    margin-bottom: 5px;
+}
+.upper-taskerinfo {
+    background-color: #f5f7f6;
+    padding: 40px;
+    padding-bottom: 0px;
+
+    border-radius: 8px;
+}
+.down-taskinfo {
+    padding: 40px;
+    padding-top: 0px;
+
+    border-radius: 8px;
+}
+.task-details-summary .tasker-img {
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.task-details-summary .task-info {
+    margin-bottom: 20px;
+}
+
+.task-details-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+
+.price-details {
+    margin-top: 20px;
+}
+.price-section {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+.price-details h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #f47629;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: #101840;
+}
+
+.handyman-profile-img-payment {
+    width: 30%;
+    border-radius: 50%;
+}
+
+

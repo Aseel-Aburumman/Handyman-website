@@ -1,3 +1,10 @@
+.navbarTest {
+    display: flex !important;
+    align-items: baseline;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .brand-list {
     flex: 1;
 }

@@ -16,7 +16,7 @@ class GigsTableSeeder extends Seeder
             'user_id' => 2, // Assuming User ID 2 exists
             'handyman_id' => 1, // Assuming Handyman ID 1 exists
             'category_id' => 1, // Assuming Category ID 1 exists
-            'skill_id' => 1, // Assuming Skill ID 1 exists
+            // 'skill_id' => 1, // Assuming Skill ID 1 exists
             'service_id' => 1, // Assuming Service ID 1 exists
             'title' => 'Fix leaky faucet',
             'description' => 'Need a handyman to fix a leaky faucet in the kitchen.',
