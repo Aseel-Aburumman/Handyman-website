@@ -32,6 +32,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function delivery_info()
+    {
+        return $this->hasOne(DeliveryInfo::class);
+    }
     public function reports()
     {
         return $this->hasMany(Report::class, 'user_id');

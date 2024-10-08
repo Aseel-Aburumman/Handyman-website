@@ -49,8 +49,8 @@ public function profileNavbar(){
 }
     public function dashboard()
     {
-        // $user_id = Auth::id();
-        $user_id = 1;
+        $user_id = Auth::id();
+        // $user_id = 1;
 
         // $notifications = Notification::where('user_id', $user_id)
         //     ->orderBy('created_at', 'desc')
@@ -190,8 +190,8 @@ public function profileNavbar(){
 
     public function notification()
     {
-        // $user_id = Auth::id();
-        $user_id = 1;
+        $user_id = Auth::id();
+        // $user_id = 1;
 
         Notification::where('user_id', $user_id)
             ->where('is_read', 0)

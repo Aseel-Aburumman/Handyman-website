@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Store;
 use App\Models\Service;
 use App\Models\Handyman;
+use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 
 use App\Models\Gig;
@@ -45,6 +47,24 @@ class MasterController extends Controller
 
         return view('index', compact('categories', 'topStores', 'topHandymen', 'totalGigs', 'totalUsers', 'totalHandymen', 'totalStores'));
     }
+
+    public function notification()
+    {
+        $user_id = Auth::id();
+        // $user_id = 1;
+
+        Notification::where('user_id', $user_id)
+            ->where('is_read', 0)
+            ->update(['is_read' => 1]);
+
+
+        $notifications = Notification::where('user_id', $user_id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('main_strc.notification', compact('notifications'));
+    }
+
 
     public function indexHandymen(Request $request)
     {

@@ -23,6 +23,10 @@ return [
     'serviceSmallTitle' => 'Our Services',
     'serviveTitle' => 'What services we offer',
     'serviveDescription' => 'We bring people together—thats the core of what we do. Whether its someone needing their pipes fixed , a nursery set up for a newborn, or a TV mounted for game day, theres always someone nearby, ready and eager to help, right when its needed. When these two people connect, they make a meaningful impact on each others lives, creating a better way to live.',
+    'serviveTitleCustomers' => 'Book your next task!',
+    'serviveDescriptionCustomers' => 'Lets get everything on you to do list done.',
+
+
 
     // About us
     'circularText' => 'Kaf Mueen The Best Service Provider',

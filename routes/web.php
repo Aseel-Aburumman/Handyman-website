@@ -15,6 +15,7 @@ use App\Http\Controllers\StoreOwnerController;
 use App\Http\Controllers\HandymanController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopsController;
+use App\Http\Controllers\TaskController;
 
 
 use App\Http\Controllers\MasterController;
@@ -64,21 +65,38 @@ Route::post('/gig/step3', [ServiceController::class, 'storeStep3'])->name('gig.s
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['auth'],  // Apply the 'auth'
+    'middleware' => ['auth', 'share.notifications', 'share.messages', 'share.admindata'],  // Apply the 'auth'
 
 ], function () {
 
     Route::get('/gig/step4', [ServiceController::class, 'showStep4'])->name('gig.step4');
     Route::post('/gig/step4', [ServiceController::class, 'storeStep4'])->name('gig.storeStep4');
 
+    Route::get('/notification', [MasterController::class, 'notification'])->name('user.notification');
 
-    Route::get('/storeowner/dashboard', [StoreOwnerController::class, 'index'])->name('storeowner.dashboard')->middleware('role:3');
-    Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.dashboard')->middleware('role:2');
-    Route::get('/handyman/dashboard', [HandymanController::class, 'index'])->name('handyman.dashboard')->middleware('role:4');
+
+    Route::get('/storeowner/dashboard', [StoreOwnerController::class, 'dashboard'])->name('storeowner.dashboard')->middleware('role:3');
+    Route::get('/storeowner/home', [StoreOwnerController::class, 'index'])->name('storeowner.Home')->middleware('role:3');
+
+    Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard')->middleware('role:2');
+    Route::post('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard.update')->middleware('role:2');
+
+    Route::get('/customer/home', [CustomerController::class, 'index'])->name('customer.Home')->middleware('role:2');
+    Route::get('/customer/mytask', [CustomerController::class, 'myTask'])->name('customer.myTask')->middleware('role:2');
+    // Route::post('/profile/update', [CustomerController::class, 'updateProfile'])->name('profile.update')->middleware('role:2');
+
+    Route::get('/handyman/dashboard', [HandymanController::class, 'dashboard'])->name('handyman.dashboard')->middleware('role:4');
+    Route::get('/handyman/home', [HandymanController::class, 'index'])->name('handyman.Home')->middleware('role:4');
+
     Route::get('/cart', [ShopsController::class, 'getCart'])->name('cart');
     Route::post('/cart/update', [ShopsController::class, 'updateCart'])->name('cart.update');
     Route::post('/cart/remove', [ShopsController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/cart/checkout', [ShopsController::class, 'checkout'])->name('checkout');
+    Route::post('/save-deliveryinfo', [ShopsController::class, 'saveDeliveryInfo'])->name('save.deliveryinfo');
+    Route::post('/place-order', [ShopsController::class, 'placeOrder'])->name('place.order');
+
+
+    Route::get('/task/{gigId}', [TaskController::class, 'getOne'])->name('Onegig');
 });
 
 Route::get('/allshops', [ShopsController::class, 'index'])->name('shops.index');

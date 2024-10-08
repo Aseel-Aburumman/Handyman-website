@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DeliveryInfo;
+use App\Models\Sale;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Store;
 use App\Models\Product;
 use App\Models\Review;
@@ -307,9 +309,104 @@ class ShopsController extends Controller
         return response()->json(['error' => 'Cart item not found'], 404);
     }
 
+
     public function checkout()
     {
         $userId = Auth::id();
-        return view('shops.checkout');
+
+        // Get delivery information for the current user
+        $deliveryInfo = DeliveryInfo::where('user_id', $userId)->first();
+
+        // Get all items in the shopping cart for the current user
+        $shoppingCartItems = ShoppingCart::with('product')->where('user_id', $userId)->get();
+
+        // Calculate subtotal
+        $subtotal = $shoppingCartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        return view('shops.checkout', compact('deliveryInfo', 'shoppingCartItems', 'subtotal'));
+    }
+
+    public function saveDeliveryInfo(Request $request)
+    {
+        $userId = Auth::id();
+
+        // Find or create delivery info for the user
+        $deliveryInfo = DeliveryInfo::updateOrCreate(
+            ['user_id' => $userId],
+            [
+                'building_no' => $request->input('building_no'),
+                'city' => $request->input('city'),
+                'location' => $request->input('location'),
+                'phone' => $request->input('phone')
+            ]
+        );
+
+        return back()->with('success', 'Delivery info saved successfully!');
+    }
+
+    // public function placeOrder(Request $request)
+    // {
+    //     $userId = Auth::id();
+
+    //     // Get shopping cart items
+    //     $shoppingCartItems = ShoppingCart::with('product')->where('user_id', $userId)->get();
+
+    //     DB::transaction(function () use ($shoppingCartItems, $userId) {
+    //         foreach ($shoppingCartItems as $item) {
+    //             // Insert into the sales table
+    //             Sale::create([
+    //                 'store_id' => $item->store_id,
+    //                 'product_id' => $item->product_id,
+    //                 'user_id' => $userId,
+    //                 'quantity_sold' => $item->quantity,
+    //                 'total_amount' => $item->product->price * $item->quantity,
+    //                 'sale_date' => now(),
+    //                 'status_id' => 16 // Pending status, you can adjust it as necessary
+    //             ]);
+
+    //             // Remove from the shopping cart
+    //             $item->delete();
+    //         }
+    //     });
+
+    //     return redirect()->route('home')->with('success', 'Order placed successfully!');
+    // }
+
+    public function placeOrder(Request $request)
+    {
+        $userId = Auth::id();
+        $userRole = Auth::user()->role_id;
+
+        // Get shopping cart items
+        $shoppingCartItems = ShoppingCart::with('product')->where('user_id', $userId)->get();
+
+        DB::transaction(function () use ($shoppingCartItems, $userId) {
+            foreach ($shoppingCartItems as $item) {
+                // Insert into the sales table
+                Sale::create([
+                    'store_id' => $item->store_id,
+                    'product_id' => $item->product_id,
+                    'user_id' => $userId,
+                    'quantity_sold' => $item->quantity,
+                    'total_amount' => $item->product->price * $item->quantity,
+                    'sale_date' => now(),
+                    'status_id' => 16, // Pending status
+                ]);
+
+                // Remove from the shopping cart
+                $item->delete();
+            }
+        });
+
+        // Flash success message and role to the session
+        if (Auth::user()->role_id == 3) {
+            return redirect()->route('storeowner.dashboard')->with('success', 'Order placed successfully!');
+        } elseif (Auth::user()->role_id == 2) {
+            return redirect()->route('customer.dashboard')->with('success', 'Order placed successfully!');
+        } elseif (Auth::user()->role_id == 4) {
+            return redirect()->route('handyman.dashboard')->with('success', 'Order placed successfully!');
+        }
     }
 }

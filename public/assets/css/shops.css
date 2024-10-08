@@ -104,3 +104,253 @@
     font-weight: bold; /* Bold for emphasis */
     color: #f47629; /* Bright red color to stand out */
 }
+
+#search-suggestions ul {
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#search-suggestions li {
+    padding: 10px;
+
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+#search-suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+.aseel-dropdown-menu {
+    margin-top: 10px;
+
+    width: 100%;
+    border-radius: 24px;
+    border: 1px solid #ccc;
+}
+
+#service-search {
+    border-radius: 24px;
+    height: 65px;
+    margin-bottom: 30px;
+
+    border: 1px solid #ccc;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+.statusBtn {
+    border-radius: 10px;
+    margin-left: 30px;
+    width: 100px;
+}
+
+.gig-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    align-items: center;
+    width: 100%;
+    /* max-width: 800px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gig-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.gig-details {
+    flex: 2;
+}
+
+.gig-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.gig-description {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.gig-location,
+.gig-time,
+.gig-price,
+.gig-total {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.gig-location i,
+.gig-time i {
+    margin-right: 5px;
+    color: #e2b93b;
+}
+
+.gig-price {
+    font-weight: bold;
+    color: #333;
+}
+
+.gig-total {
+    font-weight: bold;
+    color: #ff4d4d;
+}
+
+.freelancer-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.freelancer-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.freelancer-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.freelancer-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+.profile-edit-wrapper {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.profile-edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-image-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px auto;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Custom Status Badge */
+.custom-status-badge {
+    background-color: #007bff; /* Blue color for primary status */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Custom Total Badge */
+.custom-total {
+    background-color: #6c757d; /* Gray color for secondary total */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    float: right; /* Make it float to the right */
+}
+
+/* Button styles for different statuses */
+.custom-btn-info {
+    background-color: #17a2b8; /* Info - Light Blue */
+}
+
+.custom-btn-primary {
+    background-color: #007bff; /* Primary - Blue */
+}
+
+.custom-btn-success {
+    background-color: #28a745; /* Success - Green */
+}
+
+.custom-btn-danger {
+    background-color: #dc3545; /* Danger - Red */
+}
+
+.custom-btn-warning {
+    background-color: #ffc107; /* Warning - Yellow */
+}
+
+.statusBtn1 {
+    padding: 6px 22px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    /* margin-top: 5px; */
+    margin-bottom: 4px;
+}

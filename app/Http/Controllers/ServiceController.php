@@ -201,6 +201,7 @@ class ServiceController extends Controller
     // Step 3: Select Date/Time
     public function showStep3()
     {
+
         $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
         session()->put('from_step_3', true);
 
@@ -345,8 +346,8 @@ class ServiceController extends Controller
         }
         // Save gig to the database
         $gig = new Gig();
-        // $gig->user_id = auth()->id();
-        $gig->user_id = 2;
+        $gig->user_id = auth()->id();
+        // $gig->user_id = 2;
 
         $gig->handyman_id = session('handyman_id') ?? null;
         $gig->category_id = session('category_id');
@@ -363,12 +364,27 @@ class ServiceController extends Controller
         $gig->task_time = session('task_time');
 
 
-        $gig->price = session('budget') ?? 0;
+
+        $gig->price = session('budget') ?? $hourlyRate;
         $gig->total = $total;
 
         $gig->status_id = 7; // Default status ( open)
         $gig->save();
 
+        session()->forget([
+            'task_time',
+            'handyman_id',
+            'category_id',
+            'service_id',
+            'location',
+            'end_address',
+            'car_req',
+            'estimated_time',
+            'description',
+            'title',
+            'task_date',
+            'budget'
+        ]);        // dd(session('Handyman_id'));
         return redirect()->route('customer.dashboard')->with('success', 'Gig successfully created!');
     }
 }
