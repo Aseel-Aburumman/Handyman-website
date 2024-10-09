@@ -49,10 +49,10 @@ class Gig extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // public function skill()
-    // {
-    //     return $this->belongsTo(Skill::class);
-    // }
+    public function proposals()
+    {
+        return $this->hasmany(Proposal::class);
+    }
 
     public function service()
     {

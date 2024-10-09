@@ -13,6 +13,6 @@ class RoleMiddleware
             return $next($request);
         }
 
-        return redirect('/home'); // Redirect unauthorized users to home or another page
+        return redirect('/'); // Redirect unauthorized users to home or another page
     }
 }

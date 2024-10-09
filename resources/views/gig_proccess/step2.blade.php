@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==============================
-                                                Breadcumb
-                                            ============================== -->
+                                                                                Breadcumb
+                                                                            ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
@@ -194,7 +194,8 @@
                                             <div class="handyman-description">
                                                 <h4>How I can help:</h4>
                                                 <p>{{ Str::limit($handyman->bio, 200) }}</p>
-                                                <a href="#" class="read-more-link">Read More</a>
+                                                <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $proposal->handyman->id]) }}"
+                                                    class="read-more-link">Read More</a>
                                             </div>
 
                                             <div class="handyman-review">

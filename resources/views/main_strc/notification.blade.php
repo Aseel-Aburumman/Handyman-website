@@ -4,10 +4,11 @@
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Dashboard</h1>
+                <h1 class="breadcumb-title">Notification Center</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('customer.Home') }}">Home</a></li>
-                    <li>Dashboard</li>
+                    {{--  <li><a href="{{ route('customer.Home') }}">Home</a></li>  --}}
+                    {{--  <li><a href="{{ route('customer.Home') }}">Dashboard</a></li>  --}}
+                    {{--  <li>Notification</li>  --}}
                 </ul>
             </div>
         </div>

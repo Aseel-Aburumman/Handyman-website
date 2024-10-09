@@ -11,6 +11,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AuthAdminController;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
+
 use App\Http\Controllers\StoreOwnerController;
 use App\Http\Controllers\HandymanController;
 use App\Http\Controllers\CustomerController;
@@ -65,7 +67,7 @@ Route::post('/gig/step3', [ServiceController::class, 'storeStep3'])->name('gig.s
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['auth', 'share.notifications', 'share.messages', 'share.admindata'],  // Apply the 'auth'
+    'middleware' => ['auth'],  // Apply the 'auth'
 
 ], function () {
 
@@ -96,7 +98,14 @@ Route::group([
     Route::post('/place-order', [ShopsController::class, 'placeOrder'])->name('place.order');
 
 
-    Route::get('/task/{gigId}', [TaskController::class, 'getOne'])->name('Onegig');
+    Route::get('/task/{gigId}', [TaskController::class, 'getOne'])->name('Onegig')->middleware('role:2');
+    Route::post('/report/store', [TaskController::class, 'store'])->name('report.store')->middleware('role:2');
+    Route::patch('/proposal/{proposalId}/reject', [TaskController::class, 'reject'])->name('proposal.reject')->middleware('role:2');
+    Route::patch('/proposal/{proposalId}/unreject', [TaskController::class, 'unreject'])->name('proposal.unreject')->middleware('role:2');
+
+
+    Route::get('/chat/{receiverId}', [ChatController::class, 'index'])->name('chat');
+    Route::post('/chat/send', [ChatController::class, 'sendMessage'])->name('chat.send');
 });
 
 Route::get('/allshops', [ShopsController::class, 'index'])->name('shops.index');
@@ -112,6 +121,7 @@ Route::post('/cart/clear', [ShopsController::class, 'clearCart'])->name('cart.cl
 
 Route::post('/cart/reset-and-add', [ShopsController::class, 'resetCartAndAdd'])->name('cart.resetAndAdd');
 
+Route::get('/handyman/{handymanId}', [HandymanController::class, 'getOne_Client'])->name('Onehandyman_clientVeiw');
 
 
 
@@ -128,7 +138,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/admin_portal', [AdminController::class, 'main'])->name('admin.main');
 Route::get('/admin_portal/login', [AuthAdminController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/login', [AuthAdminController::class, 'login'])->name('Admin_login');
+Route::post('/admin/login', [AuthAdminController::class, 'login'])->name('Admin_login');
 
 
 Route::get('/admin_portal//register', [AuthAdminController::class, 'showRegistrationForm'])->name('admin.register');

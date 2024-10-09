@@ -168,5 +168,29 @@ class StatusesTableSeeder extends Seeder
             'description' => 'Store is Suspended',
             'description_ar' => 'المتجر معلق'
         ]);
+
+        Status::create([
+            'status_category' => 'proposal',
+            'name' => 'Rejected',
+            'name_ar' => 'مرفوض',
+            'description' => 'Proposal is Rejected',
+            'description_ar' => 'تقديم مرفوض'
+        ]);
+
+        Status::create([
+            'status_category' => 'proposal',
+            'name' => 'Winner',
+            'name_ar' => 'فائز',
+            'description' => 'Proposal is a Winner',
+            'description_ar' => 'المتقدم الفائز'
+        ]);
+
+        Status::create([
+            'status_category' => 'proposal',
+            'name' => 'Pending',
+            'name_ar' => 'قيد الانتظار',
+            'description' => 'Proposal is a Pending',
+            'description_ar' => 'المتقدم قيد الانتظار'
+        ]);
     }
 }

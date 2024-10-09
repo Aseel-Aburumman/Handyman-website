@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\Handyman-website\resources\views/handyman/clinent_perspective.blade.php ENDPATH**/ ?>

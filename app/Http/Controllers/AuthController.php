@@ -39,7 +39,7 @@ class AuthController extends Controller
                     case 4: // handyman role
                         return redirect()->route('storeowner.dashboard');
                     case 2: // Regular User role
-                        return redirect()->route('user.dashboard');
+                        return redirect()->route('customer.dashboard');
                     case 3: // storeowner role
                         return redirect()->route('handyman.dashboard');
                     default:
