@@ -61,8 +61,27 @@
                             <li class="d-none d-md-inline-block"><i class="fa-solid fa-messages"></i> <a
                                     href="{{ route('faq') }}">FAQ</a></li>
                             <li><i class="fas fa-headset"></i> <a href="{{ route('contact') }}">Support</a></li>
-                            <li><i class="fas fa-user"></i> <a href="{{ route('login') }}">Sign In / </a><a
-                                    href="{{ route('register') }}">Register</a></li>
+
+                            @guest
+
+                                <li><i class="fas fa-user"></i> <a href="{{ route('login') }}">Sign In / </a><a
+                                        href="{{ route('register') }}">Register</a></li>
+                            @endguest
+
+                            @auth
+                                <li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <i class="fas fa-user"></i>
+                                    <a href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Log Out
+                                    </a>
+                                </li>
+                            @endauth
+
                         </ul>
                     </div>
                 </div>

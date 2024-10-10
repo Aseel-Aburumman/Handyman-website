@@ -66,8 +66,25 @@
                             <li class="d-none d-md-inline-block"><i class="fa-solid fa-messages"></i> <a
                                     href="<?php echo e(route('faq')); ?>">FAQ</a></li>
                             <li><i class="fas fa-headset"></i> <a href="<?php echo e(route('contact')); ?>">Support</a></li>
-                            <li><i class="fas fa-user"></i> <a href="<?php echo e(route('login')); ?>">Sign In / </a><a
-                                    href="<?php echo e(route('register')); ?>">Register</a></li>
+                            <?php if(auth()->guard()->guest()): ?>
+                                <li><i class="fas fa-user"></i> <a href="<?php echo e(route('login')); ?>">Sign In / </a><a
+                                        href="<?php echo e(route('register')); ?>">Register</a></li>
+
+                            <?php endif; ?>
+                            <?php if(auth()->guard()->check()): ?>
+                                <li>
+                                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST"
+                                        style="display: none;">
+                                        <?php echo csrf_field(); ?>
+                                    </form>
+                                    <i class="fas fa-user"></i>
+                                    <a href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Log Out
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </div>
                 </div>

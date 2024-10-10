@@ -75,6 +75,31 @@ class MasterController extends Controller
             ->withCount('reviews', 'gigs');
 
         // Apply date filters if provided
+        // if ($request->has('date_filter')) {
+        //     $dateFilter = $request->input('date_filter');
+
+        //     switch ($dateFilter) {
+        //         case 'today':
+        //             $handymenQuery->whereDoesntHave('availability', function ($query) {
+        //                 $query->whereDate('start_time', now()->toDateString());
+        //             });
+        //             break;
+
+        //         case 'within_3_days':
+        //             $handymenQuery->whereDoesntHave('availability', function ($query) {
+        //                 $query->whereBetween('start_time', [now(), now()->addDays(3)]);
+        //             });
+        //             break;
+
+        //         case 'within_a_week':
+        //             $handymenQuery->whereDoesntHave('availability', function ($query) {
+        //                 $query->whereBetween('start_time', [now(), now()->addWeek()]);
+        //             });
+        //             break;
+        //     }
+        // }
+
+        // Handle Date Filter
         if ($request->has('date_filter')) {
             $dateFilter = $request->input('date_filter');
 
@@ -83,6 +108,7 @@ class MasterController extends Controller
                     $handymenQuery->whereDoesntHave('availability', function ($query) {
                         $query->whereDate('start_time', now()->toDateString());
                     });
+                    
                     break;
 
                 case 'within_3_days':
@@ -98,6 +124,7 @@ class MasterController extends Controller
                     break;
             }
         }
+
 
         // Handle date range filtering
         if ($request->has('choose_dates')) {

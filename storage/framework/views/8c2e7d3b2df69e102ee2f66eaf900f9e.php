@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
     <!--==============================
-                                                                                                                                                                                                                        Breadcumb
-                                                                                                                                                                                                                    ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
 
         <div class="container">
@@ -35,17 +35,24 @@
                         <div class="filter-step2-form-group">
                             <label for="date">Date</label>
                             <div class="filter-step2-date-options">
+                                
+
+                                <!-- Date Filter Buttons -->
                                 <button class="filter-step2-date-btn" type="button"
-                                    onclick="setDateFilter('today')">Today</button>
+                                    onclick="setDateFilter('today', this)">Today</button>
                                 <button class="filter-step2-date-btn" type="button"
-                                    onclick="setDateFilter('within_3_days')">Within 3 Days</button>
+                                    onclick="setDateFilter('within_3_days', this)">Within 3 Days</button>
                                 <button class="filter-step2-date-btn" type="button"
-                                    onclick="setDateFilter('within_a_week')">Within A Week</button>
+                                    onclick="setDateFilter('within_a_week', this)">Within A Week</button>
+
+
                                 <!-- Choose Dates Button -->
                                 <button class="filter-step2-date-btn" id="choose_dates_btn" type="button">Choose
                                     Dates</button>
                                 <!-- Hidden input for date range -->
                                 <input type="text" id="choose_dates_input" name="choose_dates" class="d-none">
+                                <!-- Hidden input to hold the selected date filter -->
+                                <input type="hidden" name="date_filter" id="date_filter">
                             </div>
                         </div>
 
@@ -108,10 +115,18 @@
                             </select>
                         </div>
 
-                        <!-- Skill Filter -->
+                        
+
+                        <!-- Skill Filter with Toggle Button -->
                         <div class="filter-step2-form-group">
-                            <label for="skills">Select Skills</label>
-                            <div class="filter-step2-skill-options">
+                            <div class="d-flex">
+                                <label class="mt-1" for="skills">Skills</label>
+                                <button type="button" class="btn showSkillBtn btn-secondary" id="toggleSkillsBtn"
+                                    onclick="toggleSkills()">Show Skills</button>
+                            </div>
+
+                            <!-- Skills List (initially hidden) -->
+                            <div id="skillsList" class="filter-step2-skill-options" style="display: none;">
                                 <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="filter-step2-checkbox-group">
                                         <input type="checkbox" id="skill_<?php echo e($skill->id); ?>" name="skills[]"
@@ -122,20 +137,37 @@
                             </div>
                         </div>
 
+
                         <!-- Apply Filters Button -->
-                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                        <button type="submit" class="mt-2 submitBtnFilter btn btn-primary">Apply Filters</button>
 
 
                         <a href="<?php echo e(route('handymen.index')); ?>" class="w-100 mt-2 th-btn ">Reset <i
                                 class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
                     </form>
 
-                    <script>
-                        // Date filter setting and form submission
-                        function setDateFilter(filterValue) {
-                            document.getElementById('date_filter').value = filterValue;
-                        }
 
+
+                    <script>
+                        // Set the value of the hidden date filter input when a button is clicked
+                        
+
+
+                        function setDateFilter(filterValue, buttonElement) {
+                            // Set the hidden input field value
+                            document.getElementById('date_filter').value = filterValue;
+
+                            // Get all the date buttons
+                            const dateButtons = document.querySelectorAll('.filter-step2-date-btn');
+
+                            // Remove the active class from all date buttons
+                            dateButtons.forEach(function(button) {
+                                button.classList.remove('active-filter-btn');
+                            });
+
+                            // Add the active class to the clicked button
+                            buttonElement.classList.add('active-filter-btn');
+                        }
                         // Initialize Flatpickr for the 'Choose Dates' input
                         var datePicker = flatpickr("#choose_dates_input", {
                             mode: "range",
@@ -146,113 +178,125 @@
                             }
                         });
 
+                        // Open the Flatpickr when the "Choose Dates" button is clicked
                         document.getElementById('choose_dates_btn').addEventListener('click', function() {
                             datePicker.open();
                         });
+
+                        function toggleSkills() {
+                            var skillsList = document.getElementById('skillsList');
+                            var toggleButton = document.getElementById('toggleSkillsBtn');
+
+                            // Toggle the visibility of the skills list
+                            if (skillsList.style.display === 'none') {
+                                skillsList.style.display = 'block';
+                                toggleButton.textContent = 'Hide Skills'; // Change button text to "Hide"
+                            } else {
+                                skillsList.style.display = 'none';
+                                toggleButton.textContent = 'Show Skills'; // Change button text to "Show"
+                            }
+                        }
                     </script>
-
-
 
 
                     <!-- Handyman List -->
                     <div class="handyman-list">
-                        <form action="<?php echo e(route('gig.storeStep2')); ?>" method="POST">
-                            <?php echo csrf_field(); ?>
 
 
-                            <!-- Handymen Loop -->
-                            <?php $__currentLoopData = $handymen; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $handyman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="handyman-card filter-step2-handyman-card">
-                                    <div class="handyman-profile-section">
-                                        <div class="handyman-pic-section">
-                                            <div class="handyman-thepic-section">
-                                                <?php if($handyman->user && $handyman->user->image): ?>
-                                                    <img src="<?php echo e(asset('storage/profile_images/' . $handyman->user->image)); ?>"
-                                                        alt="<?php echo e($handyman->user->name); ?>" class="handyman-profile-img">
-                                                <?php else: ?>
-                                                    <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>"
-                                                        alt="<?php echo e($handyman->user->name); ?>" class="handyman-profile-img">
-                                                <?php endif; ?>
+                        <!-- Handymen Loop -->
+                        <?php $__currentLoopData = $handymen; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $handyman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="handyman-card filter-step2-handyman-card">
+                                <div class="handyman-profile-section">
+                                    <div class="handyman-pic-section">
+                                        <div class="handyman-thepic-section">
+                                            <?php if($handyman->user && $handyman->user->image): ?>
+                                                <img src="<?php echo e(asset('storage/profile_images/' . $handyman->user->image)); ?>"
+                                                    alt="<?php echo e($handyman->user->name); ?>" class="handyman-profile-img">
+                                            <?php else: ?>
+                                                <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>"
+                                                    alt="<?php echo e($handyman->user->name); ?>" class="handyman-profile-img">
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <div class="select-tasker-section">
+                                            <form class="w-100 mt-3"
+                                                action="<?php echo e(route('chat', ['receiverId' => $handyman->user->id])); ?>"
+                                                method="GET">
+                                                <?php echo csrf_field(); ?>
+                                                <button type="submit"
+                                                    class="w-100 btn btn-primary select-tasker-btn ">Chat
+                                                    and Figure
+                                                    what
+                                                    next!</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="handyman-details">
+                                        <div class="handyman-detailsData-section">
+                                            <div>
+                                                <h3><?php echo e($handyman->user->name); ?></h3>
+                                                <div class="handyman-rating">
+                                                    <span class="rating-star">★</span>
+                                                    <span><?php echo e($handyman->user->rating); ?>
+
+                                                        (<?php echo e($handyman->reviews_count); ?>
+
+                                                        reviews)
+                                                    </span>
+                                                </div>
+                                                <div class="handyman-tasks">
+                                                    <span>
+                                                        <i class="fa-solid fa-check-double"></i> Done
+                                                        task
+                                                    </span>
+                                                </div>
+                                                <div class="handyman-tasks">
+                                                    <span> <i class="fa-solid fa-clipboard-check"></i>
+                                                        <?php echo e($handyman->gigs_count); ?> Successful tasks overall
+                                                    </span>
+                                                </div>
                                             </div>
-
-                                            <div class="select-tasker-section">
-                                                <button type="submit" name="selected_tasker"
-                                                    value="<?php echo e($handyman->id); ?>"
-                                                    class="btn btn-primary select-tasker-btn">
-                                                    Select & Continue
-                                                </button>
-                                                <p class="chat-info">You can chat with your Tasker, adjust task details, or
-                                                    change task
-                                                    time after booking.</p>
+                                            <div class="handyman-price-section">
+                                                <p class="handyman-price">
+                                                    JD<?php echo e(number_format($handyman->price_per_hour, 2)); ?>/hr</p>
                                             </div>
                                         </div>
 
-                                        <div class="handyman-details">
-                                            <div class="handyman-detailsData-section">
-                                                <div>
-                                                    <h3><?php echo e($handyman->user->name); ?></h3>
-                                                    <div class="handyman-rating">
-                                                        <span class="rating-star">★</span>
-                                                        <span><?php echo e($handyman->user->rating); ?>
+                                        <div class="handyman-description">
+                                            <h4>How I can help:</h4>
+                                            <p><?php echo e(Str::limit($handyman->bio, 200)); ?></p>
+                                            <a href="<?php echo e(route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id])); ?>"
+                                                class="read-more-link">Read More</a>
+                                        </div>
 
-                                                            (<?php echo e($handyman->reviews_count); ?>
-
-                                                            reviews)
-                                                        </span>
-                                                    </div>
-                                                    <div class="handyman-tasks">
-                                                        <span>
-                                                            <i class="fa-solid fa-check-double"></i> Done
-                                                            task
-                                                        </span>
-                                                    </div>
-                                                    <div class="handyman-tasks">
-                                                        <span> <i class="fa-solid fa-clipboard-check"></i>
-                                                            <?php echo e($handyman->gigs_count); ?> Successful tasks overall
-                                                        </span>
-                                                    </div>
+                                        <div class="handyman-review">
+                                            <?php if($handyman->latest_review): ?>
+                                                <div class="review-author">
+                                                    <img src="<?php echo e(asset('storage/profile_images/' . $handyman->latest_review->user->image)); ?>"
+                                                        alt="Reviewer" class="reviewer-img">
                                                 </div>
-                                                <div class="handyman-price-section">
-                                                    <p class="handyman-price">
-                                                        JD<?php echo e(number_format($handyman->price_per_hour, 2)); ?>/hr</p>
+                                                <div class="reviewer-detailsText">
+                                                    <p class="reviewer-name">
+                                                        <?php echo e($handyman->latest_review->user->name); ?>
+
+                                                    </p>
+                                                    <p class="review-text">
+                                                        <?php echo e(Str::limit($handyman->latest_review->review, 100)); ?></p>
                                                 </div>
-                                            </div>
+                                                <div class="reviewer-details">
+                                                    <p class="review-date"><?php echo e($handyman->latest_review->created_at); ?>
 
-                                            <div class="handyman-description">
-                                                <h4>How I can help:</h4>
-                                                <p><?php echo e(Str::limit($handyman->bio, 200)); ?></p>
-                                                <a href="<?php echo e(route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id])); ?>"
-                                                    class="read-more-link">Read More</a>
-                                            </div>
-
-                                            <div class="handyman-review">
-                                                <?php if($handyman->latest_review): ?>
-                                                    <div class="review-author">
-                                                        <img src="<?php echo e(asset('storage/profile_images/' . $handyman->latest_review->user->image)); ?>"
-                                                            alt="Reviewer" class="reviewer-img">
-                                                    </div>
-                                                    <div class="reviewer-detailsText">
-                                                        <p class="reviewer-name">
-                                                            <?php echo e($handyman->latest_review->user->name); ?>
-
-                                                        </p>
-                                                        <p class="review-text">
-                                                            <?php echo e(Str::limit($handyman->latest_review->review, 100)); ?></p>
-                                                    </div>
-                                                    <div class="reviewer-details">
-                                                        <p class="review-date"><?php echo e($handyman->latest_review->created_at); ?>
-
-                                                        </p>
-                                                    </div>
-                                                <?php else: ?>
-                                                    <p>No reviews yet.</p>
-                                                <?php endif; ?>
-                                            </div>
+                                                    </p>
+                                                </div>
+                                            <?php else: ?>
+                                                <p>No reviews yet.</p>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </form>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
@@ -263,6 +307,54 @@
 
 
     
+
+
+    <style>
+        button.filter-step2-date-btn {
+            z-index: 1;
+            /* Bring the button to the top */
+            position: relative;
+            /* Ensure it's positioned correctly */
+        }
+
+        /* Add a class for the active state */
+        .active-filter-btn {
+            background-color: #F37529 !important;
+            /* Change to your desired color */
+            color: white;
+            /* Optional: change text color */
+        }
+
+        /* Style for the toggle button */
+        #toggleSkillsBtn {
+            margin-bottom: 10px;
+        }
+
+        /* Optionally, add some padding or style for the skill list */
+        #skillsList {
+            padding: 10px;
+            background-color: #f9f9f9;
+            /* Light background color for the skill list */
+            border: 1px solid #ddd;
+            /* Border for the skill list */
+        }
+
+        .showSkillBtn {
+            background-color: #F37529 !important;
+            line-height: 10px;
+            margin-left: 10px;
+        }
+
+        .submitBtnFilter {
+            border-radius: 25px;
+
+        }
+
+        .th-btn {
+            padding: 15px;
+            font-size: 16px
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.inside', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Handyman-website\resources\views/main_strc/allhandymans.blade.php ENDPATH**/ ?>
