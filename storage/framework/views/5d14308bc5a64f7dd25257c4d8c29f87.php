@@ -26,6 +26,15 @@
                     <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
                         aria-controls="orders" aria-selected="false">My Orders</a>
                 </li>
+
+                <li class="nav-item" role="presentation">
+                    <form class="" action="<?php echo e(route('chat', ['receiverId' => $firstgigs->handyman->user->id])); ?>"
+                        method="GET">
+                        <?php echo csrf_field(); ?>
+                        <button type="submit" class="nav-link th-btn ">Chat Center</button>
+                    </form>
+                    
+                </li>
             </ul>
 
             <div class="tab-content" id="productTabContent">
@@ -224,7 +233,7 @@
                                                 <?php echo e($gig->handyman->user->name ?? 'Unknown Handyman'); ?></h3>
                                             <p class="gig-price">Price: JD <?php echo e($gig->price); ?>/ per hour</p>
                                             <p class="gig-price"><a
-                                                    href="<?php echo e(route('Onegig', ['gigId' => $gig->id])); ?>">Veiw Task
+                                                    href="<?php echo e(route('assigned.task', ['gigId' => $gig->id])); ?>">Veiw Task
                                                     Detail</a></p>
                                         <?php else: ?>
                                             <div>
@@ -241,6 +250,8 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </section>

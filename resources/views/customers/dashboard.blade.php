@@ -28,6 +28,17 @@
                     <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
                         aria-controls="orders" aria-selected="false">My Orders</a>
                 </li>
+
+                <li class="nav-item" role="presentation">
+                    <form class="" action="{{ route('chat', ['receiverId' => $firstgigs->handyman->user->id]) }}"
+                        method="GET">
+                        @csrf
+                        <button type="submit" class="nav-link th-btn ">Chat Center</button>
+                    </form>
+                    {{--  <a class="nav-link th-btn" id="chat-tab" data-bs-toggle="tab"
+                        href="{{ route('chat', ['receiverId' => $firstgigs->handyman->user->id]) }}" role="tab"
+                        aria-controls="chats" aria-selected="false">Chat Center</a>  --}}
+                </li>
             </ul>
 
             <div class="tab-content" id="productTabContent">
@@ -222,7 +233,7 @@
                                                 {{ $gig->handyman->user->name ?? 'Unknown Handyman' }}</h3>
                                             <p class="gig-price">Price: JD {{ $gig->price }}/ per hour</p>
                                             <p class="gig-price"><a
-                                                    href="{{ route('Onegig', ['gigId' => $gig->id]) }}">Veiw Task
+                                                    href="{{ route('assigned.task', ['gigId' => $gig->id]) }}">Veiw Task
                                                     Detail</a></p>
                                         @else
                                             <div>
@@ -239,6 +250,8 @@
                         @endforeach
                     </div>
                 </div>
+
+
             </div>
         </div>
     </section>

@@ -14,11 +14,13 @@
         </div>
     </div>
     <section class="pb-0 overflow-hidden space" id="service-sec">
+
         @if (session('success'))
             <div class="container alert alert-success">
-                {{ session('success') }}
+                {!! session('success') !!}
             </div>
         @endif
+
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img
                 src="{{ asset('assets/img/shape/lines_1.png') }}" alt="shape"></div>
         <div class="container">
@@ -68,11 +70,11 @@
             <h4>Rejected Proposal</h4>
 
             @foreach ($proposals as $proposal)
-                @if ($proposal->status_id == 22)
+                @if ($proposal->status_id == 21)
                     <div class=" handyman-card filter-step2-handyman-card">
                         <div class="handyman-profile-gig-section">
                             <div class="handyman-pic-section-gig">
-                                <div class="handyman-thepic-section">
+                                <div class="handyman-thepic-gig-view-section">
                                     @if ($proposal->handyman->user && $proposal->handyman->user->image)
                                         <img src="{{ asset('storage/profile_images/' . $proposal->handyman->user->image) }}"
                                             alt="{{ $proposal->handyman->user->name }}" class="handyman-profile-img">
@@ -155,11 +157,11 @@
 
             <!-- Handymen Loop -->
             @foreach ($proposals as $proposal)
-                @if ($proposal->status_id == 21)
+                @if ($proposal->status_id == 23)
                     <div class=" handyman-card filter-step2-handyman-card">
                         <div class="handyman-profile-gig-section">
                             <div class="handyman-pic-section-gig">
-                                <div class="handyman-thepic-section">
+                                <div class="handyman-thepic-gig-view-section">
                                     @if ($proposal->handyman->user && $proposal->handyman->user->image)
                                         <img src="{{ asset('storage/profile_images/' . $proposal->handyman->user->image) }}"
                                             alt="{{ $proposal->handyman->user->name }}" class="handyman-profile-img">
@@ -229,14 +231,27 @@
 
                             </div>
 
-                            <div class="handyman-description-gig">
-                                <form class="mt-3"
-                                    action="{{ route('chat', ['receiverId' => $proposal->handyman->user->id]) }}"
-                                    method="GET">
-                                    @csrf
-                                    <button type="submit" class="btn btn-info w-100 ">Chat and Figure what next!</button>
-                                </form>
-
+                            <div class="d-flex  w-100">
+                                <div class="w-50">
+                                    <form class="mt-3"
+                                        action="{{ route('chat', ['receiverId' => $proposal->handyman->user->id]) }}"
+                                        method="GET">
+                                        @csrf
+                                        <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
+                                            next!</button>
+                                    </form>
+                                </div>
+                                <div class="w-50 ">
+                                    <form class="mt-3 ml-2"
+                                        action="{{ route('proposal.award', ['proposalId' => $proposal->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
+                                        <button type="submit" class="btn btn-success ml-2 w-100 ">Award This
+                                            handyman</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

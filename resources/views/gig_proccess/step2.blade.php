@@ -194,7 +194,7 @@
                                             <div class="handyman-description">
                                                 <h4>How I can help:</h4>
                                                 <p>{{ Str::limit($handyman->bio, 200) }}</p>
-                                                <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $proposal->handyman->id]) }}"
+                                                <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
                                                     class="read-more-link">Read More</a>
                                             </div>
 

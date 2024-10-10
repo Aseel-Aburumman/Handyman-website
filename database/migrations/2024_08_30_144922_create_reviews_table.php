@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('store_id')->nullable(); // The store being reviewed
             $table->unsignedBigInteger('product_id')->nullable(); // The product being reviewed
             $table->unsignedBigInteger('client_id')->nullable(); // The client being reviewed by handyman
+            $table->unsignedBigInteger('gig_id')->nullable();
+
 
 
             $table->text('review');
@@ -29,6 +31,7 @@ return new class extends Migration
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('gig_id')->references('id')->on('gigs')->onDelete('cascade');
         });
     }
 

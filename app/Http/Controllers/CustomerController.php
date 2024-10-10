@@ -92,7 +92,8 @@ class CustomerController extends Controller
         $delivery = DeliveryInfo::where('id', $userId)->first();
         $categories = Category::with('services')->get(); // Assuming you have a relationship set up
         $gigs = Gig::where('user_id', $userId)->with('handyman', 'status')->get();
-
+        $firstgigs = Gig::where('user_id', $userId)->first();
+        // dd($firstgigs->handyman->user->id);
         // Fetch sales data for the user, grouped by sale_date
         $sales = Sale::where('user_id', $userId)
             ->with(['store', 'product', 'status']) // Load related store, product, and status
@@ -148,7 +149,7 @@ class CustomerController extends Controller
             return redirect()->route('customer.dashboard')->with('status', 'Profile updated successfully!');
         }
 
-        return view('customers.dashboard', compact('categories', 'gigs', 'user', 'sales'));
+        return view('customers.dashboard', compact('categories', 'gigs', 'user', 'sales', 'firstgigs'));
     }
 
 

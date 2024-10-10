@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
     <!--==============================
-                                                Breadcumb
-                                            ============================== -->
+                                                                                Breadcumb
+                                                                            ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
 
         <div class="container">
@@ -191,7 +191,8 @@
                                             <div class="handyman-description">
                                                 <h4>How I can help:</h4>
                                                 <p><?php echo e(Str::limit($handyman->bio, 200)); ?></p>
-                                                <a href="#" class="read-more-link">Read More</a>
+                                                <a href="<?php echo e(route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id])); ?>"
+                                                    class="read-more-link">Read More</a>
                                             </div>
 
                                             <div class="handyman-review">

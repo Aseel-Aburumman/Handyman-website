@@ -13,6 +13,8 @@ class Review extends Model
         'user_id',
         'handyman_id',
         'store_id',
+        'gig_id',
+
         'product_id',
         'client_id',
         'review',

@@ -12,12 +12,14 @@
         </div>
     </div>
     <section class="pb-0 overflow-hidden space" id="service-sec">
+
         <?php if(session('success')): ?>
             <div class="container alert alert-success">
-                <?php echo e(session('success')); ?>
+                <?php echo session('success'); ?>
 
             </div>
         <?php endif; ?>
+
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img
                 src="<?php echo e(asset('assets/img/shape/lines_1.png')); ?>" alt="shape"></div>
         <div class="container">
@@ -67,11 +69,11 @@
             <h4>Rejected Proposal</h4>
 
             <?php $__currentLoopData = $proposals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proposal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($proposal->status_id == 22): ?>
+                <?php if($proposal->status_id == 21): ?>
                     <div class=" handyman-card filter-step2-handyman-card">
                         <div class="handyman-profile-gig-section">
                             <div class="handyman-pic-section-gig">
-                                <div class="handyman-thepic-section">
+                                <div class="handyman-thepic-gig-view-section">
                                     <?php if($proposal->handyman->user && $proposal->handyman->user->image): ?>
                                         <img src="<?php echo e(asset('storage/profile_images/' . $proposal->handyman->user->image)); ?>"
                                             alt="<?php echo e($proposal->handyman->user->name); ?>" class="handyman-profile-img">
@@ -155,11 +157,11 @@
 
             <!-- Handymen Loop -->
             <?php $__currentLoopData = $proposals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proposal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($proposal->status_id == 21): ?>
+                <?php if($proposal->status_id == 23): ?>
                     <div class=" handyman-card filter-step2-handyman-card">
                         <div class="handyman-profile-gig-section">
                             <div class="handyman-pic-section-gig">
-                                <div class="handyman-thepic-section">
+                                <div class="handyman-thepic-gig-view-section">
                                     <?php if($proposal->handyman->user && $proposal->handyman->user->image): ?>
                                         <img src="<?php echo e(asset('storage/profile_images/' . $proposal->handyman->user->image)); ?>"
                                             alt="<?php echo e($proposal->handyman->user->name); ?>" class="handyman-profile-img">
@@ -230,14 +232,27 @@
 
                             </div>
 
-                            <div class="handyman-description-gig">
-                                <form class="mt-3"
-                                    action="<?php echo e(route('chat', ['receiverId' => $proposal->handyman->user->id])); ?>"
-                                    method="GET">
-                                    <?php echo csrf_field(); ?>
-                                    <button type="submit" class="btn btn-info w-100 ">Chat and Figure what next!</button>
-                                </form>
-
+                            <div class="d-flex  w-100">
+                                <div class="w-50">
+                                    <form class="mt-3"
+                                        action="<?php echo e(route('chat', ['receiverId' => $proposal->handyman->user->id])); ?>"
+                                        method="GET">
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
+                                            next!</button>
+                                    </form>
+                                </div>
+                                <div class="w-50 ">
+                                    <form class="mt-3 ml-2"
+                                        action="<?php echo e(route('proposal.award', ['proposalId' => $proposal->id])); ?>"
+                                        method="POST">
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('PATCH'); ?>
+                                        
+                                        <button type="submit" class="btn btn-success ml-2 w-100 ">Award This
+                                            handyman</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

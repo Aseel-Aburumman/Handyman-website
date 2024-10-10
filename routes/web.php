@@ -44,6 +44,8 @@ Route::get('/', [MasterController::class, 'index'])->name('home');
 Route::get('/service', [MasterController::class, 'service'])->name('service');
 Route::get('/about-us', [MasterController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/allhandymen', [MasterController::class, 'indexHandymen'])->name('handymen.index');
+Route::get('/allhandymen/filter', [MasterController::class, 'indexHandymen'])->name('handymen.filterHandymen');
+
 Route::get('/faq', [MasterController::class, 'faq'])->name('faq');
 Route::get('/contact', [MasterController::class, 'contact'])->name('contact');
 
@@ -98,10 +100,22 @@ Route::group([
     Route::post('/place-order', [ShopsController::class, 'placeOrder'])->name('place.order');
 
 
-    Route::get('/task/{gigId}', [TaskController::class, 'getOne'])->name('Onegig')->middleware('role:2');
-    Route::post('/report/store', [TaskController::class, 'store'])->name('report.store')->middleware('role:2');
+    Route::get('/task/{gigId}', [TaskController::class, 'getOne'])->name('Onegig');
+    Route::post('/handyman/report/store', [TaskController::class, 'store'])->name('report.store');
     Route::patch('/proposal/{proposalId}/reject', [TaskController::class, 'reject'])->name('proposal.reject')->middleware('role:2');
     Route::patch('/proposal/{proposalId}/unreject', [TaskController::class, 'unreject'])->name('proposal.unreject')->middleware('role:2');
+    Route::patch('/proposal/{proposalId}/award', [TaskController::class, 'award'])->name('proposal.award')->middleware('role:2');
+
+    Route::get('/assigned-task/{gigId}', [TaskController::class, 'showAssignedGig'])->name('assigned.task');
+    Route::post('/gig/{gigId}/update-status/{status}', [TaskController::class, 'updateGigStatus'])->name('gig.updateStatus');
+    Route::post('/gig/{gigId}/payment', [TaskController::class, 'processPayment'])->name('payment.process');
+    Route::post('/gig/{paymentId}/payment/cancel', [TaskController::class, 'cancelPayment'])->name('gig.update.repot.paymet');
+    // Route::post('/gig-payment', [TaskController::class, 'processPayment'])->name('place.order');
+    Route::post('/payment/create', [TaskController::class, 'createPayment'])->name('payment.create');
+
+
+    Route::post('/report/store', [TaskController::class, 'storeReportGig'])->name('report.gig.store')->middleware('role:2');
+    Route::post('/gig/reviews', [TaskController::class, 'storeReview'])->name('reviews.clienttohandyman');
 
 
     Route::get('/chat/{receiverId}', [ChatController::class, 'index'])->name('chat');

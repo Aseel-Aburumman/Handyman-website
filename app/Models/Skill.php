@@ -28,4 +28,9 @@ class Skill extends Model
     {
         return $this->hasMany(SkillCertificate::class);
     }
+
+    public function handymen()
+    {
+        return $this->belongsToMany(Handyman::class, 'skill_certificates', 'skill_id', 'handyman_id');
+    }
 }

@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
             GigPolicySeeder::class,
             ReportsSeeder::class,
             ImageSeeder::class,
+            PaymentSeeder::class,
+
 
 
 

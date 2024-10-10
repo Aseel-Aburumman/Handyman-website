@@ -192,5 +192,37 @@ class StatusesTableSeeder extends Seeder
             'description' => 'Proposal is a Pending',
             'description_ar' => 'المتقدم قيد الانتظار'
         ]);
+
+        Status::create([
+            'status_category' => 'gig',
+            'name' => 'work done',
+            'name_ar' => 'انتهى العمل',
+            'description' => 'Gig is Done',
+            'description_ar' => 'المهمة انتهت'
+        ]);
+
+        Status::create([
+            'status_category' => 'payment',
+            'name' => 'Pending',
+            'name_ar' => 'قيد الانتظار',
+            'description' => 'payment is a Pending',
+            'description_ar' => 'الدفعة قيد الانتظار'
+        ]);
+
+        Status::create([
+            'status_category' => 'payment',
+            'name' => 'Canceled',
+            'name_ar' => 'ملغية',
+            'description' => 'payment is Canceled',
+            'description_ar' => 'تم إلغاء الدفعة'
+        ]);
+
+        Status::create([
+            'status_category' => 'payment',
+            'name' => 'completed',
+            'name_ar' => 'اكتمل',
+            'description' => 'payment is completed',
+            'description_ar' => 'الدفعة مكتملة'
+        ]);
     }
 }

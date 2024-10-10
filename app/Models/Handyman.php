@@ -44,6 +44,11 @@ class Handyman extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'skill_certificates', 'handyman_id', 'skill_id');
+    }
+
     public function reports()
     {
         return $this->hasMany(Report::class, 'handyman_id');

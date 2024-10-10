@@ -20,6 +20,8 @@ class Message extends Model
     use SoftDeletes; // Use the SoftDeletes trait
 
     protected $dates = ['deleted_at']; // Specify that 'deleted_at' is a date
+
+
     public function sender()
     {
         return $this->belongsTo(User::class, 'sender_id');
