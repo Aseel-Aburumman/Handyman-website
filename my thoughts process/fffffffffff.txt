@@ -1,0 +1,127 @@
+                    <form class="filter-step2-section" id="filterForm" method="GET"
+                        action="{{ route('handymen.filterHandymen') }}">
+
+                        <!-- Date Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="date">Date</label>
+                            <div class="filter-step2-date-options">
+                                <button class="filter-step2-date-btn" type="button"
+                                    onclick="applyFilter('today')">Today</button>
+                                <button class="filter-step2-date-btn" type="button"
+                                    onclick="applyFilter('within_3_days')">Within 3 Days</button>
+                                <button class="filter-step2-date-btn" type="button"
+                                    onclick="applyFilter('within_a_week')">Within A Week</button>
+                                <!-- Choose Dates Button -->
+                                <button class="filter-step2-date-btn" id="choose_dates_btn" type="button"
+                                    style="position: relative;">Choose Dates</button>
+                                <!-- Hidden input for date range -->
+                                <input type="text" id="choose_dates_input" name="choose_dates" class="d-none">
+                            </div>
+                        </div>
+
+                        <!-- Time of Day Filter -->
+                        <div class="filter-step2-form-group">
+                            <label>Time of day</label>
+                            <div class="filter-step2-time-options">
+                                <div class="filter-step2-checkbox-group">
+                                    <input type="checkbox" id="morning" name="time_of_day[]" value="morning">
+                                    <label for="morning">Morning (8am - 12pm)</label>
+                                </div>
+                                <div class="filter-step2-checkbox-group">
+                                    <input type="checkbox" id="afternoon" name="time_of_day[]" value="afternoon">
+                                    <label for="afternoon">Afternoon (12pm - 5pm)</label>
+                                </div>
+                                <div class="filter-step2-checkbox-group">
+                                    <input type="checkbox" id="evening" name="time_of_day[]" value="evening">
+                                    <label for="evening">Evening (5pm - 9:30pm)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="price_range">Price</label>
+                            <div class="filter-step2-price-range">
+                                <input type="range" name="price_range" min="5" max="50" step="5"
+                                    class="filter-step2-slider" id="price_range" value="{{ old('price_range', 25) }}"
+                                    oninput="document.getElementById('price_value').textContent = this.value">
+                                <div class="filter-step2-price-values">
+                                    <span>JD 5</span>
+                                    <span id="price_value">{{ old('price_range', 25) }}</span>
+                                    <span>JD 50+</span>
+                                </div>
+                            </div>
+                            <p class="filter-step2-average-price">The average hourly rate is JD 10/hr</p>
+                        </div>
+
+
+                        {{--  <!-- Rating Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="rating">Rating</label>
+                            <div class="filter-step2-rating-options">
+                                <select name="rating" id="rating" class="filter-step2-select">
+                                    <option value="">Select Rating</option>
+                                    <option value="1">1 Star & above</option>
+                                    <option value="2">2 Stars & above</option>
+                                    <option value="3">3 Stars & above</option>
+                                    <option value="4">4 Stars & above</option>
+                                    <option value="5">5 Stars</option>
+                                </select>
+                            </div>
+                        </div>  --}}
+
+
+                        <!-- Rating Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="rating">Rating</label>
+                            <div class="filter-step2-rating-options">
+                                <select name="rating" id="rating" class="filter-step2-select">
+                                    <option value="">Select Rating</option> <!-- Empty default value -->
+                                    <option value="1">1 Star & above</option>
+                                    <option value="2">2 Stars & above</option>
+                                    <option value="3">3 Stars & above</option>
+                                    <option value="4">4 Stars & above</option>
+                                    <option value="5">5 Stars</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Gig Count Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="gig_count">Number of Gigs Completed</label>
+                            <div class="filter-step2-gig-options">
+                                <select name="gig_count" id="gig_count" class="filter-step2-select">
+                                    <option value="">Select Number of Gigs</option>
+                                    <option value="1">1 Gig & above</option>
+                                    <option value="5">5 Gigs & above</option>
+                                    <option value="10">10 Gigs & above</option>
+                                    <option value="20">20 Gigs & above</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- Skill Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="skills">Select Skills</label>
+                            <div class="filter-step2-skill-options">
+                                @foreach ($skills as $skill)
+                                    <div class="filter-step2-checkbox-group">
+                                        <input type="checkbox" id="skill_{{ $skill->id }}" name="skills[]"
+                                            value="{{ $skill->id }}">
+                                        <label for="skill_{{ $skill->id }}">{{ $skill->name }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Submit button to filter -->
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+
+                        <a href="{{ route('handymen.index') }}" class="w-100 mt-2 th-btn ">Reset <i
+                                class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+
+
+                        <!-- Hidden input for date filter -->
+                        <input type="hidden" name="date_filter" id="date_filter">
+                    </form>
