@@ -115,8 +115,8 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                                                                                                                                                                                                Brand Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Brand Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="brand-sec1">
         <div class="top-shape"><img src="assets/img/shape/triangle_shape_1.svg" alt="shape"></div>
         <div class="brand-list-area">
@@ -160,8 +160,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                Service Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Service Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img src="assets/img/shape/lines_1.png"
                 alt="shape"></div>
@@ -362,7 +362,7 @@
                                         <h3 class="box-title"><a href="service-details.html"><?php echo e($service->name); ?></a>
                                         </h3>
                                         <p class="box-text"><?php echo e($service->description); ?></p>
-                                        <a href="javascript:void(0);" class="th-btn btn-sm">Read More<i
+                                        <a href="javascript:void(0);" class="th-btn btn-sm">Book Now<i
                                                 class="far fa-arrow-right ms-2"></i></a>
 
                                         
@@ -423,8 +423,8 @@
 
 
     <!--==============================
-                                                                                                                                                                                                                                About Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            About Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img src="assets/img/shape/dots_1.svg"
                 alt="shape"></div>
@@ -505,8 +505,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                Stores Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Stores Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup spin" data-top="5%" data-left="0%"><img
                 src="<?php echo e(asset('assets/img/shape/lines_1.png')); ?>" alt="shape"></div>
@@ -604,16 +604,16 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                Devider Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Devider Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="overflow-hidden bg-white">
         <h3> </h3>
         
     </div>
     <!--==============================
 
-                                                                                                                                                                                                                                Feature Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Feature Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup" data-top="0%" data-left="0%"><img src="assets/img/bg/why_bg_2.png" alt="shape">
         </div>
@@ -690,8 +690,8 @@
     </section>
     <!--==============================
 
-                                                                                                                                                                                                                                Process Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Process Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="space" id="process-sec" data-bg-src="assets/img/bg/process_bg_2.jpg">
         <div class="container">
             <div class="row justify-content-center">
@@ -740,8 +740,8 @@
     <!--==============================
 
 
-                                                                                                                                                                                                                                    Team Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                                Team Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="space">
         <div class="container z-index-common">
             <div class="row justify-content-between align-items-center">
@@ -768,8 +768,14 @@
                             <div class="swiper-slide">
                                 <div class="th-team team-card">
                                     <div class="box-img">
-                                        <img src="<?php echo e($handyman->handyman->user->image ? url('/user_images/' . $handyman->handyman->user->image) : url('assets/img/profile-img.jpg')); ?>"
-                                            alt="<?php echo e($handyman->handyman->user->name); ?>">
+                                        <?php if($handyman->handyman && $handyman->handyman->user && $handyman->handyman->user->image): ?>
+                                            <img src="<?php echo e(asset('storage/profile_images/' . $handyman->handyman->user->image)); ?>"
+                                                alt="<?php echo e($handyman->handyman->user->name); ?>">
+                                        <?php else: ?>
+                                            <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>"
+                                                alt="<?php echo e($handyman->handyman && $handyman->handyman->user ? $handyman->handyman->user->name : 'Default Name'); ?>">
+                                        <?php endif; ?>
+                                        
                                     </div>
                                     <div class="box-content">
                                         <div class="box-social">
@@ -785,9 +791,11 @@
                                                         class="fab fa-linkedin-in"></i></a>
                                             </div>
                                         </div>
-                                        <h3 class="box-title"><a href="#"><?php echo e($handyman->handyman->user->name); ?></a>
+                                        <h3 class="box-title"><a
+                                                href="#"><?php echo e($handyman->handyman->user->name ?? 'Anonymous'); ?></a>
                                         </h3>
-                                        <p class="box-desig"><?php echo e($handyman->handyman->bio); ?></p>
+                                        </h3>
+                                        <p class="box-desig"><?php echo e($handyman->handyman->bio ?? 'No bio available'); ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -801,8 +809,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                Counter Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Counter Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="space-bottom">
 
 
@@ -851,12 +859,6 @@
             </div>
         </div>
     </div>
-
-    
-
-    
-
-    
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.guest_master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Handyman-website\resources\views/index.blade.php ENDPATH**/ ?>

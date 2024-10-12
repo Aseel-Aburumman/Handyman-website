@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
@@ -287,7 +287,29 @@
                 </div>
             </section>
 
+            <style>
+                .product-img {
+                    width: 300px;
+                    /* Set the width of the container */
+                    height: 300px;
+                    /* Set the height of the container */
+                    overflow: hidden;
+                    /* Hide overflow if image is too large */
+                    position: relative;
+                    /* Ensure that content inside it is positioned relative to it */
+                }
 
+                .product-img img {
+                    width: 100%;
+                    /* Make sure the image scales to the width of the container */
+                    height: 100%;
+                    /* Make sure the image scales to the height of the container */
+                    object-fit: contain;
+                    /* Cover the entire area of the container without distortion */
+                    display: block;
+                    /* Removes the default inline spacing for images */
+                }
+            </style>
 
 
 

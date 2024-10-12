@@ -14,7 +14,7 @@ class GigFactory extends Factory
         return [
             'user_id' => $this->faker->numberBetween(6, 22), // Random User ID between 6 and 22
             'handyman_id' => $this->faker->numberBetween(3, 8), // Random Handyman ID between 3 and 8
-            'category_id' => 1, // Assuming Category ID 1 exists
+            'category_id' => $this->faker->numberBetween(1, 6), // Assuming Category ID 1 exists
             // 'skill_id' => 1, // Assuming Skill ID 1 exists
             'service_id' => 1, // Assuming Service ID 1 exists
             'title' => $this->faker->sentence(), // Random title for the gig
@@ -28,7 +28,11 @@ class GigFactory extends Factory
 
             'task_time' => $this->faker->time('H:i:s'), // Random time in HH:MM:SS format
             'total' => $this->faker->numberBetween(20, 500), // Random total between $20 and $500
-            'status_id' => $this->faker->numberBetween(7, 9), // Assuming Status ID 7 is 'Open' and 9 is 'Done'
+            // 'status_id' => $this->faker->numberBetween(7, 9), // Assuming Status ID 7 is 'Open' and 9 is 'Done'
+
+            'status_id' => collect([7, 8, 9, 10, 11, 24])->random(),
+
+
         ];
     }
 }

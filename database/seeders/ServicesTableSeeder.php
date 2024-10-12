@@ -337,5 +337,7 @@ class ServicesTableSeeder extends Seeder
             'description' => 'Efficient wallpaper removal services to restore your walls to a smooth, clean surface, ready for new decoration.',
             'description_ar' => 'خدمات إزالة ورق الجدران بشكل فعال لاستعادة جدرانك إلى سطح ناعم ونظيف، جاهز لأي زخرفة جديدة تريد إضافتها.'
         ]);
+
+        
     }
 }

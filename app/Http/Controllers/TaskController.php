@@ -97,13 +97,13 @@ class TaskController extends Controller
 
 
         // Create a new HandymanAvailability record
-        HandymanAvailability::create([
-            'handyman_id' => $proposal->handyman_id,
-            'start_time' => $gig->task_date . ' ' . $gig->task_time, // Assuming task_date and task_time provide start time
-            'end_time' => $this->calculateEndTime($gig->task_date, $gig->task_time, $gig->estimated_time), // Calculate end time
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // HandymanAvailability::create([
+        //     'handyman_id' => $proposal->handyman_id,
+        //     'start_time' => $gig->task_date . ' ' . $gig->task_time, // Assuming task_date and task_time provide start time
+        //     'end_time' => $this->calculateEndTime($gig->task_date, $gig->task_time, $gig->estimated_time), // Calculate end time
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
 
         // Send notification to the winning handyman

@@ -199,6 +199,9 @@
                                             <?php elseif($gig->status_id == 11): ?>
                                                 <button
                                                     class="statusBtn btn btn-warning"><?php echo e($gig->status->name); ?></button>
+                                            <?php elseif($gig->status_id == 28): ?>
+                                                <button
+                                                    class="statusBtn btn btn-warning"><?php echo e($gig->status->name); ?></button>
                                             <?php endif; ?>
                                         </h3>
 

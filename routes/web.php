@@ -46,7 +46,11 @@ Route::get('/about-us', [MasterController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/allhandymen', [MasterController::class, 'indexHandymen'])->name('handymen.index');
 Route::get('/allhandymen/filter', [MasterController::class, 'indexHandymen'])->name('handymen.filterHandymen');
 
-Route::get('/faq', [MasterController::class, 'faq'])->name('faq');
+Route::get('/btasker', [MasterController::class, 'btasker'])->name('b.tasker');
+
+Route::get('/bstoreowner', [MasterController::class, 'bstoreowner'])->name('b.storeowner');
+Route::post('/become/storeowner', [MasterController::class, 'new_storeowner'])->name('storeowner.new');
+
 Route::get('/contact', [MasterController::class, 'contact'])->name('contact');
 
 
@@ -90,7 +94,20 @@ Route::group([
     // Route::post('/profile/update', [CustomerController::class, 'updateProfile'])->name('profile.update')->middleware('role:2');
 
     Route::get('/handyman/dashboard', [HandymanController::class, 'dashboard'])->name('handyman.dashboard')->middleware('role:4');
+    Route::post('/handyman/dashboard', [HandymanController::class, 'dashboard'])->name('handyman.dashboard.update')->middleware('role:4');
+
     Route::get('/handyman/home', [HandymanController::class, 'index'])->name('handyman.Home')->middleware('role:4');
+    Route::patch('/handyman/{gigId}/accept', [HandymanController::class, 'accept'])->name('handyman.accept')->middleware('role:4');
+    Route::get('/gigs/open/{gigId}', [HandymanController::class, 'showOpenGig'])->name('handyman.opengig');
+    Route::post('/gigs/{gigId}/proposal', [HandymanController::class, 'submitProposal'])->name('handyman.submitProposal');
+    Route::post('/proposal/{proposalId}/update', [HandymanController::class, 'updateProposal'])->name('handyman.updateProposal');
+
+    Route::get('/mygig/{gigId}', [HandymanController::class, 'showAssignedGig'])->name('handyman.assigned.task');
+    Route::post('/handyman/add-skill', [HandymanController::class, 'addSkill'])->name('handyman.addSkill');
+    Route::get('/allgigs', [MasterController::class, 'allgigs'])->name('handyman.allgigs');
+    Route::get('/allgigs/filter', [MasterController::class, 'allgigs'])->name('handymen.filtergigs');
+
+
 
     Route::get('/cart', [ShopsController::class, 'getCart'])->name('cart');
     Route::post('/cart/update', [ShopsController::class, 'updateCart'])->name('cart.update');

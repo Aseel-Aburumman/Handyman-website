@@ -71,32 +71,7 @@ class ServiceController extends Controller
         return redirect()->route('gig.step2');
     }
 
-    // Step 2: Handyman Selection
-    // public function showStep2()
-    // {
-    //     $categoryId = session('category_id'); // Get the category ID from the session
-    //     $category = Category::findOrFail($categoryId);
 
-    //     $service_id = session('service_id'); // Get the category ID from the session
-    //     $service = Service::findOrFail($service_id);
-
-    //     $handymen = Handyman::with('latest_review', 'user')
-    //         ->withCount('reviews', 'gigs') // Count all gigs normally
-    //         ->withCount(['gigs as gigs_in_category' => function ($query) use ($categoryId) {
-    //             $query->where('category_id', $categoryId); // Count gigs with specific category_id
-    //         }])
-    //         ->get();
-    //     return view('gig_proccess.step2', compact('handymen', 'category', 'service'));
-    // }
-
-    // public function storeStep2(Request $request)
-    // {
-    //     // If the user selects a handyman, store it in session
-    //     if ($request->has('selected_tasker')) {
-    //         session(['handyman_id' => $request->selected_tasker]);
-    //     }
-    //     return redirect()->route('gig.step3');
-    // }
 
     public function showStep2(Request $request)
     {
@@ -308,11 +283,7 @@ class ServiceController extends Controller
     {
         // Here you can handle the payment logic
 
-        // Validate the payment form inputs (e.g., card number)
-        // $request->validate([
-        //     'card_number' => 'required|string',
-        //     // You can also add validation for the promo code or any other fields
-        // ]);
+
 
 
         $paymentMethod = $request->input('payment_method');
@@ -368,7 +339,9 @@ class ServiceController extends Controller
         $gig->price = session('budget') ?? $hourlyRate;
         $gig->total = $total;
 
-        $gig->status_id = 7; // Default status ( open)
+        // $gig->status_id = 7; // Default status ( open)
+        $gig->status_id = 28; // Default status ( open)
+
         $gig->save();
 
         session()->forget([

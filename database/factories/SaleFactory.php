@@ -22,7 +22,7 @@ class SaleFactory extends Factory
             'store_id' => $this->faker->boolean(80) // 80% chance for preferred store IDs
                 ? $this->faker->randomElement($preferredStoreIds)
                 : Store::inRandomOrder()->first()->id, // 20% chance for random store ID
-            'product_id' => $this->faker->numberBetween(1, 28), // Assuming Product IDs from 1 to 50 exist
+            'product_id' => $this->faker->numberBetween(1, 36), // Assuming Product IDs from 1 to 50 exist
             'user_id' => $this->faker->numberBetween(1, 4), // Assuming User IDs from 1 to 100 exist
             'quantity_sold' => $this->faker->numberBetween(1, 2),
             'total_amount' => $this->faker->randomFloat(2, 10, 1000), // Random total amount

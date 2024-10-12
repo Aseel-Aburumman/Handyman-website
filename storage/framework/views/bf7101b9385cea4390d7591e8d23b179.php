@@ -31,8 +31,18 @@
                 </li>
 
                 <li><a href="<?php echo e(route('aboutUs')); ?>">About Us</a></li>
-                <li><a href="<?php echo e(route('service')); ?>">Our Services</a></li>
-                <li><a href="<?php echo e(route('shops.index')); ?>">Shops</a></li>
+                <?php if(auth()->guard()->check()): ?>
+                    <?php if(Auth::user()->role_id == 2): ?>
+                        <!-- Customer Dashboard -->
+                        <li><a href="<?php echo e(route('service')); ?>">Our Service</a></li>
+                    <?php elseif(Auth::user()->role_id == 4): ?>
+                        <!-- Store Owner Dashboard -->
+                        <li><a href="<?php echo e(route('handyman.allgigs')); ?>">Gigs Market</a></li>
+                    <?php elseif(Auth::user()->role_id == 3): ?>
+                        <!-- Handyman Dashboard -->
+                        <li><a href="<?php echo e(route('service')); ?>">Our Service</a></li>
+                    <?php endif; ?>
+                <?php endif; ?> <li><a href="<?php echo e(route('shops.index')); ?>">Shops</a></li>
                 <li><a href="<?php echo e(route('products.index')); ?>">Products</a></li>
                 <li><a href="<?php echo e(route('handymen.index')); ?>">Handymen</a></li>
 
@@ -62,10 +72,30 @@
                 <div class="col-auto">
                     <div class="header-links">
                         <ul>
+                            <?php if(auth()->guard()->check()): ?>
+                                <?php if(Auth::user()->role_id == 2): ?>
+                                    <!-- Customer Dashboard -->
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
+                                            href="<?php echo e(route('b.tasker')); ?>">Become a Handyman </a></li>
+                                    <li>
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
+                                            href="<?php echo e(route('b.storeowner')); ?>">Become a Store Owner </a></li>
+                                    <li>
+                                    <?php elseif(Auth::user()->role_id == 4): ?>
+                                        <!-- Store Owner Dashboard -->
 
-                            <li class="d-none d-md-inline-block"><i class="fa-solid fa-messages"></i> <a
-                                    href="<?php echo e(route('faq')); ?>">FAQ</a></li>
-                            <li><i class="fas fa-headset"></i> <a href="<?php echo e(route('contact')); ?>">Support</a></li>
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
+                                            href="<?php echo e(route('b.storeowner')); ?>">Become a Store Owner </a></li>
+                                    <li>
+                                    <?php elseif(Auth::user()->role_id == 3): ?>
+                                        <!-- Handyman Dashboard -->
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
+                                            href="<?php echo e(route('b.tasker')); ?>">Become a Handyman </a></li>
+                                    <li>
+                                <?php endif; ?>
+                            <?php endif; ?>
+
+                            <i class="fas fa-headset"></i> <a href="<?php echo e(route('contact')); ?>">Support</a></li>
                             <?php if(auth()->guard()->guest()): ?>
                                 <li><i class="fas fa-user"></i> <a href="<?php echo e(route('login')); ?>">Sign In / </a><a
                                         href="<?php echo e(route('register')); ?>">Register</a></li>
@@ -113,8 +143,18 @@
 
                                     </li>
                                     <li><a href="<?php echo e(route('aboutUs')); ?>">About Us</a></li>
-                                    <li><a href="<?php echo e(route('service')); ?>">Our Services</a></li>
-                                    <li><a href="<?php echo e(route('shops.index')); ?>">Shops</a></li>
+                                    <?php if(auth()->guard()->check()): ?>
+                                        <?php if(Auth::user()->role_id == 2): ?>
+                                            <!-- Customer Dashboard -->
+                                            <li><a href="<?php echo e(route('service')); ?>">Our Service</a></li>
+                                        <?php elseif(Auth::user()->role_id == 4): ?>
+                                            <!-- Store Owner Dashboard -->
+                                            <li><a href="<?php echo e(route('handyman.allgigs')); ?>">Gigs Market</a></li>
+                                        <?php elseif(Auth::user()->role_id == 3): ?>
+                                            <!-- Handyman Dashboard -->
+                                            <li><a href="<?php echo e(route('service')); ?>">Our Service</a></li>
+                                        <?php endif; ?>
+                                    <?php endif; ?> <li><a href="<?php echo e(route('shops.index')); ?>">Shops</a></li>
                                     <li><a href="<?php echo e(route('products.index')); ?>">Products</a></li>
                                     <li><a href="<?php echo e(route('handymen.index')); ?>">Handymen</a></li>
 

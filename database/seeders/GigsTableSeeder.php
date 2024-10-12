@@ -25,7 +25,7 @@ class GigsTableSeeder extends Seeder
             'price' => 50, // $50
             'task_date' => '2024-10-05',
             'task_time' => '08:30:00', // Time in HH:MM:SS format
-            'total' => '30',
+            'total' => '100',
             'status_id' => 7, // Assuming Status ID 7 is 'Open'
         ]);
 

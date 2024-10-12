@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SkillToCategorie;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -40,6 +41,8 @@ class DatabaseSeeder extends Seeder
             ReportsSeeder::class,
             ImageSeeder::class,
             PaymentSeeder::class,
+            SkillToCategoriesSeeder::class,
+
 
 
 

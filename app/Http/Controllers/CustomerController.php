@@ -154,48 +154,4 @@ class CustomerController extends Controller
 
 
 
-    // public function updateProfile(Request $request)
-    // {
-    //     $userId = Auth::id();
-    //     $user = User::findorfall($userId);
-
-    //     // Validate the form data
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|email|max:255',
-    //         'phone' => 'required|string|max:20',
-    //         'city' => 'required|string|max:255',
-    //         'location' => 'required|string|max:255',
-    //         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image upload
-    //     ]);
-
-    //     // Update user information
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->phone = $request->phone;
-    //     $user->city = $request->city;
-    //     $user->location = $request->location;
-
-    //     // Handle profile picture upload
-    //     if ($request->hasFile('image')) {
-    //         // Delete old image if exists
-    //         if ($user->image && Storage::exists('public/profile_images/' . $user->image)) {
-    //             Storage::delete('public/profile_images/' . $user->image);
-    //         }
-
-    //         // Store new image
-    //         $imageName = time() . '.' . $request->image->extension();
-    //         $request->image->storeAs('public/profile_images', $imageName);
-
-    //         // Save image name to the database
-    //         $user->image = $imageName;
-    //     }
-
-    //     $user->save();
-
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'message' => 'Profile updated successfully!'
-    //     ]);
-    // }
 }

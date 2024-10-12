@@ -31,8 +31,18 @@
                 </li>
 
                 <li><a href="{{ route('aboutUs') }}">About Us</a></li>
-                <li><a href="{{ route('service') }}">Our Services</a></li>
-                <li><a href="{{ route('shops.index') }}">Shops</a></li>
+                @auth
+                    @if (Auth::user()->role_id == 2)
+                        <!-- Customer Dashboard -->
+                        <li><a href="{{ route('service') }}">Our Service</a></li>
+                    @elseif (Auth::user()->role_id == 4)
+                        <!-- Store Owner Dashboard -->
+                        <li><a href="{{ route('handyman.allgigs') }}">Gigs Market</a></li>
+                    @elseif (Auth::user()->role_id == 3)
+                        <!-- Handyman Dashboard -->
+                        <li><a href="{{ route('service') }}">Our Service</a></li>
+                    @endif
+                @endauth <li><a href="{{ route('shops.index') }}">Shops</a></li>
                 <li><a href="{{ route('products.index') }}">Products</a></li>
                 <li><a href="{{ route('handymen.index') }}">Handymen</a></li>
 
@@ -62,10 +72,30 @@
                 <div class="col-auto">
                     <div class="header-links">
                         <ul>
+                            @auth
+                                @if (Auth::user()->role_id == 2)
+                                    <!-- Customer Dashboard -->
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
+                                            href="{{ route('b.tasker') }}">Become a Handyman </a></li>
+                                    <li>
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
+                                            href="{{ route('b.storeowner') }}">Become a Store Owner </a></li>
+                                    <li>
+                                    @elseif (Auth::user()->role_id == 4)
+                                        <!-- Store Owner Dashboard -->
 
-                            <li class="d-none d-md-inline-block"><i class="fa-solid fa-messages"></i> <a
-                                    href="{{ route('faq') }}">FAQ</a></li>
-                            <li><i class="fas fa-headset"></i> <a href="{{ route('contact') }}">Support</a></li>
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
+                                            href="{{ route('b.storeowner') }}">Become a Store Owner </a></li>
+                                    <li>
+                                    @elseif (Auth::user()->role_id == 3)
+                                        <!-- Handyman Dashboard -->
+                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
+                                            href="{{ route('b.tasker') }}">Become a Handyman </a></li>
+                                    <li>
+                                @endif
+                            @endauth
+
+                            <i class="fas fa-headset"></i> <a href="{{ route('contact') }}">Support</a></li>
                             @guest
                                 <li><i class="fas fa-user"></i> <a href="{{ route('login') }}">Sign In / </a><a
                                         href="{{ route('register') }}">Register</a></li>
@@ -113,8 +143,18 @@
 
                                     </li>
                                     <li><a href="{{ route('aboutUs') }}">About Us</a></li>
-                                    <li><a href="{{ route('service') }}">Our Services</a></li>
-                                    <li><a href="{{ route('shops.index') }}">Shops</a></li>
+                                    @auth
+                                        @if (Auth::user()->role_id == 2)
+                                            <!-- Customer Dashboard -->
+                                            <li><a href="{{ route('service') }}">Our Service</a></li>
+                                        @elseif (Auth::user()->role_id == 4)
+                                            <!-- Store Owner Dashboard -->
+                                            <li><a href="{{ route('handyman.allgigs') }}">Gigs Market</a></li>
+                                        @elseif (Auth::user()->role_id == 3)
+                                            <!-- Handyman Dashboard -->
+                                            <li><a href="{{ route('service') }}">Our Service</a></li>
+                                        @endif
+                                    @endauth <li><a href="{{ route('shops.index') }}">Shops</a></li>
                                     <li><a href="{{ route('products.index') }}">Products</a></li>
                                     <li><a href="{{ route('handymen.index') }}">Handymen</a></li>
 

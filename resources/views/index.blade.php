@@ -115,8 +115,8 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                                                                                                                                                                                                Brand Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Brand Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="brand-sec1">
         <div class="top-shape"><img src="assets/img/shape/triangle_shape_1.svg" alt="shape"></div>
         <div class="brand-list-area">
@@ -162,8 +162,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                Service Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Service Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img src="assets/img/shape/lines_1.png"
                 alt="shape"></div>
@@ -367,7 +367,7 @@
                                         <h3 class="box-title"><a href="service-details.html">{{ $service->name }}</a>
                                         </h3>
                                         <p class="box-text">{{ $service->description }}</p>
-                                        <a href="javascript:void(0);" class="th-btn btn-sm">Read More<i
+                                        <a href="javascript:void(0);" class="th-btn btn-sm">Book Now<i
                                                 class="far fa-arrow-right ms-2"></i></a>
 
                                         {{--  <a href="service-details.html" class="th-btn btn-sm">Read More<i
@@ -429,8 +429,8 @@
 
 
     <!--==============================
-                                                                                                                                                                                                                                About Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            About Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img src="assets/img/shape/dots_1.svg"
                 alt="shape"></div>
@@ -510,8 +510,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                Stores Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Stores Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup spin" data-top="5%" data-left="0%"><img
                 src="{{ asset('assets/img/shape/lines_1.png') }}" alt="shape"></div>
@@ -629,8 +629,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                Devider Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Devider Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="overflow-hidden bg-white">
         <h3> </h3>
         {{--  <div class="shape-mockup spin" data-top="5%" data-right="0%"><img src="assets/img/shape/lines_1.png"
@@ -690,8 +690,8 @@
     </div>
     <!--==============================
 
-                                                                                                                                                                                                                                Feature Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Feature Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup" data-top="0%" data-left="0%"><img src="assets/img/bg/why_bg_2.png" alt="shape">
         </div>
@@ -768,8 +768,8 @@
     </section>
     <!--==============================
 
-                                                                                                                                                                                                                                Process Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Process Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="space" id="process-sec" data-bg-src="assets/img/bg/process_bg_2.jpg">
         <div class="container">
             <div class="row justify-content-center">
@@ -818,8 +818,8 @@
     <!--==============================
 
 
-                                                                                                                                                                                                                                    Team Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                                Team Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="space">
         <div class="container z-index-common">
             <div class="row justify-content-between align-items-center">
@@ -846,8 +846,15 @@
                             <div class="swiper-slide">
                                 <div class="th-team team-card">
                                     <div class="box-img">
-                                        <img src="{{ $handyman->handyman->user->image ? url('/user_images/' . $handyman->handyman->user->image) : url('assets/img/profile-img.jpg') }}"
-                                            alt="{{ $handyman->handyman->user->name }}">
+                                        @if ($handyman->handyman && $handyman->handyman->user && $handyman->handyman->user->image)
+                                            <img src="{{ asset('storage/profile_images/' . $handyman->handyman->user->image) }}"
+                                                alt="{{ $handyman->handyman->user->name }}">
+                                        @else
+                                            <img src="{{ asset('assets/img/team/team_1_1.jpg') }}"
+                                                alt="{{ $handyman->handyman && $handyman->handyman->user ? $handyman->handyman->user->name : 'Default Name' }}">
+                                        @endif
+                                        {{--  <img src="{{ $handyman->user->image ? url('/user_images/' . $handyman->user->image) : url('assets/img/team/team_1_1.png') }}"
+                                            alt="{{ $handyman->user->name }}">  --}}
                                     </div>
                                     <div class="box-content">
                                         <div class="box-social">
@@ -863,9 +870,11 @@
                                                         class="fab fa-linkedin-in"></i></a>
                                             </div>
                                         </div>
-                                        <h3 class="box-title"><a href="#">{{ $handyman->handyman->user->name }}</a>
+                                        <h3 class="box-title"><a
+                                                href="#">{{ $handyman->handyman->user->name ?? 'Anonymous' }}</a>
                                         </h3>
-                                        <p class="box-desig">{{ $handyman->handyman->bio }}</p>
+                                        </h3>
+                                        <p class="box-desig">{{ $handyman->handyman->bio ?? 'No bio available' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -879,8 +888,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                Counter Area
-                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                            Counter Area
+                                                                                                                                                                                                                                                                                                            ==============================-->
     <div class="space-bottom">
 
 
@@ -929,389 +938,4 @@
             </div>
         </div>
     </div>
-
-    {{--  <div class="container">
-            <div class="counter-card-wrap">
-                <div class="counter-card">
-                    <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_1.svg" alt="Icon">
-                    </div>
-                    <div class="media-body">
-                        <h2 class="box-number"><span class="counter-number">1250</span>+</h2>
-                        <p class="box-text">Completed Projects</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="counter-card">
-                    <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_2.svg" alt="Icon">
-                    </div>
-                    <div class="media-body">
-                        <h2 class="box-number"><span class="counter-number">180</span>+</h2>
-                        <p class="box-text">Happy Clients</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="counter-card">
-                    <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_3.svg" alt="Icon">
-                    </div>
-                    <div class="media-body">
-                        <h2 class="box-number"><span class="counter-number">85</span>+</h2>
-                        <p class="box-text">Expert Team</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="counter-card">
-                    <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_4.svg" alt="Icon">
-                    </div>
-                    <div class="media-body">
-                        <h2 class="box-number"><span class="counter-number">158</span>+</h2>
-                        <p class="box-text">Store</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-            </div>
-        </div>  --}}
-
-    {{--  <!--==============================
-                                                                                    Testimonial Area
-                                                                                    ==============================-->
-    <section class="space" id="testi-sec" data-bg-src="assets/img/bg/pattern_bg_1.png">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-md">
-                    <div class="title-area text-center text-md-start">
-                        <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg"
-                                alt="shape">Testimonial</span>
-                        <h2 class="sec-title">What our client say</h2>
-                    </div>
-                </div>
-                <div class="col-md-auto">
-                    <div class="sec-btn mt-n3 mt-md-0">
-                        <a href="testimonial.html" class="th-btn style4">View All Reviews<i
-                                class="far fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-area">
-                <div class="swiper th-slider has-shadow" id="testiSlider1"
-                    data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"1"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"2"}}}'>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="testi-card">
-                                <div class="box-img">
-                                    <img src="assets/img/testimonial/testi_b_1.jpg" alt="Image">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-review">
-                                        <i class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i>
-                                    </div>
-                                    <p class="box-text">Rakar has most quality services by subtle craftmens, Diam id
-                                        semper tellus. Est aliquam sit est ac. Felis diam nunc nibh blandit risus ndrerit
-                                        sed consectetur quis leo on the  praesent scelerisque.</p>
-                                    <div class="box-profile">
-                                        <div class="box-avater">
-                                            <img src="assets/img/testimonial/testi_1_1.jpg" alt="Avater">
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="box-title">Sumaiya Zara</h3>
-                                            <p class="box-desig">CEO Of Company</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testi-card">
-                                <div class="box-img">
-                                    <img src="assets/img/testimonial/testi_b_2.jpg" alt="Image">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-review">
-                                        <i class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i>
-                                    </div>
-                                    <p class="box-text">The most quality services by subtle craftmens, Diam id semper
-                                        tellus. Est aliquam sit est ac. Felis diam nunc nibh blandit risus ndrerit sed
-                                        consectetur quis leo on the  praesent in Rakar.</p>
-                                    <div class="box-profile">
-                                        <div class="box-avater">
-                                            <img src="assets/img/testimonial/testi_1_2.jpg" alt="Avater">
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="box-title">Alex Simon</h3>
-                                            <p class="box-desig">Managing Director</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testi-card">
-                                <div class="box-img">
-                                    <img src="assets/img/testimonial/testi_b_1.jpg" alt="Image">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-review">
-                                        <i class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i>
-                                    </div>
-                                    <p class="box-text">Rakar has most quality services by subtle craftmens, Diam id
-                                        semper tellus. Est aliquam sit est ac. Felis diam nunc nibh blandit risus ndrerit
-                                        sed consectetur quis leo on the  praesent scelerisque.</p>
-                                    <div class="box-profile">
-                                        <div class="box-avater">
-                                            <img src="assets/img/testimonial/testi_1_1.jpg" alt="Avater">
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="box-title">Agelina Margret</h3>
-                                            <p class="box-desig">CEO Of Company</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testi-card">
-                                <div class="box-img">
-                                    <img src="assets/img/testimonial/testi_b_2.jpg" alt="Image">
-                                </div>
-                                <div class="box-content">
-                                    <div class="box-review">
-                                        <i class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i><i
-                                            class="fa-sharp fa-solid fa-star"></i>
-                                    </div>
-                                    <p class="box-text">The most quality services by subtle craftmens, Diam id semper
-                                        tellus. Est aliquam sit est ac. Felis diam nunc nibh blandit risus ndrerit sed
-                                        consectetur quis leo on the  praesent in Rakar.</p>
-                                    <div class="box-profile">
-                                        <div class="box-avater">
-                                            <img src="assets/img/testimonial/testi_1_2.jpg" alt="Avater">
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="box-title">Robert Danials</h3>
-                                            <p class="box-desig">Managing Director</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-pagination"></div>
-                </div>
-            </div>
-        </div>
-    </section>  --}}
-
-    {{--  <!--==============================
-                                                                                    Price Area
-                                                                                    ==============================-->
-    <section class="space" data-bg-src="assets/img/bg/pattern_bg_2.jpg">
-        <div class="shape-mockup spin" data-top="15%" data-right="6%"><img src="assets/img/shape/dots_1.svg"
-                alt="shape"></div>
-        <div class="shape-mockup spin" data-bottom="6%" data-left="4%"><img src="assets/img/shape/dots_1.svg"
-                alt="shape"></div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-8">
-                    <div class="title-area text-center">
-                        <span class="sub-title shape-white"><img src="assets/img/theme-img/title_icon_white.svg"
-                                alt="Icon">Pricing Plan</span>
-                        <h2 class="sec-title text-white">Our Best Pricing Plan</h2>
-                        <p class="sec-text text-light">The popular belief, Lorem Ipsum is not simply random text. It has
-                            roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-                            Richard McClintock.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row gy-4">
-
-                <div class="hover-item  col-xl-3 col-md-6">
-                    <div class="price-card">
-                        <div class="box-shape">
-                            <img src="assets/img/shape/lines_3.png" alt="shape">
-                        </div>
-                        <h3 class="box-title">Basic Plan</h3>
-                        <p class="box-price">$99.00<span class="duration">/Monthly</span></p>
-                        <div class="box-list">
-                            <ul>
-                                <li>Monthly Inspection</li>
-                                <li>General Repair</li>
-                                <li class="unavailable">Maintenance</li>
-                                <li class="unavailable">Fixing of Faulty Wiring</li>
-                                <li class="unavailable">Ac Condition Repair</li>
-                            </ul>
-                        </div>
-                        <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hover-item item-active col-xl-3 col-md-6">
-                    <div class="price-card">
-                        <div class="box-shape">
-                            <img src="assets/img/shape/lines_3.png" alt="shape">
-                        </div>
-                        <span class="tag">Popular Plan</span>
-                        <h3 class="box-title">Standard</h3>
-                        <p class="box-price">$129.00<span class="duration">/Monthly</span></p>
-                        <div class="box-list">
-                            <ul>
-                                <li>Monthly Inspection</li>
-                                <li>General Repair</li>
-                                <li>Maintenance</li>
-                                <li class="unavailable">Fixing of Faulty Wiring</li>
-                                <li class="unavailable">Ac Condition Repair</li>
-                            </ul>
-                        </div>
-                        <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hover-item  col-xl-3 col-md-6">
-                    <div class="price-card">
-                        <div class="box-shape">
-                            <img src="assets/img/shape/lines_3.png" alt="shape">
-                        </div>
-                        <h3 class="box-title">Premium</h3>
-                        <p class="box-price">$199.00<span class="duration">/Monthly</span></p>
-                        <div class="box-list">
-                            <ul>
-                                <li>Monthly Inspection</li>
-                                <li>General Repair</li>
-                                <li>Maintenance</li>
-                                <li>Fixing of Faulty Wiring</li>
-                                <li class="unavailable">Ac Condition Repair</li>
-                            </ul>
-                        </div>
-                        <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hover-item  col-xl-3 col-md-6">
-                    <div class="price-card">
-                        <div class="box-shape">
-                            <img src="assets/img/shape/lines_3.png" alt="shape">
-                        </div>
-                        <h3 class="box-title">Dedicated Plan</h3>
-                        <p class="box-price">$299.00<span class="duration">/Monthly</span></p>
-                        <div class="box-list">
-                            <ul>
-                                <li>Monthly Inspection</li>
-                                <li>General Repair</li>
-                                <li>Maintenance</li>
-                                <li>Fixing of Faulty Wiring</li>
-                                <li>Ac Condition Repair</li>
-                            </ul>
-                        </div>
-                        <div class="box-footer">
-                            <a href="pricing.html" class="th-btn">Get Started<i class="far fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--==============================
-                                                                                    Blog Area
-                                                                                    ==============================-->
-    <section class="space" id="blog-sec">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-xl-4 col-lg-5 col-md-7">
-                    <div class="title-area text-center text-md-start">
-                        <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg" alt="shape">Blog &
-                            Articles</span>
-                        <h2 class="sec-title">Every Single Update From Rakar</h2>
-                    </div>
-                </div>
-                <div class="col-md-auto">
-                    <div class="sec-btn mt-n3 mt-md-0">
-                        <a href="blog.html" class="th-btn style4">View All Articles<i
-                                class="far fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row gy-4">
-                <div class="col-xl-4 col-md-6">
-                    <div class="blog-card">
-                        <a href="blog-details.html" class="blog-img">
-                            <img src="assets/img/blog/blog_1_1.jpg" alt="blog image">
-                        </a>
-                        <span class="box-date">15 Jan, 2024</span>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <a href="blog.html"><i class="fas fa-user"></i>By Rakar</a>
-                                <a href="blog.html"><i class="fas fa-tags"></i>Repair</a>
-                            </div>
-                            <h3 class="box-title"><a href="blog-details.html">All in one 5 Signs You Need To Repair Your
-                                    Home Roof</a></h3>
-                            <p class="box-text">There are full service engage company is to provide solution company
-                                Loream are full service engage company.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6">
-                    <div class="blog-card">
-                        <a href="blog-details.html" class="blog-img">
-                            <img src="assets/img/blog/blog_1_2.jpg" alt="blog image">
-                        </a>
-                        <span class="box-date">16 Jan, 2024</span>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <a href="blog.html"><i class="fas fa-user"></i>By Rakar</a>
-                                <a href="blog.html"><i class="fas fa-tags"></i>Service</a>
-                            </div>
-                            <h3 class="box-title"><a href="blog-details.html">Interior renovation in the home using
-                                    up-to-date tools</a></h3>
-                            <p class="box-text">There are full service engage company is to provide solution company
-                                Loream are full service engage company.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6">
-                    <div class="blog-card">
-                        <a href="blog-details.html" class="blog-img">
-                            <img src="assets/img/blog/blog_1_3.jpg" alt="blog image">
-                        </a>
-                        <span class="box-date">17 Jan, 2024</span>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <a href="blog.html"><i class="fas fa-user"></i>By Rakar</a>
-                                <a href="blog.html"><i class="fas fa-tags"></i>Repair</a>
-                            </div>
-                            <h3 class="box-title"><a href="blog-details.html">AC repair in the home using up-to-date
-                                    equipment</a></h3>
-                            <p class="box-text">There are full service engage company is to provide solution company
-                                Loream are full service engage company.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>  --}}
 @endsection

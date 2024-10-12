@@ -224,5 +224,13 @@ class StatusesTableSeeder extends Seeder
             'description' => 'payment is completed',
             'description_ar' => 'الدفعة مكتملة'
         ]);
+
+        Status::create([
+            'status_category' => 'gig',
+            'name' => 'pending',
+            'name_ar' => 'قيد الانتظار ',
+            'description' => 'gig is pending',
+            'description_ar' => 'قيد الانتظار'
+        ]);
     }
 }

@@ -199,6 +199,9 @@
                                             @elseif($gig->status_id == 11)
                                                 <button
                                                     class="statusBtn btn btn-warning">{{ $gig->status->name }}</button>
+                                            @elseif($gig->status_id == 28)
+                                                <button
+                                                    class="statusBtn btn btn-warning">{{ $gig->status->name }}</button>
                                             @endif
                                         </h3>
 

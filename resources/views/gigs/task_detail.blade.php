@@ -148,7 +148,27 @@
                                     </div>
                                 @endforeach
                             @endif
-                        @else
+                        @elseif ($gig->status_id == 28)
+                            <h3>Waiting for your Handyman to accept!</h3>
+                            <p>Have something else on your to-do list?
+                                Book your next task or manage future to-dos with Kaaf Mueen </p>
+
+                            <p>Lets figure it out,<a
+                                    href="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}">Chat
+                                    with
+                                    your
+                                    handyman</a>.</p>
+
+                            <form action="{{ route('report.gig.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="handyman_id" value="{{ $gig->handyman->id }}">
+                                <input type="hidden" name="gig_id" value="{{ $gig->id }}">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to report a problem?');">Report
+                                    a
+                                    Problem</button>
+                            </form>
+                        @elseif (in_array($gig->status_id, [7, 8, 11, 24]))
                             <h4>Task Progress</h4>
                             <ul class="progress-bar">
                                 <li
