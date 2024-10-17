@@ -10,6 +10,9 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\Certificate;
+use App\Models\Payment;
+use App\Models\Review;
+
 use App\Models\Sale;
 
 
@@ -48,8 +51,10 @@ class HandymanController extends Controller
     public function dashboard(Request $request)
     {
         $userId = Auth::id();
-        $user = User::with('delivery_info')->find($userId); // Get the currently authenticated user
+        // $user = User::with('delivery_info')->find($userId); // Get the currently authenticated user
+
         $user = User::with('delivery_info')->where('id', $userId)->first(); // Get the authenticated user with delivery_info
+        // dd($user);
         $delivery = DeliveryInfo::where('id', $userId)->first();
 
         // $handyman = Handyman::where('user_id', $userId)->first();
@@ -80,23 +85,24 @@ class HandymanController extends Controller
             ->get()
             ->groupBy('sale_date'); // Group by the sale date
 
-        if ($request->isMethod('post') && !$request->has('skill_id')) {
+        if ($request->isMethod('POST') && !$request->has('skill_id')) {
             // Validate the form data
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'phone' => 'required|string|max:20',
-                'city' => 'required|string|max:255',
-                'building_no' => 'required|string|max:255',
-                'bio' => 'required|string',
-                'store_location' => 'required|string',
+                'phone' => 'nullable|string|max:20',
+                'city' => 'nullable|string|max:255',
+                'building_no' => 'nullable|string|max:255',
+                'bio' => 'nullable|string',
+                'store_location' => 'nullable|string',
 
-                'price_per_hour' => 'required|integer|max:20',
-                'experience' => 'required|integer|max:20',
-                'location' => 'required|string|max:255',
+                'price_per_hour' => 'nullable|integer',
+                'experience' => 'nullable|integer',
+                'location' => 'nullable|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image upload
             ]);
             // dd($request);
+
             // Update user information
             $user->name = $request->name;
             $user->email = $request->email;
@@ -328,5 +334,44 @@ class HandymanController extends Controller
         ]);
 
         return redirect()->route('handyman.opengig', $proposal->gig_id)->with('success', 'Proposal updated successfully.');
+    }
+
+
+    // public function showAssignedGig($gigId)
+    // {
+    //     $gig = Gig::findOrFail($gigId);
+    //     return view('handyman.mygig', compact('gig'));
+    // }
+
+
+    public function showAssignedGig($gigId)
+    {
+        // Retrieve the gig along with its associated handyman and proposal details
+        $gig = Gig::with('handyman.user', 'handyman')->findOrFail($gigId);
+        // Retrieve the assigned proposal
+
+        $userId = Auth::id();
+
+        $paymentRepotr = Payment::where('gig_id', $gigId)->get();
+        $reviews = Review::where('user_id', $userId)
+            ->where('gig_id', $gigId)
+            ->with(['user', 'handyman.user'])
+            ->get();
+        // dd($reviews);
+
+        // Get all items in the shopping cart for the current user
+        $payment = Payment::where('status_id', 25)->where('gig_id', $gigId)->get();
+        if ($payment) {   // Calculate subtotal
+            $subtotal = $payment->sum('amount');
+            $all_total = $subtotal * 0.16 + $subtotal;
+            // dd($reviews);
+
+            return view('handyman.mygig', compact('gig', 'paymentRepotr', 'subtotal', 'all_total', 'reviews'));
+            // dd($total);
+        }
+        // dd($reviews);
+        $all_total = 0;
+
+        return view('handyman.mygig', compact('gig', 'paymentRepotr', 'subtotal', 'all_total', 'reviews'));
     }
 }

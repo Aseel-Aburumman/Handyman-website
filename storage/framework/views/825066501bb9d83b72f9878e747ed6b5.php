@@ -22,7 +22,15 @@
 
                 </div>
             <?php endif; ?>
-
+            <?php if($errors->any()): ?>
+                <div class="alert alert-danger">
+                    <ul>
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
 
 
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
@@ -70,7 +78,7 @@
                         <form action="<?php echo e(route('handyman.dashboard.update')); ?>" method="POST" enctype="multipart/form-data"
                             class="profile-edit-form">
                             <?php echo csrf_field(); ?>
-                            <?php echo method_field('POST'); ?>
+                            
 
                             <!-- Profile Image -->
                             <div class="profile-image-wrapper">
@@ -174,9 +182,7 @@
 
                             <button type="submit" class="th-btn">Save Changes</button>
 
-                            <a href="<?php echo e(route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id])); ?>"
-                                class="mt-3 th-btn">View As
-                                Client</a>
+                            
 
                         </form>
                     </div>
@@ -254,19 +260,7 @@
                             <div class="d-flex justify-content-between gig-details">
                                 <div class="w-75">
                                     <h6>Task Details
-                                        <?php if($gig->status_id == 7): ?>
-                                            <button class="statusBtn btn  btn-info"><?php echo e($gig->status->name); ?></button>
-                                        <?php elseif($gig->status_id == 8): ?>
-                                            <button class="statusBtn btn  btn-primary"><?php echo e($gig->status->name); ?></button>
-                                        <?php elseif($gig->status_id == 9): ?>
-                                            <button class="statusBtn btn btn-success"><?php echo e($gig->status->name); ?></button>
-                                        <?php elseif($gig->status_id == 10): ?>
-                                            <button class="statusBtn btn btn-danger"><?php echo e($gig->status->name); ?></button>
-                                        <?php elseif($gig->status_id == 11): ?>
-                                            <button class="statusBtn btn btn-warning"><?php echo e($gig->status->name); ?></button>
-                                        <?php elseif($gig->status_id == 28): ?>
-                                            <button class="statusBtn btn btn-warning"><?php echo e($gig->status->name); ?></button>
-                                        <?php endif; ?>
+
                                     </h6>
                                     <div class="d-flex justify-content-between">
                                         <h2 class="gig-title"><?php echo e($gig->title); ?></h2>
@@ -279,6 +273,19 @@
                                         <?php echo e($gig->task_date); ?> <?php echo e($gig->task_time); ?></p>
                                 </div>
                                 <div class="w-25 text-center align-self-center align-items-center">
+                                    <?php if($gig->status_id == 7): ?>
+                                        <button class="w-100   btn  btn-info"><?php echo e($gig->status->name); ?></button>
+                                    <?php elseif($gig->status_id == 8): ?>
+                                        <button class="w-100 btn  btn-primary"><?php echo e($gig->status->name); ?></button>
+                                    <?php elseif($gig->status_id == 9): ?>
+                                        <button class="w-100 btn btn-success"><?php echo e($gig->status->name); ?></button>
+                                    <?php elseif($gig->status_id == 10): ?>
+                                        <button class="w-100 btn btn-danger"><?php echo e($gig->status->name); ?></button>
+                                    <?php elseif($gig->status_id == 11): ?>
+                                        <button class="w-100 btn btn-warning"><?php echo e($gig->status->name); ?></button>
+                                    <?php elseif($gig->status_id == 28): ?>
+                                        <button class="w-100 btn btn-warning"><?php echo e($gig->status->name); ?></button>
+                                    <?php endif; ?>
                                     <h3>Client Details</h3>
                                     <div class="m-auto freelancer-img">
                                         <?php if($gig->user && $gig->user->image): ?>

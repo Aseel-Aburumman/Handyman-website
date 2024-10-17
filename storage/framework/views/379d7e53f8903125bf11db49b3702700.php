@@ -147,7 +147,27 @@
                                     </div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endif; ?>
-                        <?php else: ?>
+                        <?php elseif($gig->status_id == 28): ?>
+                            <h3>Waiting for your Handyman to accept!</h3>
+                            <p>Have something else on your to-do list?
+                                Book your next task or manage future to-dos with Kaaf Mueen </p>
+
+                            <p>Lets figure it out,<a
+                                    href="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>">Chat
+                                    with
+                                    your
+                                    handyman</a>.</p>
+
+                            <form action="<?php echo e(route('report.gig.store')); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="handyman_id" value="<?php echo e($gig->handyman->id); ?>">
+                                <input type="hidden" name="gig_id" value="<?php echo e($gig->id); ?>">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to report a problem?');">Report
+                                    a
+                                    Problem</button>
+                            </form>
+                        <?php elseif(in_array($gig->status_id, [7, 8, 11, 24])): ?>
                             <h4>Task Progress</h4>
                             <ul class="progress-bar">
                                 <li

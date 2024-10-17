@@ -487,10 +487,7 @@
 
     <style>
         /* General container styling */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+
 
         .custom-btn {
             background-color: #F47629 !important;

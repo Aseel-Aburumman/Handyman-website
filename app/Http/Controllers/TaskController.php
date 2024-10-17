@@ -226,6 +226,34 @@ class TaskController extends Controller
         // Redirect or return a response
         return redirect()->back()->with('success', 'Review added successfully!');
     }
+    public function storeReviewHandyman(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'required|string|max:255',
+            'gig_id' => 'required|integer',
+            'client_id' => 'required|integer',
+
+
+        ]);
+
+        // Create a new review
+        $review = new Review();
+        $review->user_id = Auth::id(); // Assuming the user is logged in
+        // $review->user_id = 2; // Assuming the user is logged in
+
+        $review->handyman_id = $request->input('client_id'); // Set this depending on what you're reviewing
+        $review->gig_id = $request->input('gig_id'); // Set this if you're reviewing a product
+        $review->review = $request->input('review');
+        $review->rating = $request->input('rating');
+
+        // Save the review to the database
+        $review->save();
+
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Review added successfully!');
+    }
 
 
     public function updateGigStatus($gigId, $status)
@@ -300,7 +328,7 @@ class TaskController extends Controller
             'handyman_id' => $request->handyman_id,
             'amount' => $request->amount,
             'description' => $request->description,
-            'status_id' => 27,
+            'status_id' =>  $request->status_id,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

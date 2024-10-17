@@ -23,7 +23,15 @@
                     {!! session('success') !!}
                 </div>
             @endif
-
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
 
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
@@ -73,7 +81,7 @@
                         <form action="{{ route('handyman.dashboard.update') }}" method="POST" enctype="multipart/form-data"
                             class="profile-edit-form">
                             @csrf
-                            @method('POST')
+                            {{--  @method('POST')  --}}
 
                             <!-- Profile Image -->
                             <div class="profile-image-wrapper">
@@ -177,9 +185,9 @@
 
                             <button type="submit" class="th-btn">Save Changes</button>
 
-                            <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
+                            {{--  <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
                                 class="mt-3 th-btn">View As
-                                Client</a>
+                                Client</a>  --}}
 
                         </form>
                     </div>
@@ -256,19 +264,7 @@
                             <div class="d-flex justify-content-between gig-details">
                                 <div class="w-75">
                                     <h6>Task Details
-                                        @if ($gig->status_id == 7)
-                                            <button class="statusBtn btn  btn-info">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 8)
-                                            <button class="statusBtn btn  btn-primary">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 9)
-                                            <button class="statusBtn btn btn-success">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 10)
-                                            <button class="statusBtn btn btn-danger">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 11)
-                                            <button class="statusBtn btn btn-warning">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 28)
-                                            <button class="statusBtn btn btn-warning">{{ $gig->status->name }}</button>
-                                        @endif
+
                                     </h6>
                                     <div class="d-flex justify-content-between">
                                         <h2 class="gig-title">{{ $gig->title }}</h2>
@@ -281,6 +277,19 @@
                                         {{ $gig->task_date }} {{ $gig->task_time }}</p>
                                 </div>
                                 <div class="w-25 text-center align-self-center align-items-center">
+                                    @if ($gig->status_id == 7)
+                                        <button class="w-100   btn  btn-info">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 8)
+                                        <button class="w-100 btn  btn-primary">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 9)
+                                        <button class="w-100 btn btn-success">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 10)
+                                        <button class="w-100 btn btn-danger">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 11)
+                                        <button class="w-100 btn btn-warning">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 28)
+                                        <button class="w-100 btn btn-warning">{{ $gig->status->name }}</button>
+                                    @endif
                                     <h3>Client Details</h3>
                                     <div class="m-auto freelancer-img">
                                         @if ($gig->user && $gig->user->image)

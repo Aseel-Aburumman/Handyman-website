@@ -133,6 +133,8 @@ Route::group([
 
     Route::post('/report/store', [TaskController::class, 'storeReportGig'])->name('report.gig.store')->middleware('role:2');
     Route::post('/gig/reviews', [TaskController::class, 'storeReview'])->name('reviews.clienttohandyman');
+    Route::post('/gig/reviews-cliient', [TaskController::class, 'storeReviewHandyman'])->name('reviews.handymantoclient');
+
 
 
     Route::get('/chat/{receiverId}', [ChatController::class, 'index'])->name('chat');
