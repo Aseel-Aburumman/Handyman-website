@@ -101,6 +101,57 @@
             </div>
         </div>
     </section>
+    <script>
+        $('form').on('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            const messageContent = $('input[name="message_content"]').val();
+            const receiverId = $('input[name="receiver_id"]').val();
+
+            $.ajax({
+                url: '{{ route('chat.send') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    message_content: messageContent,
+                    receiver_id: receiverId,
+                },
+                success: function() {
+                    $('input[name="message_content"]').val(''); // Clear input
+                    fetchMessages(); // Fetch messages again to display the new message
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Function to fetch messages every 2 seconds (polling)
+        function fetchMessages() {
+            $.ajax({
+                url: '{{ route('chat.fetch', ['receiverId' => $receiverId]) }}',
+                method: 'GET',
+                success: function(data) {
+                    $('.chat-messages').html(''); // Clear old messages
+                    data.forEach(message => {
+                        const messageClass = message.sender_id == {{ Auth::id() }} ? 'sent' :
+                            'received';
+                        $('.chat-messages').append(`
+                        <div class="message ${messageClass}">
+                            <div class="message-content">
+                                <p>${message.message_content}</p>
+                                <span class="message-time">${new Date(message.created_at).toLocaleTimeString()}</span>
+                            </div>
+                        </div>
+                    `);
+                    });
+                }
+            });
+        }
+
+        // Call fetchMessages every 2 seconds
+        setInterval(fetchMessages, 2000);
+    </script>
+
     <style>
         .chat-container {
             margin-top: 20px;

@@ -139,6 +139,7 @@ Route::group([
 
     Route::get('/chat/{receiverId}', [ChatController::class, 'index'])->name('chat');
     Route::post('/chat/send', [ChatController::class, 'sendMessage'])->name('chat.send');
+    Route::get('/chat/fetch/{receiverId}', [ChatController::class, 'fetchMessages'])->name('chat.fetch');
 });
 
 Route::get('/allshops', [ShopsController::class, 'index'])->name('shops.index');
