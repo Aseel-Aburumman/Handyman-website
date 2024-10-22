@@ -22,7 +22,8 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         
-                        <img src="<?php echo e(url('/user_images/' . $user->image)); ?>" alt="Profile" class="img-thumbnail">
+                        <img src="<?php echo e(asset('storage/profile_images/' . $user->image)); ?>" alt="Profile"
+                            class="img-thumbnail">
 
 
                         
