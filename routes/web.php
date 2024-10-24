@@ -84,6 +84,7 @@ Route::group([
 
 
     Route::get('/storeowner/dashboard', [StoreOwnerController::class, 'dashboard'])->name('storeowner.dashboard')->middleware('role:3');
+    Route::post('/storeowner/dashboard', [StoreOwnerController::class, 'dashboard'])->name('storeowner.dashboard.update')->middleware('role:3');
     Route::get('/storeowner/home', [StoreOwnerController::class, 'index'])->name('storeowner.Home')->middleware('role:3');
 
     Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard')->middleware('role:2');

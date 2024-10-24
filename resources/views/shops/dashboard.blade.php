@@ -46,10 +46,10 @@
                 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="profile-edit-wrapper">
                         <h2>Edit Profile</h2>
-                        <form action="{{ route('customer.dashboard.update') }}" method="POST" enctype="multipart/form-data"
-                            class="d-flex profile-edit-form">
+                        <form action="{{ route('storeowner.dashboard.update') }}" method="POST" enctype="multipart/form-data"
+                            class="profile-edit-form">
                             @csrf
-                            @method('POST')
+                            {{--  @method('POST')  --}}
 
                             <!-- Profile Image -->
                             <div class="profile-image-wrapper">
@@ -67,54 +67,134 @@
                             </div>
 
                             <!-- Name -->
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control"
-                                    value="{{ $user->name }}" required>
+                            <div class="d-flex justify-content-between">
+
+                                <div style="margin-right:5px;" class="mr-2 w-50 form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="name" class="form-control"
+                                        value="{{ $user->name }}" required>
+                                </div>
+
+                                <!-- Email -->
+                                <div style="margin-left:5px;" class=" w-50 form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control"
+                                        value="{{ $user->email }}" required>
+                                </div>
                             </div>
 
-                            <!-- Email -->
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" class="form-control"
-                                    value="{{ $user->email }}" required>
-                            </div>
 
-                            <div class="d-flex ">
+                            <div class="d-flex justify-content-between">
                                 <!-- Phone -->
-                                <div class="form-group">
+                                <div style="margin-right:5px;" class="mr-2 w-50 form-group">
                                     <label for="phone">Phone</label>
                                     <input type="text" name="phone" id="phone" class="form-control"
-                                        value="{{ $user->delivery_info->phone ?? 'Unknown ' }}" required>
+                                        value="{{ $user->delivery_info->phone ?? ' ' }}" required>
                                 </div>
                                 <!-- building_no -->
-                                <div class="form-group">
+                                <div style="margin-left:5px;" class=" w-50 form-group">
                                     <label for="building_no">Building no</label>
-                                    <input type="text" name="building_no" id="building_no" class="form-control"
-                                        value="{{ $user->delivery_info->building_no ?? 'Unknown ' }}" required>
+                                    <input type="text" name="building_no" id="building_no" class="ml-2 form-control"
+                                        value="{{ $user->delivery_info->building_no ?? ' ' }}" required>
                                 </div>
                             </div>
 
-                            <!-- City -->
-                            <div class="d-flex ">
-                                <div class="form-group">
+                            <div class="d-flex">
+
+                                <!-- City -->
+                                <div style="margin-right:5px;" class="w-50 form-group">
                                     <label for="city">City</label>
                                     <input type="text" name="city" id="city" class="form-control"
-                                        value="{{ $user->delivery_info->city ?? 'Unknown ' }}" required>
+                                        value="{{ $user->delivery_info->city ?? ' ' }}" required>
                                 </div>
+
                                 <!-- Location -->
-                                <div class="form-group">
+                                <div style="margin-left:5px;" class="w-50 form-group">
                                     <label for="location">Location</label>
                                     <input type="text" name="location" id="location" class="form-control"
-                                        value="{{ $user->delivery_info->location ?? 'Unknown ' }}" required>
+                                        value="{{ $user->delivery_info->location ?? ' ' }}" required>
                                 </div>
                             </div>
 
+
+                            <h6 class="mb-0">Store Detail Profile</h6>
+                            <hr>
+                            <div class="d-flex">
+
+                                <!-- store_name -->
+                                <div style="margin-right:5px;" class="w-50 form-group">
+                                    <label for="store_name">Store Name (En)</label>
+                                    <input type="text" name="store_name" id="store_name" class="form-control"
+                                        value="{{ $storeowner->store_name ?? '0 ' }}" required>
+                                </div>
+
+                                <!-- store_name_ar -->
+                                <div style="margin-left:5px;" class="w-50 form-group">
+                                    <label for="store_name_ar">Store Name (Ar)</label>
+                                    <input type="text" name="store_name_ar" id="store_name_ar" class="form-control"
+                                        value="{{ $storeowner->store_name_ar ?? ' ' }}" required>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+
+                                <!-- contact_number -->
+                                <div style="margin-right:5px;" class="w-50 form-group">
+                                    <label for="contact_number">Contact Number</label>
+                                    <input type="text" name="contact_number" id="contact_number" class="form-control"
+                                        value="{{ $storeowner->contact_number ?? '0 ' }}" required>
+                                </div>
+
+                                <!-- location -->
+                                <div style="margin-left:5px;" class="w-50 form-group">
+                                    <label for="location_sotre">Store Location</label>
+                                    <input type="text" name="location_sotre" id="location_sotre" class="form-control"
+                                        value="{{ $store->location ?? ' ' }}" required>
+                                </div>
+                            </div>
+
+<div class="d-flex">
+
+                                <!-- address_ar -->
+                                <div style="margin-right:5px;" class="w-50 form-group">
+                                    <label for="address_ar">Address (Ar)</label>
+                                    <input type="text" name="address_ar" id="address_ar" class="form-control"
+                                        value="{{ $storeowner->address_ar ?? '0 ' }}" required>
+                                </div>
+
+                                <!-- address -->
+                                <div style="margin-left:5px;" class="w-50 form-group">
+                                    <label for="address">Address (En)</label>
+                                    <input type="text" name="address" id="address" class="form-control"
+                                        value="{{ $storeowner->address ?? ' ' }}" required>
+                                </div>
+                            </div>
+
+
+                            <!-- description -->
+                            <div class="form-group mb-0">
+                                    <label for="description">Description (En)</label>
+                                    <input type="text" name="description" id="description" class="form-control"
+                                        value="{{ $store->description ?? ' ' }}" required>
+                            </div>
+                            <!-- description ar -->
+                            <div class="form-group">
+                                    <label for="description_ar">Description (Ar)</label>
+                                    <input type="text" name="description_ar" id="description_ar" class="form-control"
+                                        value="{{ $store->description_ar ?? ' ' }}" required>
+                            </div>
+
+
+
                             <button type="submit" class="th-btn">Save Changes</button>
+
+                            {{--  <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
+                                class="mt-3 th-btn">View As
+                                Client</a>  --}}
+
                         </form>
                     </div>
                 </div>
-
                 <!-- orders Details Tab -->
                 <div class="tab-pane fade show " id="orders" role="tabpanel" aria-labelledby="orders-tab">
                     {{--  <div class="profile-edit-wrapper">  --}}

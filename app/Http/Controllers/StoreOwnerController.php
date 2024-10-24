@@ -6,11 +6,11 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use Carbon\Carbon;
 use App\Models\Category;
+use App\Models\Store;
 use App\Models\Gig;
 use App\Models\User;
 use App\Models\DeliveryInfo;
- 
-
+use App\Models\StoreOwner;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -96,6 +96,11 @@ class StoreOwnerController extends Controller
             ->get()
             ->groupBy('sale_date'); // Group by the sale date
 
+        $storeowner = StoreOwner::where('user_id', $userId)->first();
+        $store = Store::where('store_owner_id', $storeowner->id)->first();
+
+// dd($storeowner);
+
         if ($request->isMethod('post')) {
             // Validate the form data
             $request->validate([
@@ -107,6 +112,16 @@ class StoreOwnerController extends Controller
 
                 'location' => 'required|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image upload
+                'store_name' => 'required|string|max:255',
+                'store_name_ar' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'address_ar' => 'required|string|max:255',
+                'contact_number' => 'required|string|max:255',
+                'location_sotre' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
+                'description_ar' => 'required|string|max:255',
+
+                // 'certificate_id' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image upload
             ]);
             // dd($request);
             // Update user information
@@ -119,10 +134,24 @@ class StoreOwnerController extends Controller
             }
 
             $delivery->building_no = $request->building_no;
-
             $delivery->phone = $request->phone;
             $delivery->city = $request->city;
             $delivery->location = $request->location;
+
+            $storeowner->store_name = $request->store_name;
+            $storeowner->store_name_ar = $request->store_name_ar;
+            $storeowner->address = $request->address;
+            $storeowner->address_ar = $request->address_ar;
+            $storeowner->contact_number = $request->contact_number;
+
+            $store->name = $request->store_name;
+            $store->name_ar = $request->store_name_ar;
+            $store->location = $request->location_sotre;
+            $store->description = $request->description;
+            $store->description_ar = $request->description_ar;
+
+
+
 
             // Handle profile picture upload
             if ($request->hasFile('image')) {
@@ -143,6 +172,6 @@ class StoreOwnerController extends Controller
             $delivery->save();
             return redirect()->route('storeowner.dashboard')->with('status', 'Profile updated successfully!');
         }
-        return view('shops.dashboard', compact('categories', 'gigs', 'user', 'sales', 'firstgigs'));
+        return view('shops.dashboard', compact('categories', 'gigs', 'user', 'sales', 'firstgigs', 'storeowner', 'store'));
     }
 }
