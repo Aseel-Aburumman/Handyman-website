@@ -209,7 +209,7 @@
                                         <h3 class="box-title"><a href="service-details.html"><?php echo e($service->name); ?></a>
                                         </h3>
                                         <p class="box-text"><?php echo e($service->description); ?></p>
-                                        <a href="javascript:void(0);" class="th-btn btn-sm">Read More<i
+                                        <a href="javascript:void(0);" class="th-btn btn-sm">Book Now<i
                                                 class="far fa-arrow-right ms-2"></i></a>
 
                                         

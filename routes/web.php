@@ -85,6 +85,12 @@ Route::group([
 
     Route::get('/storeowner/dashboard', [StoreOwnerController::class, 'dashboard'])->name('storeowner.dashboard')->middleware('role:3');
     Route::post('/storeowner/dashboard', [StoreOwnerController::class, 'dashboard'])->name('storeowner.dashboard.update')->middleware('role:3');
+    Route::post('/storeowner/products', [StoreOwnerController::class, 'storeProduct'])->name('storeowner.products.store')->middleware('role:3');
+    Route::delete('/storeowner/products/{id}', [StoreOwnerController::class, 'destroyProduct'])->name('storeowner.products.destroy')->middleware('role:3');
+    Route::get('/storeowner/products/{id}/edit', [StoreOwnerController::class, 'editProduct'])->name('storeowner.products.edit')->middleware('role:3');
+    Route::post('/storeowner/products/{id}', [StoreOwnerController::class, 'updateProduct'])->name('storeowner.products.update')->middleware('role:3');
+    Route::post('/storeowner/sale/{saleId}/update', [StoreOwnerController::class, 'updateSaleStatus'])->name('storeowner.sale.update')->middleware('role:3');
+
     Route::get('/storeowner/home', [StoreOwnerController::class, 'index'])->name('storeowner.Home')->middleware('role:3');
 
     Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard')->middleware('role:2');

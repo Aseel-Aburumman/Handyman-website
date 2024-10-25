@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
@@ -21,16 +19,20 @@
                         role="tab" aria-controls="description" aria-selected="true">Account Detail</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link th-btn" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                        aria-controls="reviews" aria-selected="false">My Task</a>
+                    <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
+                        aria-controls="orders" aria-selected="false">orders</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
-                        aria-controls="orders" aria-selected="false">My Orders</a>
+                    <a class="nav-link th-btn" id="products-tab" data-bs-toggle="tab" href="#products" role="tab"
+                        aria-controls="products" aria-selected="false">My products</a>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    
+                    <form class="" action="<?php echo e(route('chat', ['receiverId' => $admin])); ?>"
+                        method="GET">
+                        <?php echo csrf_field(); ?>
+                        <button type="submit" class="nav-link th-btn ">Chat Center</button>
+                    </form>
                     
                 </li>
             </ul>
@@ -40,10 +42,9 @@
                 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="profile-edit-wrapper">
                         <h2>Edit Profile</h2>
-                        <form action="<?php echo e(route('storeowner.dashboard.update')); ?>" method="POST" enctype="multipart/form-data"
-                            class="profile-edit-form">
+                        <form action="<?php echo e(route('storeowner.dashboard.update')); ?>" method="POST"
+                            enctype="multipart/form-data" class="profile-edit-form">
                             <?php echo csrf_field(); ?>
-                            
 
                             <!-- Profile Image -->
                             <div class="profile-image-wrapper">
@@ -147,7 +148,7 @@
                                 </div>
                             </div>
 
-<div class="d-flex">
+                            <div class="d-flex">
 
                                 <!-- address_ar -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
@@ -167,20 +168,17 @@
 
                             <!-- description -->
                             <div class="form-group mb-0">
-                                    <label for="description">Description (En)</label>
-                                    <input type="text" name="description" id="description" class="form-control"
-                                        value="<?php echo e($store->description ?? ' '); ?>" required>
+                                <label for="description">Description (En)</label>
+                                <input type="text" name="description" id="description" class="form-control"
+                                    value="<?php echo e($store->description ?? ' '); ?>" required>
                             </div>
                             <!-- description ar -->
                             <div class="form-group">
-                                    <label for="description_ar">Description (Ar)</label>
-                                    <input type="text" name="description_ar" id="description_ar" class="form-control"
-                                        value="<?php echo e($store->description_ar ?? ' '); ?>" required>
+                                <label for="description_ar">Description (Ar)</label>
+                                <input type="text" name="description_ar" id="description_ar" class="form-control"
+                                    value="<?php echo e($store->description_ar ?? ' '); ?>" required>
                             </div>
 
-                            
-                            <!-- store_location -->
-                            
 
 
                             <button type="submit" class="th-btn">Save Changes</button>
@@ -190,154 +188,391 @@
                         </form>
                     </div>
                 </div>
-                <!-- orders Details Tab -->
-                <div class="tab-pane fade show " id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                <!-- products Details Tab -->
+                <div class="tab-pane fade show " id="products" role="tabpanel" aria-labelledby="products-tab">
                     
-                    <h1>Your Sales Records</h1>
-                    <?php if($sales->isEmpty()): ?>
-                        <p>No sales records found.</p>
-                    <?php else: ?>
-                        <?php $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $saleDate => $saleGroup): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php
-                                // Calculate the total amount for all items in this group (all items in the card)
-                                $groupTotal = $saleGroup->sum('total_amount');
-                                // Get the store name from the first sale in the group (assuming all have the same store)
-                                $storeName = $saleGroup->first()->store->name;
-                            ?>
+                    <!-- Products Tab -->
+                    <div class="tab-pane fade show active" id="products" role="tabpanel"
+                        aria-labelledby="products-tab">
+                        <h2>Manage Products</h2>
 
-                            <!-- Card -->
-                            <div class="card mb-4 shadow-sm">
-                                <div class="d-flex justify-content-between card-header">
-                                    <h4 class="my-0 font-weight-normal">
-                                        Order from <?php echo e($storeName); ?> on
-                                        <?php echo e(\Carbon\Carbon::parse($saleDate)->format('F j, Y g:i A')); ?>
+                        <!-- Add New Product Button -->
+                        <button id="toggleAddProductForm" class="btn btn-primary mb-4">Add New Product</button>
 
-                                    </h4>
-                                    <span class="custom-total">
-                                        Total: JD <?php echo e(number_format($groupTotal, 2)); ?>
+                        <!-- Add Product Form -->
+                        <div id="addProductForm" style="display: none;" class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Add New Product</h5>
+                                <form action="<?php echo e(route('storeowner.products.store')); ?>" method="POST"
+                                    enctype="multipart/form-data">
+                                    <?php echo csrf_field(); ?>
+                                    <div class="form-group">
+                                        <label for="name">Product Name (En)</label>
+                                        <input type="text" name="name" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name_ar">Product Name (Ar)</label>
+                                        <input type="text" name="name_ar" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description (En)</label>
+                                        <textarea name="description" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description_ar">Description (Ar)</label>
+                                        <textarea name="description_ar" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input type="number" name="price" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stock_quantity">Stock Quantity</label>
+                                        <input type="number" name="stock_quantity" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="image">Product Image</label>
+                                        <input type="file" name="image" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Add Product</button>
+                                </form>
+                            </div>
+                        </div>
 
-                                    </span>
+                        <!-- Product List -->
+                        <h5 class="mb-3">My Products</h5>
+                        <table class="  table table-bordered table-wrapper">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <!-- Display Product Image -->
+                                        <td data-label="Image">
+
+                                            <?php if($product->image): ?>
+                                                <img src="<?php echo e(asset('storage/product_images/' . $product->image->name)); ?>"
+                                                    alt="Product Image" width="80" height="80">
+                                            <?php else: ?>
+                                                <span>No Image</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td data-label="Name"><?php echo e($product->name); ?> / <?php echo e($product->name_ar); ?></td>
+                                        <td data-label="Description" style="width:300px"><?php echo e($product->description); ?> /
+                                            <?php echo e($product->description_ar); ?></td>
+                                        <td data-label="Price"><?php echo e($product->price); ?></td>
+                                        <td data-label="Stock quantity"><?php echo e($product->stock_quantity); ?></td>
+                                        <td data-label="Action">
+                                            <!-- Edit Button -->
+                                            <button class="btn btn-info"
+                                                onclick="editProduct(<?php echo e($product->id); ?>)">Edit</button>
+
+                                            <!-- Delete Form -->
+                                            <form action="<?php echo e(route('storeowner.products.destroy', $product->id)); ?>"
+                                                method="POST" style="display:inline-block;">
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </tbody>
+                        </table>
+
+                        <!-- Pagination Links -->
+                        <div class="d-flex justify-content-center">
+                            <?php echo e($products->links()); ?>
+
+                        </div>
+                    </div>
+
+                    <!-- Edit Product Modal -->
+                    <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog"
+                        aria-labelledby="editProductModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <?php $__currentLoopData = $saleGroup; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <li
-                                                class="p-0 mt-1   list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <!-- Compact product details -->
-                                                    <strong>Product:</strong> <?php echo e($sale->product->name); ?>
-
-                                                    <span class="text-muted">(ID: <?php echo e($sale->product_id); ?>)</span> -
-                                                    <strong>Quantity:</strong> <?php echo e($sale->quantity_sold); ?> -
-                                                    <strong>Total:</strong> JD <?php echo e(number_format($sale->total_amount, 2)); ?>
-
-                                                </div>
-                                                <div class="custom-status">
-                                                    <?php if($sale->status_id == 16): ?>
-                                                        <button
-                                                            class="statusBtn1 custom-btn-info"><?php echo e($sale->status->name); ?></button>
-                                                    <?php elseif($sale->status_id == 17): ?>
-                                                        <button
-                                                            class="statusBtn1 custom-btn-primary"><?php echo e($sale->status->name); ?></button>
-                                                    <?php elseif($sale->status_id == 18): ?>
-                                                        <button
-                                                            class="statusBtn1 custom-btn-success"><?php echo e($sale->status->name); ?></button>
-                                                    <?php elseif($sale->status_id == 19): ?>
-                                                        <button
-                                                            class="statusBtn1 custom-btn-danger"><?php echo e($sale->status->name); ?></button>
-                                                    <?php endif; ?>
-
-                                                </div>
-                                            </li>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </ul>
+                                <div class="modal-body">
+                                    <form id="editProductForm" action="" method="POST"
+                                        enctype="multipart/form-data">
+                                        <?php echo csrf_field(); ?>
+                                        <input type="hidden" name="_method" value="POST">
+                                        <div class="form-group">
+                                            <label for="editName">Product Name (En)</label>
+                                            <input type="text" name="name" id="editName" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editNameAr">Product Name (Ar)</label>
+                                            <input type="text" name="name_ar" id="editNameAr" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editDescription">Description (En)</label>
+                                            <textarea name="description" id="editDescription" class="form-control" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editDescriptionAr">Description (Ar)</label>
+                                            <textarea name="description_ar" id="editDescriptionAr" class="form-control" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPrice">Price</label>
+                                            <input type="number" name="price" id="editPrice" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editStockQuantity">Stock Quantity</label>
+                                            <input type="number" name="stock_quantity" id="editStockQuantity"
+                                                class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editImage">Product Image</label>
+                                            <input type="file" name="image" id="editImage" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Update Product</button>
+                                    </form>
                                 </div>
                             </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endif; ?>
-                    
+                        </div>
+                    </div>
+
+
+
+                    <!-- JavaScript to Toggle the Form -->
+                    <script>
+                        document.getElementById('toggleAddProductForm').addEventListener('click', function() {
+                            var form = document.getElementById('addProductForm');
+                            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                        });
+
+                        function editProduct(productId) {
+                            // Fetch the product data using AJAX
+                            fetch(`/storeowner/products/${productId}/edit`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Fill in the form fields with the product data
+                                    document.getElementById('editName').value = data.name;
+                                    document.getElementById('editNameAr').value = data.name_ar;
+                                    document.getElementById('editDescription').value = data.description;
+                                    document.getElementById('editDescriptionAr').value = data.description_ar;
+                                    document.getElementById('editPrice').value = data.price;
+                                    document.getElementById('editStockQuantity').value = data.stock_quantity;
+
+                                    // Set the action of the form to the update route
+                                    document.getElementById('editProductForm').action = `/storeowner/products/${productId}`;
+
+                                    // Show the modal
+                                    $('#editProductModal').modal('show');
+                                })
+                                .catch(error => console.error('Error fetching product data:', error));
+                        }
+                    </script>
                 </div>
 
-                <!-- My Tasks Tab -->
-                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                    <div class="woocommerce-Reviews">
-                        <?php $__currentLoopData = $gigs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="gig-card">
-                                <div class="gig-card-content">
-                                    <!-- Left Side: Gig Details -->
-                                    <div class="gig-details">
-                                        <h3>Task Details
-                                            <?php if($gig->status_id == 7): ?>
-                                                <button class="statusBtn btn  btn-info"><?php echo e($gig->status->name); ?></button>
-                                            <?php elseif($gig->status_id == 8): ?>
-                                                <button
-                                                    class="statusBtn btn  btn-primary"><?php echo e($gig->status->name); ?></button>
-                                            <?php elseif($gig->status_id == 9): ?>
-                                                <button
-                                                    class="statusBtn btn btn-success"><?php echo e($gig->status->name); ?></button>
-                                            <?php elseif($gig->status_id == 10): ?>
-                                                <button class="statusBtn btn btn-danger"><?php echo e($gig->status->name); ?></button>
-                                            <?php elseif($gig->status_id == 11): ?>
-                                                <button
-                                                    class="statusBtn btn btn-warning"><?php echo e($gig->status->name); ?></button>
-                                            <?php elseif($gig->status_id == 28): ?>
-                                                <button
-                                                    class="statusBtn btn btn-warning"><?php echo e($gig->status->name); ?></button>
-                                            <?php endif; ?>
-                                        </h3>
+                <!-- order Tab -->
+                <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                    
+                    <div class="tab-content" id="productTabContent">
+                        <!-- Orders Tab -->
+                        <div class="tab-pane fade show active" id="orders" role="tabpanel"
+                            aria-labelledby="orders-tab">
+                            <h2>Sales Orders</h2>
+                            <?php $__empty_1 = true; $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $groupKey => $saleGroup): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <?php
+                                    [$saleDate, $userId] = explode('-', $groupKey);
+                                    $totalAmount = $saleGroup->sum('total_amount'); // Sum total amounts for the group
+                                    $user = $saleGroup->first()->user; // Get the user for this sale group
+                                ?>
+                                <!-- Card for each sale group -->
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <h4 class="my-0 font-weight-normal">
+                                            Order from <?php echo e($user->name); ?> on
+                                            <?php echo e(\Carbon\Carbon::parse($saleDate)->format('F j, Y g:i A')); ?>
 
-                                        <h2 class="gig-title"><?php echo e($gig->title); ?></h2>
-                                        <p class="gig-description">
-                                            <?php echo e(\Illuminate\Support\Str::limit($gig->description, 150)); ?></p>
-                                        <p class="gig-location"><i class="fas fa-map-marker-alt"></i>
-                                            <?php echo e($gig->location); ?></p>
-                                        <p class="gig-time"><i class="far fa-calendar-alt"></i>
-                                            <?php echo e($gig->task_date); ?> <?php echo e($gig->task_time); ?></p>
-                                        <?php if($gig->handyman): ?>
-                                            <p class="gig-total">Total: JD <?php echo e($gig->total); ?></p>
-                                        <?php else: ?>
-                                            <p class="gig-total">Estimated Total: JD <?php echo e($gig->total); ?></p>
-                                        <?php endif; ?>
+                                        </h4>
+                                        <span class="custom-total">
+                                            Total: JD <?php echo e(number_format($totalAmount, 2)); ?>
+
+                                        </span>
                                     </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <?php $__currentLoopData = $saleGroup; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <!-- Compact product details -->
+                                                        <strong>Product:</strong> <?php echo e($sale->product->name); ?>
 
-                                    <!-- Right Side: Freelancer Info -->
-                                    <div class="freelancer-info">
-                                        <h3>Awarded Handyman</h3>
-                                        <?php if($gig->handyman): ?>
-                                            <div class="freelancer-img">
-                                                <?php if($gig->handyman && $gig->handyman->user->image): ?>
-                                                    <img src="<?php echo e(asset('storage/profile_images/' . $gig->handyman->user->image)); ?>"
-                                                        alt="<?php echo e($gig->handyman->name); ?> Picture">
-                                                <?php else: ?>
-                                                    <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>"
-                                                        alt="Freelancer Picture">
-                                                <?php endif; ?>
-                                            </div>
-                                            <h3 class="freelancer-name">
-                                                <?php echo e($gig->handyman->user->name ?? 'Unknown Handyman'); ?></h3>
-                                            <p class="gig-price">Price: JD <?php echo e($gig->price); ?>/ per hour</p>
-                                            <p class="gig-price"><a
-                                                    href="<?php echo e(route('assigned.task', ['gigId' => $gig->id])); ?>">Veiw Task
-                                                    Detail</a></p>
-                                        <?php else: ?>
-                                            <div>
-                                                No awarded handyman yet, check out your task proposals.
-                                            </div>
+                                                        <span class="text-muted">(ID: <?php echo e($sale->product_id); ?>)</span> -
+                                                        <strong>Quantity:</strong> <?php echo e($sale->quantity_sold); ?> -
+                                                        <strong>Total:</strong> JD
+                                                        <?php echo e(number_format($sale->total_amount, 2)); ?>
 
-                                            <p class="gig-price"><a
-                                                    href="<?php echo e(route('Onegig', ['gigId' => $gig->id])); ?>">View The Task
-                                                    Proposals</a></p>
-                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="d-flex ">
+                                                        <div style="margin-right:10px;" class="mr-3 custom-status">
+                                                            <strong>Status:</strong>
+                                                            <?php if($sale->status_id == 16): ?>
+                                                                <button
+                                                                    class="mr-3 statusBtn1 custom-btn-info"><?php echo e($sale->status->name); ?></button>
+                                                            <?php elseif($sale->status_id == 17): ?>
+                                                                <button
+                                                                    class="mr-3 statusBtn1 custom-btn-primary"><?php echo e($sale->status->name); ?></button>
+                                                            <?php elseif($sale->status_id == 18): ?>
+                                                                <button
+                                                                    class="mr-3 statusBtn1 custom-btn-success"><?php echo e($sale->status->name); ?></button>
+                                                            <?php elseif($sale->status_id == 19): ?>
+                                                                <button
+                                                                    class="mr-3 statusBtn1 custom-btn-danger"><?php echo e($sale->status->name); ?></button>
+                                                            <?php endif; ?>
+                                                            
+                                                        </div>
+                                                        <!-- Action Buttons based on status -->
+                                                        <div>
+                                                            <?php if($sale->status_id == 16): ?>
+                                                                <!-- Pending Confirmation: Show Confirm and Cancel Buttons -->
+                                                                <form
+                                                                    action="<?php echo e(route('storeowner.sale.update', $sale->id)); ?>"
+                                                                    method="POST" class="d-inline-block">
+                                                                    <?php echo csrf_field(); ?>
+                                                                    <?php echo method_field('POST'); ?>
+                                                                    <input type="hidden" name="status_id"
+                                                                        value="17"> <!-- Confirm -->
+                                                                    <button type="submit"
+                                                                        class="btn btn-success">Confirm</button>
+                                                                </form>
+                                                                <form
+                                                                    action="<?php echo e(route('storeowner.sale.update', $sale->id)); ?>"
+                                                                    method="POST" class="d-inline-block">
+                                                                    <?php echo csrf_field(); ?>
+                                                                    <?php echo method_field('POST'); ?>
+                                                                    <input type="hidden" name="status_id"
+                                                                        value="19"> <!-- Cancel -->
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Cancel</button>
+                                                                </form>
+                                                            <?php elseif($sale->status_id == 17): ?>
+                                                                <!-- Approved: Show Delivered and Cancel Buttons -->
+                                                                <form
+                                                                    action="<?php echo e(route('storeowner.sale.update', $sale->id)); ?>"
+                                                                    method="POST" class="d-inline-block">
+                                                                    <?php echo csrf_field(); ?>
+                                                                    <?php echo method_field('POST'); ?>
+                                                                    <input type="hidden" name="status_id"
+                                                                        value="18"> <!-- Delivered -->
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Delivered</button>
+                                                                </form>
+                                                                <form
+                                                                    action="<?php echo e(route('storeowner.sale.update', $sale->id)); ?>"
+                                                                    method="POST" class="d-inline-block">
+                                                                    <?php echo csrf_field(); ?>
+                                                                    <?php echo method_field('POST'); ?>
+                                                                    <input type="hidden" name="status_id"
+                                                                        value="19"> <!-- Cancel -->
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Cancel</button>
+                                                                </form>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <p>No sales records found.</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
 
 
             </div>
         </div>
+        <style>
+            /* Basic table styling */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            /* Responsive table */
+            .table-wrapper {
+                background-color: #f9f9f9;
+                overflow-x: auto;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                /* Enable horizontal scrolling on small screens */
+            }
+
+            @media (max-width: 768px) {
+
+                table,
+                thead,
+                tbody,
+                th,
+                td,
+                tr {
+                    display: block;
+                    max-width: 100%;
+                    /* Adjust as needed */
+                    overflow-wrap: break-word;
+                }
+
+                thead tr {
+                    display: none;
+                    /* Hide the header on small screens */
+                }
+
+                tr {
+                    margin-bottom: 10px;
+                    border-bottom: 2px solid #ddd;
+                    word-wrap: break-word;
+                    white-space: normal;
+                }
+
+                td {
+                    text-align: right;
+                    padding-left: 50%;
+                    position: relative;
+                }
+
+                td::before {
+                    content: attr(data-label);
+                    /* Add a label for each data cell */
+                    position: absolute;
+                    left: 10px;
+                    width: calc(50% - 20px);
+                    text-align: left;
+                    font-weight: bold;
+                }
+            }
+        </style>
     </section>
 <?php $__env->stopSection(); ?>
 

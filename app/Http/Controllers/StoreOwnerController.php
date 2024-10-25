@@ -7,14 +7,16 @@ use App\Models\Sale;
 use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\Store;
-use App\Models\Gig;
+use App\Models\Product;
 use App\Models\User;
 use App\Models\DeliveryInfo;
+use App\Models\Image;
+
 use App\Models\StoreOwner;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
- use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 class StoreOwnerController extends Controller
 {
@@ -80,26 +82,31 @@ class StoreOwnerController extends Controller
         ));
     }
 
-    public function dashboard(Request $request){
+    public function dashboard(Request $request)
+    {
         $userId = Auth::id();
         $user = User::with('delivery_info')->find($userId); // Get the currently authenticated user
         $user = User::with('delivery_info')->where('id', $userId)->first(); // Get the authenticated user with delivery_info
         $delivery = DeliveryInfo::where('id', $userId)->first();
         $categories = Category::with('services')->get(); // Assuming you have a relationship set up
-        $gigs = Gig::where('user_id', $userId)->with('handyman', 'status')->get();
-        $firstgigs = Gig::where('user_id', $userId)->first();
-        // dd($firstgigs->handyman->user->id);
-        // Fetch sales data for the user, grouped by sale_date
-        $sales = Sale::where('user_id', $userId)
-            ->with(['store', 'product', 'status']) // Load related store, product, and status
-            ->orderBy('sale_date', 'desc')
-            ->get()
-            ->groupBy('sale_date'); // Group by the sale date
+
+        $admin = User::where('id', 1)->first();
 
         $storeowner = StoreOwner::where('user_id', $userId)->first();
         $store = Store::where('store_owner_id', $storeowner->id)->first();
+        $products = Product::where('store_id', $store->id)
+            ->with('image')
+            ->paginate(12); // 12 products per page
+        // dd($storeowner);
+        // Fetch sales for the store, grouped by sale date and user
+        $sales = Sale::where('store_id', $store->id)
+            ->with(['product', 'user', 'status']) // Fetch related product, user, and status
+            ->orderBy('sale_date', 'desc')
+            ->get()
+            ->groupBy(function ($sale) {
+                return $sale->sale_date . '-' . $sale->user_id; // Group by both sale date and user
+            });
 
-// dd($storeowner);
 
         if ($request->isMethod('post')) {
             // Validate the form data
@@ -172,6 +179,135 @@ class StoreOwnerController extends Controller
             $delivery->save();
             return redirect()->route('storeowner.dashboard')->with('status', 'Profile updated successfully!');
         }
-        return view('shops.dashboard', compact('categories', 'gigs', 'user', 'sales', 'firstgigs', 'storeowner', 'store'));
+        return view('shops.dashboard', compact('admin', 'categories', 'user',  'storeowner', 'store', 'products', 'sales'));
+    }
+
+    public function updateSaleStatus(Request $request, $saleId)
+    {
+        $sale = Sale::findOrFail($saleId);
+
+        // Update the status based on the request
+        $sale->status_id = $request->status_id;
+        $sale->save();
+
+        return redirect()->back()->with('status', 'Sale status updated successfully!');
+    }
+
+    public function storeProduct(Request $request)
+    {
+        $userId = Auth::id();
+        $storeowner = StoreOwner::where('user_id', $userId)->first();
+        $store = Store::where('store_owner_id', $storeowner->id)->first();
+
+        // Validation
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'name_ar' => 'required|string|max:255',
+            'description' => 'required|string',
+            'description_ar' => 'required|string',
+            'price' => 'required|numeric',
+            'stock_quantity' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
+        ]);
+
+        // Create a new product
+        $product = Product::create([
+            'store_id' => $store->id,
+            'name' => $request->name,
+            'name_ar' => $request->name_ar,
+            'description' => $request->description,
+            'description_ar' => $request->description_ar,
+            'price' => $request->price,
+            'stock_quantity' => $request->stock_quantity,
+            'rating' => 0,
+
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/products', $imageName);
+
+            // Save image in the `images` table
+            Image::create([
+                'product_id' => $product->id,
+                'name' => $imageName,
+            ]);
+        }
+
+        return redirect()->route('storeowner.dashboard')->with('status', 'Product added successfully!');
+    }
+
+    // Delete a product
+    public function destroyProduct($id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Delete associated image
+        if ($product->image) {
+            Storage::delete('public/products/' . $product->image->name);
+            $product->image->delete();
+        }
+
+        $product->delete();
+
+        return redirect()->route('storeowner.dashboard')->with('status', 'Product deleted successfully!');
+    }
+
+
+    public function editProduct($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return response()->json($product);
+    }
+
+    // Update an existing product (Edit)
+    public function updateProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Validation
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'name_ar' => 'required|string|max:255',
+            'description' => 'required|string',
+            'description_ar' => 'required|string',
+            'price' => 'required|numeric',
+            'stock_quantity' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
+        ]);
+
+        // Update product details
+        $product->update([
+            'name' => $request->name,
+            'name_ar' => $request->name_ar,
+            'description' => $request->description,
+            'description_ar' => $request->description_ar,
+            'price' => $request->price,
+            'stock_quantity' => $request->stock_quantity,
+
+        ]);
+
+        // Handle image upload (optional)
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($product->image) {
+                Storage::delete('public/product_images/' . $product->image->name);
+                $product->image->delete();
+            }
+
+            // Store new image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/product_images', $imageName);
+
+            // Save new image
+            Image::create([
+                'product_id' => $product->id,
+                'name' => $imageName,
+            ]);
+        }
+
+        return redirect()->route('storeowner.dashboard')->with('status', 'Product updated successfully!');
     }
 }
