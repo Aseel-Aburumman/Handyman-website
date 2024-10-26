@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==============================
-                                                                                Breadcumb
-                                                                            ============================== -->
+                                                                                                                            Breadcumb
+                                                                                                                        ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
@@ -48,33 +48,33 @@
                     <!-- Filter Form -->
                     <form class="filter-step2-section" id="filterForm" method="GET"
                         action="{{ route('gig.filterHandymen') }}">
-                        @csrf
 
-                        <!-- Filter Section -->
+                        <!-- Date Filter -->
                         <div class="filter-step2-form-group">
                             <label for="date">Date</label>
                             <div class="filter-step2-date-options">
-                                <button class="filter-step2-date-btn" type="button"
-                                    onclick="applyFilter('today')">Today</button>
-                                <button class="filter-step2-date-btn" type="button"
-                                    onclick="applyFilter('within_3_days')">Within 3 Days</button>
-                                <button class="filter-step2-date-btn" type="button"
-                                    onclick="applyFilter('within_a_week')">Within A Week</button>
 
-                                <!-- Choose Dates Button to open the calendar -->
-                                <button class="filter-step2-date-btn" id="choose_dates_btn" type="button"
-                                    style="position: relative;">Choose Dates</button>
+                                <!-- Date Filter Buttons -->
+                                <button class="filter-step2-date-btn" type="button"
+                                    onclick="setDateFilter('today', this)">Today</button>
+                                <button class="filter-step2-date-btn" type="button"
+                                    onclick="setDateFilter('within_3_days', this)">Within 3 Days</button>
+                                <button class="filter-step2-date-btn" type="button"
+                                    onclick="setDateFilter('within_a_week', this)">Within A Week</button>
 
 
-                                <!-- Hidden input field for the date range -->
+                                <!-- Choose Dates Button -->
+                                <button class="filter-step2-date-btn" id="choose_dates_btn" type="button">Choose
+                                    Dates</button>
+                                <!-- Hidden input for date range -->
                                 <input type="text" id="choose_dates_input" name="choose_dates" class="d-none">
+                                <!-- Hidden input to hold the selected date filter -->
+                                <input type="hidden" name="date_filter" id="date_filter">
                             </div>
                         </div>
 
-                        <hr>
-
                         <!-- Time of Day Filter -->
-                        <div class="filter-step2-form-group">
+                        {{--  <div class="filter-step2-form-group">
                             <label>Time of day</label>
                             <div class="filter-step2-time-options">
                                 <div class="filter-step2-checkbox-group">
@@ -90,17 +90,14 @@
                                     <label for="evening">Evening (5pm - 9:30pm)</label>
                                 </div>
                             </div>
-                        </div>
-
-                        <hr>
-
+                        </div>  --}}
 
                         <!-- Price Filter -->
                         <div class="filter-step2-form-group">
                             <label for="price_range">Price</label>
                             <div class="filter-step2-price-range">
                                 <input type="range" name="price_range" min="5" max="50" step="5"
-                                    class="filter-step2-slider" id="price_range" value="{{ old('price_range', 25) }}"
+                                    id="price_range" value="{{ old('price_range', 25) }}"
                                     oninput="document.getElementById('price_value').textContent = this.value">
                                 <div class="filter-step2-price-values">
                                     <span>JD 5</span>
@@ -108,20 +105,100 @@
                                     <span>JD 50+</span>
                                 </div>
                             </div>
-                            <p class="filter-step2-average-price">The average hourly rate is JD 10/hr</p>
                         </div>
-                        {{--  <form action="{{ route('gig.storeStep2') }}" method="POST">
-                            @csrf
-                            <!-- Skip Button -->
 
-                            <button type="submit" name="skip" value="true" class="skipBtn btn btn-secondary">Skip and
-                                Continue</button>
-                        </form>  --}}
+                        <!-- Rating Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="rating">Rating</label>
+                            <select name="rating" id="rating">
+                                <option value="">Select Rating</option>
+                                <option value="1">1 Star & above</option>
+                                <option value="2">2 Stars & above</option>
+                                <option value="3">3 Stars & above</option>
+                                <option value="4">4 Stars & above</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                        </div>
 
-                        <!-- Hidden input to pass the date filter value -->
-                        <input type="hidden" name="date_filter" id="date_filter">
+                        <!-- Gig Count Filter -->
+                        <div class="filter-step2-form-group">
+                            <label for="gig_count">Number of Gigs Completed</label>
+                            <select name="gig_count" id="gig_count">
+                                <option value="">Select Number of Gigs</option>
+                                <option value="1">1 Gig & above</option>
+                                <option value="5">5 Gigs & above</option>
+                                <option value="10">10 Gigs & above</option>
+                                <option value="20">20 Gigs & above</option>
+                            </select>
+                        </div>
+
+
+
+                        
+
+
+                        <!-- Apply Filters Button -->
+                        <button type="submit" class="mt-2 submitBtnFilter btn btn-primary">Apply Filters</button>
+
+
+                        <a href="{{ route('gig.step2') }}" class="w-100 mt-2 th-btn ">Reset <i
+                                class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
                     </form>
 
+
+
+                    <script>
+                        // Set the value of the hidden date filter input when a button is clicked
+                        {{--  function setDateFilter(filterValue) {
+                            alert('Button clicked with value: ' + filterValue); // Debugging step
+                            document.getElementById('date_filter').value = filterValue;
+                        }  --}}
+
+
+                        function setDateFilter(filterValue, buttonElement) {
+                            // Set the hidden input field value
+                            document.getElementById('date_filter').value = filterValue;
+
+                            // Get all the date buttons
+                            const dateButtons = document.querySelectorAll('.filter-step2-date-btn');
+
+                            // Remove the active class from all date buttons
+                            dateButtons.forEach(function(button) {
+                                button.classList.remove('active-filter-btn');
+                            });
+
+                            // Add the active class to the clicked button
+                            buttonElement.classList.add('active-filter-btn');
+                        }
+                        // Initialize Flatpickr for the 'Choose Dates' input
+                        var datePicker = flatpickr("#choose_dates_input", {
+                            mode: "range",
+                            dateFormat: "Y-m-d",
+                            minDate: "today",
+                            onChange: function(selectedDates, dateStr) {
+                                document.getElementById('choose_dates_input').classList.remove('d-none');
+                            }
+                        });
+
+                        // Open the Flatpickr when the "Choose Dates" button is clicked
+                        document.getElementById('choose_dates_btn').addEventListener('click', function() {
+                            datePicker.open();
+                        });
+
+                        function toggleSkills() {
+                            var skillsList = document.getElementById('skillsList');
+                            var toggleButton = document.getElementById('toggleSkillsBtn');
+
+                            // Toggle the visibility of the skills list
+                            if (skillsList.style.display === 'none') {
+                                skillsList.style.display = 'block';
+                                toggleButton.textContent = 'Hide Skills'; // Change button text to "Hide"
+                            } else {
+                                skillsList.style.display = 'none';
+                                toggleButton.textContent = 'Show Skills'; // Change button text to "Show"
+                            }
+                        }
+                    </script>
 
 
                     <!-- Handyman List -->
@@ -130,7 +207,8 @@
                             @csrf
                             <!-- Skip Button -->
 
-                            <button type="submit" name="skip" value="true" class="skipBtn btn btn-secondary">Skip and
+                            <button type="submit" name="skip" value="true" class="skipBtn btn btn-secondary">Skip
+                                and
                                 Continue</button>
 
                             <!-- Handymen Loop -->
@@ -230,44 +308,50 @@
         </div>
     </section>
 
-    <script>
-        function applyFilter(filterValue) {
-            document.getElementById('date_filter').value = filterValue;
-            document.getElementById('filterForm').submit();
+    <style>
+        button.filter-step2-date-btn {
+            z-index: 1;
+            /* Bring the button to the top */
+            position: relative;
+            /* Ensure it's positioned correctly */
         }
-        // Initialize Flatpickr on the Choose Dates input
-        var datePicker = flatpickr("#choose_dates_input", {
-            mode: "range", // Allows users to select a range of dates
-            dateFormat: "Y-m-d", // Format the date as year-month-day
-            minDate: "today", // Disable past dates
-            position: "below", // Ensure the date picker appears below the button
-            appendTo: document.getElementById('choose_dates_btn'), // Append the calendar to the button
-            onChange: function(selectedDates, dateStr, instance) {
-                document.getElementById('choose_dates_input').classList.remove('d-none'); // Show the input
-            },
-            onClose: function(filterValue) {
-                document.getElementById('choose_dates_input').classList.add(
-                    'd-none'); // Hide the input after selection
-                document.getElementById('filterForm').submit();
 
-            }
-        });
+        /* Add a class for the active state */
+        .active-filter-btn {
+            background-color: #F37529 !important;
+            /* Change to your desired color */
+            color: white;
+            /* Optional: change text color */
+        }
 
-        // When clicking the Choose Dates button, open the calendar
-        document.getElementById('choose_dates_btn').addEventListener('click', function() {
-            datePicker.open(); // Open the Flatpickr instance
-        });
+        /* Style for the toggle button */
+        #toggleSkillsBtn {
+            margin-bottom: 10px;
+        }
 
+        /* Optionally, add some padding or style for the skill list */
+        #skillsList {
+            padding: 10px;
+            background-color: #f9f9f9;
+            /* Light background color for the skill list */
+            border: 1px solid #ddd;
+            /* Border for the skill list */
+        }
 
-        // Automatically submit the form when a time of day checkbox is checked
-        document.querySelectorAll('input[name="time_of_day[]"]').forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                document.getElementById('filterForm').submit();
-            });
-        });
+        .showSkillBtn {
+            background-color: #F37529 !important;
+            line-height: 10px;
+            margin-left: 10px;
+        }
 
-        document.getElementById('price_range').addEventListener('change', function() {
-            document.getElementById('filterForm').submit(); // Trigger form submission
-        });
-    </script>
+        .submitBtnFilter {
+            border-radius: 25px;
+
+        }
+
+        .th-btn {
+            padding: 15px;
+            font-size: 16px
+        }
+    </style>
 @endsection

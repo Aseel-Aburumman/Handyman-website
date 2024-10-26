@@ -11,6 +11,7 @@ use App\Models\Handyman;
 use App\Models\Notification;
 use App\Models\Skill;
 use App\Models\Certificate;
+use App\Models\SkillCertificate;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -78,30 +79,7 @@ class MasterController extends Controller
         $handymenQuery = Handyman::with('latest_review', 'user')
             ->withCount('reviews', 'gigs');
 
-        // Apply date filters if provided
-        // if ($request->has('date_filter')) {
-        //     $dateFilter = $request->input('date_filter');
 
-        //     switch ($dateFilter) {
-        //         case 'today':
-        //             $handymenQuery->whereDoesntHave('availability', function ($query) {
-        //                 $query->whereDate('start_time', now()->toDateString());
-        //             });
-        //             break;
-
-        //         case 'within_3_days':
-        //             $handymenQuery->whereDoesntHave('availability', function ($query) {
-        //                 $query->whereBetween('start_time', [now(), now()->addDays(3)]);
-        //             });
-        //             break;
-
-        //         case 'within_a_week':
-        //             $handymenQuery->whereDoesntHave('availability', function ($query) {
-        //                 $query->whereBetween('start_time', [now(), now()->addWeek()]);
-        //             });
-        //             break;
-        //     }
-        // }
 
         // Handle Date Filter
         if ($request->has('date_filter')) {

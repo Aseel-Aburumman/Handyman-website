@@ -34,6 +34,11 @@
     <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
+    
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+    
+
     <!--==============================
  Google Fonts
  ============================== -->
@@ -244,6 +249,9 @@
 
     <!-- Main Js File -->
     <script src="<?php echo e(asset('assets/js/main.js')); ?>"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <?php echo $__env->yieldContent('scripts'); ?>
 </body>
 
 </html>

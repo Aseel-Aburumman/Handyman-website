@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Store;
 use App\Models\Service;
 use App\Models\Handyman;
+use App\Models\Skill;
+
 use App\Models\Gig;
 use App\Models\HandymanAvailability;
 use Carbon\Carbon;
@@ -81,81 +83,118 @@ class ServiceController extends Controller
         $service_id = session('service_id'); // Get the service ID from the session
         $service = Service::findOrFail($service_id);
 
-        // Initial query for handymen, with counts for reviews and gigs in category
         $handymenQuery = Handyman::with('latest_review', 'user')
-            ->withCount('reviews', 'gigs')
-            ->withCount(['gigs as gigs_in_category' => function ($query) use ($categoryId) {
-                $query->where('category_id', $categoryId); // Count gigs in the specific category
-            }]);
+            ->withCount('reviews', 'gigs');
 
-        // Apply date filters if provided
+
+
+        // Handle Date Filter
+        // Handle Date and Time Filter
         if ($request->has('date_filter')) {
             $dateFilter = $request->input('date_filter');
 
             switch ($dateFilter) {
                 case 'today':
                     $handymenQuery->whereDoesntHave('availability', function ($query) {
-                        $query->whereDate('start_time', now()->toDateString());
+                        $query->whereDate('start_time', now()->toDateString()) // Match today's date
+                            ->whereTime('start_time', '<=', now()) // Check if handyman is booked for the entire day
+                            ->whereTime('end_time', '>=', now()->endOfDay()); // If availability spans the entire day
                     });
                     break;
 
                 case 'within_3_days':
                     $handymenQuery->whereDoesntHave('availability', function ($query) {
-                        $query->whereBetween('start_time', [now(), now()->addDays(3)]);
+                        $query->whereBetween('start_time', [now(), now()->addDays(3)])
+                            ->whereTime('start_time', '<=', '08:00:00') // Start of the day
+                            ->whereTime('end_time', '>=', '23:59:59'); // End of the day
                     });
                     break;
 
                 case 'within_a_week':
                     $handymenQuery->whereDoesntHave('availability', function ($query) {
-                        $query->whereBetween('start_time', [now(), now()->addWeek()]);
+                        $query->whereBetween('start_time', [now(), now()->addWeek()])
+                            ->whereTime('start_time', '<=', '08:00:00') // Start of the day
+                            ->whereTime('end_time', '>=', '23:59:59'); // End of the day
                     });
                     break;
             }
         }
 
-        // Handle date filtering
+        // Handle custom date range with time
         if ($request->has('choose_dates')) {
-            $dates = explode(' to ', $request->input('choose_dates')); // Get the date range
+            $dates = explode(' to ', $request->input('choose_dates'));
 
             if (count($dates) === 2) {
-                $startDate = $dates[0]; // First selected date
-                $endDate = $dates[1]; // Second selected date
+                $startDate = $dates[0];
+                $endDate = $dates[1];
 
-                // Now filter the handymen based on availability in this date range
                 $handymenQuery->whereDoesntHave('availability', function ($query) use ($startDate, $endDate) {
-                    $query->whereBetween('start_time', [$startDate, $endDate])
-                        ->orWhereBetween('end_time', [$startDate, $endDate]);
+                    $query->where(function ($query) use ($startDate, $endDate) {
+                        $query->whereBetween('start_time', [$startDate, $endDate])
+                            ->whereRaw('TIME(start_time) <= "08:00:00"') // Starting hour of the day
+                            ->whereRaw('TIME(end_time) >= "23:59:59"'); // Ending hour of the day
+                    });
                 });
             }
         }
 
+        // Handle Time of Day filter
+        // if ($request->has('time_of_day')) {
+        //     $timeOfDay = $request->input('time_of_day');
 
-        if ($request->has('time_of_day')) {
-            $timeOfDay = $request->input('time_of_day'); // Get selected time of day values
+        //     $handymenQuery->whereHas('availability', function ($query) use ($timeOfDay) {
+        //         foreach ($timeOfDay as $time) {
+        //             switch ($time) {
+        //                 case 'morning':
+        //                     $query->orWhereBetween('start_time', ['08:00:00', '12:00:00']);
+        //                     break;
+        //                 case 'afternoon':
+        //                     $query->orWhereBetween('start_time', ['12:00:00', '17:00:00']);
+        //                     break;
+        //                 case 'evening':
+        //                     $query->orWhereBetween('start_time', ['17:00:00', '21:30:00']);
+        //                     break;
+        //             }
+        //         }
+        //     });
+        // }
 
-            $handymenQuery->whereHas('availability', function ($query) use ($timeOfDay) {
-                if (in_array('morning', $timeOfDay)) {
-                    $query->orWhereBetween('start_time', ['08:00:00', '12:00:00']);
-                }
-                if (in_array('afternoon', $timeOfDay)) {
-                    $query->orWhereBetween('start_time', ['12:00:00', '17:00:00']);
-                }
-                if (in_array('evening', $timeOfDay)) {
-                    $query->orWhereBetween('start_time', ['17:00:00', '21:30:00']);
-                }
-            });
-        }
         // Handle Price Range filter
         if ($request->has('price_range')) {
             $priceRange = $request->input('price_range');
             $handymenQuery->where('price_per_hour', '<=', $priceRange);
         }
 
+
+
+        // Handle Rating Filter
+        if ($request->has('rating') && !empty($request->input('rating'))) {
+            $rating = $request->input('rating');
+
+            // Assuming the rating is part of the 'user' relationship
+            $handymenQuery->whereHas('user', function ($query) use ($rating) {
+                $query->where('rating', '>=', $rating); // Filter handymen with rating >= selected rating
+            });
+        }
+
+
+        if ($request->has('gig_count') && !empty($request->input('gig_count'))) {
+            $gigCount = $request->input('gig_count');
+
+            // Assuming the rating is part of the 'user' relationship
+            $handymenQuery->whereHas('user', function ($query) use ($gigCount) {
+                $query->where('gigs_count', '>=', $gigCount); // Filter handymen with rating >= selected rating
+            });
+        }
+
+
+        // Get the filtered handymen
         $handymen = $handymenQuery->get();
+        $skills = Skill::all();
 
 
 
-        return view('gig_proccess.step2', compact('handymen', 'category', 'service'));
+        return view('gig_proccess.step2', compact('handymen', 'category', 'service', 'skills'));
     }
 
 
@@ -166,77 +205,126 @@ class ServiceController extends Controller
         // If the user selects a handyman, store it in session
         if ($request->has('selected_tasker')) {
             session(['handyman_id' => $request->selected_tasker]);
-            return redirect()->route('gig.step3');
+            return redirect()->route('gig.step3B');
         }
 
         // If a filter request is made, reapply the filters
-        return redirect()->route('gig.step3')->withInput($request->all());
+        return redirect()->route('gig.step3B')->withInput($request->all());
     }
 
-    // Step 3: Select Date/Time
     public function showStep3()
     {
+        $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
 
+        return view('gig_proccess.step3B', compact('handyman'));
+    }
+
+    public function getAvailability(Request $request)
+    {
         $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
         session()->put('from_step_3', true);
 
-
-        // Check if a handyman is selected
-        // if ($handyman) {
-        //     // Retrieve handyman's availability
-        //     $availableDates = HandymanAvailability::where('handyman_id', 1)
-        //         ->whereDate('start_time', '>=', now()) // Only future dates
-        //         ->get();
-
-        //     // Retrieve handyman's booked gigs
-        //     $bookedDates = Gig::where('handyman_id', 1)
-        //         ->whereDate('task_date', '>=', now()) // Only future dates
-        //         ->get();
-        //     // dd($bookedDates);
-        //     // Pass the available and booked dates to the view
-        //     return view('gig_proccess.step3', compact('availableDates', 'bookedDates', 'handyman'));
-        // }
-
-
         if ($handyman) {
-            $handymanid = session('handyman_id'); // Get the service ID from the session
-            $bookedDates = Gig::where('handyman_id', $handymanid)
-                ->pluck('task_date')
-                ->toArray(); // Fetch the booked dates as an array
-            // dd($bookedDates);
-            return view('gig_proccess.step3', compact('bookedDates', 'handyman'));
+            $handymanId = $request->handyman_id;
+            $date = $request->date;
+
+            // Fetch all available hours for the handyman on the selected date
+            $availability = HandymanAvailability::where('handyman_id', $handymanId)
+                ->whereDate('start_time', '=', $date)
+                ->get(['start_time', 'end_time']);
+
+            // Extract booked hours
+            $bookedHours = [];
+
+            foreach ($availability as $slot) {
+                $startHour = date('H', strtotime($slot->start_time));
+                $endHour = date('H', strtotime($slot->end_time));
+                for ($hour = $startHour; $hour < $endHour; $hour++) {
+                    $bookedHours[] = $hour + (date('i', strtotime($slot->start_time)) / 60); // Store hour + minutes
+                }
+            }
+
+            // Return the booked hours as JSON
+            return response()->json($bookedHours);
         } else {
-            $bookedDates = [];
-            return view('gig_proccess.step3', compact('bookedDates', 'handyman'));
+            $bookedHours = [];
+            return response()->json($bookedHours);
         }
-
-
-        // dd(session('handyman_id'));
-        return view('gig_proccess.step3', compact('handyman'));
     }
 
     public function storeStep3(Request $request)
     {
-        // Validate the time/date
+        // Validate the selected date and time
         $request->validate([
-            'date' => 'required|date|after_or_equal:today',
-            'time' => 'required|date_format:H:i',
-            'budget' => 'nullable|string', // Ensure that 'budget' is passed
-
+            'date' => 'required|date|after_or_equal:today',  // Ensure the date is valid and in the future
+            'time' => 'required|date_format:H:i',            // Ensure the time is in the correct format (hourly)
+            'budget' => 'nullable|string',                   // Optional budget field
         ]);
 
         // Capture the budget option from the form
         $budget = $request->input('budget');
 
-        // Store the date and time in the session
+        // Store the selected date, time, and budget in the session
         session([
             'task_date' => $request->date,
             'task_time' => $request->time,
             'budget' => $budget ?? null,
         ]);
 
+        // Redirect to the next step (Step 4)
         return redirect()->route('gig.step4');
     }
+
+    // Step 3: Select Date/Time
+    // public function showStep3()
+    // {
+
+    //     $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
+    //     session()->put('from_step_3', true);
+
+
+
+
+    //     if ($handyman) {
+    //         $handymanid = session('handyman_id'); // Get the service ID from the session
+    //         $bookedDates = Gig::where('handyman_id', $handymanid)
+    //             ->pluck('task_date')
+    //             ->toArray(); // Fetch the booked dates as an array
+    //         // dd($bookedDates);
+    //         return view('gig_proccess.step3B', compact('bookedDates', 'handyman'));
+    //     } else {
+    //         $bookedDates = [];
+    //         return view('gig_proccess.step3B', compact('bookedDates', 'handyman'));
+    //     }
+
+
+    //     // dd(session('handyman_id'));
+    //     return view('gig_proccess.step3B', compact('handyman'));
+    // }
+
+    // public function storeStep3(Request $request)
+    // {
+    //     // Validate the time/date
+    //     $request->validate([
+    //         'date' => 'required|date|after_or_equal:today',
+    //         'selected_hour' => 'required|date_format:H:i',
+    //         'budget' => 'nullable|string', // Ensure that 'budget' is passed
+
+    //     ]);
+
+    //     dd($request);
+    //     // Capture the budget option from the form
+    //     $budget = $request->input('budget');
+
+    //     // Store the date and time in the session
+    //     session([
+    //         'task_date' => $request->date,
+    //         'task_time' => $request->selected_hour,
+    //         'budget' => $budget ?? null,
+    //     ]);
+
+    //     return redirect()->route('gig.step4');
+    // }
 
     // Step 4: Confirm and Payment
     public function showStep4(Request $request)

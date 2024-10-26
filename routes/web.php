@@ -68,7 +68,10 @@ Route::post('/gig/step2', [ServiceController::class, 'storeStep2'])->name('gig.s
 Route::get('/gig/filter', [ServiceController::class, 'showStep2'])->name('gig.filterHandymen');
 
 
-Route::get('/gig/step3', [ServiceController::class, 'showStep3'])->name('gig.step3');
+// Route::get('/gig/step3', [ServiceController::class, 'showStep3'])->name('gig.step3');
+Route::get('/gig/step3', [ServiceController::class, 'showStep3'])->name('gig.step3B');
+Route::post('/gig/step3/get-availability', [ServiceController::class, 'getAvailability'])->name('gig.getAvailability');
+
 Route::post('/gig/step3', [ServiceController::class, 'storeStep3'])->name('gig.storeStep3');
 
 Route::group([
