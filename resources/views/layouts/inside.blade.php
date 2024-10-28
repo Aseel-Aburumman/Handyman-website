@@ -106,7 +106,7 @@
             </div>
         </div>
     </div>
-    <div class="color-scheme">
+    {{--  <div class="color-scheme">
         <button class="switchIcon"><i class="fa-solid fa-palette"></i></button>
         <h4 class="color-scheme-title"><i class="far fa-palette"></i> Color Switcher</h4>
         <p class="color-scheme-text">Check template with your color</p>
@@ -120,7 +120,7 @@
         </div>
         <p class="color-scheme-text">Or custom color..</p>
         <input type="color" id="thcolorpicker" value="#2A07F9">
-    </div>
+    </div>  --}}
     <!--==============================
     Mobile Menu
   ============================== -->
