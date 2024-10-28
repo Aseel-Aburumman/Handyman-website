@@ -70,12 +70,15 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role_id' => 2,
+            'rating' => 0,  // Default rating
+            'date_created' => now(),
             'password' => Hash::make($request->password),
         ]);
 
         Auth::login($user);
 
-        return redirect('/step4');
+        return redirect('/login');
     }
 
     public function logout(Request $request)

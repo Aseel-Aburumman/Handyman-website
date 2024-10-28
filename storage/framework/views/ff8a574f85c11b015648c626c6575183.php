@@ -16,7 +16,7 @@
                 <div class="auth-box-inner">
                     <img class="loginlogo" src="<?php echo e(asset('assets/img/logoHorizantal.png')); ?>" alt="Rakar">
                     <h2>Login</h2>
-                    <form method="POST" action="<?php echo e(url('/login')); ?>">
+                    <form method="POST" action="<?php echo e(route('login')); ?>">
                         <?php echo csrf_field(); ?>
                         <div class="form-group">
                             <label for="email">Email</label>

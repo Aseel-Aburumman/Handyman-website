@@ -30,7 +30,7 @@
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <form class="" action="{{ route('chat', ['receiverId' => $firstgigs->handyman->user->id]) }}"
+                    <form class="" action="{{ route('chat', ['receiverId' => 1]) }}" {{--  <form class="" action="{{ route('chat', ['receiverId' => $firstgigs->handyman->user->id]) }}"  --}}
                         method="GET">
                         @csrf
                         <button type="submit" class="nav-link th-btn ">Chat Center</button>

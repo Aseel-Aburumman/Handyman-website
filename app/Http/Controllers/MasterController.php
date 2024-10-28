@@ -12,6 +12,10 @@ use App\Models\Notification;
 use App\Models\Skill;
 use App\Models\Certificate;
 use App\Models\SkillCertificate;
+use App\Models\Agreement;
+use App\Models\HandymanApplication;
+use App\Models\StoreOwnerApplication;
+
 
 
 use Illuminate\Support\Facades\Auth;
@@ -207,50 +211,102 @@ class MasterController extends Controller
 
     public function btasker()
     {
-        return view('main_strc.b_tasker');
+        $agreement = Agreement::where('agreement_type', 'handyman')->first();
+        return view('main_strc.b_tasker', compact('agreement'));
     }
+    public function confirmAgreement()
+    {
+        return redirect()->route('handyman.apply');
+    }
+    public function showApplicationForm()
+    {
+        return view('main_strc.handyman_apply');
+    }
+
+    public function storeApplication(Request $request)
+    {
+        $request->validate([
+            'price_per_hour' => 'required|integer|min:1',
+            'experience' => 'required|integer|min:1',
+            'bio' => 'nullable|string|max:1000',
+        ]);
+
+        HandymanApplication::create([
+            'user_id' => Auth::id(),
+            'price_per_hour' => $request->price_per_hour,
+            'experience' => $request->experience,
+            'bio' => $request->bio,
+            'status' => 'pending', // Initial status is pending
+        ]);
+
+        return redirect()->route('home')->with('success', 'Your handyman application has been submitted and is pending approval.');
+    }
+
+
 
     public function bstoreowner()
     {
-        return view('main_strc.b_storeowner');
+        $agreement = Agreement::where('agreement_type', 'store_owner')->first();
+
+        return view('main_strc.b_storeowner', compact('agreement'));
+    }
+    public function confirmAgreement_storeowner()
+    {
+        return redirect()->route('storeowner.apply');
     }
 
-    public function new_storeowner(Request $request)
+    // Show the store owner application form
+    public function showApplicationForm_storeowner()
     {
-        $userId = Auth::id();
-        $handyman = Handyman::where('user_id', $userId)->firstOrFail();
+        return view('main_strc.storeowner_apply');
+    }
 
-        // Validate the form data
+    // Store the store owner application
+    public function storeApplication_storeowner(Request $request)
+    {
+        // Validate the form input and file upload
         $request->validate([
-            'certificate_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'store_name' => 'required|string',
-            'store_name_ar' => 'required|string',
-            'contact_number' => 'required|string',
-            'address' => 'required|string',
-            'address_ar' => 'required|string',
+            'store_name' => 'required|string|max:255',
+            'store_name_ar' => 'required|string|max:255',
+            'contact_number' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'address_ar' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
             'description' => 'required|string',
-
+            'description_ar' => 'required|string',
+            'certificate_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Handle the certificate image upload
-        $imageName = time() . '.' . $request->certificate_image->extension();
-        $request->certificate_image->storeAs('public/certificate_images', $imageName);
+        if ($request->hasFile('certificate_image')) {
+            $imageName = time() . '_' . $request->file('certificate_image')->getClientOriginalName();
+            $request->file('certificate_image')->storeAs('certificate_images', $imageName, 'public');
 
-        // Create a new certificate record
-        $certificate = new Certificate();
-        $certificate->name = $imageName;
-        $certificate->description = $request->description;
-        $certificate->save();
+            // Create a new certificate record
+            $certificate = Certificate::create([
+                'name' => $imageName,
+                'description' => 'Certificate for Store Owner Application',
+            ]);
 
-        // Create a new skill certificate record
-        SkillCertificate::create([
-            'skill_id' => $request->skill_id,
-            'handyman_id' => $handyman->id,
-            'certificate_id' => $certificate->id,
-            'status_id' => 3, // Set status to 3 by default
-        ]);
+            // Create a new store owner application
+            StoreOwnerApplication::create([
+                'user_id' => Auth::id(),
+                'store_name' => $request->store_name,
+                'store_name_ar' => $request->store_name_ar,
+                'contact_number' => $request->contact_number,
+                'address' => $request->address,
+                'address_ar' => $request->address_ar,
+                'location' => $request->location,
+                'description' => $request->description,
+                'description_ar' => $request->description_ar,
+                'certificate_id' => $certificate->id,
+                'status' => 'pending',
+            ]);
 
-        return redirect()->route('handyman.dashboard')->with('status', 'New skill added successfully!');
+            return redirect()->route('home')->with('success', 'Your store owner application has been submitted and is pending approval.');
+        }
+
+        return back()->withErrors(['certificate_image' => 'Please upload a valid certificate image.']);
     }
 
     public function contact()

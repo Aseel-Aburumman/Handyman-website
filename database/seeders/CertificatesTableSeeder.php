@@ -21,6 +21,7 @@ class CertificatesTableSeeder extends Seeder
         Certificate::create(['name' => 'Kitchenware Certification', 'description' => 'Certified Kitchenware Work']);
         Certificate::create(['name' => 'Supplies Certification', 'description' => 'Certified Supplies Work']);
         Certificate::create(['name' => 'Plumbing Certification', 'description' => 'Certified Plumbing Work']);
+        Certificate::create(['name' => 'storecertification.png', 'description' => 'Certified store Work']);
 
 
 

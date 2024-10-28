@@ -42,7 +42,9 @@ class DatabaseSeeder extends Seeder
             ImageSeeder::class,
             PaymentSeeder::class,
             SkillToCategoriesSeeder::class,
-
+            AgreementSeeder::class,
+            HandymanApplicationsSeeder::class,
+            StoreOwnerApplicationsSeeder::class,
 
 
 

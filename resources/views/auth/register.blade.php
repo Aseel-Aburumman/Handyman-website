@@ -18,7 +18,7 @@
                     <img class="loginlogo" src="{{ asset('assets/img/logoHorizantal.png') }}" alt="Rakar">
 
                     <h2>Register</h2>
-                    <form method="POST" action="{{ url('/register') }}">
+                    <form method="POST" action="{{ route('registerUser') }}">
                         @csrf
                         <div class="form-group">
                             <label for="name">Name</label>

@@ -74,21 +74,11 @@
                                     <!-- Customer Dashboard -->
                                     <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
                                             href="<?php echo e(route('b.tasker')); ?>">Become a Handyman </a></li>
-                                    <li>
+                                    
                                     <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
                                             href="<?php echo e(route('b.storeowner')); ?>">Become a Store Owner </a></li>
                                     <li>
-                                    <?php elseif(Auth::user()->role_id == 4): ?>
-                                        <!-- Store Owner Dashboard -->
-
-                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
-                                            href="<?php echo e(route('b.storeowner')); ?>">Become a Store Owner </a></li>
-                                    <li>
-                                    <?php elseif(Auth::user()->role_id == 3): ?>
-                                        <!-- Handyman Dashboard -->
-                                    <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
-                                            href="<?php echo e(route('b.tasker')); ?>">Become a Handyman </a></li>
-                                    <li>
+                                        
                                 <?php endif; ?>
                             <?php endif; ?>
                             <i class="fas fa-headset"></i> <a href="<?php echo e(route('contact')); ?>">Support</a></li>

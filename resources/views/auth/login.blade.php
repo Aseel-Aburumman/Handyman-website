@@ -16,7 +16,7 @@
                 <div class="auth-box-inner">
                     <img class="loginlogo" src="{{ asset('assets/img/logoHorizantal.png') }}" alt="Rakar">
                     <h2>Login</h2>
-                    <form method="POST" action="{{ url('/login') }}">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
                             <label for="email">Email</label>

@@ -74,11 +74,11 @@
                                     <!-- Customer Dashboard -->
                                     <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
                                             href="{{ route('b.tasker') }}">Become a Handyman </a></li>
-                                    <li>
+                                    
                                     <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
                                             href="{{ route('b.storeowner') }}">Become a Store Owner </a></li>
                                     <li>
-                                    @elseif (Auth::user()->role_id == 4)
+                                        {{--  @elseif (Auth::user()->role_id == 4)
                                         <!-- Store Owner Dashboard -->
 
                                     <li class="d-none d-md-inline-block"><i class="fa-solid fa-shop"></i> <a
@@ -88,7 +88,7 @@
                                         <!-- Handyman Dashboard -->
                                     <li class="d-none d-md-inline-block"><i class="fa-solid fa-wrench"></i> <a
                                             href="{{ route('b.tasker') }}">Become a Handyman </a></li>
-                                    <li>
+                                    <li>  --}}
                                 @endif
                             @endauth
                             <i class="fas fa-headset"></i> <a href="{{ route('contact') }}">Support</a></li>

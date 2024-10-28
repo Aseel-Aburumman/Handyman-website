@@ -18,7 +18,7 @@
                     <img class="loginlogo" src="<?php echo e(asset('assets/img/logoHorizantal.png')); ?>" alt="Rakar">
 
                     <h2>Register</h2>
-                    <form method="POST" action="<?php echo e(url('/register')); ?>">
+                    <form method="POST" action="<?php echo e(route('registerUser')); ?>">
                         <?php echo csrf_field(); ?>
                         <div class="form-group">
                             <label for="name">Name</label>

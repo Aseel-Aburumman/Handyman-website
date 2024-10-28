@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminAgreementController;
+use App\Http\Controllers\AdminApplicationController;
+
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\AdminController;
@@ -47,9 +50,14 @@ Route::get('/allhandymen', [MasterController::class, 'indexHandymen'])->name('ha
 Route::get('/allhandymen/filter', [MasterController::class, 'indexHandymen'])->name('handymen.filterHandymen');
 
 Route::get('/btasker', [MasterController::class, 'btasker'])->name('b.tasker');
+Route::post('/handyman/agreement/confirm', [MasterController::class, 'confirmAgreement'])->name('handyman.agreement.confirm');
+Route::get('/handyman/apply', [MasterController::class, 'showApplicationForm'])->name('handyman.apply');
+Route::post('/handyman/apply', [MasterController::class, 'storeApplication'])->name('handyman.apply.store');
 
 Route::get('/bstoreowner', [MasterController::class, 'bstoreowner'])->name('b.storeowner');
-Route::post('/become/storeowner', [MasterController::class, 'new_storeowner'])->name('storeowner.new');
+Route::post('/storeowner/agreement/confirm', [MasterController::class, 'confirmAgreement_storeowner'])->name('storeowner.agreement.confirm');
+Route::get('/storeowner/apply', [MasterController::class, 'showApplicationForm_storeowner'])->name('storeowner.apply');
+Route::post('/storeowner/apply', [MasterController::class, 'storeApplication_storeowner'])->name('storeowner.apply.store');
 
 Route::get('/contact', [MasterController::class, 'contact'])->name('contact');
 
@@ -172,8 +180,8 @@ Route::get('/handyman/{handymanId}', [HandymanController::class, 'getOne_Client'
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/signup', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/signup', [AuthController::class, 'register'])->name('registerUser');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -185,7 +193,7 @@ Route::get('/admin_portal/login', [AuthAdminController::class, 'showLoginForm'])
 Route::post('/admin/login', [AuthAdminController::class, 'login'])->name('Admin_login');
 
 
-Route::get('/admin_portal//register', [AuthAdminController::class, 'showRegistrationForm'])->name('admin.register');
+Route::get('/admin_portal/register', [AuthAdminController::class, 'showRegistrationForm'])->name('admin.register');
 Route::post('/register', [AuthAdminController::class, 'register'])->name('Admin_register');
 
 
@@ -194,6 +202,22 @@ Route::group([
     'middleware' => ['authAdmin', 'admin', 'share.notifications', 'share.messages', 'share.admindata'],  // Apply the 'auth', 'admin', and 'share.notifications' middleware
 
 ], function () {
+    Route::get('/admin/agreements', [AdminAgreementController::class, 'index'])->name('admin.agreements.index');
+    Route::get('/admin/agreements/create', [AdminAgreementController::class, 'create'])->name('admin.agreements.create');
+    Route::post('/admin/agreements/store', [AdminAgreementController::class, 'store'])->name('admin.agreements.store');
+    Route::get('/admin/agreements/edit/{id}', [AdminAgreementController::class, 'edit'])->name('admin.agreements.edit');
+    Route::put('/admin/agreements/update/{id}', [AdminAgreementController::class, 'update'])->name('admin.agreements.update');
+    Route::delete('/admin/agreements/delete/{id}', [AdminAgreementController::class, 'destroy'])->name('admin.agreements.destroy');
+
+    Route::get('applications', [AdminApplicationController::class, 'index'])->name('admin.applications.index');
+    Route::get('applications/handyman/{id}', [AdminApplicationController::class, 'showHandyman'])->name('admin.showHandyman');
+    Route::get('applications/storeowner/{id}', [AdminApplicationController::class, 'showStoreOwner'])->name('admin.showStoreOwner');
+    Route::put('applications/handyman/{id}/approve', [AdminApplicationController::class, 'approveHandyman'])->name('admin.approveHandyman');
+    Route::put('applications/storeowner/{id}/approve', [AdminApplicationController::class, 'approveStoreOwner'])->name('admin.approveStoreOwner');
+    Route::get('applications/handyman/{id}/reject', [AdminApplicationController::class, 'showRejectHandymanForm'])->name('admin.rejectHandymanForm');
+    Route::put('applications/handyman/{id}/reject', [AdminApplicationController::class, 'rejectHandyman'])->name('admin.rejectHandyman');
+    Route::get('applications/storeowner/{id}/reject', [AdminApplicationController::class, 'showRejectStoreOwnerForm'])->name('admin.rejectStoreOwnerForm');
+    Route::put('applications/storeowner/{id}/reject', [AdminApplicationController::class, 'rejectStoreOwner'])->name('admin.rejectStoreOwner');
 
 
     Route::post('/admin/logout', [AuthAdminController::class, 'logout'])->name('admin.logout');
