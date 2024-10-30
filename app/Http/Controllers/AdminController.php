@@ -282,6 +282,8 @@ public function profileNavbar(){
         $notification = new Notification();
         $notification->user_id = $newmessage->receiver_id; // Assign the notification to the user
         $notification->message = 'You have received a message from the support team regarding the ticket: ' . $ticket->subject;
+        $notification->message_ar = 'تلقيت رسالة جديدة من فريق الدعم بما يتعلق بالتذكرة: ' . $ticket->subject;
+
         $notification->category = 'primary'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();

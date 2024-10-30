@@ -319,6 +319,11 @@ class MasterController extends Controller
         return view('main_strc.about');
     }
 
+    public function terms()
+    {
+        return view('main_strc.tos');
+    }
+
     public function allgigs(Request $request)
     {
         // Initial query for gigs

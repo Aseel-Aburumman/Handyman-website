@@ -2,10 +2,16 @@
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">All Products</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.Cart')); ?>
+
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li>Cart</li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><?php echo e(__('messages.Cart')); ?>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -23,7 +29,9 @@
                 <?php echo csrf_field(); ?>
                 <div class="row">
                     <div class="col-lg-7">
-                        <h2 class="h4">Billing Details</h2>
+                        <h2 class="h4"><?php echo e(__('messages.BillingDetails')); ?>
+
+                        </h2>
                         <div class="row">
                             <div class="col-4 form-group">
                                 <input type="text" name="building_no" class="form-control"
@@ -42,16 +50,22 @@
                                 <input type="text" name="phone" class="form-control" placeholder="Phone number"
                                     value="<?php echo e($deliveryInfo->phone ?? ''); ?>">
                             </div>
-                            <button type="submit" class="th-btn">Save</button>
+                            <button type="submit" class="th-btn"><?php echo e(__('messages.Save')); ?>
+
+                            </button>
 
                         </div>
-                        <h4 class="mt-4">Your Order</h4>
+                        <h4 class="mt-4"><?php echo e(__('messages.YourOrder')); ?>
+
+                        </h4>
                         <table class="cart_table mb-20">
                             <thead>
                                 <tr>
-                                    <th class="cart-col-productname">Product Name</th>
-                                    <th class="cart-col-quantity">Quantity</th>
-                                    <th class="cart-col-total">Total</th>
+                                    <th class="cart-col-productname"><?php echo e(__('messages.ProductName')); ?>
+
+                                    </th>
+                                    <th class="cart-col-quantity"><?php echo e(__('messages.Quantity')); ?></th>
+                                    <th class="cart-col-total"><?php echo e(__('messages.Total')); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,22 +73,22 @@
                                     <tr class="cart_item">
                                         <td><?php echo e($item->product->name); ?></td>
                                         <td><?php echo e($item->quantity); ?></td>
-                                        <td>JD <?php echo e($item->product->price * $item->quantity); ?></td>
+                                        <td><?php echo e(__('messages.JD')); ?> <?php echo e($item->product->price * $item->quantity); ?></td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                             <tfoot class="checkout-ordertable">
                                 <tr class="cart-subtotal">
-                                    <th>Subtotal</th>
-                                    <td colspan="2">JD <?php echo e($subtotal); ?></td>
+                                    <th><?php echo e(__('messages.Subtotal')); ?></th>
+                                    <td colspan="2"><?php echo e(__('messages.JD')); ?> <?php echo e($subtotal); ?></td>
                                 </tr>
                                 <tr class="woocommerce-shipping-totals shipping">
-                                    <th>Shipping</th>
-                                    <td colspan="2">+1.5 JD</td>
+                                    <th><?php echo e(__('messages.Shipping')); ?></th>
+                                    <td colspan="2">+1.5 <?php echo e(__('messages.JD')); ?></td>
                                 </tr>
                                 <tr class="order-total">
-                                    <th>Total</th>
-                                    <td colspan="2"><strong>JD <?php echo e($subtotal + 1.5); ?></strong></td>
+                                    <th><?php echo e(__('messages.Total')); ?></th>
+                                    <td colspan="2"><strong><?php echo e(__('messages.JD')); ?> <?php echo e($subtotal + 1.5); ?></strong></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -87,12 +101,12 @@
                                 <li class="wc_payment_method payment_method_bacs">
                                     <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method"
                                         value="bacs" checked="checked">
-                                    <label for="payment_method_bacs">Cash On Delivery</label>
+                                    <label for="payment_method_bacs"><?php echo e(__('messages.COD')); ?></label>
                                 </li>
                                 <li class="wc_payment_method payment_method_cod">
                                     <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method"
                                         value="cod">
-                                    <label for="payment_method_cod">Credit Card</label>
+                                    <label for="payment_method_cod"><?php echo e(__('messages.CreditCard')); ?></label>
                                 </li>
                             </ul>
 
@@ -113,8 +127,8 @@
                             </div>
 
                             <div class="form-row place-order">
-                                <button type="submit" class="th-btn" formaction="<?php echo e(route('place.order')); ?>">Place
-                                    order</button>
+                                <button type="submit" class="th-btn"
+                                    formaction="<?php echo e(route('place.order')); ?>"><?php echo e(__('messages.Placeorder')); ?></button>
                             </div>
                         </div>
                     </div>

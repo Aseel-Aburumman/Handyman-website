@@ -15,7 +15,8 @@
                         <i class="fas fa-location-dot"></i>
                     </div>
                     <div class="media-body">
-                        <p class="box-text">789 Inner Lane, Holy park, California, USA</p>
+                        <p class="box-text">{{ __('messages.location') }}
+                        </p>
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -24,7 +25,8 @@
                         <i class="fas fa-phone-volume"></i>
                     </div>
                     <div class="media-body">
-                        <h3 class="box-title">Call Us:</h3>
+                        <h3 class="box-title">{{ __('messages.CallUs') }}
+                        </h3>
                         <p class="box-text"><a href="tel:+962">+962 79 661 5575</a></p>
                     </div>
                 </div>
@@ -34,8 +36,9 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="media-body">
-                        <h3 class="box-title">Email Us:</h3>
-                        <p class="box-text"><a href="mailto:support24@rakar.com">support24@rakar.com</a></p>
+                        <h3 class="box-title">{{ __('messages.EmailUs') }}
+                        </h3>
+                        <p class="box-text"><a href="mailto:support@Kafmueen.com">support@Kafmueen.com</a></p>
                     </div>
                 </div>
             </div>
@@ -44,15 +47,15 @@
     <div class="widget-area">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-md-6 col-xl-auto">
-                    <div class="widget footer-widget">
-                        <div class="th-widget-about">
-                            <div class="about-logo">
-                                <a href="home-handyman.html"><img src="{{ asset('assets/img/logo-footer.svg') }}"
+                <div class="w-50 col-md-7 col-xl-auto">
+                    <div class="w-100 widget footer-widget">
+                        <div class="w-100">
+                            <div class="th-widget-about about-logo">
+                                <a href="home-handyman.html"><img src="{{ asset('assets/img/logoHorizantal.png') }}"
                                         alt="Rakar"></a>
                             </div>
-                            <p class="about-text">Going forward, a new normal that has evolved from generation is on the
-                                runway heading towards a streamlined cloud solution.</p>
+                            <p class="w-75  about-text">{{ __('messages.aboutFooter') }}
+                            </p>
                             <div class="th-social">
                                 <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -62,24 +65,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-auto">
+                <div class="w-25 col-md-6 col-xl-auto">
                     <div class="widget widget_nav_menu footer-widget">
                         <h3 class="widget_title"><img src="{{ asset('assets/img/icon/footer_title.svg') }}"
                                 alt="icon"> Useful
                             Links</h3>
                         <div class="menu-all-pages-container">
                             <ul class="menu">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="about.html">Pricing Plan</a></li>
-                                <li><a href="service.html">Services</a></li>
-                                <li><a href="about.html">Testimonial</a></li>
-                                <li><a href="contact.html">Appointment</a></li>
+                                <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                                    </a></li>
+                                <li><a href="{{ route('aboutUs') }}">{{ __('messages.AboutUs') }}
+                                    </a></li>
+                                {{--  <li><a href="about.html">Pricing Plan</a></li>  --}}
+                                <li><a href="{{ route('service') }}">{{ __('messages.OurService') }}
+                                    </a></li>
+                                {{--  <li><a href="about.html">{{ __('messages.Testimonial') }}</a></li>  --}}
+                                <li><a href="{{ route('shops.index') }}">{{ __('messages.Shops') }}</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-auto">
+                {{--  <div class="col-md-6 col-xl-auto">
                     <div class="widget widget_nav_menu footer-widget">
                         <h3 class="widget_title"><img src="{{ asset('assets/img/icon/footer_title.svg') }}"
                                 alt="icon"> Our
@@ -95,16 +101,16 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-xl-auto">
+                </div>  --}}
+                <div class="w-25 col-md-6 col-xl-auto">
                     <div class="widget newsletter-widget footer-widget">
                         <h3 class="widget_title"><img src="{{ asset('assets/img/icon/footer_title.svg') }}"
-                                alt="icon"> Newsletter
+                                alt="icon"> {{ __('messages.Newsletter') }}
                         </h3>
-                        <p class="footer-text">Get latest updates and offers.</p>
+                        <p class="footer-text">{{ __('messages.NewsletterText') }}</p>
                         <form class="newsletter-form">
                             <input class="form-control" type="email" placeholder="Enter email address" required="">
-                            <button type="submit" class="th-btn style3">Subscribe<i
+                            <button type="submit" class="th-btn style3">{{ __('messages.Subscribe') }}<i
                                     class="far fa-arrow-right ms-2"></i></button>
                         </form>
                     </div>
@@ -117,14 +123,14 @@
             <div class="row gy-2 align-items-center">
                 <div class="col-md-6">
                     <p class="copyright-text">Copyright <i class="fal fa-copyright"></i> 2024 <a
-                            href="home-handyman.html">Rakar</a>. All Rights Reserved.</p>
+                            href="{{ route('home') }}">Kaf Mueen</a>. All Rights Reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-links">
                         <ul>
-                            <li><a href="about.html">Terms of service</a></li>
-                            <li><a href="about.html">Privacy policy</a></li>
-                            <li><a href="about.html">Cookies</a></li>
+                            <li><a href="{{ route('terms') }}">Terms of service</a></li>
+                            <li><a href="about.html"> </a></li>
+                            {{--  <li><a href="about.html">Cookies</a></li>  --}}
                         </ul>
                     </div>
                 </div>

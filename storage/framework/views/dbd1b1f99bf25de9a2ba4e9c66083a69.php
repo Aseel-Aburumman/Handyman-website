@@ -1,14 +1,11 @@
 <?php $__env->startSection('content'); ?>
-    <!--==============================
-                                                                                                        Breadcumb
-                                                                                                    ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">All Shops</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.AllShops')); ?></h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li>All Shops</li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?></a></li>
+                    <li><?php echo e(__('messages.AllShops')); ?></li>
                 </ul>
             </div>
         </div>
@@ -20,15 +17,17 @@
             <div class="row justify-content-center">
                 <div class="col-xl-12 col-md-10">
                     <div class="title-area text-center">
-                        <h2 class="sec-title">Find Your Favorite Shop</h2>
+                        <h2 class="sec-title"><?php echo e(__('messages.AllShopsTitle')); ?></h2>
                         <form action="<?php echo e(route('shops.index')); ?>" method="GET" class="d-flex mb-5">
                             <!-- Search Input -->
                             <input class="shop-search" type="text" name="search" class="form-control"
                                 placeholder="Search by shop name" value="<?php echo e(request('search')); ?>">
                             <!-- Search Button -->
-                            <button type="submit" class="btn btn-primary ms-2 searchBtn">Search</button>
+                            <button type="submit"
+                                class="btn btn-primary ms-2 searchBtn"><?php echo e(__('messages.Search')); ?></button>
                             <!-- Reset Button -->
-                            <a href="<?php echo e(route('shops.index')); ?>" class="btn btn-secondary ms-2 resetBtn">Reset</a>
+                            <a href="<?php echo e(route('shops.index')); ?>"
+                                class="btn btn-secondary ms-2 resetBtn"><?php echo e(__('messages.Reset')); ?></a>
                         </form>
                     </div>
                 </div>
@@ -45,7 +44,8 @@
                                     style="width: 100%; height: 200px; object-fit: cover; border-radius:10px;">
                             </div>
                             <br>
-                            <h3 class="box-title"><a href="service-details.html"><?php echo e($store->name); ?></a></h3>
+                            <h3 class="box-title"><a
+                                    href="<?php echo e(route('Oneshops', ['shopId' => $store->id])); ?>"><?php echo e($store->name); ?></a></h3>
                             <div class="list-rating" style="color : #E2B93B;">
                                 <?php
                                     $wholeStars = floor($store->rating);
@@ -63,8 +63,9 @@
                                 <?php endfor; ?>
                                 <span>(<?php echo e(number_format($store->rating, 1)); ?>)</span>
                             </div>
-                            <a href="<?php echo e(route('Oneshops', ['shopId' => $store->id])); ?>" class="th-btn btn-sm">Shop now <i
-                                    class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+                            <a href="<?php echo e(route('Oneshops', ['shopId' => $store->id])); ?>"
+                                class="th-btn btn-sm"><?php echo e(__('messages.ShopNow')); ?><i class="fa-solid fa-chevron-right"
+                                    style="color: #ffffff;"></i></a>
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

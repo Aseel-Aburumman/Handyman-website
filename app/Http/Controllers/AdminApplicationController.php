@@ -68,6 +68,8 @@ class AdminApplicationController extends Controller
             Notification::create([
                 'user_id' => $user->id,
                 'message' => 'Your handyman application has been approved! Start earning more by accepting jobs.',
+                'message_ar' => 'طلبك لتصبح حرفي تمت الموافقة عليه! ابدأ اليوم لتكسب الكثير من الأموال !',
+
                 'category' => 'success', // Can be 'success', 'primary', 'warning', etc.
                 'is_read' => 0
             ]);
@@ -128,6 +130,8 @@ class AdminApplicationController extends Controller
             Notification::create([
                 'user_id' => $user->id,
                 'message' => 'Your store owner application has been approved! Start earning more by managing your store.',
+                'message_ar' => 'طلبك لتصبح تاجر تمت الموافقة عليه! أبدأ بتجهيز متجرك الآن !',
+
                 'category' => 'success',
                 'is_read' => 0
             ]);
@@ -177,6 +181,8 @@ class AdminApplicationController extends Controller
             Notification::create([
                 'user_id' => $user->id,
                 'message' => "Your handyman application has been rejected. Please review the following parts: $flaggedPartsList.",
+                'message_ar' => "طلبك لتصبح حرفي تم رفضه لمشكلة في البنود التالية: $flaggedPartsList.",
+
                 'category' => 'danger',
                 'is_read' => 0
             ]);
@@ -226,6 +232,8 @@ class AdminApplicationController extends Controller
             Notification::create([
                 'user_id' => $user->id,
                 'message' => "Your store owner application has been rejected. Please review the following parts: $flaggedPartsList.",
+                'message_ar' => "طلبك لتصبح صاحب متجر تم رفضه لمشكلة في البنود التالية: $flaggedPartsList.",
+
                 'category' => 'danger',
                 'is_read' => 0
             ]);

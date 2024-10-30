@@ -1,14 +1,20 @@
 <?php $__env->startSection('content'); ?>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title"><?php echo e($product->name); ?> Detail</h1>
+                <h1 class="breadcumb-title"><?php echo e($product->name); ?> <?php echo e(__('messages.Detail')); ?>
+
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li><a href="<?php echo e(route('products.index')); ?>">All Product</a></li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><a href="<?php echo e(route('products.index')); ?>"><?php echo e(__('messages.AllProduct')); ?>
+
+                        </a></li>
 
                     <li><?php echo e($product->name); ?></li>
                 </ul>
@@ -30,9 +36,12 @@
                 <div class="col-lg-6 align-self-center">
                     <div class="product-about">
                         <?php if($product->discounted_price): ?>
-                            <p class="price">JD <?php echo e($product->discounted_price); ?><del>JD <?php echo e($product->price); ?></del></p>
+                            <p class="price"><?php echo e(__('messages.JD')); ?>
+
+                                <?php echo e($product->discounted_price); ?><del><?php echo e(__('messages.JD')); ?> <?php echo e($product->price); ?></del>
+                            </p>
                         <?php else: ?>
-                            <p class="price">JD{ { $product->price }}</p>
+                            <p class="price"><?php echo e(__('messages.JD')); ?>{ { $product->price }}</p>
                         <?php endif; ?>
                         <h2 class="product-title"><?php echo e($product->name); ?></h2>
 
@@ -63,22 +72,22 @@
                             </div>
                             <a href="shop-details.html" class="woocommerce-review-link">(<span style="color :#666666;"
                                     class="count"><?php echo e($reviewCount); ?></span>
-                                customer reviews)</a>
+                                <?php echo e(__('messages.customerReviews')); ?>)</a>
                         </div>
                         <p class="text"><?php echo e(\Illuminate\Support\Str::limit($product->description, 200, '...')); ?></p>
                         <div class="mt-2 link-inherit">
                             <p>
-                                <strong class="text-title me-3">Availability:</strong>
+                                <strong class="text-title me-3"><?php echo e(__('messages.Availability')); ?>:</strong>
                                 <?php if($product->availability): ?>
-                                    <span class="stock in-stock"><i class="far fa-check-square me-2 ms-1"></i>In
-                                        Stock</span>
+                                    <span class="stock in-stock"><i
+                                            class="far fa-check-square me-2 ms-1"></i><?php echo e(__('messages.InStock')); ?></span>
                                 <?php else: ?>
-                                    <span class="stock in-stock"><i class="far fa-square me-2 ms-1"></i>In
-                                        Stock</span>
+                                    <span class="stock in-stock"><i
+                                            class="far fa-square me-2 ms-1"></i><?php echo e(__('messages.InStock')); ?></span>
                                 <?php endif; ?>
                             </p>
                         </div>
-                        
+
                         <div class="actions">
                             <?php if($userId): ?>
                                 <form action="<?php echo e(route('cart.add')); ?>" method="POST" id="add-to-cart-form">
@@ -93,7 +102,7 @@
                                         <button class="quantity-minus qty-btn" type="button"><i
                                                 class="fa-solid fa-chevron-down"></i></button>
                                     </div>
-                                    <button type="submit" class="th-btn">Add to Cart</button>
+                                    <button type="submit" class="th-btn"><?php echo e(__('messages.AddCart')); ?></button>
                                 </form>
                                 <script>
                                     document.getElementById('add-to-cart-form').addEventListener('submit', function(event) {
@@ -139,8 +148,7 @@
                                     });
                                 </script>
                             <?php else: ?>
-                                <span style="text-decoration:underline;">You have to be logged in to add this item to the
-                                    cart</span>
+                                <span style="text-decoration:underline;"><?php echo e(__('messages.cartLogin')); ?></span>
                             <?php endif; ?>
 
                         </div>
@@ -151,11 +159,11 @@
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="description-tab" data-bs-toggle="tab" href="#description" role="tab"
-                        aria-controls="description" aria-selected="false">Product Description</a>
+                        aria-controls="description" aria-selected="false"><?php echo e(__('messages.ProductDescription')); ?></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn active" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                        aria-controls="reviews" aria-selected="true">Customer Reviews</a>
+                        aria-controls="reviews" aria-selected="true"><?php echo e(__('messages.CustomerReviews')); ?></a>
                 </li>
             </ul>
             <div class="tab-content" id="productTabContent">
@@ -220,7 +228,9 @@
 
                             <div class="th-comment-form">
                                 <div class="form-title">
-                                    <h3 class="blog-inner-title">Add a review</h3>
+                                    <h3 class="blog-inner-title"><?php echo e(__('messages.AddReview')); ?>
+
+                                    </h3>
                                 </div>
                                 <form action="<?php echo e(route('reviews.product')); ?>" method="POST">
                                     <?php echo csrf_field(); ?> <!-- Add CSRF token for security -->
@@ -230,7 +240,9 @@
 
                                     <div class="row">
                                         <div class="form-group rating-select d-flex align-items-center">
-                                            <label>Your Rating</label>
+                                            <label><?php echo e(__('messages.YourRating')); ?>
+
+                                            </label>
                                             <p class="stars">
                                                 <span>
                                                     <a class="star-1" href="#" data-rating="1">1</a>
@@ -248,7 +260,9 @@
                                             <i class="text-title far fa-pencil-alt"></i>
                                         </div>
                                         <div class="col-12 form-group mb-0">
-                                            <button type="submit" class="th-btn">Post Review</button>
+                                            <button type="submit" class="th-btn"><?php echo e(__('messages.PostReview')); ?>
+
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -270,12 +284,14 @@
             </div>
 
             <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                              Related Product
-                                                                                                                                                                                                                                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Related Product
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
             <div class="space-extra-top mb-30">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-auto">
-                        <h2 class="sec-title text-center">Related Products</h2>
+                        <h2 class="sec-title text-center"><?php echo e(__('messages.RelatedProducts')); ?>
+
+                        </h2>
                     </div>
                     <div class="col-md d-none d-sm-block">
                         <hr class="title-line">
@@ -352,7 +368,9 @@
                                         <h3 class="product-title"><a
                                                 href="<?php echo e(route('product', ['productId' => $Rproduct->id])); ?>"><?php echo e($Rproduct->name); ?></a>
                                         </h3>
-                                        <span class="price">JD <?php echo e($Rproduct->price); ?></span>
+                                        <span class="price"><?php echo e(__('messages.JD')); ?>
+
+                                            <?php echo e($Rproduct->price); ?></span>
                                     </div>
                                 </div>
 

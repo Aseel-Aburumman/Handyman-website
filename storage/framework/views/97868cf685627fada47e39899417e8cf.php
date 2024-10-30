@@ -2,7 +2,7 @@
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Notification Center</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.NotificationCenter')); ?></h1>
                 <ul class="breadcumb-menu">
                     
                     
@@ -16,10 +16,7 @@
         <div class="container">
 
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
-                        aria-controls="orders" aria-selected="false">Notification</a>
-                </li>
+                
             </ul>
 
             <div class="tab-content" id="productTabContent">
@@ -33,7 +30,7 @@
                         <div class="card-header"
                             style="background-color: #F8F9FA; border-bottom: none; border-radius: 12px;">
                             <h5 class="card-title" style="font-weight: bold; color: #333; border-radius: 12px;">
-                                Notifications</h5>
+                                <?php echo e(__('messages.Notifications')); ?></h5>
                         </div>
                         <div class="card-body" style="padding: 1.5rem;">
                             <?php if($notifications && $notifications->count() > 0): ?>
@@ -62,7 +59,14 @@
                                         <div class="flex-grow-1">
                                             <div class="notification-message">
                                                 <p class="mb-1" style="font-size: 16px; color: #333;">
-                                                    <?php echo e($notification->message); ?></p>
+                                                    <?php if(App::getLocale() == 'ar'): ?>
+                                                        <?php echo e($notification->message_ar); ?>
+
+                                                    <?php else: ?>
+                                                        <?php echo e($notification->message); ?>
+
+                                                    <?php endif; ?>
+                                                </p>
                                             </div>
                                             <div class="text-muted notification-date small" style="font-size: 14px;">
                                                 <?php echo e($notification->created_at->format('Y-m-d H:i:s')); ?>
@@ -73,7 +77,7 @@
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php else: ?>
                                 <div class="text-center p-3">
-                                    <p class="text-muted" style="font-size: 16px;">No notifications available.</p>
+                                    <p class="text-muted" style="font-size: 16px;"><?php echo e(__('messages.NoNotifications')); ?></p>
                                 </div>
                             <?php endif; ?>
                         </div>

@@ -1,16 +1,13 @@
 @extends('layouts.inside')
 
 @section('content')
-    <!--==============================
-                                                                                                        Breadcumb
-                                                                                                    ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">All Shops</h1>
+                <h1 class="breadcumb-title">{{ __('messages.AllShops') }}</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>All Shops</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}</a></li>
+                    <li>{{ __('messages.AllShops') }}</li>
                 </ul>
             </div>
         </div>
@@ -22,15 +19,17 @@
             <div class="row justify-content-center">
                 <div class="col-xl-12 col-md-10">
                     <div class="title-area text-center">
-                        <h2 class="sec-title">Find Your Favorite Shop</h2>
+                        <h2 class="sec-title">{{ __('messages.AllShopsTitle') }}</h2>
                         <form action="{{ route('shops.index') }}" method="GET" class="d-flex mb-5">
                             <!-- Search Input -->
                             <input class="shop-search" type="text" name="search" class="form-control"
                                 placeholder="Search by shop name" value="{{ request('search') }}">
                             <!-- Search Button -->
-                            <button type="submit" class="btn btn-primary ms-2 searchBtn">Search</button>
+                            <button type="submit"
+                                class="btn btn-primary ms-2 searchBtn">{{ __('messages.Search') }}</button>
                             <!-- Reset Button -->
-                            <a href="{{ route('shops.index') }}" class="btn btn-secondary ms-2 resetBtn">Reset</a>
+                            <a href="{{ route('shops.index') }}"
+                                class="btn btn-secondary ms-2 resetBtn">{{ __('messages.Reset') }}</a>
                         </form>
                     </div>
                 </div>
@@ -47,7 +46,8 @@
                                     style="width: 100%; height: 200px; object-fit: cover; border-radius:10px;">
                             </div>
                             <br>
-                            <h3 class="box-title"><a href="service-details.html">{{ $store->name }}</a></h3>
+                            <h3 class="box-title"><a
+                                    href="{{ route('Oneshops', ['shopId' => $store->id]) }}">{{ $store->name }}</a></h3>
                             <div class="list-rating" style="color : #E2B93B;">
                                 @php
                                     $wholeStars = floor($store->rating);
@@ -65,8 +65,9 @@
                                 @endfor
                                 <span>({{ number_format($store->rating, 1) }})</span>
                             </div>
-                            <a href="{{ route('Oneshops', ['shopId' => $store->id]) }}" class="th-btn btn-sm">Shop now <i
-                                    class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+                            <a href="{{ route('Oneshops', ['shopId' => $store->id]) }}"
+                                class="th-btn btn-sm">{{ __('messages.ShopNow') }}<i class="fa-solid fa-chevron-right"
+                                    style="color: #ffffff;"></i></a>
                         </div>
                     </div>
                 @endforeach

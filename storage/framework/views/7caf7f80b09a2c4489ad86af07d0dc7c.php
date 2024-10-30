@@ -2,10 +2,10 @@
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Dashboard</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.Dashboard')); ?></h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('customer.Home')); ?>">Home</a></li>
-                    <li>Dashboard</li>
+                    <li><a href="<?php echo e(route('customer.Home')); ?>"><?php echo e(__('messages.Home')); ?></a></li>
+                    <li><?php echo e(__('messages.Dashboard')); ?></li>
                 </ul>
             </div>
         </div>
@@ -16,22 +16,22 @@
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn active" id="description-tab" data-bs-toggle="tab" href="#description"
-                        role="tab" aria-controls="description" aria-selected="true">Account Detail</a>
+                        role="tab" aria-controls="description"
+                        aria-selected="true"><?php echo e(__('messages.AccountDetail')); ?></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
-                        aria-controls="orders" aria-selected="false">orders</a>
+                        aria-controls="orders" aria-selected="false"><?php echo e(__('messages.orders')); ?></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="products-tab" data-bs-toggle="tab" href="#products" role="tab"
-                        aria-controls="products" aria-selected="false">My products</a>
+                        aria-controls="products" aria-selected="false"><?php echo e(__('messages.MyProducts')); ?></a>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <form class="" action="<?php echo e(route('chat', ['receiverId' => $admin])); ?>"
-                        method="GET">
+                    <form class="" action="<?php echo e(route('chat', ['receiverId' => $admin])); ?>" method="GET">
                         <?php echo csrf_field(); ?>
-                        <button type="submit" class="nav-link th-btn ">Chat Center</button>
+                        <button type="submit" class="nav-link th-btn "><?php echo e(__('messages.ChatCenter')); ?></button>
                     </form>
                     
                 </li>
@@ -41,7 +41,7 @@
                 <!-- Account Details Tab -->
                 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="profile-edit-wrapper">
-                        <h2>Edit Profile</h2>
+                        <h2><?php echo e(__('messages.EditProfile')); ?></h2>
                         <form action="<?php echo e(route('storeowner.dashboard.update')); ?>" method="POST"
                             enctype="multipart/form-data" class="profile-edit-form">
                             <?php echo csrf_field(); ?>
@@ -57,7 +57,7 @@
                                             alt="Default Profile Picture">
                                     <?php endif; ?>
                                 </div>
-                                <label for="image">Upload Profile Picture</label>
+                                <label for="image"><?php echo e(__('messages.UploadPic')); ?></label>
                                 <input type="file" name="image" id="image" class="form-control">
                             </div>
 
@@ -65,14 +65,14 @@
                             <div class="d-flex justify-content-between">
 
                                 <div style="margin-right:5px;" class="mr-2 w-50 form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name"><?php echo e(__('messages.Name')); ?></label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         value="<?php echo e($user->name); ?>" required>
                                 </div>
 
                                 <!-- Email -->
                                 <div style="margin-left:5px;" class=" w-50 form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email"><?php echo e(__('messages.Email')); ?></label>
                                     <input type="email" name="email" id="email" class="form-control"
                                         value="<?php echo e($user->email); ?>" required>
                                 </div>
@@ -82,13 +82,13 @@
                             <div class="d-flex justify-content-between">
                                 <!-- Phone -->
                                 <div style="margin-right:5px;" class="mr-2 w-50 form-group">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone"><?php echo e(__('messages.Phone')); ?></label>
                                     <input type="text" name="phone" id="phone" class="form-control"
                                         value="<?php echo e($user->delivery_info->phone ?? ' '); ?>" required>
                                 </div>
                                 <!-- building_no -->
                                 <div style="margin-left:5px;" class=" w-50 form-group">
-                                    <label for="building_no">Building no</label>
+                                    <label for="building_no"><?php echo e(__('messages.BuildingNo')); ?></label>
                                     <input type="text" name="building_no" id="building_no" class="ml-2 form-control"
                                         value="<?php echo e($user->delivery_info->building_no ?? ' '); ?>" required>
                                 </div>
@@ -98,14 +98,14 @@
 
                                 <!-- City -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="city">City</label>
+                                    <label for="city"><?php echo e(__('messages.City')); ?></label>
                                     <input type="text" name="city" id="city" class="form-control"
                                         value="<?php echo e($user->delivery_info->city ?? ' '); ?>" required>
                                 </div>
 
                                 <!-- Location -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="location">Location</label>
+                                    <label for="location"><?php echo e(__('messages.Location')); ?></label>
                                     <input type="text" name="location" id="location" class="form-control"
                                         value="<?php echo e($user->delivery_info->location ?? ' '); ?>" required>
                                 </div>
@@ -118,14 +118,14 @@
 
                                 <!-- store_name -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="store_name">Store Name (En)</label>
+                                    <label for="store_name"><?php echo e(__('messages.StoreNameEn')); ?></label>
                                     <input type="text" name="store_name" id="store_name" class="form-control"
                                         value="<?php echo e($storeowner->store_name ?? '0 '); ?>" required>
                                 </div>
 
                                 <!-- store_name_ar -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="store_name_ar">Store Name (Ar)</label>
+                                    <label for="store_name_ar"><?php echo e(__('messages.StoreNameAr')); ?></label>
                                     <input type="text" name="store_name_ar" id="store_name_ar" class="form-control"
                                         value="<?php echo e($storeowner->store_name_ar ?? ' '); ?>" required>
                                 </div>
@@ -135,14 +135,14 @@
 
                                 <!-- contact_number -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="contact_number">Contact Number</label>
+                                    <label for="contact_number"><?php echo e(__('messages.ContactNumber')); ?></label>
                                     <input type="text" name="contact_number" id="contact_number" class="form-control"
                                         value="<?php echo e($storeowner->contact_number ?? '0 '); ?>" required>
                                 </div>
 
                                 <!-- location -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="location_sotre">Store Location</label>
+                                    <label for="location_sotre"><?php echo e(__('messages.StoreLocation')); ?></label>
                                     <input type="text" name="location_sotre" id="location_sotre" class="form-control"
                                         value="<?php echo e($store->location ?? ' '); ?>" required>
                                 </div>
@@ -152,14 +152,14 @@
 
                                 <!-- address_ar -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="address_ar">Address (Ar)</label>
+                                    <label for="address_ar"><?php echo e(__('messages.AddressAr')); ?></label>
                                     <input type="text" name="address_ar" id="address_ar" class="form-control"
                                         value="<?php echo e($storeowner->address_ar ?? '0 '); ?>" required>
                                 </div>
 
                                 <!-- address -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="address">Address (En)</label>
+                                    <label for="address"><?php echo e(__('messages.AddressEn')); ?></label>
                                     <input type="text" name="address" id="address" class="form-control"
                                         value="<?php echo e($storeowner->address ?? ' '); ?>" required>
                                 </div>
@@ -168,20 +168,20 @@
 
                             <!-- description -->
                             <div class="form-group mb-0">
-                                <label for="description">Description (En)</label>
+                                <label for="description"><?php echo e(__('messages.DescriptionEn')); ?></label>
                                 <input type="text" name="description" id="description" class="form-control"
                                     value="<?php echo e($store->description ?? ' '); ?>" required>
                             </div>
                             <!-- description ar -->
                             <div class="form-group">
-                                <label for="description_ar">Description (Ar)</label>
+                                <label for="description_ar"><?php echo e(__('messages.DescriptionAr')); ?></label>
                                 <input type="text" name="description_ar" id="description_ar" class="form-control"
                                     value="<?php echo e($store->description_ar ?? ' '); ?>" required>
                             </div>
 
 
 
-                            <button type="submit" class="th-btn">Save Changes</button>
+                            <button type="submit" class="th-btn"><?php echo e(__('messages.SaveChanges')); ?></button>
 
                             
 
@@ -194,62 +194,64 @@
                     <!-- Products Tab -->
                     <div class="tab-pane fade show active" id="products" role="tabpanel"
                         aria-labelledby="products-tab">
-                        <h2>Manage Products</h2>
+                        <h2><?php echo e(__('messages.ManageProducts')); ?></h2>
 
                         <!-- Add New Product Button -->
-                        <button id="toggleAddProductForm" class="btn btn-primary mb-4">Add New Product</button>
+                        <button id="toggleAddProductForm"
+                            class="btn btn-primary mb-4"><?php echo e(__('messages.NewProduct')); ?></button>
 
                         <!-- Add Product Form -->
                         <div id="addProductForm" style="display: none;" class="card mb-4">
                             <div class="card-body">
-                                <h5 class="card-title">Add New Product</h5>
+                                <h5 class="card-title"><?php echo e(__('messages.NewProduct')); ?></h5>
                                 <form action="<?php echo e(route('storeowner.products.store')); ?>" method="POST"
                                     enctype="multipart/form-data">
                                     <?php echo csrf_field(); ?>
                                     <div class="form-group">
-                                        <label for="name">Product Name (En)</label>
+                                        <label for="name"><?php echo e(__('messages.ProductNameEn')); ?></label>
                                         <input type="text" name="name" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name_ar">Product Name (Ar)</label>
+                                        <label for="name_ar"><?php echo e(__('messages.ProductNameAr')); ?></label>
                                         <input type="text" name="name_ar" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="description">Description (En)</label>
+                                        <label for="description"><?php echo e(__('messages.DescriptionEn')); ?></label>
                                         <textarea name="description" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="description_ar">Description (Ar)</label>
+                                        <label for="description_ar"><?php echo e(__('messages.DescriptionAr')); ?></label>
                                         <textarea name="description_ar" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="price">Price</label>
+                                        <label for="price"><?php echo e(__('messages.Price')); ?></label>
                                         <input type="number" name="price" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="stock_quantity">Stock Quantity</label>
+                                        <label for="stock_quantity"><?php echo e(__('messages.StockQuantity')); ?></label>
                                         <input type="number" name="stock_quantity" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Product Image</label>
+                                        <label for="image"><?php echo e(__('messages.ProductImage')); ?></label>
                                         <input type="file" name="image" class="form-control" required>
                                     </div>
-                                    <button type="submit" class="btn btn-success">Add Product</button>
+                                    <button type="submit"
+                                        class="btn btn-success"><?php echo e(__('messages.AddProduct')); ?></button>
                                 </form>
                             </div>
                         </div>
 
                         <!-- Product List -->
-                        <h5 class="mb-3">My Products</h5>
+                        <h5 class="mb-3"><?php echo e(__('messages.MyProducts')); ?></h5>
                         <table class="  table table-bordered table-wrapper">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Stock</th>
-                                    <th>Actions</th>
+                                    <th><?php echo e(__('messages.Image')); ?></th>
+                                    <th><?php echo e(__('messages.Name')); ?></th>
+                                    <th><?php echo e(__('messages.Description')); ?></th>
+                                    <th><?php echo e(__('messages.Price')); ?></th>
+                                    <th><?php echo e(__('messages.Stock')); ?></th>
+                                    <th><?php echo e(__('messages.Actions')); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -262,7 +264,7 @@
                                                 <img src="<?php echo e(asset('storage/product_images/' . $product->image->name)); ?>"
                                                     alt="Product Image" width="80" height="80">
                                             <?php else: ?>
-                                                <span>No Image</span>
+                                                <span><?php echo e(__('messages.NoImage')); ?></span>
                                             <?php endif; ?>
                                         </td>
                                         <td data-label="Name"><?php echo e($product->name); ?> / <?php echo e($product->name_ar); ?></td>
@@ -273,14 +275,15 @@
                                         <td data-label="Action">
                                             <!-- Edit Button -->
                                             <button class="btn btn-info"
-                                                onclick="editProduct(<?php echo e($product->id); ?>)">Edit</button>
+                                                onclick="editProduct(<?php echo e($product->id); ?>)"><?php echo e(__('messages.Edit')); ?></button>
 
                                             <!-- Delete Form -->
                                             <form action="<?php echo e(route('storeowner.products.destroy', $product->id)); ?>"
                                                 method="POST" style="display:inline-block;">
                                                 <?php echo csrf_field(); ?>
                                                 <?php echo method_field('DELETE'); ?>
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit"
+                                                    class="btn btn-danger"><?php echo e(__('messages.Delete')); ?></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -312,38 +315,39 @@
                                         <?php echo csrf_field(); ?>
                                         <input type="hidden" name="_method" value="POST">
                                         <div class="form-group">
-                                            <label for="editName">Product Name (En)</label>
+                                            <label for="editName"><?php echo e(__('messages.ProductNameAr')); ?></label>
                                             <input type="text" name="name" id="editName" class="form-control"
                                                 required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editNameAr">Product Name (Ar)</label>
+                                            <label for="editNameAr"><?php echo e(__('messages.ProductNameEn')); ?></label>
                                             <input type="text" name="name_ar" id="editNameAr" class="form-control"
                                                 required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editDescription">Description (En)</label>
+                                            <label for="editDescription"><?php echo e(__('messages.DescriptionEn')); ?></label>
                                             <textarea name="description" id="editDescription" class="form-control" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editDescriptionAr">Description (Ar)</label>
+                                            <label for="editDescriptionAr"><?php echo e(__('messages.DescriptionAr')); ?></label>
                                             <textarea name="description_ar" id="editDescriptionAr" class="form-control" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editPrice">Price</label>
+                                            <label for="editPrice"><?php echo e(__('messages.Price')); ?></label>
                                             <input type="number" name="price" id="editPrice" class="form-control"
                                                 required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editStockQuantity">Stock Quantity</label>
+                                            <label for="editStockQuantity"><?php echo e(__('messages.StockQuantity')); ?></label>
                                             <input type="number" name="stock_quantity" id="editStockQuantity"
                                                 class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editImage">Product Image</label>
+                                            <label for="editImage"><?php echo e(__('messages.ProductImage')); ?></label>
                                             <input type="file" name="image" id="editImage" class="form-control">
                                         </div>
-                                        <button type="submit" class="btn btn-success">Update Product</button>
+                                        <button type="submit"
+                                            class="btn btn-success"><?php echo e(__('messages.UpdateProduct')); ?></button>
                                     </form>
                                 </div>
                             </div>
@@ -390,7 +394,7 @@
                         <!-- Orders Tab -->
                         <div class="tab-pane fade show active" id="orders" role="tabpanel"
                             aria-labelledby="orders-tab">
-                            <h2>Sales Orders</h2>
+                            <h2><?php echo e(__('messages.SalesOrders')); ?></h2>
                             <?php $__empty_1 = true; $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $groupKey => $saleGroup): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <?php
                                     [$saleDate, $userId] = explode('-', $groupKey);
@@ -401,12 +405,15 @@
                                 <div class="card mb-4 shadow-sm">
                                     <div class="card-header d-flex justify-content-between">
                                         <h4 class="my-0 font-weight-normal">
-                                            Order from <?php echo e($user->name); ?> on
+                                            <?php echo e(__('messages.Orderfrom')); ?><?php echo e($user->name); ?> <?php echo e(__('messages.on')); ?>
+
                                             <?php echo e(\Carbon\Carbon::parse($saleDate)->format('F j, Y g:i A')); ?>
 
                                         </h4>
                                         <span class="custom-total">
-                                            Total: JD <?php echo e(number_format($totalAmount, 2)); ?>
+                                            <?php echo e(__('messages.Total')); ?>: <?php echo e(__('messages.JD')); ?>
+
+                                            <?php echo e(number_format($totalAmount, 2)); ?>
 
                                         </span>
                                     </div>
@@ -417,17 +424,21 @@
                                                     class="list-group-item d-flex justify-content-between align-items-center">
                                                     <div>
                                                         <!-- Compact product details -->
-                                                        <strong>Product:</strong> <?php echo e($sale->product->name); ?>
+                                                        <strong><?php echo e(__('messages.Product')); ?>:</strong>
+                                                        <?php echo e($sale->product->name); ?>
 
                                                         <span class="text-muted">(ID: <?php echo e($sale->product_id); ?>)</span> -
-                                                        <strong>Quantity:</strong> <?php echo e($sale->quantity_sold); ?> -
-                                                        <strong>Total:</strong> JD
+                                                        <strong><?php echo e(__('messages.Quantity')); ?>:</strong>
+                                                        <?php echo e($sale->quantity_sold); ?> -
+                                                        <strong><?php echo e(__('messages.Total')); ?>:</strong>
+                                                        <?php echo e(__('messages.JD')); ?>
+
                                                         <?php echo e(number_format($sale->total_amount, 2)); ?>
 
                                                     </div>
                                                     <div class="d-flex ">
                                                         <div style="margin-right:10px;" class="mr-3 custom-status">
-                                                            <strong>Status:</strong>
+                                                            <strong><?php echo e(__('messages.Status')); ?>:</strong>
                                                             <?php if($sale->status_id == 16): ?>
                                                                 <button
                                                                     class="mr-3 statusBtn1 custom-btn-info"><?php echo e($sale->status->name); ?></button>
@@ -455,7 +466,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="17"> <!-- Confirm -->
                                                                     <button type="submit"
-                                                                        class="btn btn-success">Confirm</button>
+                                                                        class="btn btn-success"><?php echo e(__('messages.Confirm')); ?></button>
                                                                 </form>
                                                                 <form
                                                                     action="<?php echo e(route('storeowner.sale.update', $sale->id)); ?>"
@@ -465,7 +476,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="19"> <!-- Cancel -->
                                                                     <button type="submit"
-                                                                        class="btn btn-danger">Cancel</button>
+                                                                        class="btn btn-danger"><?php echo e(__('messages.Cancel')); ?></button>
                                                                 </form>
                                                             <?php elseif($sale->status_id == 17): ?>
                                                                 <!-- Approved: Show Delivered and Cancel Buttons -->
@@ -477,7 +488,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="18"> <!-- Delivered -->
                                                                     <button type="submit"
-                                                                        class="btn btn-primary">Delivered</button>
+                                                                        class="btn btn-primary"><?php echo e(__('messages.Delivereds')); ?></button>
                                                                 </form>
                                                                 <form
                                                                     action="<?php echo e(route('storeowner.sale.update', $sale->id)); ?>"
@@ -487,7 +498,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="19"> <!-- Cancel -->
                                                                     <button type="submit"
-                                                                        class="btn btn-danger">Cancel</button>
+                                                                        class="btn btn-danger"><?php echo e(__('messages.Cancel')); ?></button>
                                                                 </form>
                                                             <?php endif; ?>
                                                         </div>

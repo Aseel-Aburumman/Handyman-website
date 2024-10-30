@@ -107,6 +107,8 @@ class GigController extends Controller
         $notification = new Notification();
         $notification->user_id = $gig->user_id; // Assign the notification to the user
         $notification->message = 'Your gig has been canceled due a TOS violation ';
+        $notification->message_ar = 'تم الغاء مشروعك لمخالفته النود والشروط الخاصة بالموقع ';
+
         $notification->category = 'danger'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();

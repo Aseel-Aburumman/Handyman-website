@@ -1,17 +1,22 @@
 <?php $__env->startSection('content'); ?>
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Be A Store Owner!</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li>Become A Store Owner</li>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.storeOwnerApplyBread')); ?>
 
-                    <li>Store Owner Application Agreement</li>
+                </h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><?php echo e(__('messages.storeOwnerApplyBreadSmall2')); ?>
+
+                    </li>
+
+                    <li><?php echo e(__('messages.storeOwnerApplyBreadSmall')); ?>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -22,10 +27,10 @@
         <div class="container mt-5">
             <div class="card shadow-sm">
                 <div class="card-body p-5">
-                    <h1 class="mb-4 text-center">Store Owner Application Agreement</h1>
+                    <h1 class="mb-4 text-center"><?php echo e(__('messages.storeOwnerApplyBreadSmall')); ?></h1>
 
-                    <p>Please read the following agreement before submitting your application to become a Store Owner on our
-                        platform:
+                    <p><?php echo e(__('messages.storeOwnerApplyP')); ?>
+
                     </p>
 
                     <div class="agreement-content">
@@ -41,7 +46,7 @@
 
                     <form action="<?php echo e(route('storeowner.agreement.confirm')); ?>" method="POST">
                         <?php echo csrf_field(); ?>
-                        <button type="submit" class="btn btn-primary">I Agree</button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('messages.IAgree')); ?></button>
                     </form>
                 </div>
             </div>

@@ -4,10 +4,10 @@
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Dashboard</h1>
+                <h1 class="breadcumb-title">{{ __('messages.Dashboard') }}</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('customer.Home') }}">Home</a></li>
-                    <li>Dashboard</li>
+                    <li><a href="{{ route('customer.Home') }}">{{ __('messages.Home') }}</a></li>
+                    <li>{{ __('messages.Dashboard') }}</li>
                 </ul>
             </div>
         </div>
@@ -18,22 +18,22 @@
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn active" id="description-tab" data-bs-toggle="tab" href="#description"
-                        role="tab" aria-controls="description" aria-selected="true">Account Detail</a>
+                        role="tab" aria-controls="description"
+                        aria-selected="true">{{ __('messages.AccountDetail') }}</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
-                        aria-controls="orders" aria-selected="false">orders</a>
+                        aria-controls="orders" aria-selected="false">{{ __('messages.orders') }}</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="products-tab" data-bs-toggle="tab" href="#products" role="tab"
-                        aria-controls="products" aria-selected="false">My products</a>
+                        aria-controls="products" aria-selected="false">{{ __('messages.MyProducts') }}</a>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <form class="" action="{{ route('chat', ['receiverId' => $admin]) }}"
-                        method="GET">
+                    <form class="" action="{{ route('chat', ['receiverId' => $admin]) }}" method="GET">
                         @csrf
-                        <button type="submit" class="nav-link th-btn ">Chat Center</button>
+                        <button type="submit" class="nav-link th-btn ">{{ __('messages.ChatCenter') }}</button>
                     </form>
                     {{--  <a class="nav-link th-btn" id="chat-tab" data-bs-toggle="tab"
                         href="{{ route('chat', ['receiverId' => $firstgigs->handyman->user->id]) }}" role="tab"
@@ -45,7 +45,7 @@
                 <!-- Account Details Tab -->
                 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="profile-edit-wrapper">
-                        <h2>Edit Profile</h2>
+                        <h2>{{ __('messages.EditProfile') }}</h2>
                         <form action="{{ route('storeowner.dashboard.update') }}" method="POST"
                             enctype="multipart/form-data" class="profile-edit-form">
                             @csrf
@@ -61,7 +61,7 @@
                                             alt="Default Profile Picture">
                                     @endif
                                 </div>
-                                <label for="image">Upload Profile Picture</label>
+                                <label for="image">{{ __('messages.UploadPic') }}</label>
                                 <input type="file" name="image" id="image" class="form-control">
                             </div>
 
@@ -69,14 +69,14 @@
                             <div class="d-flex justify-content-between">
 
                                 <div style="margin-right:5px;" class="mr-2 w-50 form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name">{{ __('messages.Name') }}</label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         value="{{ $user->name }}" required>
                                 </div>
 
                                 <!-- Email -->
                                 <div style="margin-left:5px;" class=" w-50 form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('messages.Email') }}</label>
                                     <input type="email" name="email" id="email" class="form-control"
                                         value="{{ $user->email }}" required>
                                 </div>
@@ -86,13 +86,13 @@
                             <div class="d-flex justify-content-between">
                                 <!-- Phone -->
                                 <div style="margin-right:5px;" class="mr-2 w-50 form-group">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone">{{ __('messages.Phone') }}</label>
                                     <input type="text" name="phone" id="phone" class="form-control"
                                         value="{{ $user->delivery_info->phone ?? ' ' }}" required>
                                 </div>
                                 <!-- building_no -->
                                 <div style="margin-left:5px;" class=" w-50 form-group">
-                                    <label for="building_no">Building no</label>
+                                    <label for="building_no">{{ __('messages.BuildingNo') }}</label>
                                     <input type="text" name="building_no" id="building_no" class="ml-2 form-control"
                                         value="{{ $user->delivery_info->building_no ?? ' ' }}" required>
                                 </div>
@@ -102,14 +102,14 @@
 
                                 <!-- City -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="city">City</label>
+                                    <label for="city">{{ __('messages.City') }}</label>
                                     <input type="text" name="city" id="city" class="form-control"
                                         value="{{ $user->delivery_info->city ?? ' ' }}" required>
                                 </div>
 
                                 <!-- Location -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="location">Location</label>
+                                    <label for="location">{{ __('messages.Location') }}</label>
                                     <input type="text" name="location" id="location" class="form-control"
                                         value="{{ $user->delivery_info->location ?? ' ' }}" required>
                                 </div>
@@ -122,14 +122,14 @@
 
                                 <!-- store_name -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="store_name">Store Name (En)</label>
+                                    <label for="store_name">{{ __('messages.StoreNameEn') }}</label>
                                     <input type="text" name="store_name" id="store_name" class="form-control"
                                         value="{{ $storeowner->store_name ?? '0 ' }}" required>
                                 </div>
 
                                 <!-- store_name_ar -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="store_name_ar">Store Name (Ar)</label>
+                                    <label for="store_name_ar">{{ __('messages.StoreNameAr') }}</label>
                                     <input type="text" name="store_name_ar" id="store_name_ar" class="form-control"
                                         value="{{ $storeowner->store_name_ar ?? ' ' }}" required>
                                 </div>
@@ -139,14 +139,14 @@
 
                                 <!-- contact_number -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="contact_number">Contact Number</label>
+                                    <label for="contact_number">{{ __('messages.ContactNumber') }}</label>
                                     <input type="text" name="contact_number" id="contact_number" class="form-control"
                                         value="{{ $storeowner->contact_number ?? '0 ' }}" required>
                                 </div>
 
                                 <!-- location -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="location_sotre">Store Location</label>
+                                    <label for="location_sotre">{{ __('messages.StoreLocation') }}</label>
                                     <input type="text" name="location_sotre" id="location_sotre" class="form-control"
                                         value="{{ $store->location ?? ' ' }}" required>
                                 </div>
@@ -156,14 +156,14 @@
 
                                 <!-- address_ar -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="address_ar">Address (Ar)</label>
+                                    <label for="address_ar">{{ __('messages.AddressAr') }}</label>
                                     <input type="text" name="address_ar" id="address_ar" class="form-control"
                                         value="{{ $storeowner->address_ar ?? '0 ' }}" required>
                                 </div>
 
                                 <!-- address -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="address">Address (En)</label>
+                                    <label for="address">{{ __('messages.AddressEn') }}</label>
                                     <input type="text" name="address" id="address" class="form-control"
                                         value="{{ $storeowner->address ?? ' ' }}" required>
                                 </div>
@@ -172,20 +172,20 @@
 
                             <!-- description -->
                             <div class="form-group mb-0">
-                                <label for="description">Description (En)</label>
+                                <label for="description">{{ __('messages.DescriptionEn') }}</label>
                                 <input type="text" name="description" id="description" class="form-control"
                                     value="{{ $store->description ?? ' ' }}" required>
                             </div>
                             <!-- description ar -->
                             <div class="form-group">
-                                <label for="description_ar">Description (Ar)</label>
+                                <label for="description_ar">{{ __('messages.DescriptionAr') }}</label>
                                 <input type="text" name="description_ar" id="description_ar" class="form-control"
                                     value="{{ $store->description_ar ?? ' ' }}" required>
                             </div>
 
 
 
-                            <button type="submit" class="th-btn">Save Changes</button>
+                            <button type="submit" class="th-btn">{{ __('messages.SaveChanges') }}</button>
 
                             {{--  <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
                                 class="mt-3 th-btn">View As
@@ -200,62 +200,64 @@
                     <!-- Products Tab -->
                     <div class="tab-pane fade show active" id="products" role="tabpanel"
                         aria-labelledby="products-tab">
-                        <h2>Manage Products</h2>
+                        <h2>{{ __('messages.ManageProducts') }}</h2>
 
                         <!-- Add New Product Button -->
-                        <button id="toggleAddProductForm" class="btn btn-primary mb-4">Add New Product</button>
+                        <button id="toggleAddProductForm"
+                            class="btn btn-primary mb-4">{{ __('messages.NewProduct') }}</button>
 
                         <!-- Add Product Form -->
                         <div id="addProductForm" style="display: none;" class="card mb-4">
                             <div class="card-body">
-                                <h5 class="card-title">Add New Product</h5>
+                                <h5 class="card-title">{{ __('messages.NewProduct') }}</h5>
                                 <form action="{{ route('storeowner.products.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="name">Product Name (En)</label>
+                                        <label for="name">{{ __('messages.ProductNameEn') }}</label>
                                         <input type="text" name="name" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name_ar">Product Name (Ar)</label>
+                                        <label for="name_ar">{{ __('messages.ProductNameAr') }}</label>
                                         <input type="text" name="name_ar" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="description">Description (En)</label>
+                                        <label for="description">{{ __('messages.DescriptionEn') }}</label>
                                         <textarea name="description" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="description_ar">Description (Ar)</label>
+                                        <label for="description_ar">{{ __('messages.DescriptionAr') }}</label>
                                         <textarea name="description_ar" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="price">Price</label>
+                                        <label for="price">{{ __('messages.Price') }}</label>
                                         <input type="number" name="price" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="stock_quantity">Stock Quantity</label>
+                                        <label for="stock_quantity">{{ __('messages.StockQuantity') }}</label>
                                         <input type="number" name="stock_quantity" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Product Image</label>
+                                        <label for="image">{{ __('messages.ProductImage') }}</label>
                                         <input type="file" name="image" class="form-control" required>
                                     </div>
-                                    <button type="submit" class="btn btn-success">Add Product</button>
+                                    <button type="submit"
+                                        class="btn btn-success">{{ __('messages.AddProduct') }}</button>
                                 </form>
                             </div>
                         </div>
 
                         <!-- Product List -->
-                        <h5 class="mb-3">My Products</h5>
+                        <h5 class="mb-3">{{ __('messages.MyProducts') }}</h5>
                         <table class="  table table-bordered table-wrapper">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Stock</th>
-                                    <th>Actions</th>
+                                    <th>{{ __('messages.Image') }}</th>
+                                    <th>{{ __('messages.Name') }}</th>
+                                    <th>{{ __('messages.Description') }}</th>
+                                    <th>{{ __('messages.Price') }}</th>
+                                    <th>{{ __('messages.Stock') }}</th>
+                                    <th>{{ __('messages.Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -268,7 +270,7 @@
                                                 <img src="{{ asset('storage/product_images/' . $product->image->name) }}"
                                                     alt="Product Image" width="80" height="80">
                                             @else
-                                                <span>No Image</span>
+                                                <span>{{ __('messages.NoImage') }}</span>
                                             @endif
                                         </td>
                                         <td data-label="Name">{{ $product->name }} / {{ $product->name_ar }}</td>
@@ -279,14 +281,15 @@
                                         <td data-label="Action">
                                             <!-- Edit Button -->
                                             <button class="btn btn-info"
-                                                onclick="editProduct({{ $product->id }})">Edit</button>
+                                                onclick="editProduct({{ $product->id }})">{{ __('messages.Edit') }}</button>
 
                                             <!-- Delete Form -->
                                             <form action="{{ route('storeowner.products.destroy', $product->id) }}"
                                                 method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit"
+                                                    class="btn btn-danger">{{ __('messages.Delete') }}</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -317,38 +320,39 @@
                                         @csrf
                                         <input type="hidden" name="_method" value="POST">
                                         <div class="form-group">
-                                            <label for="editName">Product Name (En)</label>
+                                            <label for="editName">{{ __('messages.ProductNameAr') }}</label>
                                             <input type="text" name="name" id="editName" class="form-control"
                                                 required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editNameAr">Product Name (Ar)</label>
+                                            <label for="editNameAr">{{ __('messages.ProductNameEn') }}</label>
                                             <input type="text" name="name_ar" id="editNameAr" class="form-control"
                                                 required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editDescription">Description (En)</label>
+                                            <label for="editDescription">{{ __('messages.DescriptionEn') }}</label>
                                             <textarea name="description" id="editDescription" class="form-control" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editDescriptionAr">Description (Ar)</label>
+                                            <label for="editDescriptionAr">{{ __('messages.DescriptionAr') }}</label>
                                             <textarea name="description_ar" id="editDescriptionAr" class="form-control" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editPrice">Price</label>
+                                            <label for="editPrice">{{ __('messages.Price') }}</label>
                                             <input type="number" name="price" id="editPrice" class="form-control"
                                                 required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editStockQuantity">Stock Quantity</label>
+                                            <label for="editStockQuantity">{{ __('messages.StockQuantity') }}</label>
                                             <input type="number" name="stock_quantity" id="editStockQuantity"
                                                 class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="editImage">Product Image</label>
+                                            <label for="editImage">{{ __('messages.ProductImage') }}</label>
                                             <input type="file" name="image" id="editImage" class="form-control">
                                         </div>
-                                        <button type="submit" class="btn btn-success">Update Product</button>
+                                        <button type="submit"
+                                            class="btn btn-success">{{ __('messages.UpdateProduct') }}</button>
                                     </form>
                                 </div>
                             </div>
@@ -395,7 +399,7 @@
                         <!-- Orders Tab -->
                         <div class="tab-pane fade show active" id="orders" role="tabpanel"
                             aria-labelledby="orders-tab">
-                            <h2>Sales Orders</h2>
+                            <h2>{{ __('messages.SalesOrders') }}</h2>
                             @forelse ($sales as $groupKey => $saleGroup)
                                 @php
                                     [$saleDate, $userId] = explode('-', $groupKey);
@@ -406,11 +410,12 @@
                                 <div class="card mb-4 shadow-sm">
                                     <div class="card-header d-flex justify-content-between">
                                         <h4 class="my-0 font-weight-normal">
-                                            Order from {{ $user->name }} on
+                                            {{ __('messages.Orderfrom') }}{{ $user->name }} {{ __('messages.on') }}
                                             {{ \Carbon\Carbon::parse($saleDate)->format('F j, Y g:i A') }}
                                         </h4>
                                         <span class="custom-total">
-                                            Total: JD {{ number_format($totalAmount, 2) }}
+                                            {{ __('messages.Total') }}: {{ __('messages.JD') }}
+                                            {{ number_format($totalAmount, 2) }}
                                         </span>
                                     </div>
                                     <div class="card-body">
@@ -420,15 +425,18 @@
                                                     class="list-group-item d-flex justify-content-between align-items-center">
                                                     <div>
                                                         <!-- Compact product details -->
-                                                        <strong>Product:</strong> {{ $sale->product->name }}
+                                                        <strong>{{ __('messages.Product') }}:</strong>
+                                                        {{ $sale->product->name }}
                                                         <span class="text-muted">(ID: {{ $sale->product_id }})</span> -
-                                                        <strong>Quantity:</strong> {{ $sale->quantity_sold }} -
-                                                        <strong>Total:</strong> JD
+                                                        <strong>{{ __('messages.Quantity') }}:</strong>
+                                                        {{ $sale->quantity_sold }} -
+                                                        <strong>{{ __('messages.Total') }}:</strong>
+                                                        {{ __('messages.JD') }}
                                                         {{ number_format($sale->total_amount, 2) }}
                                                     </div>
                                                     <div class="d-flex ">
                                                         <div style="margin-right:10px;" class="mr-3 custom-status">
-                                                            <strong>Status:</strong>
+                                                            <strong>{{ __('messages.Status') }}:</strong>
                                                             @if ($sale->status_id == 16)
                                                                 <button
                                                                     class="mr-3 statusBtn1 custom-btn-info">{{ $sale->status->name }}</button>
@@ -456,7 +464,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="17"> <!-- Confirm -->
                                                                     <button type="submit"
-                                                                        class="btn btn-success">Confirm</button>
+                                                                        class="btn btn-success">{{ __('messages.Confirm') }}</button>
                                                                 </form>
                                                                 <form
                                                                     action="{{ route('storeowner.sale.update', $sale->id) }}"
@@ -466,7 +474,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="19"> <!-- Cancel -->
                                                                     <button type="submit"
-                                                                        class="btn btn-danger">Cancel</button>
+                                                                        class="btn btn-danger">{{ __('messages.Cancel') }}</button>
                                                                 </form>
                                                             @elseif ($sale->status_id == 17)
                                                                 <!-- Approved: Show Delivered and Cancel Buttons -->
@@ -478,7 +486,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="18"> <!-- Delivered -->
                                                                     <button type="submit"
-                                                                        class="btn btn-primary">Delivered</button>
+                                                                        class="btn btn-primary">{{ __('messages.Delivereds') }}</button>
                                                                 </form>
                                                                 <form
                                                                     action="{{ route('storeowner.sale.update', $sale->id) }}"
@@ -488,7 +496,7 @@
                                                                     <input type="hidden" name="status_id"
                                                                         value="19"> <!-- Cancel -->
                                                                     <button type="submit"
-                                                                        class="btn btn-danger">Cancel</button>
+                                                                        class="btn btn-danger">{{ __('messages.Cancel') }}</button>
                                                                 </form>
                                                             @endif
                                                         </div>

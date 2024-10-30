@@ -4,7 +4,7 @@
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Notification Center</h1>
+                <h1 class="breadcumb-title">{{ __('messages.NotificationCenter') }}</h1>
                 <ul class="breadcumb-menu">
                     {{--  <li><a href="{{ route('customer.Home') }}">Home</a></li>  --}}
                     {{--  <li><a href="{{ route('customer.Home') }}">Dashboard</a></li>  --}}
@@ -18,10 +18,10 @@
         <div class="container">
 
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
-                <li class="nav-item" role="presentation">
+                {{--  <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
                         aria-controls="orders" aria-selected="false">Notification</a>
-                </li>
+                </li>  --}}
             </ul>
 
             <div class="tab-content" id="productTabContent">
@@ -35,7 +35,7 @@
                         <div class="card-header"
                             style="background-color: #F8F9FA; border-bottom: none; border-radius: 12px;">
                             <h5 class="card-title" style="font-weight: bold; color: #333; border-radius: 12px;">
-                                Notifications</h5>
+                                {{ __('messages.Notifications') }}</h5>
                         </div>
                         <div class="card-body" style="padding: 1.5rem;">
                             @if ($notifications && $notifications->count() > 0)
@@ -64,7 +64,12 @@
                                         <div class="flex-grow-1">
                                             <div class="notification-message">
                                                 <p class="mb-1" style="font-size: 16px; color: #333;">
-                                                    {{ $notification->message }}</p>
+                                                    @if (App::getLocale() == 'ar')
+                                                        {{ $notification->message_ar }}
+                                                    @else
+                                                        {{ $notification->message }}
+                                                    @endif
+                                                </p>
                                             </div>
                                             <div class="text-muted notification-date small" style="font-size: 14px;">
                                                 {{ $notification->created_at->format('Y-m-d H:i:s') }}
@@ -74,7 +79,7 @@
                                 @endforeach
                             @else
                                 <div class="text-center p-3">
-                                    <p class="text-muted" style="font-size: 16px;">No notifications available.</p>
+                                    <p class="text-muted" style="font-size: 16px;">{{ __('messages.NoNotifications') }}</p>
                                 </div>
                             @endif
                         </div>

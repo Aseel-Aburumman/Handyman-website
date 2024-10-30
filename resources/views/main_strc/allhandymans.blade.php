@@ -1,19 +1,15 @@
 @extends('layouts.inside')
 
 @section('content')
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
+                <h1 class="breadcumb-title">{{ __('messages.Allhandyman') }}</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Book A Gig</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}</a></li>
+                    <li>{{ __('messages.Allhandyman') }}</li>
 
-                    <li>Step 2</li>
                 </ul>
             </div>
         </div>
@@ -35,7 +31,7 @@
 
                         <!-- Date Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="date">Date</label>
+                            <label for="date">{{ __('messages.Date') }}</label>
                             <div class="filter-step2-date-options">
                                 {{--  <button class="filter-step2-date-btn" type="button"
                                     onclick="setDateFilter('today')">Today</button>
@@ -46,16 +42,16 @@
 
                                 <!-- Date Filter Buttons -->
                                 <button class="filter-step2-date-btn" type="button"
-                                    onclick="setDateFilter('today', this)">Today</button>
+                                    onclick="setDateFilter('today', this)">{{ __('messages.Today') }}</button>
                                 <button class="filter-step2-date-btn" type="button"
-                                    onclick="setDateFilter('within_3_days', this)">Within 3 Days</button>
+                                    onclick="setDateFilter('within_3_days', this)">{{ __('messages.3Days') }}</button>
                                 <button class="filter-step2-date-btn" type="button"
-                                    onclick="setDateFilter('within_a_week', this)">Within A Week</button>
+                                    onclick="setDateFilter('within_a_week', this)">{{ __('messages.Week') }}</button>
 
 
                                 <!-- Choose Dates Button -->
-                                <button class="filter-step2-date-btn" id="choose_dates_btn" type="button">Choose
-                                    Dates</button>
+                                <button class="filter-step2-date-btn" id="choose_dates_btn"
+                                    type="button">{{ __('messages.chooseDate') }}</button>
                                 <!-- Hidden input for date range -->
                                 <input type="text" id="choose_dates_input" name="choose_dates" class="d-none">
                                 <!-- Hidden input to hold the selected date filter -->
@@ -64,61 +60,61 @@
                         </div>
 
                         <!-- Time of Day Filter -->
-                        <div class="filter-step2-form-group">
-                            <label>Time of day</label>
+                        {{--  <div class="filter-step2-form-group">
+                            <label>{{ __('messages.TOD') }}</label>
                             <div class="filter-step2-time-options">
                                 <div class="filter-step2-checkbox-group">
                                     <input type="checkbox" id="morning" name="time_of_day[]" value="morning">
-                                    <label for="morning">Morning (8am - 12pm)</label>
+                                    <label for="morning">{{ __('messages.PPR') }}Morning (8am - 12pm)</label>
                                 </div>
                                 <div class="filter-step2-checkbox-group">
                                     <input type="checkbox" id="afternoon" name="time_of_day[]" value="afternoon">
-                                    <label for="afternoon">Afternoon (12pm - 5pm)</label>
+                                    <label for="afternoon">{{ __('messages.PPR') }}Afternoon (12pm - 5pm)</label>
                                 </div>
                                 <div class="filter-step2-checkbox-group">
                                     <input type="checkbox" id="evening" name="time_of_day[]" value="evening">
-                                    <label for="evening">Evening (5pm - 9:30pm)</label>
+                                    <label for="evening">{{ __('messages.PPR') }}Evening (5pm - 9:30pm)</label>
                                 </div>
                             </div>
-                        </div>
+                        </div>  --}}
 
                         <!-- Price Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="price_range">Price</label>
+                            <label for="price_range">{{ __('messages.Price') }}</label>
                             <div class="filter-step2-price-range">
                                 <input type="range" name="price_range" min="5" max="50" step="5"
                                     id="price_range" value="{{ old('price_range', 25) }}"
                                     oninput="document.getElementById('price_value').textContent = this.value">
                                 <div class="filter-step2-price-values">
-                                    <span>JD 5</span>
+                                    <span>{{ __('messages.JD') }} 5</span>
                                     <span id="price_value">{{ old('price_range', 25) }}</span>
-                                    <span>JD 50+</span>
+                                    <span>{{ __('messages.JD') }} 50+</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Rating Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="rating">Rating</label>
+                            <label for="rating">{{ __('messages.Rating') }}</label>
                             <select name="rating" id="rating">
-                                <option value="">Select Rating</option>
-                                <option value="1">1 Star & above</option>
-                                <option value="2">2 Stars & above</option>
-                                <option value="3">3 Stars & above</option>
-                                <option value="4">4 Stars & above</option>
-                                <option value="5">5 Stars</option>
+                                <option value="">{{ __('messages.SelectRating') }}</option>
+                                <option value="1">1 {{ __('messages.StarAbove') }} </option>
+                                <option value="2">2 {{ __('messages.StarsAbove') }}</option>
+                                <option value="3">3 {{ __('messages.StarsAbove') }} </option>
+                                <option value="4">4 {{ __('messages.StarsAbove') }} </option>
+                                <option value="5">5 {{ __('messages.Stars') }} </option>
                             </select>
                         </div>
 
                         <!-- Gig Count Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="gig_count">Number of Gigs Completed</label>
+                            <label for="gig_count">{{ __('messages.NumberOfGigs') }}</label>
                             <select name="gig_count" id="gig_count">
-                                <option value="">Select Number of Gigs</option>
-                                <option value="1">1 Gig & above</option>
-                                <option value="5">5 Gigs & above</option>
-                                <option value="10">10 Gigs & above</option>
-                                <option value="20">20 Gigs & above</option>
+                                <option value="">{{ __('messages.NumberOfGigs') }}</option>
+                                <option value="1">1 {{ __('messages.Gigabove') }}</option>
+                                <option value="5">5 {{ __('messages.Gigsabove') }}</option>
+                                <option value="10">10 {{ __('messages.Gigsabove') }} </option>
+                                <option value="20">20 {{ __('messages.Gigsabove') }} </option>
                             </select>
                         </div>
 
@@ -139,9 +135,10 @@
                         <!-- Skill Filter with Toggle Button -->
                         <div class="filter-step2-form-group">
                             <div class="d-flex">
-                                <label class="mt-1" for="skills">Skills</label>
+                                <label class="mt-1" for="skills">{{ __('messages.Skills') }}</label>
                                 <button type="button" class="btn showSkillBtn btn-secondary" id="toggleSkillsBtn"
-                                    onclick="toggleSkills()">Show Skills</button>
+                                    onclick="toggleSkills()">{{ __('messages.ShowSkills') }}
+                                </button>
                             </div>
 
                             <!-- Skills List (initially hidden) -->
@@ -158,11 +155,12 @@
 
 
                         <!-- Apply Filters Button -->
-                        <button type="submit" class="mt-2 submitBtnFilter btn btn-primary">Apply Filters</button>
+                        <button type="submit"
+                            class="mt-2 submitBtnFilter btn btn-primary">{{ __('messages.ApplyFilters') }}</button>
 
 
-                        <a href="{{ route('handymen.index') }}" class="w-100 mt-2 th-btn ">Reset <i
-                                class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+                        <a href="{{ route('handymen.index') }}" class="w-100 mt-2 th-btn ">{{ __('messages.Reset') }}
+                            <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
                     </form>
 
 
@@ -246,10 +244,8 @@
                                                 method="GET">
                                                 @csrf
                                                 <button type="submit"
-                                                    class="w-100 btn btn-primary select-tasker-btn ">Chat
-                                                    and Figure
-                                                    what
-                                                    next!</button>
+                                                    class="w-100 btn btn-primary select-tasker-btn ">{{ __('messages.ChatAnd') }}
+                                                    !</button>
                                             </form>
                                         </div>
                                     </div>
@@ -267,27 +263,33 @@
                                                 </div>
                                                 <div class="handyman-tasks">
                                                     <span>
-                                                        <i class="fa-solid fa-check-double"></i> Done
-                                                        task
+                                                        <i
+                                                            class="fa-solid fa-check-double"></i>{{ __('messages.Donetask') }}
+
                                                     </span>
                                                 </div>
                                                 <div class="handyman-tasks">
                                                     <span> <i class="fa-solid fa-clipboard-check"></i>
-                                                        {{ $handyman->gigs_count }} Successful tasks overall
+                                                        {{ $handyman->gigs_count }} {{ __('messages.Successfultasks') }}
+
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="handyman-price-section">
                                                 <p class="handyman-price">
-                                                    JD{{ number_format($handyman->price_per_hour, 2) }}/hr</p>
+                                                    {{ __('messages.JD') }}
+                                                    {{ number_format($handyman->price_per_hour, 2) }}/{{ __('messages.hr') }}
+                                                </p>
                                             </div>
                                         </div>
 
                                         <div class="handyman-description">
-                                            <h4>How I can help:</h4>
+                                            <h4>{{ __('messages.Howhelp') }}
+                                                :</h4>
                                             <p>{{ Str::limit($handyman->bio, 200) }}</p>
                                             <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
-                                                class="read-more-link">Read More</a>
+                                                class="read-more-link">{{ __('messages.ReadMore') }}
+                                            </a>
                                         </div>
 
                                         <div class="handyman-review">
@@ -308,7 +310,8 @@
                                                     </p>
                                                 </div>
                                             @else
-                                                <p>No reviews yet.</p>
+                                                <p>{{ __('messages.Noreviews') }}
+                                                    .</p>
                                             @endif
                                         </div>
                                     </div>

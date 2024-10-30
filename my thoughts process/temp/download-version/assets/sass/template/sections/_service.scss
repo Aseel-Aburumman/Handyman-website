@@ -5,13 +5,15 @@
     background-color: $white-color;
     border-radius: 24px;
     padding: 32px;
+    height: 450px;
+
     .box {
         &-number {
             font-size: 48px;
             line-height: 1;
             font-weight: 700;
             font-family: $title-font;
-            color: #E1E4E5;
+            color: #e1e4e5;
             position: absolute;
             right: 32px;
             top: 32px;
@@ -146,7 +148,7 @@
             line-height: 1;
             font-weight: 700;
             font-family: $title-font;
-            color: #E1E4E5;
+            color: #e1e4e5;
             position: absolute;
             right: 32px;
             top: 32px;
@@ -254,7 +256,7 @@
         right: 0;
         z-index: 4;
         &:after {
-            content: '';
+            content: "";
             position: absolute;
             inset: -8px;
             background-color: $light-color;
@@ -324,7 +326,8 @@
     @include md {
         margin-bottom: 40px;
     }
-    a, span {
+    a,
+    span {
         line-height: 36px;
         display: inline-block;
         color: $white-color;
@@ -345,34 +348,34 @@
     }
 }
 .service-gallery {
-	position: relative;
-	overflow: hidden;
-	border-radius: 12px;
-	&:after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-color: $title-color;
-		opacity: 0;
-		pointer-events: none;
-		transition: 0.4s ease-in-out;
-	}
-	img {
-		width: 100%;
-		transition: 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    &:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: $title-color;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s ease-in-out;
+    }
+    img {
+        width: 100%;
+        transition: 0.4s ease-in-out;
         @include xl {
             height: 290px;
             object-fit: cover;
         }
-	}
-	.box-btn {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		font-size: 30px;
-		color: $white-color;
-		line-height: 1;
-		z-index: 3;
+    }
+    .box-btn {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-size: 30px;
+        color: $white-color;
+        line-height: 1;
+        z-index: 3;
         transform: translate(-50%, 30%);
         visibility: hidden;
         opacity: 0;
@@ -380,12 +383,12 @@
         &:hover {
             color: $theme-color;
         }
-	}
-	&:hover {
-		&:after {
-			opacity: 0.5;
-		}
-		img {
+    }
+    &:hover {
+        &:after {
+            opacity: 0.5;
+        }
+        img {
             transform: scale(1.1);
         }
         .box-btn {
@@ -393,5 +396,5 @@
             opacity: 1;
             transform: translate(-50%, -50%);
         }
-	}
+    }
 }

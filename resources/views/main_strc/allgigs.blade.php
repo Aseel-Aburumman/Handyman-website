@@ -1,19 +1,18 @@
 @extends('layouts.inside')
 
 @section('content')
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
+                <h1 class="breadcumb-title">{{ __('messages.GigsMarket') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Book A Gig</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li>{{ __('messages.GigsMarket') }}
+                    </li>
 
-                    <li>Step 2</li>
                 </ul>
             </div>
         </div>
@@ -78,29 +77,39 @@
 
                         <!-- Price Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="price_range">Budget</label>
+                            <label for="price_range">{{ __('messages.Budget') }}
+                            </label>
                             <div class="filter-step2-price-range">
                                 <input type="range" name="price_range" min="5" max="50" step="5"
                                     id="price_range" value="{{ old('price_range', 25) }}"
                                     oninput="document.getElementById('price_value').textContent = this.value">
                                 <div class="filter-step2-price-values">
-                                    <span>JD 5/hr</span>
-                                    <span id="price_value">{{ old('price_range', 25) }}/hr</span>
-                                    <span>JD 50+/hr</span>
+                                    <span>{{ __('messages.JD') }} 5/{{ __('messages.hr') }}
+                                    </span>
+                                    <span id="price_value">{{ old('price_range', 25) }}/{{ __('messages.hr') }}
+                                    </span>
+                                    <span>{{ __('messages.JD') }} 50+/{{ __('messages.hr') }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Rating Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="rating">Client Rating</label>
+                            <label for="rating">{{ __('messages.ClientRating') }}</label>
                             <select name="rating" id="rating">
-                                <option value="">Select Rating</option>
-                                <option value="1">1 Star & above</option>
-                                <option value="2">2 Stars & above</option>
-                                <option value="3">3 Stars & above</option>
-                                <option value="4">4 Stars & above</option>
-                                <option value="5">5 Stars</option>
+                                <option value="">{{ __('messages.SelectRating') }}
+                                </option>
+                                <option value="1">1 {{ __('messages.StarAbove') }}
+                                </option>
+                                <option value="2">2 {{ __('messages.StarsAbove') }}
+                                </option>
+                                <option value="3">3 {{ __('messages.StarsAbove') }}
+                                </option>
+                                <option value="4">4 {{ __('messages.StarsAbove') }}
+                                </option>
+                                <option value="5">5 {{ __('messages.Stars') }}
+                                </option>
                             </select>
                         </div>
 
@@ -109,9 +118,11 @@
                         <!-- Skill Filter with Toggle Button -->
                         <div class="filter-step2-form-group">
                             <div class="d-flex">
-                                <label class="mt-1" for="skills">Skills</label>
+                                <label class="mt-1" for="skills">{{ __('messages.Skills') }}
+                                </label>
                                 <button type="button" class="btn showSkillBtn btn-secondary" id="toggleSkillsBtn"
-                                    onclick="toggleSkills()">Show Skills</button>
+                                    onclick="toggleSkills()">{{ __('messages.ShowSkills') }}
+                                </button>
                             </div>
 
                             <!-- Skills List (initially hidden) -->
@@ -128,11 +139,13 @@
 
 
                         <!-- Apply Filters Button -->
-                        <button type="submit" class="mt-2 submitBtnFilter btn btn-primary">Apply Filters</button>
+                        <button type="submit"
+                            class="mt-2 submitBtnFilter btn btn-primary">{{ __('messages.ApplyFilters') }}
+                        </button>
 
 
-                        <a href="{{ route('handyman.allgigs') }}" class="w-100 mt-2 th-btn ">Reset <i
-                                class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+                        <a href="{{ route('handyman.allgigs') }}" class="w-100 mt-2 th-btn ">{{ __('messages.Reset') }}
+                            <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
                     </form>
 
 
@@ -244,17 +257,27 @@
 
                                             </div>
                                             <div class="handyman-price-section">
-                                                <p class="handyman-price mb-0">Budget:
-                                                    JD{{ number_format($handyman->price, 2) }}/hr</p>
-                                                <p style="font-size:1rem;" class="handyman-price">Estimated time:
-                                                    {{ number_format($handyman->estimated_time, 2) }} hr</p>
+                                                <p class="handyman-price mb-0">{{ __('messages.Budget') }}
+                                                    :
+                                                    {{ __('messages.JD') }}
+                                                    {{ number_format($handyman->price, 2) }}/{{ __('messages.hr') }}
+                                                </p>
+                                                <p style="font-size:1rem;" class="handyman-price">
+                                                    {{ __('messages.EstimatedTime') }}
+                                                    :
+                                                    {{ number_format($handyman->estimated_time, 2) }}
+                                                    {{ __('messages.hr') }}
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="">
                                             <div>
-                                                <p class="mt-2 mb-0 handyman-price">Category:
+                                                <p class="mt-2 mb-0 handyman-price">
+                                                    {{ __('messages.Category') }}
+                                                    :
                                                     {{ $handyman->category->name }}</p>
-                                                <p class="handyman-price">Service:
+                                                <p class="handyman-price">{{ __('messages.Service') }}
+                                                    :
                                                     {{ $handyman->service->name }}</p>
                                             </div>
 
@@ -263,7 +286,8 @@
                                             <h4>{{ $handyman->title }}</h4>
                                             <p>{{ Str::limit($handyman->description, 200) }}</p>
                                             <a href="{{ route('handyman.opengig', ['gigId' => $handyman->id]) }}"
-                                                class="read-more-link">Read More</a>
+                                                class="read-more-link">{{ __('messages.ReadMore') }}
+                                            </a>
                                         </div>
 
                                         <div>
@@ -272,8 +296,8 @@
                                                 method="GET">
                                                 @csrf
                                                 {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
-                                                <button type="submit" class="th-btn ml-2 w-100 ">Apply
-                                                    Now!</button>
+                                                <button type="submit"
+                                                    class="th-btn ml-2 w-100 ">{{ __('messages.ApplyNow') }} !</button>
                                             </form>
                                         </div>
                                     </div>

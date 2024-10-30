@@ -244,7 +244,9 @@ class HandymanController extends Controller
         // Send notification to the winning handyman
         $notification = new Notification();
         $notification->user_id = $gig->user->id; // Assign the notification to the handyman
-        $notification->message = 'YourHandyman has accepted your offer!';
+        $notification->message = 'Your Handyman has accepted your offer!';
+        $notification->message_ar = 'الحرفي الذي اخترته وافق على عرضك!';
+
         $notification->category = 'success'; // Notification category
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();

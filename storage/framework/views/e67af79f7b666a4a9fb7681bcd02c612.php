@@ -1,17 +1,19 @@
 <?php $__env->startSection('content'); ?>
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li>Book A Gig</li>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.GigsMarket')); ?>
 
-                    <li>Step 2</li>
+                </h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><?php echo e(__('messages.GigsMarket')); ?>
+
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -35,29 +37,49 @@
 
                         <!-- Price Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="price_range">Budget</label>
+                            <label for="price_range"><?php echo e(__('messages.Budget')); ?>
+
+                            </label>
                             <div class="filter-step2-price-range">
                                 <input type="range" name="price_range" min="5" max="50" step="5"
                                     id="price_range" value="<?php echo e(old('price_range', 25)); ?>"
                                     oninput="document.getElementById('price_value').textContent = this.value">
                                 <div class="filter-step2-price-values">
-                                    <span>JD 5/hr</span>
-                                    <span id="price_value"><?php echo e(old('price_range', 25)); ?>/hr</span>
-                                    <span>JD 50+/hr</span>
+                                    <span><?php echo e(__('messages.JD')); ?> 5/<?php echo e(__('messages.hr')); ?>
+
+                                    </span>
+                                    <span id="price_value"><?php echo e(old('price_range', 25)); ?>/<?php echo e(__('messages.hr')); ?>
+
+                                    </span>
+                                    <span><?php echo e(__('messages.JD')); ?> 50+/<?php echo e(__('messages.hr')); ?>
+
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Rating Filter -->
                         <div class="filter-step2-form-group">
-                            <label for="rating">Client Rating</label>
+                            <label for="rating"><?php echo e(__('messages.ClientRating')); ?></label>
                             <select name="rating" id="rating">
-                                <option value="">Select Rating</option>
-                                <option value="1">1 Star & above</option>
-                                <option value="2">2 Stars & above</option>
-                                <option value="3">3 Stars & above</option>
-                                <option value="4">4 Stars & above</option>
-                                <option value="5">5 Stars</option>
+                                <option value=""><?php echo e(__('messages.SelectRating')); ?>
+
+                                </option>
+                                <option value="1">1 <?php echo e(__('messages.StarAbove')); ?>
+
+                                </option>
+                                <option value="2">2 <?php echo e(__('messages.StarsAbove')); ?>
+
+                                </option>
+                                <option value="3">3 <?php echo e(__('messages.StarsAbove')); ?>
+
+                                </option>
+                                <option value="4">4 <?php echo e(__('messages.StarsAbove')); ?>
+
+                                </option>
+                                <option value="5">5 <?php echo e(__('messages.Stars')); ?>
+
+                                </option>
                             </select>
                         </div>
 
@@ -66,9 +88,13 @@
                         <!-- Skill Filter with Toggle Button -->
                         <div class="filter-step2-form-group">
                             <div class="d-flex">
-                                <label class="mt-1" for="skills">Skills</label>
+                                <label class="mt-1" for="skills"><?php echo e(__('messages.Skills')); ?>
+
+                                </label>
                                 <button type="button" class="btn showSkillBtn btn-secondary" id="toggleSkillsBtn"
-                                    onclick="toggleSkills()">Show Skills</button>
+                                    onclick="toggleSkills()"><?php echo e(__('messages.ShowSkills')); ?>
+
+                                </button>
                             </div>
 
                             <!-- Skills List (initially hidden) -->
@@ -85,11 +111,15 @@
 
 
                         <!-- Apply Filters Button -->
-                        <button type="submit" class="mt-2 submitBtnFilter btn btn-primary">Apply Filters</button>
+                        <button type="submit"
+                            class="mt-2 submitBtnFilter btn btn-primary"><?php echo e(__('messages.ApplyFilters')); ?>
+
+                        </button>
 
 
-                        <a href="<?php echo e(route('handyman.allgigs')); ?>" class="w-100 mt-2 th-btn ">Reset <i
-                                class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+                        <a href="<?php echo e(route('handyman.allgigs')); ?>" class="w-100 mt-2 th-btn "><?php echo e(__('messages.Reset')); ?>
+
+                            <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
                     </form>
 
 
@@ -178,17 +208,35 @@
 
                                             </div>
                                             <div class="handyman-price-section">
-                                                <p class="handyman-price mb-0">Budget:
-                                                    JD<?php echo e(number_format($handyman->price, 2)); ?>/hr</p>
-                                                <p style="font-size:1rem;" class="handyman-price">Estimated time:
-                                                    <?php echo e(number_format($handyman->estimated_time, 2)); ?> hr</p>
+                                                <p class="handyman-price mb-0"><?php echo e(__('messages.Budget')); ?>
+
+                                                    :
+                                                    <?php echo e(__('messages.JD')); ?>
+
+                                                    <?php echo e(number_format($handyman->price, 2)); ?>/<?php echo e(__('messages.hr')); ?>
+
+                                                </p>
+                                                <p style="font-size:1rem;" class="handyman-price">
+                                                    <?php echo e(__('messages.EstimatedTime')); ?>
+
+                                                    :
+                                                    <?php echo e(number_format($handyman->estimated_time, 2)); ?>
+
+                                                    <?php echo e(__('messages.hr')); ?>
+
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="">
                                             <div>
-                                                <p class="mt-2 mb-0 handyman-price">Category:
+                                                <p class="mt-2 mb-0 handyman-price">
+                                                    <?php echo e(__('messages.Category')); ?>
+
+                                                    :
                                                     <?php echo e($handyman->category->name); ?></p>
-                                                <p class="handyman-price">Service:
+                                                <p class="handyman-price"><?php echo e(__('messages.Service')); ?>
+
+                                                    :
                                                     <?php echo e($handyman->service->name); ?></p>
                                             </div>
 
@@ -197,7 +245,9 @@
                                             <h4><?php echo e($handyman->title); ?></h4>
                                             <p><?php echo e(Str::limit($handyman->description, 200)); ?></p>
                                             <a href="<?php echo e(route('handyman.opengig', ['gigId' => $handyman->id])); ?>"
-                                                class="read-more-link">Read More</a>
+                                                class="read-more-link"><?php echo e(__('messages.ReadMore')); ?>
+
+                                            </a>
                                         </div>
 
                                         <div>
@@ -206,8 +256,8 @@
                                                 method="GET">
                                                 <?php echo csrf_field(); ?>
                                                 
-                                                <button type="submit" class="th-btn ml-2 w-100 ">Apply
-                                                    Now!</button>
+                                                <button type="submit"
+                                                    class="th-btn ml-2 w-100 "><?php echo e(__('messages.ApplyNow')); ?> !</button>
                                             </form>
                                         </div>
                                     </div>

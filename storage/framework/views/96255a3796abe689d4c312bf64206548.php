@@ -1,17 +1,14 @@
 <?php $__env->startSection('content'); ?>
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Be A Store Owner!</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.storeOwnerApplyBread')); ?></h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li>Store Owner Application Agreement</li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?></a></li>
+                    <li><?php echo e(__('messages.storeOwnerApplyBreadSmall')); ?></li>
 
-                    <li>Store Owner Application Form</li>
+                    <li><?php echo e(__('messages.storeOwnerApplyBreadSmall3')); ?></li>
                 </ul>
             </div>
         </div>
@@ -26,52 +23,52 @@
                 <?php echo csrf_field(); ?>
 
                 <div class="form-group">
-                    <label for="store_name">Store Name</label>
+                    <label for="store_name"><?php echo e(__('messages.StoreNameEn')); ?></label>
                     <input type="text" name="store_name" id="store_name" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="store_name_ar">Store Name (Arabic)</label>
+                    <label for="store_name_ar"><?php echo e(__('messages.StoreNameAr')); ?></label>
                     <input type="text" name="store_name_ar" id="store_name_ar" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="contact_number">Contact Number</label>
+                    <label for="contact_number"><?php echo e(__('messages.ContactNumber')); ?></label>
                     <input type="text" name="contact_number" id="contact_number" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address"><?php echo e(__('messages.AddressEn')); ?></label>
                     <input type="text" name="address" id="address" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="address_ar">Address (Arabic)</label>
+                    <label for="address_ar"><?php echo e(__('messages.AddressAr')); ?></label>
                     <input type="text" name="address_ar" id="address_ar" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="location">Location</label>
+                    <label for="location"><?php echo e(__('messages.Location')); ?></label>
                     <input type="text" name="location" id="location" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Description</label>
+                    <label for="description"><?php echo e(__('messages.DescriptionEn')); ?></label>
                     <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="description_ar">Description (Arabic)</label>
+                    <label for="description_ar"><?php echo e(__('messages.DescriptionAr')); ?></label>
                     <textarea name="description_ar" id="description_ar" class="form-control" rows="3" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="certificate_image">Upload Certificate</label>
+                    <label for="certificate_image"><?php echo e(__('messages.UploadCertificate')); ?></label>
                     <input type="file" name="certificate_image" id="certificate_image" class="form-control-file"
                         required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit Application</button>
+                <button type="submit" class="btn btn-primary"><?php echo e(__('messages.SubmitApplication')); ?></button>
             </form>
         </div>
     </section>

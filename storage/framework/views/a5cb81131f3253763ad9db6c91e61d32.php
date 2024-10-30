@@ -1,10 +1,11 @@
 <?php $__env->startSection('content'); ?>
     
-    <div class="th-hero-wrapper hero-1 slider-area" id="hero" data-bg-src="assets/img/hero/hero_bg_1.jpg">
-        <div class="shape-mockup spin" data-top="35%" data-right="8%"><img src="assets/img/shape/dots_1.svg" alt="shape">
+    <div class="th-hero-wrapper hero-1 slider-area" id="hero" data-bg-src="<?php echo e(asset('assets/img/hero/hero_bg_1.jpg')); ?>">
+        <div class="shape-mockup spin" data-top="35%" data-right="8%"><img src="<?php echo e(asset('assets/img/shape/dots_1.svg')); ?>"
+                alt="shape">
         </div>
-        <div class="shape-mockup spin" data-bottom="28%" data-right="48%"><img src="assets/img/shape/dots_1.svg"
-                alt="shape"></div>
+        <div class="shape-mockup spin" data-bottom="28%" data-right="48%"><img
+                src="<?php echo e(asset('assets/img/shape/dots_1.svg')); ?>" alt="shape"></div>
         <div class="swiper th-slider" id="heroSlide1" data-slider-options='{"effect":"fade","autoHeight":true}'>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -12,7 +13,7 @@
                         <div class="container">
                             <div class="hero-style1">
                                 <div class="hero-arrow" data-ani="slideinright" data-ani-delay="0.4s">
-                                    <img src="assets/img/hero/hero_arrow.svg" alt="Arrow">
+                                    <img src="<?php echo e(asset('assets/img/hero/hero_arrow.svg')); ?>" alt="Arrow">
                                 </div>
                                 <h1 class="hero-title">
                                     <span class="title1" data-ani="slideinup"
@@ -34,9 +35,9 @@
                         </div>
                         <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s">
                             <div class="shape1">
-                                <img src="assets/img/hero/hero_shape_1_1.svg" alt="shape">
+                                <img src="<?php echo e(asset('assets/img/hero/hero_shape_1_1.svg')); ?>" alt="shape">
                             </div>
-                            <img src="assets/img/hero/hero_1_1.png" alt="Image">
+                            <img src="<?php echo e(asset('assets/img/hero/hero_1_1.png')); ?>" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -45,7 +46,7 @@
                         <div class="container">
                             <div class="hero-style1">
                                 <div class="hero-arrow" data-ani="slideinright" data-ani-delay="0.4s">
-                                    <img src="assets/img/hero/hero_arrow.svg" alt="Arrow">
+                                    <img src="<?php echo e(asset('assets/img/hero/hero_arrow.svg')); ?>" alt="Arrow">
                                 </div>
                                 <h1 class="hero-title">
                                     <span class="title1" data-ani="slideinup"
@@ -60,16 +61,16 @@
                                 </h1>
                                 <p class="hero-text" data-ani="slideinup" data-ani-delay="0.8s">
                                     <?php echo e(__('messages.bannerSubTitleB1')); ?></p>
-                                <a href="service.html" class="th-btn style3" data-ani="slideinup"
+                                <a href="<?php echo e(route('service')); ?>" class="th-btn style3" data-ani="slideinup"
                                     data-ani-delay="1s"><?php echo e(__('messages.bannerBtn')); ?><i
                                         class="fas fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>
                         <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s">
                             <div class="shape1">
-                                <img src="assets/img/hero/hero_shape_1_1.svg" alt="shape">
+                                <img src="<?php echo e(asset('assets/img/hero/hero_shape_1_1.svg')); ?>" alt="shape">
                             </div>
-                            <img src="assets/img/hero/hero_1_2.png" alt="Image">
+                            <img src="<?php echo e(asset('assets/img/hero/hero_1_2.png')); ?>" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -78,7 +79,7 @@
                         <div class="container">
                             <div class="hero-style1">
                                 <div class="hero-arrow" data-ani="slideinright" data-ani-delay="0.4s">
-                                    <img src="assets/img/hero/hero_arrow.svg" alt="Arrow">
+                                    <img src="<?php echo e(asset('assets/img/hero/hero_arrow.svg')); ?>" alt="Arrow">
                                 </div>
                                 <h1 class="hero-title">
                                     <span class="title1" data-ani="slideinup"
@@ -100,9 +101,9 @@
                         </div>
                         <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s">
                             <div class="shape1">
-                                <img src="assets/img/hero/hero_shape_1_1v.svg" alt="shape">
+                                <img src="<?php echo e(asset('assets/img/hero/hero_shape_1_1v.svg')); ?>" alt="shape">
                             </div>
-                            <img src="assets/img/hero/hero_1_3.png" alt="Image">
+                            <img src="<?php echo e(asset('assets/img/hero/hero_1_3.png')); ?>" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -115,23 +116,25 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                                                                                                                                                                                                                                                                            Brand Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Brand Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <div class="brand-sec1">
-        <div class="top-shape"><img src="assets/img/shape/triangle_shape_1.svg" alt="shape"></div>
+        <div class="top-shape"><img src="<?php echo e(asset('assets/img/shape/triangle_shape_1.svg')); ?>" alt="shape"></div>
         <div class="brand-list-area">
             <div class="brand-list-wrap">
                 <div class="brand-list">
-                    <img src="assets/img/brand/brand_1_1.png" alt="Brand Logo">
+                    <img src="<?php echo e(asset('assets/img/brand/brand_1_1.png')); ?>" alt="Brand Logo">
                 </div>
                 <div class="brand-list">
-                    <img src="assets/img/brand/brand_1_2.png" alt="Brand Logo">
+                    <img src="<?php echo e(asset('assets/img/brand/brand_1_2.png')); ?>" alt="Brand Logo">
                 </div>
-                
+                <div class="brand-list">
+                    <img src="<?php echo e(asset('assets/img/brand/brand_1_3.png')); ?>" alt="Brand Logo">
+                </div>
             </div>
             <div class="arrow-down">
                 <div class="shape">
-                    <img src="assets/img/shape/scroll_text2.svg" alt="shape">
+                    <img src="<?php echo e(asset('assets/img/shape/scroll_text2.svg')); ?>" alt="shape">
                 </div>
                 <a class="link" href="#service-sec">
                     <span class="icon">
@@ -148,28 +151,28 @@
             </div>
             <div class="brand-list-wrap">
                 <div class="brand-list">
-                    <img src="assets/img/brand/brand_1_4.svg" alt="Brand Logo">
+                    <img src="<?php echo e(asset('assets/img/brand/brand_1_4.png')); ?>" alt="Brand Logo">
                 </div>
                 <div class="brand-list">
-                    <img src="assets/img/brand/brand_1_5.svg" alt="Brand Logo">
+                    <img src="<?php echo e(asset('assets/img/brand/brand_1_5.png')); ?>" alt="Brand Logo">
                 </div>
                 <div class="brand-list">
-                    <img src="assets/img/brand/brand_1_6.svg" alt="Brand Logo">
+                    <img src="<?php echo e(asset('assets/img/brand/brand_1_6.png')); ?>" alt="Brand Logo">
                 </div>
             </div>
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                                                                                            Service Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Service Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <section class="overflow-hidden space" id="service-sec">
-        <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img src="assets/img/shape/lines_1.png"
-                alt="shape"></div>
+        <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img
+                src="<?php echo e(asset('assets/img/shape/lines_1.png')); ?>" alt="shape"></div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-md-10">
                     <div class="title-area text-center">
-                        <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg"
+                        <span class="sub-title"><img src="<?php echo e(asset('assets/img/theme-img/title_icon.svg')); ?>"
                                 alt="Icon"><?php echo e(__('messages.serviceSmallTitle')); ?></span>
                         <h2 class="sec-title"><?php echo e(__('messages.serviveTitle')); ?></h2>
 
@@ -423,19 +426,19 @@
 
 
     <!--==============================
-                                                                                                                                                                                                                                                                                                            About Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        About Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
-        <div class="shape-mockup spin" data-top="6%" data-left="3%"><img src="assets/img/shape/dots_1.svg"
-                alt="shape"></div>
+        <div class="shape-mockup spin" data-top="6%" data-left="3%"><img
+                src="<?php echo e(asset('assets/img/shape/dots_1.svg')); ?>" alt="shape"></div>
         <div class="shape-mockup d-none d-xl-block" data-bottom="3%" data-right="0%"><img
-                src="assets/img/shape/lines_2.png" alt="shape"></div>
+                src="<?php echo e(asset('assets/img/shape/lines_2.png')); ?>" alt="shape"></div>
         <div class="container">
             <div class="row flex-row-reverse">
                 <div class="col-xl-6 mb-35 mb-xl-0">
                     <div class="img-box1">
                         <div class="img1">
-                            <img src="assets/img/normal/about_1.jpg" alt="About">
+                            <img src="<?php echo e(asset('assets/img/normal/about_1.jpg')); ?>" alt="About">
                         </div>
                         <div class="box-badge">
                             <div class="spin-text">
@@ -459,15 +462,16 @@
                                 </svg>
                             </div>
                             <div class="box-icon">
-                                <img src="assets/img/icon/about_badge.svg" alt="icon">
+                                <img src="<?php echo e(asset('assets/img/icon/about_badge.svg')); ?>" alt="icon">
                             </div>
                         </div>
-                        <img src="assets/img/shape/dots_1.svg" alt="icon" class="dot-shape">
+                        <img src="<?php echo e(asset('assets/img/shape/dots_1.svg')); ?>" alt="icon" class="dot-shape">
                     </div>
                 </div>
                 <div class="col-xl-6 text-center text-xl-start">
                     <div class="title-area mb-30 pe-xxl-5">
-                        <span class="sub-title shape-white"><img src="assets/img/theme-img/title_icon_white.svg"
+                        <span class="sub-title shape-white"><img
+                                src="<?php echo e(asset('assets/img/theme-img/title_icon_white.svg')); ?>"
                                 alt="shape"><?php echo e(__('messages.aboutSmallTitle')); ?></span>
                         <h2 class="sec-title text-white"><?php echo e(__('messages.aboutBigTitle')); ?></h2>
                     </div>
@@ -476,13 +480,13 @@
                     <div class="about-feature-wrap">
                         <div class="about-feature">
                             <div class="box-icon">
-                                <img src="assets/img/icon/about_feature_1.svg" alt="Icon">
+                                <img src="<?php echo e(asset('assets/img/icon/about_feature_1.svg')); ?>" alt="Icon">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.aboutCard1')); ?></h3>
                         </div>
                         <div class="about-feature">
                             <div class="box-icon">
-                                <img src="assets/img/icon/about_feature_2.svg" alt="Icon">
+                                <img src="<?php echo e(asset('assets/img/icon/about_feature_2.svg')); ?>s" alt="Icon">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.aboutCard2')); ?></h3>
                         </div>
@@ -505,8 +509,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                                                                                            Stores Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Stores Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup spin" data-top="5%" data-left="0%"><img
                 src="<?php echo e(asset('assets/img/shape/lines_1.png')); ?>" alt="shape"></div>
@@ -548,7 +552,16 @@
                                             <!-- Store Name -->
                                             <div style="display:flex; flex-direction:column">
                                                 <h6 class="box-title"><a style="font-size: 1.2rem;"
-                                                        href="store-details/<?php echo e($store->id); ?>"><?php echo e($store->name); ?></a>
+                                                        href="store-details/<?php echo e($store->id); ?>">
+                                                        <?php if(App::getLocale() == 'ar'): ?>
+                                                            <?php echo e($store->name_ar); ?>
+
+                                                        <?php else: ?>
+                                                            <?php echo e($store->name); ?>
+
+                                                        <?php endif; ?>
+                                                        
+                                                    </a>
                                                 </h6>
                                                 <!-- Star Rating -->
                                                 <div class="list-rating" style="color : #E2B93B;">
@@ -586,7 +599,6 @@
                         </div>
 
 
-                        
 
 
 
@@ -604,22 +616,23 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                                                                                            Devider Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Devider Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <div class="overflow-hidden bg-white">
         <h3> </h3>
-        
+
     </div>
     <!--==============================
 
-                                                                                                                                                                                                                                                                                                            Feature Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Feature Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <section class="overflow-hidden space">
-        <div class="shape-mockup" data-top="0%" data-left="0%"><img src="assets/img/bg/why_bg_2.png" alt="shape">
+        <div class="shape-mockup" data-top="0%" data-left="0%"><img src="<?php echo e(asset('assets/img/bg/why_bg_2.png')); ?>"
+                alt="shape">
         </div>
         <div class="container">
             <div class="title-area text-center">
-                <span class="sub-title2"><img src="assets/img/theme-img/title_icon5.svg"
+                <span class="sub-title2"><img src="<?php echo e(asset('assets/img/theme-img/title_icon5.svg')); ?>"
                         alt="Icon"><?php echo e(__('messages.whySmallTitle')); ?></span>
                 <h2 class="sec-title"><?php echo e(__('messages.whyBigTitle')); ?></h2>
             </div>
@@ -629,7 +642,7 @@
                         <div style="background-color:white;" class="why-feature">
                             <div style="background-color:#E1E4E5;" class="box-number">01</div>
                             <div class="box-icon">
-                                <img src="assets/img/icon/why_feature_1.svg" alt="">
+                                <img src="<?php echo e(asset('assets/img/icon/why_feature_1.svg')); ?>" alt="">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.whyTitle1')); ?></h3>
                             <p class="box-text"><?php echo e(__('messages.whyText1')); ?></p>
@@ -637,7 +650,7 @@
                         <div style="background-color:white;" class="why-feature">
                             <div style="background-color:#E1E4E5;" class="box-number">02</div>
                             <div class="box-icon">
-                                <img src="assets/img/icon/why_feature_2.svg" alt="">
+                                <img src="<?php echo e(asset('assets/img/icon/why_feature_2.svg')); ?>" alt="">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.whyTitle2')); ?></h3>
                             <p class="box-text"><?php echo e(__('messages.whyText2')); ?></p>
@@ -645,7 +658,7 @@
                         <div style="background-color:white;" class="why-feature">
                             <div style="background-color:#E1E4E5;" class="box-number">03</div>
                             <div class="box-icon">
-                                <img src="assets/img/icon/why_feature_3.svg" alt="">
+                                <img src="<?php echo e(asset('assets/img/icon/why_feature_3.svg')); ?>" alt="">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.whyTitle3')); ?></h3>
                             <p class="box-text"><?php echo e(__('messages.whyText3')); ?></p>
@@ -654,7 +667,7 @@
                 </div>
                 <div class="col-xl-4 align-self-end d-none d-xl-block">
                     <div class="why-img2">
-                        <img src="assets/img/normal/why_2.png" alt="Why">
+                        <img src="<?php echo e(asset('assets/img/normal/why_2.png')); ?>" alt="Why">
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-6">
@@ -662,7 +675,7 @@
                         <div style="background-color:white;" class="why-feature">
                             <div style="background-color:#E1E4E5;" class="box-number">04</div>
                             <div class="box-icon">
-                                <img src="assets/img/icon/why_feature_4.svg" alt="">
+                                <img src="<?php echo e(asset('assets/img/icon/why_feature_4.svg')); ?>" alt="">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.whyTitle4')); ?></h3>
                             <p class="box-text"><?php echo e(__('messages.whyText4')); ?></p>
@@ -670,7 +683,7 @@
                         <div style="background-color:white;" class="why-feature">
                             <div style="background-color:#E1E4E5;" class="box-number">05</div>
                             <div class="box-icon">
-                                <img src="assets/img/icon/why_feature_5.svg" alt="">
+                                <img src="<?php echo e(asset('assets/img/icon/why_feature_5.svg')); ?>" alt="">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.whyTitle5')); ?></h3>
                             <p class="box-text"><?php echo e(__('messages.whyText5')); ?></p>
@@ -678,7 +691,7 @@
                         <div style="background-color:white;" class="why-feature">
                             <div style="background-color:#E1E4E5;" class="box-number">06</div>
                             <div class="box-icon">
-                                <img src="assets/img/icon/why_feature_6.svg" alt="">
+                                <img src="<?php echo e(asset('assets/img/icon/why_feature_6.svg')); ?>" alt="">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.whyTitle6')); ?></h3>
                             <p class="box-text"><?php echo e(__('messages.whyText6')); ?></p>
@@ -690,14 +703,14 @@
     </section>
     <!--==============================
 
-                                                                                                                                                                                                                                                                                                            Process Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
-    <section class="space" id="process-sec" data-bg-src="assets/img/bg/process_bg_2.jpg">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Process Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
+    <section class="space" id="process-sec" data-bg-src="<?php echo e(asset('assets/img/bg/process_bg_2.jpg')); ?>">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-md-8">
                     <div class="title-area text-center">
-                        <span class="sub-title2"><img src="assets/img/theme-img/title_icon5_white.svg"
+                        <span class="sub-title2"><img src="<?php echo e(asset('assets/img/theme-img/title_icon5_white.svg')); ?>"
                                 alt="Icon"><?php echo e(__('messages.processSmallTitle')); ?></span>
                         <h2 class="sec-title text-white"><?php echo e(__('messages.processBigTitle')); ?></h2>
                         <p class="sec-text text-white"> </p>
@@ -740,21 +753,27 @@
     <!--==============================
 
 
-                                                                                                                                                                                                                                                                                                                Team Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Team Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <section class="space">
         <div class="container z-index-common">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md">
                     <div class="title-area text-center text-md-start">
-                        <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg" alt="shape">Team
-                            Members</span>
-                        <h2 class="sec-title">Our Dedicated Team</h2>
+                        <span class="sub-title"><img src="<?php echo e(asset('assets/img/theme-img/title_icon.svg')); ?>"
+                                alt="shape"><?php echo e(__('messages.taskerSmallTile')); ?>
+
+                        </span>
+                        <h2 class="sec-title"><?php echo e(__('messages.taskerBigTile')); ?>
+
+                        </h2>
                     </div>
                 </div>
                 <div class="col-md-auto">
                     <div class="sec-btn mt-n3 mt-md-0">
-                        <a href="team.html" class="th-btn style4">All Members<i class="far fa-arrow-right ms-2"></i></a>
+                        <a href="<?php echo e(route('handymen.index')); ?>" class="th-btn style4"><?php echo e(__('taskerBtn')); ?>
+
+                            <i class="far fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -775,27 +794,28 @@
                                             <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>"
                                                 alt="<?php echo e($handyman->handyman && $handyman->handyman->user ? $handyman->handyman->user->name : 'Default Name'); ?>">
                                         <?php endif; ?>
-                                        
+
                                     </div>
                                     <div class="box-content">
                                         <div class="box-social">
                                             <div class="box-btn"><i class="far fa-plus"></i></div>
                                             <div class="th-social">
-                                                <a target="_blank" href="https://facebook.com/"><i
-                                                        class="fab fa-facebook-f"></i></a>
-                                                <a target="_blank" href="https://twitter.com/"><i
-                                                        class="fab fa-twitter"></i></a>
-                                                <a target="_blank" href="https://instagram.com/"><i
-                                                        class="fab fa-instagram"></i></a>
-                                                <a target="_blank" href="https://linkedin.com/"><i
-                                                        class="fab fa-linkedin-in"></i></a>
+                                                <?php if(isset($handyman) && isset($handyman->handyman_id)): ?>
+                                                    <a href="<?php echo e(route('Onehandyman_clientVeiw', ['handymanId' => $handyman->handyman_id])); ?>"
+                                                        class="read-more-link"><i class="far fa-eye"></i></a>
+                                                <?php else: ?>
+                                                    <p>No handyman information available</p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                         <h3 class="box-title"><a
                                                 href="#"><?php echo e($handyman->handyman->user->name ?? 'Anonymous'); ?></a>
                                         </h3>
                                         </h3>
-                                        <p class="box-desig"><?php echo e($handyman->handyman->bio ?? 'No bio available'); ?></p>
+                                        <p class="box-desig">
+                                            <?php echo e(\Illuminate\Support\Str::limit($handyman->handyman->bio ?? 'No bio available', 100, '...')); ?>
+
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -809,8 +829,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                                                                                            Counter Area
-                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Counter Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <div class="space-bottom">
 
 
@@ -818,7 +838,7 @@
             <div class="counter-card-wrap">
                 <div class="counter-card">
                     <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_1.svg" alt="Icon">
+                        <img src="<?php echo e(asset('assets/img/icon/counter_card_1.svg')); ?>" alt="Icon">
                     </div>
                     <div class="media-body">
                         <h2 class="box-number"><span class="counter-number"><?php echo e($totalGigs); ?></span>+</h2>
@@ -828,7 +848,7 @@
                 <div class="divider"></div>
                 <div class="counter-card">
                     <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_2.svg" alt="Icon">
+                        <img src="<?php echo e(asset('assets/img/icon/counter_card_2.svg')); ?>" alt="Icon">
                     </div>
                     <div class="media-body">
                         <h2 class="box-number"><span class="counter-number"><?php echo e($totalUsers); ?></span>+</h2>
@@ -838,7 +858,7 @@
                 <div class="divider"></div>
                 <div class="counter-card">
                     <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_3.svg" alt="Icon">
+                        <img src="<?php echo e(asset('assets/img/icon/counter_card_3.svg')); ?>" alt="Icon">
                     </div>
                     <div class="media-body">
                         <h2 class="box-number"><span class="counter-number"><?php echo e($totalHandymen); ?></span>+</h2>
@@ -848,7 +868,7 @@
                 <div class="divider"></div>
                 <div class="counter-card">
                     <div class="box-icon">
-                        <img src="assets/img/icon/counter_card_4.svg" alt="Icon">
+                        <img src="<?php echo e(asset('assets/img/icon/counter_card_4.svg')); ?>" alt="Icon">
                     </div>
                     <div class="media-body">
                         <h2 class="box-number"><span class="counter-number"><?php echo e($totalStores); ?></span>+</h2>

@@ -135,6 +135,8 @@ class StoresController extends Controller
         $notification = new Notification();
         $notification->user_id = $store->storeOwner->user->id; // Assign the notification to the user
         $notification->message = 'Your Store has been supended due a TOS violation ';
+        $notification->message_ar = 'تم توقيف متجرك لمخالفته قوانين وسياسات الموقع ';
+
         $notification->category = 'danger'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();
@@ -151,6 +153,8 @@ class StoresController extends Controller
         $notification = new Notification();
         $notification->user_id = $store->storeOwner->user->id; // Assign the notification to the user
         $notification->message = 'Your Store has been unsupended! ';
+        $notification->message_ar = 'تم الغاء التوقيف عن متجرك , استمر بالربح مجددا! ';
+
         $notification->category = 'danger'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();

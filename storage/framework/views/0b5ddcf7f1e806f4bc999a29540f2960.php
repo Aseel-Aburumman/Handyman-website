@@ -2,11 +2,19 @@
     <div class="breadcumb-wrapper" data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Task Detail</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.TaskDetail')); ?>
+
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li><a href="<?php echo e(route('customer.Home')); ?>">Dashboard</a></li>
-                    <li>Task Detail</li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><a href="<?php echo e(route('customer.Home')); ?>"><?php echo e(__('messages.Dashboard')); ?>
+
+                        </a></li>
+                    <li><?php echo e(__('messages.TaskDetail')); ?>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -27,14 +35,13 @@
                 <div class="col-xl-8 col-md-10">
                     <div class="title-area text-center">
                         <span class="sub-title"><img src="<?php echo e(asset('assets/img/theme-img/title_icon.svg')); ?>"
-                                alt="Icon">Lets Get it Done</span>
-                        <h2 class="sec-title">Check all the proposal you got </h2>
+                                alt="Icon"><?php echo e(__('messages.showOpenGigSmallTile')); ?>!
+                        </span>
+                        <h2 class="sec-title"><?php echo e(__('messages.showOpenGigBigTitle')); ?></h2>
 
 
-                        <p class="sec-text">Review their proposal thoroughly, including the services they are offering, the
-                            timeline they've estimated for the job, and whether it aligns with your expectations. If it
-                            doesn’t seem suitable, engage in a discussion to refine the details and find the best fit. Once
-                            you're satisfied with the adjustments, move forward with hiring them!</p>
+                        <p class="sec-text"><?php echo e(__('messages.showOpenGigP')); ?>!
+                        </p>
                     </div>
                 </div>
 
@@ -51,10 +58,12 @@
 
             <div class=" task-gig-card ">
                 <div class="gig-details">
-                    <h3>Task Details</h3>
+                    <h3><?php echo e(__('messages.TaskDetail')); ?></h3>
                     <div class="d-flex justify-content-between">
                         <h2 class="gig-title"><?php echo e($gig->title); ?></h2>
-                        <p class="gig-total">Budget: JD <?php echo e($gig->total); ?>/per hour</p>
+                        <p class="gig-total"><?php echo e(__('messages.Budget')); ?>: <?php echo e(__('messages.JD')); ?>
+
+                            <?php echo e($gig->total); ?>/<?php echo e(__('messages.perhour')); ?></p>
                     </div>
                     <p class="gig-description">
                         <?php echo e(\Illuminate\Support\Str::limit($gig->description, 150)); ?></p>
@@ -65,29 +74,29 @@
                 </div>
 
             </div>
-            <h4>Your Proposal</h4>
+            <h4><?php echo e(__('messages.YourProposal')); ?></h4>
             <?php if(!$existingProposal): ?>
                 <form class=" formProposal " action="<?php echo e(route('handyman.submitProposal', $gig->id)); ?>" method="POST">
                     <?php echo csrf_field(); ?>
                     <div class="form-group">
-                        <label for="proposal">Proposal</label>
+                        <label for="proposal"><?php echo e(__('messages.bidLabel')); ?></label>
                         <textarea name="proposal" id="proposal" class="form-control" rows="5" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="price_per_hour">Price Per Hour</label>
+                        <label for="price_per_hour"><?php echo e(__('messages.PPR')); ?></label>
                         <input type="number" name="price_per_hour" id="price_per_hour" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="total_time">Total Time (hours)</label>
+                        <label for="total_time"><?php echo e(__('messages.TotalTime')); ?></label>
                         <input type="number" name="total_time" id="total_time" class="form-control" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Proposal</button>
+                    <button type="submit" class="btn btn-primary"><?php echo e(__('messages.SubmitProposal')); ?></button>
                 </form>
             <?php else: ?>
-                <p>How the client see your proposal </p>
+                <p><?php echo e(__('messages.clientproposal')); ?></p>
                 <div style="display: block;" id="currentProposalForm" class=" handyman-card filter-step2-handyman-card">
                     <div class="handyman-profile-gig-section">
                         <div class="handyman-pic-section-gig">
@@ -106,8 +115,11 @@
                                     <h4><?php echo e($existingProposal->handyman->user->name); ?></h4>
 
                                     <div class=" handyman-tasks">
-                                        <span><i class="fa-solid fa-check-double"></i> Done
-                                            <?php echo e($existingProposal->handyman->gigs_count); ?> tasks</span>
+                                        <span><i class="fa-solid fa-check-double"></i> <?php echo e(__('messages.Done')); ?>
+
+                                            <?php echo e($existingProposal->handyman->gigs_count); ?>
+
+                                            <?php echo e(__('messages.tasks')); ?></span>
                                     </div>
                                 </div>
 
@@ -116,7 +128,9 @@
                                         <span class="rating-star">★</span>
                                         <span><?php echo e($existingProposal->handyman->user->rating); ?>
 
-                                            (<?php echo e($existingProposal->handyman->user->reviews_count); ?> reviews)
+                                            (<?php echo e($existingProposal->handyman->user->reviews_count); ?>
+
+                                            <?php echo e(__('messages.reviews')); ?>)
                                         </span>
                                     </div>
                                     <div class="handyman-price mt-1">
@@ -132,16 +146,16 @@
 
                         <div class="handyman-description-gig">
                             <div class="handyman-description">
-                                <p class="mb-0">Handyman Description:</p>
+                                <p class="mb-0"><?php echo e(__('messages.HandymanDescription')); ?>:</p>
                                 <p class="mb-0"><?php echo e(Str::limit($existingProposal->handyman->bio, 200)); ?></p>
                                 <a href="<?php echo e(route('Onehandyman_clientVeiw', ['handymanId' => $existingProposal->handyman->id])); ?>"
-                                    class="read-more-link">Read More</a>
+                                    class="read-more-link"><?php echo e(__('messages.ReadMore')); ?></a>
                             </div>
 
                         </div>
                         <div class="handyman-description-gig">
                             <div class="handyman-description">
-                                <h6>How I can help:</h6>
+                                <h6><?php echo e(__('messages.Howhelp')); ?>:</h6>
                                 <p><?php echo e(Str::limit($existingProposal->proposal, 200)); ?></p>
                             </div>
 
@@ -149,7 +163,8 @@
 
                         <!-- Edit Proposal Button -->
                         <button class="mt-3 th-btn btn btn-warning" id="editProposalBtn">
-                            Edit Proposal
+                            <?php echo e(__('messages.EditProposal')); ?>
+
                         </button>
 
                     </div>
@@ -163,23 +178,23 @@
                     <?php echo csrf_field(); ?>
 
                     <div class="form-group">
-                        <label for="proposal">Proposal</label>
+                        <label for="proposal"><?php echo e(__('messages.Proposal')); ?></label>
                         <textarea name="proposal" id="proposal" class="form-control" rows="5" required><?php echo e($existingProposal->proposal); ?></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="price_per_hour">Price Per Hour</label>
+                        <label for="price_per_hour"><?php echo e(__('messages.PPR')); ?></label>
                         <input type="number" name="price_per_hour" id="price_per_hour" class="form-control"
                             value="<?php echo e($existingProposal->price_per_hour); ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="total_time">Total Time (hours)</label>
+                        <label for="total_time"><?php echo e(__('messages.TotalTime')); ?></label>
                         <input type="number" name="total_time" id="total_time" class="form-control"
                             value="<?php echo e($existingProposal->time); ?>" required>
                     </div>
 
-                    <button type="submit" class="th-btn btn btn-primary">Update Proposal</button>
+                    <button type="submit" class="th-btn btn btn-primary"><?php echo e(__('messages.UpdateProposal')); ?></button>
                 </form>
             <?php endif; ?>
         </div>
@@ -213,8 +228,9 @@
                                 <h4><?php echo e($gig->user->name); ?></h4>
 
                                 <div class=" handyman-tasks">
-                                    <span><i class="fa-solid fa-check-double"></i> Done
-                                        <?php echo e($gig->gigs_count); ?> tasks</span>
+                                    <span><i class="fa-solid fa-check-double"></i> <?php echo e(__('messages.Done')); ?>
+
+                                        <?php echo e($gig->gigs_count); ?> <?php echo e(__('messages.tasks')); ?></span>
                                 </div>
                             </div>
 
@@ -223,11 +239,13 @@
                                     <span class="rating-star">★</span>
                                     <span><?php echo e($gig->user->rating); ?>
 
-                                        (<?php echo e($gig->user->clientreviews); ?> reviews)
+                                        (<?php echo e($gig->user->clientreviews); ?> <?php echo e(__('messages.reviews')); ?>)
                                     </span>
                                 </div>
                                 <div class="handyman-price mt-1">
-                                    JD<?php echo e(number_format($gig->price, 2)); ?>/hr</div>
+                                    <?php echo e(__('messages.JD')); ?><?php echo e(number_format($gig->price, 2)); ?>/<?php echo e(__('messages.hr')); ?>
+
+                                </div>
                             </div>
 
 
@@ -236,7 +254,8 @@
                                 <!-- Report Button -->
                                 <button class="btn btn-danger report-btn mr-3 " data-handyman-id="<?php echo e($gig->user->id); ?>"
                                     data-gig-id="<?php echo e($gig->id); ?>">
-                                    Report Client Gig
+                                    <?php echo e(__('messages.ReportClient')); ?>
+
                                 </button>
 
                             </div>
@@ -251,18 +270,12 @@
                 </div>
             </div>
             <div class=" handyman-card filter-step2-handyman-card">
-                <h6>Tips </h6>
-                - When creating your proposal, be sure to clearly outline all the services you're offering, the timeline for
-                completing the job, and any important details related to the work.<br>
-                - This will help set the right expectations
-                from the start. Be open to discussing the proposal with the client to ensure it aligns with their needs.
-                <br>- If
-                they request adjustments or have questions, take the time to review and refine the details together to reach
-                a mutual agreement. <br>- Clear communication will increase your chances of being hired. Lastly, don’t
-                forget
-                to
-                highlight any areas where you provide extra value or can offer a tip for maintaining long-term success with
-                your clients!
+                <h6><?php echo e(__('HowTo.TotalTime')); ?> </h6>
+                <?php echo e(__('messages.tips1')); ?><br>
+                <?php echo e(__('messages.tips2')); ?><br>
+                <?php echo e(__('messages.tips3')); ?><br>
+                <?php echo e(__('messages.tips4')); ?><br>
+
             </div>
         </div>
     </section>

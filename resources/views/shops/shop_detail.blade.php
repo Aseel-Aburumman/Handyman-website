@@ -2,15 +2,17 @@
 
 @section('content')
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">{{ $store->name }} Profile</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('shops.index') }}">All Shops</a></li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li><a href="{{ route('shops.index') }}">{{ __('messages.AllShops') }}
+                        </a></li>
 
                     <li>{{ $store->name }}</li>
                 </ul>
@@ -37,7 +39,8 @@
                         </div>
                         <div class="year-box">
                             <div class="box-number box-numberRating ">{{ $store->rating }}/5</div>
-                            <p class="box-text">Rating</p>
+                            <p class="box-text">{{ __('messages.Rating') }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -55,26 +58,16 @@
                         </div>
                         <div class="checklist list-one-column fw-regular">
                             <ul>
-                                <li>Total Reviews: {{ $reviewCount }}</li>
+                                <li>{{ __('messages.TotalReviews') }}
+                                    {{ $reviewCount }}</li>
 
 
-                                <li>Total Sales: {{ $totalSales }}</li>
+                                <li>{{ __('messages.TotalSales') }}
+                                    {{ $totalSales }}</li>
 
                             </ul>
                         </div>
-                        {{--  <div class="btn-group mt-30 justify-content-center">
-                            <a href="about.html" class="th-btn rounded-12 style4">Discover More<i
-                                    class="far fa-arrow-right ms-2"></i></a>
-                            <div class="call-btn">
-                                <div class="play-btn">
-                                    <i class="fal fa-phone"></i>
-                                </div>
-                                <div class="media-body">
-                                    <p class="box-label">Call Us 24/7</p>
-                                    <h6 class="box-link"><a href="tel:+0123456789">+0 (123) 456 789</a></h6>
-                                </div>
-                            </div>
-                        </div>  --}}
+
                     </div>
                 </div>
             </div>
@@ -94,17 +87,20 @@
             <div class="row justify-content-center">
                 <div class="col-xl-12 col-md-10">
                     <div class="title-area text-center">
-                        <h2 class="sec-title">Shop All Your Needs</h2>
+                        <h2 class="sec-title">{{ __('messages.shopDetailTitle') }}
+                        </h2>
                         <form action="{{ route('Oneshops', ['shopId' => $store->id]) }}" method="GET"
                             class="d-flex mb-5">
                             <!-- Search Input -->
                             <input class="shop-search" type="text" name="search" class="form-control"
                                 placeholder="Search by shop name" value="{{ request('search') }}">
                             <!-- Search Button -->
-                            <button type="submit" class="btn btn-primary ms-2 searchBtn">Search</button>
+                            <button type="submit" class="btn btn-primary ms-2 searchBtn">{{ __('messages.Search') }}
+                            </button>
                             <!-- Reset Button -->
                             <a href="{{ route('Oneshops', ['shopId' => $store->id]) }}"
-                                class="btn btn-secondary ms-2 resetBtn">Reset</a>
+                                class="btn btn-secondary ms-2 resetBtn">{{ __('messages.Reset') }}
+                            </a>
                         </form>
                     </div>
                 </div>
@@ -197,7 +193,8 @@
                                         <h3 class="product-title"><a
                                                 href="{{ route('product', ['productId' => $product->id]) }}">{{ $product->name }}</a>
                                         </h3>
-                                        <span class="price">JD {{ $product->price }}</span>
+                                        <span class="price">{{ __('messages.JD') }}
+                                            {{ $product->price }}</span>
                                     </div>
                                 </div>
                             </div>

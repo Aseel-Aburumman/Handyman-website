@@ -105,6 +105,8 @@ class ChatController extends Controller
         $notification = new Notification();
         $notification->user_id = $request->receiver_id; // Assign the notification to the user
         $notification->message = 'Your received a new message from ' . $user->name;
+        $notification->message_ar = 'تلقيت رسالة جديدة من  ' . $user->name;
+
         $notification->category = 'primary'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();

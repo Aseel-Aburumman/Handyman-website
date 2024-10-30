@@ -1,24 +1,12 @@
 <?php $__env->startSection('content'); ?>
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">All Products</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.Cart')); ?></h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <?php if(Auth::user()->role_id == 2): ?>
-                        <!-- Customer Dashboard -->
-                        <li><a href="<?php echo e(route('customer.dashboard')); ?>">Dashboard</a></li>
-                    <?php elseif(Auth::user()->role_id == 3): ?>
-                        <!-- Store Owner Dashboard -->
-                        <li><a href="<?php echo e(route('storeowner.dashboard')); ?>">Dashboard</a></li>
-                    <?php elseif(Auth::user()->role_id == 4): ?>
-                        <!-- Handyman Dashboard -->
-                        <li><a href="<?php echo e(route('handyman.dashboard')); ?>">Dashboard</a></li>
-                    <?php endif; ?>
-                    <li>Cart</li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?></a></li>
+
+                    <li><?php echo e(__('messages.Cart')); ?></li>
                 </ul>
             </div>
         </div>
@@ -33,12 +21,12 @@
                 <table class="cart_table">
                     <thead>
                         <tr>
-                            <th class="cart-col-image">Image</th>
-                            <th class="cart-col-productname">Product Name</th>
-                            <th class="cart-col-price">Price</th>
-                            <th class="cart-col-quantity">Quantity</th>
-                            <th class="cart-col-total">Total</th>
-                            <th class="cart-col-remove">Remove</th>
+                            <th class="cart-col-image"><?php echo e(__('messages.Image')); ?></th>
+                            <th class="cart-col-productname"><?php echo e(__('messages.ProductName')); ?></th>
+                            <th class="cart-col-price"><?php echo e(__('messages.Price')); ?></th>
+                            <th class="cart-col-quantity"><?php echo e(__('messages.Quantity')); ?></th>
+                            <th class="cart-col-total"><?php echo e(__('messages.Total')); ?></th>
+                            <th class="cart-col-remove"><?php echo e(__('messages.Remove')); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,7 +52,8 @@
                                     </a>
                                 </td>
                                 <td data-title="Price">
-                                    <span class="amount"><bdi><span>JD</span><?php echo e($product->price); ?></bdi></span>
+                                    <span
+                                        class="amount"><bdi><span><?php echo e(__('messages.JD')); ?></span><?php echo e($product->price); ?></bdi></span>
                                 </td>
                                 <td data-title="Quantity">
                                     <div class="quantity">
@@ -75,7 +64,7 @@
                                     </div>
                                 </td>
                                 <td data-title="Total">
-                                    <span class="amount"><bdi><span>JD</span><span
+                                    <span class="amount"><bdi><span><?php echo e(__('messages.JD')); ?></span><span
                                                 class="total"><?php echo e($total); ?></span></bdi></span>
                                 </td>
                                 <td data-title="Remove">
@@ -171,11 +160,12 @@
                             <td></td>
 
                             <td></td>
-                            <td>Order Total</td>
+                            <td><?php echo e(__('messages.OrderTotal')); ?></td>
 
 
                             <td data-title="Total">
-                                <strong><span class="amount amount-total-cart"><bdi><span>$</span><span
+                                <strong><span
+                                        class="amount amount-total-cart"><bdi><span><?php echo e(__('messages.JD')); ?></span><span
                                                 id="cart-total"><?php echo e($totalCartAmount); ?></span></bdi></span></strong>
                             </td>
                         </tr>
@@ -183,7 +173,7 @@
 
                 </table>
                 <div class="wc-proceed-to-checkout mb-30">
-                    <a href="<?php echo e(route('checkout')); ?>" class="th-btn">Proceed to checkout</a>
+                    <a href="<?php echo e(route('checkout')); ?>" class="th-btn"><?php echo e(__('messages.ProceedCheckout')); ?></a>
                 </div>
         </div>
     </div>

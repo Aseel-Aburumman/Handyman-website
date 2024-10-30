@@ -65,6 +65,8 @@ class TaskController extends Controller
         $notification = new Notification();
         $notification->user_id = $proposal->handyman->user->id; // Assign the notification to the user
         $notification->message = 'Your proposal has been rejected ';
+        $notification->message_ar = 'تم رفض عرضك ';
+
         $notification->category = 'warning'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();
@@ -110,6 +112,8 @@ class TaskController extends Controller
         $notification = new Notification();
         $notification->user_id = $proposal->handyman->user->id; // Assign the notification to the handyman
         $notification->message = 'Your proposal has been Won!';
+        $notification->message_ar = 'عرضك فاز, ابدا العمل فورا !';
+
         $notification->category = 'success'; // Notification category
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();
@@ -135,6 +139,8 @@ class TaskController extends Controller
         $notification = new Notification();
         $notification->user_id = $proposal->handyman->user->id; // Assign the notification to the user
         $notification->message = 'Your proposal has been reconsidered! ';
+        $notification->message_ar = 'العميل يعيد التفكير بعرضك! ';
+
         $notification->category = 'warning'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();

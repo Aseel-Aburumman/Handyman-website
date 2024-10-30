@@ -276,6 +276,8 @@ class UserControlCenter extends Controller
         $notification = new Notification();
         $notification->user_id = $handyman->user_id; // Assign the notification to the user
         $notification->message = 'Your account has been supended due a TOS violation ';
+        $notification->message_ar = 'تم ايقاف ملفك لمخافته قوانين وسياسات الموقع';
+
         $notification->category = 'danger'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();
@@ -292,6 +294,8 @@ class UserControlCenter extends Controller
         $notification = new Notification();
         $notification->user_id = $handyman->user_id; // Assign the notification to the user
         $notification->message = 'Your account has been unsupended!';
+        $notification->message_ar = 'ملفك فعال مرة اخرى ';
+
         $notification->category = 'success'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
         $notification->save();

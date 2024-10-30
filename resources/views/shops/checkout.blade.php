@@ -4,10 +4,15 @@
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">All Products</h1>
+                <h1 class="breadcumb-title">{{ __('messages.Checkout') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Cart</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li>{{ __('messages.Cart') }}
+                    </li>
+                    <li>{{ __('messages.Checkout') }}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -24,7 +29,8 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-7">
-                        <h2 class="h4">Billing Details</h2>
+                        <h2 class="h4">{{ __('messages.BillingDetails') }}
+                        </h2>
                         <div class="row">
                             <div class="col-4 form-group">
                                 <input type="text" name="building_no" class="form-control"
@@ -43,16 +49,19 @@
                                 <input type="text" name="phone" class="form-control" placeholder="Phone number"
                                     value="{{ $deliveryInfo->phone ?? '' }}">
                             </div>
-                            <button type="submit" class="th-btn">Save</button>
+                            <button type="submit" class="th-btn">{{ __('messages.Save') }}
+                            </button>
 
                         </div>
-                        <h4 class="mt-4">Your Order</h4>
+                        <h4 class="mt-4">{{ __('messages.YourOrder') }}
+                        </h4>
                         <table class="cart_table mb-20">
                             <thead>
                                 <tr>
-                                    <th class="cart-col-productname">Product Name</th>
-                                    <th class="cart-col-quantity">Quantity</th>
-                                    <th class="cart-col-total">Total</th>
+                                    <th class="cart-col-productname">{{ __('messages.ProductName') }}
+                                    </th>
+                                    <th class="cart-col-quantity">{{ __('messages.Quantity') }}</th>
+                                    <th class="cart-col-total">{{ __('messages.Total') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,22 +69,22 @@
                                     <tr class="cart_item">
                                         <td>{{ $item->product->name }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                        <td>JD {{ $item->product->price * $item->quantity }}</td>
+                                        <td>{{ __('messages.JD') }} {{ $item->product->price * $item->quantity }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tfoot class="checkout-ordertable">
                                 <tr class="cart-subtotal">
-                                    <th>Subtotal</th>
-                                    <td colspan="2">JD {{ $subtotal }}</td>
+                                    <th>{{ __('messages.Subtotal') }}</th>
+                                    <td colspan="2">{{ __('messages.JD') }} {{ $subtotal }}</td>
                                 </tr>
                                 <tr class="woocommerce-shipping-totals shipping">
-                                    <th>Shipping</th>
-                                    <td colspan="2">+1.5 JD</td>
+                                    <th>{{ __('messages.Shipping') }}</th>
+                                    <td colspan="2">+1.5 {{ __('messages.JD') }}</td>
                                 </tr>
                                 <tr class="order-total">
-                                    <th>Total</th>
-                                    <td colspan="2"><strong>JD {{ $subtotal + 1.5 }}</strong></td>
+                                    <th>{{ __('messages.Total') }}</th>
+                                    <td colspan="2"><strong>{{ __('messages.JD') }} {{ $subtotal + 1.5 }}</strong></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -88,12 +97,12 @@
                                 <li class="wc_payment_method payment_method_bacs">
                                     <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method"
                                         value="bacs" checked="checked">
-                                    <label for="payment_method_bacs">Cash On Delivery</label>
+                                    <label for="payment_method_bacs">{{ __('messages.COD') }}</label>
                                 </li>
                                 <li class="wc_payment_method payment_method_cod">
                                     <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method"
                                         value="cod">
-                                    <label for="payment_method_cod">Credit Card</label>
+                                    <label for="payment_method_cod">{{ __('messages.CreditCard') }}</label>
                                 </li>
                             </ul>
 
@@ -114,8 +123,8 @@
                             </div>
 
                             <div class="form-row place-order">
-                                <button type="submit" class="th-btn" formaction="{{ route('place.order') }}">Place
-                                    order</button>
+                                <button type="submit" class="th-btn"
+                                    formaction="{{ route('place.order') }}">{{ __('messages.Placeorder') }}</button>
                             </div>
                         </div>
                     </div>

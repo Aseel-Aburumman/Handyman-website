@@ -1,17 +1,14 @@
 @extends('layouts.inside')
 
 @section('content')
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">All Products</h1>
+                <h1 class="breadcumb-title">{{ __('messages.AllProduct') }}</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}</a></li>
 
-                    <li>All Products</li>
+                    <li{{ __('messages.AllProduct') }}< /li>
                 </ul>
             </div>
         </div>
@@ -34,15 +31,17 @@
             <div class="row justify-content-center">
                 <div class="col-xl-12 col-md-10">
                     <div class="title-area text-center">
-                        <h2 class="sec-title">Shop All Your Needs</h2>
+                        <h2 class="sec-title">{{ __('messages.shopDetailTitle') }}</h2>
                         <form action="{{ route('products.index') }}" method="GET" class="d-flex mb-5">
                             <!-- Search Input -->
                             <input class="shop-search" type="text" name="search" class="form-control"
                                 placeholder="Search by shop name" value="{{ request('search') }}">
                             <!-- Search Button -->
-                            <button type="submit" class="btn btn-primary ms-2 searchBtn">Search</button>
+                            <button type="submit"
+                                class="btn btn-primary ms-2 searchBtn">{{ __('messages.Search') }}</button>
                             <!-- Reset Button -->
-                            <a href="{{ route('products.index') }}" class="btn btn-secondary ms-2 resetBtn">Reset</a>
+                            <a href="{{ route('products.index') }}"
+                                class="btn btn-secondary ms-2 resetBtn">{{ __('messages.Reset') }}</a>
                         </form>
                     </div>
                 </div>
@@ -138,7 +137,7 @@
                                         <h3 class="product-title"><a
                                                 href="{{ route('product', ['productId' => $product->id]) }}">{{ $product->name }}</a>
                                         </h3>
-                                        <span class="price">JD {{ $product->price }}</span>
+                                        <span class="price">{{ __('messages.JD') }} {{ $product->price }}</span>
                                     </div>
                                 </div>
                             </div>

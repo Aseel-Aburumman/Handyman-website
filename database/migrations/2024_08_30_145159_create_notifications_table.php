@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('message');
+            $table->text('message_ar');
+
             $table->text('category')->default('primary');
             // warning,primary, success, danger
             $table->boolean('is_read')->default(false);

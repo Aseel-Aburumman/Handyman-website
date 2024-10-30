@@ -1,26 +1,14 @@
 @extends('layouts.inside')
 
 @section('content')
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">All Products</h1>
+                <h1 class="breadcumb-title">{{ __('messages.Cart') }}</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    @if (Auth::user()->role_id == 2)
-                        <!-- Customer Dashboard -->
-                        <li><a href="{{ route('customer.dashboard') }}">Dashboard</a></li>
-                    @elseif (Auth::user()->role_id == 3)
-                        <!-- Store Owner Dashboard -->
-                        <li><a href="{{ route('storeowner.dashboard') }}">Dashboard</a></li>
-                    @elseif (Auth::user()->role_id == 4)
-                        <!-- Handyman Dashboard -->
-                        <li><a href="{{ route('handyman.dashboard') }}">Dashboard</a></li>
-                    @endif
-                    <li>Cart</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}</a></li>
+
+                    <li>{{ __('messages.Cart') }}</li>
                 </ul>
             </div>
         </div>
@@ -37,12 +25,12 @@
                 <table class="cart_table">
                     <thead>
                         <tr>
-                            <th class="cart-col-image">Image</th>
-                            <th class="cart-col-productname">Product Name</th>
-                            <th class="cart-col-price">Price</th>
-                            <th class="cart-col-quantity">Quantity</th>
-                            <th class="cart-col-total">Total</th>
-                            <th class="cart-col-remove">Remove</th>
+                            <th class="cart-col-image">{{ __('messages.Image') }}</th>
+                            <th class="cart-col-productname">{{ __('messages.ProductName') }}</th>
+                            <th class="cart-col-price">{{ __('messages.Price') }}</th>
+                            <th class="cart-col-quantity">{{ __('messages.Quantity') }}</th>
+                            <th class="cart-col-total">{{ __('messages.Total') }}</th>
+                            <th class="cart-col-remove">{{ __('messages.Remove') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +55,8 @@
                                     </a>
                                 </td>
                                 <td data-title="Price">
-                                    <span class="amount"><bdi><span>JD</span>{{ $product->price }}</bdi></span>
+                                    <span
+                                        class="amount"><bdi><span>{{ __('messages.JD') }}</span>{{ $product->price }}</bdi></span>
                                 </td>
                                 <td data-title="Quantity">
                                     <div class="quantity">
@@ -78,7 +67,7 @@
                                     </div>
                                 </td>
                                 <td data-title="Total">
-                                    <span class="amount"><bdi><span>JD</span><span
+                                    <span class="amount"><bdi><span>{{ __('messages.JD') }}</span><span
                                                 class="total">{{ $total }}</span></bdi></span>
                                 </td>
                                 <td data-title="Remove">
@@ -174,11 +163,12 @@
                             <td></td>
 
                             <td></td>
-                            <td>Order Total</td>
+                            <td>{{ __('messages.OrderTotal') }}</td>
 
 
                             <td data-title="Total">
-                                <strong><span class="amount amount-total-cart"><bdi><span>$</span><span
+                                <strong><span
+                                        class="amount amount-total-cart"><bdi><span>{{ __('messages.JD') }}</span><span
                                                 id="cart-total">{{ $totalCartAmount }}</span></bdi></span></strong>
                             </td>
                         </tr>
@@ -186,7 +176,7 @@
 
                 </table>
                 <div class="wc-proceed-to-checkout mb-30">
-                    <a href="{{ route('checkout') }}" class="th-btn">Proceed to checkout</a>
+                    <a href="{{ route('checkout') }}" class="th-btn">{{ __('messages.ProceedCheckout') }}</a>
                 </div>
         </div>
     </div>

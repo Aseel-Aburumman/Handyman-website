@@ -48,6 +48,8 @@ Route::get('/service', [MasterController::class, 'service'])->name('service');
 Route::get('/about-us', [MasterController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/allhandymen', [MasterController::class, 'indexHandymen'])->name('handymen.index');
 Route::get('/allhandymen/filter', [MasterController::class, 'indexHandymen'])->name('handymen.filterHandymen');
+Route::get('/tos', [MasterController::class, 'terms'])->name('terms');
+
 
 Route::get('/btasker', [MasterController::class, 'btasker'])->name('b.tasker');
 Route::post('/handyman/agreement/confirm', [MasterController::class, 'confirmAgreement'])->name('handyman.agreement.confirm');
