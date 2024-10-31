@@ -6,7 +6,7 @@
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Welcome {{ $user->name }}</h1>
                 <ul class="breadcumb-menu">
-                    <li>Home</li>
+                    <li>{{ __('messages.Home') }}</li>
                 </ul>
             </div>
         </div>

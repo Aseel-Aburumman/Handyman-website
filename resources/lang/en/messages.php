@@ -426,14 +426,14 @@ return [
     'Nomessages' => 'No messages yet',
     'Nohistory' => 'No chat history available.',
 
-
-    'City' => 'City',
-    'City' => 'City',
-    'City' => 'City',
-    'City' => 'City',
-    'City' => 'City',
-    'City' => 'City',
-    'City' => 'City',
+    // task detail customer
+    'gigP1' => 'Have something else on your to-do list?                                Book your next task or manage future to-dos with Kaaf Mueen ',
+    'gigP2' => 'Check It Off Your List!',
+    'gigP3' => 'Waiting for your Handyman to accept!',
+    'gigP4' => 'Lets figure it out,',
+    'gigP5' => 'Chat with your handyman',
+    'gigP6' => 'Report a Problem',
+    'gigP7' => 'Has the handyman completed the first checkup?',
     'City' => 'City',
 
 
