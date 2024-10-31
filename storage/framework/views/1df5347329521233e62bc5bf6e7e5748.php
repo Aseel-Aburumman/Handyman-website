@@ -2,11 +2,19 @@
     <div class="breadcumb-wrapper" data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title"><?php echo e($handyman->user->name); ?> Profile</h1>
+                <h1 class="breadcumb-title"><?php echo e($handyman->user->name); ?> <?php echo e(__('messages.Profile')); ?>
+
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li><a href="<?php echo e(route('handymen.index')); ?>">All Handyman</a></li>
-                    <li>Handyman Detail</li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><a href="<?php echo e(route('handymen.index')); ?>"><?php echo e(__('messages.taskerBtn')); ?>
+
+                        </a></li>
+                    <li><?php echo e(__('messages.HandymanDetail')); ?>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -34,8 +42,8 @@
                                     <img src="<?php echo e(asset('storage/profile_images/' . $handyman->user->image)); ?>"
                                         alt="<?php echo e($handyman->user->name); ?>" class="red-rectangle">
                                 <?php else: ?>
-                                    <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>" alt="<?php echo e($handyman->user->name); ?>"
-                                        class="red-rectangle">
+                                    <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>"
+                                        alt="<?php echo e($handyman->user->name); ?>" class="red-rectangle">
                                 <?php endif; ?>
 
                             </div>
@@ -43,7 +51,9 @@
                         </div>
                         <div class="year-box">
                             <div class="box-number box-numberRating "><?php echo e($handyman->user->rating); ?>/5</div>
-                            <p class="box-text">Rating</p>
+                            <p class="box-text"><?php echo e(__('messages.Rating')); ?>
+
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -53,14 +63,20 @@
                             <span class="sub-title"><span class="line"></span>
 
                                 <i class="fa-solid fa-bolt"></i>
-                                <?php echo e($handyman->experience); ?> year of experince</span>
+                                <?php echo e($handyman->experience); ?> <?php echo e(__('messages.yearexperince')); ?>
+
+                            </span>
                             <h2 class="sec-title"><?php echo e($handyman->user->name); ?></h2>
                             <p class="sec-text"><?php echo e($handyman->bio); ?></p>
                         </div>
                         <div class="checklist list-one-column fw-regular">
                             <ul>
-                                <li>Total Reviews: <?php echo e($reviewCount); ?></li>
-                                <li>Total Gigs: <?php echo e($gigCount); ?></li>
+                                <li><?php echo e(__('messages.TotalReviews')); ?>
+
+                                    : <?php echo e($reviewCount); ?></li>
+                                <li><?php echo e(__('messages.TotalGigs')); ?>
+
+                                    : <?php echo e($gigCount); ?></li>
 
 
 
@@ -77,11 +93,15 @@
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="description-tab" data-bs-toggle="tab" href="#description" role="tab"
-                        aria-controls="description" aria-selected="false">My Skills</a>
+                        aria-controls="description" aria-selected="false"><?php echo e(__('messages.MySkills')); ?>
+
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn active" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                        aria-controls="reviews" aria-selected="true">My Reviews</a>
+                        aria-controls="reviews" aria-selected="true"><?php echo e(__('messages.MyReviews')); ?>
+
+                    </a>
                 </li>
             </ul>
             <div class="tab-content" id="productTabContent">
@@ -115,7 +135,9 @@
                                                             class="statusBtn1 custom-btn-success"><?php echo e($certificate->status->name); ?></button>
                                                     <?php endif; ?>
                                                 </div>
-                                                <p><strong>Description: </strong><?php echo e($certificate->skill->description); ?></p>
+                                                <p><strong><?php echo e(__('messages.Description')); ?>
+
+                                                        : </strong><?php echo e($certificate->skill->description); ?></p>
 
 
                                             </div>

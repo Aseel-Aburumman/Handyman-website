@@ -1,17 +1,22 @@
 <?php $__env->startSection('content'); ?>
-    <!--==============================
-                                                    Breadcumb
-                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li>Book A Gig</li>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.BookAGig')); ?>
 
-                    <li>Step 4</li>
+                </h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><?php echo e(__('messages.BookAGig')); ?>
+
+                    </li>
+
+                    <li><?php echo e(__('messages.Step')); ?>
+
+                        4</li>
                 </ul>
             </div>
         </div>
@@ -46,7 +51,9 @@
                     
 
                     <div class="payment-method-section">
-                        <h2>Confirm details</h2>
+                        <h2><?php echo e(__('messages.Confirmdetails')); ?>
+
+                        </h2>
                         <hr>
                         <form action="<?php echo e(route('gig.storeStep4')); ?>" method="POST" id="payment-form">
                             <?php echo csrf_field(); ?>
@@ -54,17 +61,23 @@
                             <!-- Payment Method -->
                             <div class="form-group">
                                 <label for="card_number">
-                                    <h3>Payment method</h3>
+                                    <h3><?php echo e(__('messages.Paymentmethod')); ?>
+
+                                    </h3>
                                 </label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="payment_method" id="pay_by_card"
                                         value="card" checked>
-                                    <label class="form-check-label" for="pay_by_card">Pay by Card</label>
+                                    <label class="form-check-label" for="pay_by_card"><?php echo e(__('messages.PayCard')); ?>
+
+                                    </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="payment_method" id="pay_by_cash"
                                         value="cash">
-                                    <label class="form-check-label" for="pay_by_cash">Pay by Cash</label>
+                                    <label class="form-check-label" for="pay_by_cash"><?php echo e(__('messages.PayCash')); ?>
+
+                                    </label>
                                 </div>
                             </div>
 
@@ -74,9 +87,9 @@
                                 <div class="form-group">
 
                                     <label for="card_number">
-                                        <p>You may see a temporary hold on your payment method in the amount of your
-                                            Tasker's
-                                            hourly rate. Don't worry - you're only billed when your task is complete!</p>
+                                        <p><?php echo e(__('messages.BookAGigP4')); ?>
+
+                                        </p>
                                     </label> <input type="text" id="card_number" name="card_number" class="form-control"
                                         placeholder="1234 5678 9123 4567">
                                 </div>
@@ -97,11 +110,12 @@
                                 </div>
                             </div>
 
-                            
 
                             <!-- Confirm Button -->
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Confirm and chat</button>
+                                <button type="submit" class="btn btn-primary"><?php echo e(__('messages.ConfirmChat')); ?>
+
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -120,62 +134,96 @@
                                 <?php else: ?>
                                     <img src="<?php echo e(asset('assets/img/team/team_1_1.jpg')); ?>" alt="defualt"
                                         class="handyman-profile-img-payment">
-                                    <p>Handymans will be bidding on you task</p>
+                                    <p><?php echo e(__('messages.BookAGigP5')); ?>
+
+                                    </p>
                                 <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="down-taskinfo">
                             <div class="task-info">
-                                <p class="p-taskinfo"><strong><i class="fa-solid fa-calendar"></i> Date : </strong>
+                                <p class="p-taskinfo"><strong><i class="fa-solid fa-calendar"></i>
+                                        <?php echo e(__('messages.Date')); ?>
+
+                                        : </strong>
                                     <?php echo e(session('task_date')); ?>
 
                                 </p>
-                                <p class="p-taskinfo"><strong><i class="fa-solid fa-clock"></i> Time : </strong>
+                                <p class="p-taskinfo"><strong><i class="fa-solid fa-clock"></i>
+                                        <?php echo e(__('messages.Time')); ?>
+
+                                        : </strong>
                                     <?php echo e(session('task_time')); ?>
 
                                 </p>
-                                <p class="p-taskinfo"><i class="fa-solid fa-location-dot"></i> <strong> Location : </strong>
+                                <p class="p-taskinfo"><i class="fa-solid fa-location-dot"></i> <strong>
+                                        <?php echo e(__('messages.Location')); ?>
+
+                                        : </strong>
                                     <?php echo e(session('location')); ?> </p>
-                                <p class="p-taskinfo"><i class="fa-solid fa-hourglass-start"></i><strong> Estimated
-                                        Time: </strong> <?php echo e(session('estimated_time')); ?> hour minimum</p>
+                                <p class="p-taskinfo"><i class="fa-solid fa-hourglass-start"></i><strong>
+                                        <?php echo e(__('messages.EstimatedTime')); ?>
+
+                                        : </strong> <?php echo e(session('estimated_time')); ?> <?php echo e(__('messages.hourminimum')); ?>
+
+                                </p>
                                 
                             </div>
                             <hr>
                             <div class="form-group">
                                 <p>Your Gig details</p>
                                 <textarea class="form-control task-details-textarea" placeholder="Your Gig details" required></textarea>
-                                <span class="error-text">Can't be blank</span>
+                                <span class="error-text"><?php echo e(__('messages.Cantbeblank')); ?>
+
+                                </span>
                             </div>
                             <!-- Price Details -->
                             <hr>
 
                             <div class="price-details">
-                                <h4>Price Details</h4>
-                                <div class="price-section">
-                                    <p><strong>Hourly Rate:</strong>
-                                    </p>
-                                    <p> JD <?php echo e($hourlyRate); ?>
+                                <h4><?php echo e(__('messages.PriceDetails')); ?>
 
-                                        /hr</p>
+                                </h4>
+                                <div class="price-section">
+                                    <p><strong><?php echo e(__('messages.HourlyRate')); ?>
+
+                                            :</strong>
+                                    </p>
+                                    <p> <?php echo e(__('messages.JD')); ?>
+
+                                        <?php echo e($hourlyRate); ?>
+
+                                        /<?php echo e(__('messages.hr')); ?>
+
+                                    </p>
                                 </div>
                                 <div class="price-section">
 
-                                    <p><strong>Trust and Support Fee (16%):</strong>
+                                    <p><strong><?php echo e(__('messages.Trust')); ?>
+
+                                        </strong>
                                     </p>
-                                    <p>JD<?php echo e(number_format($hourlyRate * $estimatedTime * 0.16, 2)); ?></p>
+                                    <p><?php echo e(__('messages.JD')); ?>
+
+                                        <?php echo e(number_format($hourlyRate * $estimatedTime * 0.16, 2)); ?></p>
 
                                 </div>
                                 <div class="price-section">
 
-                                    <p><strong>Total:</strong> </p>
-                                    <p>JD <?php echo e($total); ?></p>
+                                    <p><strong><?php echo e(__('messages.Total')); ?>
+
+                                            :</strong> </p>
+                                    <p><?php echo e(__('messages.JD')); ?>
+
+                                        <?php echo e($total); ?></p>
                                 </div>
 
                             </div>
-                            <p>
-                                You can cancel at any time. Tasks cancelled less than 24 hours before the start time may be
-                                billed a cancellation fee of one hour. Tasks have a one-hour minimum.</p>
+                            <p><?php echo e(__('messages.BookAGigP6')); ?>
+
+
+                            </p>
                         </div>
 
                     </div>

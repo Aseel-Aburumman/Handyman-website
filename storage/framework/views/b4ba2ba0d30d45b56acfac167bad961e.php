@@ -2,11 +2,17 @@
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Chat Center</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('customer.Home')); ?>">Home</a></li>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.ChatCenter')); ?>
 
-                    <li>Chat Center</li>
+                </h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="<?php echo e(route('customer.Home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+
+                    <li><?php echo e(__('messages.ChatCenter')); ?>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -19,7 +25,9 @@
                 <div class="col-md-8">
                     <div class="card chat-card shadow-sm">
                         <div class="card-header chat-header ">
-                            <h4>Chat with <?php echo e($receiver->name); ?></h4>
+                            <h4><?php echo e(__('messages.Chatwith')); ?>
+
+                                <?php echo e($receiver->name); ?></h4>
                         </div>
                         <div class="card-body chat-body">
                             <div class="chat-messages">
@@ -40,7 +48,10 @@
                                     <input type="hidden" name="receiver_id" value="<?php echo e($receiverId); ?>">
                                     <input type="text" name="message_content" class="form-control for_the_rounding"
                                         placeholder="Type a message..." required>
-                                    <button type="submit" class="mt-2 btn btn-primary for_the_rounding ">Send</button>
+                                    <button type="submit"
+                                        class="mt-2 btn btn-primary for_the_rounding "><?php echo e(__('messages.Send')); ?>
+
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -51,12 +62,15 @@
                 <div class="col-md-4 ">
                     <div class="card chat-history-card shadow-sm">
                         <div class="card-header">
-                            <h5>Chat History</h5>
+                            <h5><?php echo e(__('messages.ChatHistory')); ?>
+
+                            </h5>
                         </div>
                         <div class="card-body chat-history-body">
                             <?php if($chatPartners->isNotEmpty()): ?>
                                 <?php $__currentLoopData = $chatPartners; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $partner): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="<?php echo e(route('chat', ['receiverId' => $partner->id])); ?>" class="chat-history-item">
+                                    <a href="<?php echo e(route('chat', ['receiverId' => $partner->id])); ?>"
+                                        class="chat-history-item">
                                         <div class="history-item-content">
                                             <div class="history-item-avatar">
                                                 <?php if($partner->image): ?>
@@ -86,13 +100,17 @@
 
                                                 </p>
                                             <?php else: ?>
-                                                <p>No messages yet.</p>
+                                                <p><?php echo e(__('messages.Nomessages')); ?>
+
+                                                    .</p>
                                             <?php endif; ?>
                                         </div>
                                     </a>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php else: ?>
-                                <p>No chat history available.</p>
+                                <p><?php echo e(__('messages.Nohistory')); ?>
+
+                                </p>
                             <?php endif; ?>
                         </div>
                     </div>

@@ -4,10 +4,11 @@
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Home</h1>
+                <h1 class="breadcumb-title">{{ __('messages.Home') }}
+                </h1>
                 <ul class="breadcumb-menu">
                     {{--  <li><a href="{{ route('customer.Home') }}">Home</a></li>  --}}
-                    <li>Home</li>
+                    {{--  <li>{{ __('messages.Home') }}</li>  --}}
                 </ul>
             </div>
         </div>
@@ -25,22 +26,26 @@
                 <div class="stat-cards">
                     <div class="stat-card">
                         <i class="fas fa-award"></i>
-                        <div class="stat-title">Gigs Awarded</div>
+                        <div class="stat-title">{{ __('messages.GigsAwarded') }}
+                        </div>
                         <div class="stat-value">{{ $totalawardedgig }}</div>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-clipboard-list"></i>
-                        <div class="stat-title">Gigs Applied To</div>
+                        <div class="stat-title">{{ __('messages.GigApplied') }}
+                        </div>
                         <div class="stat-value">{{ $totalappliedgig }}</div>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-dollar-sign"></i>
-                        <div class="stat-title">Profit This Month</div>
+                        <div class="stat-title">{{ __('messages.Profit') }}
+                        </div>
                         <div class="stat-value">{{ $totalawardedgig_profit_thismonth }}</div>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-coins"></i>
-                        <div class="stat-title">Total Profit</div>
+                        <div class="stat-title">{{ __('messages.TotalProfit') }}
+                        </div>
                         <div class="stat-value">{{ $totalawardedgig_profit->sum('total') }}</div>
                     </div>
                 </div>
@@ -50,14 +55,16 @@
                     <!-- Gigs Waiting for Approval -->
                     <div class="">
                         <h3>
-                            Gigs Waiting for Approval
+                            {{ __('messages.WaitingApproval') }}
+
                         </h3>
                         @foreach ($awardedgig as $gig)
                             <div class="content-box gigs-approval">
 
                                 <div class="d-flex justify-content-between gig-details">
                                     <div class="w-75">
-                                        <h6>Task Details</h6>
+                                        <h6>{{ __('messages.TaskDetail') }}
+                                        </h6>
                                         <div class="d-flex justify-content-between">
                                             <h2 class="gig-title">{{ $gig->title }}</h2>
                                         </div>
@@ -69,7 +76,8 @@
                                             {{ $gig->task_date }} {{ $gig->task_time }}</p>
                                     </div>
                                     <div class="w-25 text-center align-self-center align-items-center">
-                                        <h3>Client Details</h3>
+                                        <h3>{{ __('messages.ClientDetails') }}
+                                        </h3>
                                         <div class="m-auto freelancer-img">
                                             @if ($gig->user && $gig->user->image)
                                                 <img src="{{ asset('storage/profile_images/' . $gig->user->image) }}"
@@ -84,28 +92,30 @@
                                         <div class="justify-content-center handyman-rating">
                                             <span class="text-center rating-star">★</span>
                                             <span>{{ $gig->user->rating }}
-                                                ({{ $gig->user->clientreviews->count() }} reviews)
+                                                ({{ $gig->user->clientreviews->count() }} {{ __('messages.reviews') }})
                                             </span>
                                         </div>
 
                                         <!-- Display Gigs Count -->
                                         <div class="gig-count">
-                                            <p><strong>Gigs Posted:</strong> {{ $gig->user->gigs->count() }}</p>
+                                            <p><strong>{{ __('messages.GigsPosted') }}
+                                                    :</strong> {{ $gig->user->gigs->count() }}</p>
                                         </div>
 
                                         <form class="mt-3" action="{{ route('chat', ['receiverId' => $gig->user->id]) }}"
                                             method="GET">
                                             @csrf
-                                            <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
-                                                next!</button>
+                                            <button type="submit" class="btn btn-info w-100 ">{{ __('messages.ChatAnd') }}
+                                            </button>
                                         </form>
                                         <form class="mt-3 ml-2"
                                             action="{{ route('handyman.accept', ['gigId' => $gig->id]) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
                                             {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
-                                            <button type="submit" class="btn btn-success ml-2 w-100 ">Accept and Start The
-                                                Work</button>
+                                            <button type="submit"
+                                                class="btn btn-success ml-2 w-100 ">{{ __('messages.mygigAccept') }}
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -117,14 +127,14 @@
                     <!-- Hot Gigs to Apply To -->
                     <div class="">
                         <h3>
-                            Hot Gigs to Apply To
-                        </h3>
+                            {{ __('messages.HotGigs') }} </h3>
                         @foreach ($gigtoaply as $gig)
                             <div class="content-box gigs-approval">
 
                                 <div class="d-flex justify-content-between gig-details">
                                     <div class="w-75">
-                                        <h6>Task Details</h6>
+                                        <h6>{{ __('messages.TaskDetail') }}
+                                        </h6>
                                         <div class="d-flex justify-content-between">
                                             <h2 class="gig-title">{{ $gig->title }}</h2>
                                         </div>
@@ -136,7 +146,8 @@
                                             {{ $gig->task_date }} {{ $gig->task_time }}</p>
                                     </div>
                                     <div class="w-25 text-center align-self-center align-items-center">
-                                        <h6>Client Details</h6>
+                                        <h6>{{ __('messages.ClientDetails') }}
+                                        </h6>
                                         <div class="m-auto freelancer-img">
                                             @if ($gig->user && $gig->user->image)
                                                 <img src="{{ asset('storage/profile_images/' . $gig->user->image) }}"
@@ -151,13 +162,14 @@
                                         <div class="justify-content-center handyman-rating">
                                             <span class="text-center rating-star">★</span>
                                             <span>{{ $gig->user->rating }}
-                                                ({{ $gig->user->clientreviews->count() }} reviews)
+                                                ({{ $gig->user->clientreviews->count() }} {{ __('messages.reviews') }})
                                             </span>
                                         </div>
 
                                         <!-- Display Gigs Count -->
                                         <div class="gig-count">
-                                            <p><strong>Gigs Posted:</strong> {{ $gig->user->gigs->count() }}</p>
+                                            <p><strong>{{ __('messages.GigsPosted') }}
+                                                    :</strong> {{ $gig->user->gigs->count() }}</p>
                                         </div>
 
 
@@ -165,7 +177,9 @@
                                             action="{{ route('handyman.opengig', ['gigId' => $gig->id]) }}" method="GET">
                                             @csrf
                                             {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
-                                            <button type="submit" class="btn btn-success ml-2 w-100 ">Apply Now!</button>
+                                            <button type="submit"
+                                                class="btn btn-success ml-2 w-100 ">{{ __('messages.ApplyNow') }}
+                                            </button>
                                         </form>
                                     </div>
                                 </div>

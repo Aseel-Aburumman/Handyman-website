@@ -4,11 +4,14 @@
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Chat Center</h1>
+                <h1 class="breadcumb-title">{{ __('messages.ChatCenter') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('customer.Home') }}">Home</a></li>
+                    <li><a href="{{ route('customer.Home') }}">{{ __('messages.Home') }}
+                        </a></li>
 
-                    <li>Chat Center</li>
+                    <li>{{ __('messages.ChatCenter') }}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -21,7 +24,8 @@
                 <div class="col-md-8">
                     <div class="card chat-card shadow-sm">
                         <div class="card-header chat-header ">
-                            <h4>Chat with {{ $receiver->name }}</h4>
+                            <h4>{{ __('messages.Chatwith') }}
+                                {{ $receiver->name }}</h4>
                         </div>
                         <div class="card-body chat-body">
                             <div class="chat-messages">
@@ -42,7 +46,9 @@
                                     <input type="hidden" name="receiver_id" value="{{ $receiverId }}">
                                     <input type="text" name="message_content" class="form-control for_the_rounding"
                                         placeholder="Type a message..." required>
-                                    <button type="submit" class="mt-2 btn btn-primary for_the_rounding ">Send</button>
+                                    <button type="submit"
+                                        class="mt-2 btn btn-primary for_the_rounding ">{{ __('messages.Send') }}
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -53,12 +59,14 @@
                 <div class="col-md-4 ">
                     <div class="card chat-history-card shadow-sm">
                         <div class="card-header">
-                            <h5>Chat History</h5>
+                            <h5>{{ __('messages.ChatHistory') }}
+                            </h5>
                         </div>
                         <div class="card-body chat-history-body">
                             @if ($chatPartners->isNotEmpty())
                                 @foreach ($chatPartners as $partner)
-                                    <a href="{{ route('chat', ['receiverId' => $partner->id]) }}" class="chat-history-item">
+                                    <a href="{{ route('chat', ['receiverId' => $partner->id]) }}"
+                                        class="chat-history-item">
                                         <div class="history-item-content">
                                             <div class="history-item-avatar">
                                                 @if ($partner->image)
@@ -87,13 +95,15 @@
                                                     {{ Str::limit($partner->lastMessage->message_content, 50) }}
                                                 </p>
                                             @else
-                                                <p>No messages yet.</p>
+                                                <p>{{ __('messages.Nomessages') }}
+                                                    .</p>
                                             @endif
                                         </div>
                                     </a>
                                 @endforeach
                             @else
-                                <p>No chat history available.</p>
+                                <p>{{ __('messages.Nohistory') }}
+                                </p>
                             @endif
                         </div>
                     </div>

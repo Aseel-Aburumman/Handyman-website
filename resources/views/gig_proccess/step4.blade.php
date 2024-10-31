@@ -1,19 +1,20 @@
 @extends('layouts.inside')
 
 @section('content')
-    <!--==============================
-                                                    Breadcumb
-                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
+                <h1 class="breadcumb-title">{{ __('messages.BookAGig') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Book A Gig</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li>{{ __('messages.BookAGig') }}
+                    </li>
 
-                    <li>Step 4</li>
+                    <li>{{ __('messages.Step') }}
+                        4</li>
                 </ul>
             </div>
         </div>
@@ -125,7 +126,8 @@
                     </div>  --}}
 
                     <div class="payment-method-section">
-                        <h2>Confirm details</h2>
+                        <h2>{{ __('messages.Confirmdetails') }}
+                        </h2>
                         <hr>
                         <form action="{{ route('gig.storeStep4') }}" method="POST" id="payment-form">
                             @csrf
@@ -133,17 +135,20 @@
                             <!-- Payment Method -->
                             <div class="form-group">
                                 <label for="card_number">
-                                    <h3>Payment method</h3>
+                                    <h3>{{ __('messages.Paymentmethod') }}
+                                    </h3>
                                 </label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="payment_method" id="pay_by_card"
                                         value="card" checked>
-                                    <label class="form-check-label" for="pay_by_card">Pay by Card</label>
+                                    <label class="form-check-label" for="pay_by_card">{{ __('messages.PayCard') }}
+                                    </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="payment_method" id="pay_by_cash"
                                         value="cash">
-                                    <label class="form-check-label" for="pay_by_cash">Pay by Cash</label>
+                                    <label class="form-check-label" for="pay_by_cash">{{ __('messages.PayCash') }}
+                                    </label>
                                 </div>
                             </div>
 
@@ -153,9 +158,8 @@
                                 <div class="form-group">
 
                                     <label for="card_number">
-                                        <p>You may see a temporary hold on your payment method in the amount of your
-                                            Tasker's
-                                            hourly rate. Don't worry - you're only billed when your task is complete!</p>
+                                        <p>{{ __('messages.BookAGigP4') }}
+                                        </p>
                                     </label> <input type="text" id="card_number" name="card_number" class="form-control"
                                         placeholder="1234 5678 9123 4567">
                                 </div>
@@ -176,24 +180,11 @@
                                 </div>
                             </div>
 
-                            {{--  <!-- Promo Code -->
-                            <div class="form-group">
-                                <label for="promo_code">Do you have a promo code?</label>
-                                <input type="text" id="promo_code" name="promo_code" class="form-control"
-                                    placeholder="Promo code">
-                            </div>
-
-                            <!-- Taskrabbit For Good -->
-                            <div class="form-group">
-                                <label for="donation_checkbox">
-                                    <input type="checkbox" id="donation_checkbox" name="donation_checkbox">
-                                    Donate $1 to Taskrabbit for Good
-                                </label>
-                            </div>  --}}
 
                             <!-- Confirm Button -->
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Confirm and chat</button>
+                                <button type="submit" class="btn btn-primary">{{ __('messages.ConfirmChat') }}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -212,59 +203,77 @@
                                 @else
                                     <img src="{{ asset('assets/img/team/team_1_1.jpg') }}" alt="defualt"
                                         class="handyman-profile-img-payment">
-                                    <p>Handymans will be bidding on you task</p>
+                                    <p>{{ __('messages.BookAGigP5') }}
+                                    </p>
                                 @endif
                             </div>
                         </div>
 
                         <div class="down-taskinfo">
                             <div class="task-info">
-                                <p class="p-taskinfo"><strong><i class="fa-solid fa-calendar"></i> Date : </strong>
+                                <p class="p-taskinfo"><strong><i class="fa-solid fa-calendar"></i>
+                                        {{ __('messages.Date') }}
+                                        : </strong>
                                     {{ session('task_date') }}
                                 </p>
-                                <p class="p-taskinfo"><strong><i class="fa-solid fa-clock"></i> Time : </strong>
+                                <p class="p-taskinfo"><strong><i class="fa-solid fa-clock"></i>
+                                        {{ __('messages.Time') }}
+                                        : </strong>
                                     {{ session('task_time') }}
                                 </p>
-                                <p class="p-taskinfo"><i class="fa-solid fa-location-dot"></i> <strong> Location : </strong>
+                                <p class="p-taskinfo"><i class="fa-solid fa-location-dot"></i> <strong>
+                                        {{ __('messages.Location') }}
+                                        : </strong>
                                     {{ session('location') }} </p>
-                                <p class="p-taskinfo"><i class="fa-solid fa-hourglass-start"></i><strong> Estimated
-                                        Time: </strong> {{ session('estimated_time') }} hour minimum</p>
+                                <p class="p-taskinfo"><i class="fa-solid fa-hourglass-start"></i><strong>
+                                        {{ __('messages.EstimatedTime') }}
+                                        : </strong> {{ session('estimated_time') }} {{ __('messages.hourminimum') }}
+                                </p>
                                 {{--  <p><strong>Requires Car:</strong> {{ $car_required ? 'Yes' : 'No' }}</p>  --}}
                             </div>
                             <hr>
                             <div class="form-group">
                                 <p>Your Gig details</p>
                                 <textarea class="form-control task-details-textarea" placeholder="Your Gig details" required></textarea>
-                                <span class="error-text">Can't be blank</span>
+                                <span class="error-text">{{ __('messages.Cantbeblank') }}
+                                </span>
                             </div>
                             <!-- Price Details -->
                             <hr>
 
                             <div class="price-details">
-                                <h4>Price Details</h4>
+                                <h4>{{ __('messages.PriceDetails') }}
+                                </h4>
                                 <div class="price-section">
-                                    <p><strong>Hourly Rate:</strong>
+                                    <p><strong>{{ __('messages.HourlyRate') }}
+                                            :</strong>
                                     </p>
-                                    <p> JD {{ $hourlyRate }}
-                                        /hr</p>
+                                    <p> {{ __('messages.JD') }}
+                                        {{ $hourlyRate }}
+                                        /{{ __('messages.hr') }}
+                                    </p>
                                 </div>
                                 <div class="price-section">
 
-                                    <p><strong>Trust and Support Fee (16%):</strong>
+                                    <p><strong>{{ __('messages.Trust') }}
+                                        </strong>
                                     </p>
-                                    <p>JD{{ number_format($hourlyRate * $estimatedTime * 0.16, 2) }}</p>
+                                    <p>{{ __('messages.JD') }}
+                                        {{ number_format($hourlyRate * $estimatedTime * 0.16, 2) }}</p>
 
                                 </div>
                                 <div class="price-section">
 
-                                    <p><strong>Total:</strong> </p>
-                                    <p>JD {{ $total }}</p>
+                                    <p><strong>{{ __('messages.Total') }}
+                                            :</strong> </p>
+                                    <p>{{ __('messages.JD') }}
+                                        {{ $total }}</p>
                                 </div>
 
                             </div>
-                            <p>
-                                You can cancel at any time. Tasks cancelled less than 24 hours before the start time may be
-                                billed a cancellation fee of one hour. Tasks have a one-hour minimum.</p>
+                            <p>{{ __('messages.BookAGigP6') }}
+
+                            </p>
                         </div>
 
                     </div>

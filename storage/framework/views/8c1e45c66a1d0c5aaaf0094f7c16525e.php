@@ -3,12 +3,20 @@
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li>Book A Gig</li>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.BookAGig')); ?>
 
-                    <li>Step 3</li>
+                </h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                        </a></li>
+                    <li><?php echo e(__('messages.BookAGig')); ?>
+
+                    </li>
+
+                    <li><?php echo e(__('messages.Step')); ?>
+
+                        3</li>
                 </ul>
             </div>
         </div>
@@ -32,25 +40,25 @@
                     <?php echo csrf_field(); ?>
 
                     <div class="mr-3 w-75 form-group">
-                        <label for="date">Select a Date:</label>
+                        <label for="date"><?php echo e(__('messages.ChooseTaskDate')); ?>:</label>
                         <div id="calendar"></div>
                         <?php if(!$handyman): ?>
-                            <label class="checkBudgetLabel">Choose Your Budget</label>
+                            <label class="checkBudgetLabel"><?php echo e(__('messages.ChoosYourBudget')); ?></label>
 
                             <div class="checkBudget form-check form-group">
                                 <input type="radio" class="form-check-input" id="budget1" name="budget" value="5"
                                     checked>
-                                <label class=" form-check-label" for="budget1">5-10 JD</label>
+                                <label class=" form-check-label" for="budget1">5-10 <?php echo e(__('messages.JD')); ?></label>
                             </div>
 
                             <div class="checkBudget form-check form-group">
                                 <input type="radio" class="form-check-input" id="budget2" name="budget" value="10">
-                                <label class=" form-check-label" for="budget2">10-20 JD</label>
+                                <label class=" form-check-label" for="budget2">10-20 <?php echo e(__('messages.JD')); ?></label>
                             </div>
 
                             <div class="checkBudget form-check form-group">
                                 <input type="radio" class="form-check-input" id="budget3" name="budget" value="20">
-                                <label class=" form-check-label" for="budget3">20+ JD</label>
+                                <label class=" form-check-label" for="budget3">20+ <?php echo e(__('messages.JD')); ?></label>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -61,13 +69,13 @@
                     <input type="hidden" name="time" id="selected-hour">
                     <div class="ml-3 w-25 form-group">
                         <div class="form-group">
-                            <label for="available-hours">Available Hours:</label>
+                            <label for="available-hours"><?php echo e(__('messages.ChooseTaskDate')); ?>:</label>
                             <div id="available-hours" class="available-hours-grid">
                                 <!-- Available hours will be displayed here -->
                             </div>
                         </div>
                         <input type="hidden" id="selected-hour" name="selected_hour" value="">
-                        <button type="submit" class="btn btn-primary">Continue to Step 4</button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('messages.ContinueStep')); ?> 4</button>
                     </div>
                 </form>
             </div>

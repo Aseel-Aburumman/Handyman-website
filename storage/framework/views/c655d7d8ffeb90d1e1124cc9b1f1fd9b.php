@@ -2,10 +2,12 @@
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Home</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.Home')); ?>
+
+                </h1>
                 <ul class="breadcumb-menu">
                     
-                    <li>Home</li>
+                    
                 </ul>
             </div>
         </div>
@@ -24,22 +26,30 @@
                 <div class="stat-cards">
                     <div class="stat-card">
                         <i class="fas fa-award"></i>
-                        <div class="stat-title">Gigs Awarded</div>
+                        <div class="stat-title"><?php echo e(__('messages.GigsAwarded')); ?>
+
+                        </div>
                         <div class="stat-value"><?php echo e($totalawardedgig); ?></div>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-clipboard-list"></i>
-                        <div class="stat-title">Gigs Applied To</div>
+                        <div class="stat-title"><?php echo e(__('messages.GigApplied')); ?>
+
+                        </div>
                         <div class="stat-value"><?php echo e($totalappliedgig); ?></div>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-dollar-sign"></i>
-                        <div class="stat-title">Profit This Month</div>
+                        <div class="stat-title"><?php echo e(__('messages.Profit')); ?>
+
+                        </div>
                         <div class="stat-value"><?php echo e($totalawardedgig_profit_thismonth); ?></div>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-coins"></i>
-                        <div class="stat-title">Total Profit</div>
+                        <div class="stat-title"><?php echo e(__('messages.TotalProfit')); ?>
+
+                        </div>
                         <div class="stat-value"><?php echo e($totalawardedgig_profit->sum('total')); ?></div>
                     </div>
                 </div>
@@ -49,14 +59,18 @@
                     <!-- Gigs Waiting for Approval -->
                     <div class="">
                         <h3>
-                            Gigs Waiting for Approval
+                            <?php echo e(__('messages.WaitingApproval')); ?>
+
+
                         </h3>
                         <?php $__currentLoopData = $awardedgig; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="content-box gigs-approval">
 
                                 <div class="d-flex justify-content-between gig-details">
                                     <div class="w-75">
-                                        <h6>Task Details</h6>
+                                        <h6><?php echo e(__('messages.TaskDetail')); ?>
+
+                                        </h6>
                                         <div class="d-flex justify-content-between">
                                             <h2 class="gig-title"><?php echo e($gig->title); ?></h2>
                                         </div>
@@ -68,7 +82,9 @@
                                             <?php echo e($gig->task_date); ?> <?php echo e($gig->task_time); ?></p>
                                     </div>
                                     <div class="w-25 text-center align-self-center align-items-center">
-                                        <h3>Client Details</h3>
+                                        <h3><?php echo e(__('messages.ClientDetails')); ?>
+
+                                        </h3>
                                         <div class="m-auto freelancer-img">
                                             <?php if($gig->user && $gig->user->image): ?>
                                                 <img src="<?php echo e(asset('storage/profile_images/' . $gig->user->image)); ?>"
@@ -84,28 +100,33 @@
                                             <span class="text-center rating-star">★</span>
                                             <span><?php echo e($gig->user->rating); ?>
 
-                                                (<?php echo e($gig->user->clientreviews->count()); ?> reviews)
+                                                (<?php echo e($gig->user->clientreviews->count()); ?> <?php echo e(__('messages.reviews')); ?>)
                                             </span>
                                         </div>
 
                                         <!-- Display Gigs Count -->
                                         <div class="gig-count">
-                                            <p><strong>Gigs Posted:</strong> <?php echo e($gig->user->gigs->count()); ?></p>
+                                            <p><strong><?php echo e(__('messages.GigsPosted')); ?>
+
+                                                    :</strong> <?php echo e($gig->user->gigs->count()); ?></p>
                                         </div>
 
                                         <form class="mt-3" action="<?php echo e(route('chat', ['receiverId' => $gig->user->id])); ?>"
                                             method="GET">
                                             <?php echo csrf_field(); ?>
-                                            <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
-                                                next!</button>
+                                            <button type="submit" class="btn btn-info w-100 "><?php echo e(__('messages.ChatAnd')); ?>
+
+                                            </button>
                                         </form>
                                         <form class="mt-3 ml-2"
                                             action="<?php echo e(route('handyman.accept', ['gigId' => $gig->id])); ?>" method="POST">
                                             <?php echo csrf_field(); ?>
                                             <?php echo method_field('PATCH'); ?>
                                             
-                                            <button type="submit" class="btn btn-success ml-2 w-100 ">Accept and Start The
-                                                Work</button>
+                                            <button type="submit"
+                                                class="btn btn-success ml-2 w-100 "><?php echo e(__('messages.mygigAccept')); ?>
+
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -117,14 +138,15 @@
                     <!-- Hot Gigs to Apply To -->
                     <div class="">
                         <h3>
-                            Hot Gigs to Apply To
-                        </h3>
+                            <?php echo e(__('messages.HotGigs')); ?> </h3>
                         <?php $__currentLoopData = $gigtoaply; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="content-box gigs-approval">
 
                                 <div class="d-flex justify-content-between gig-details">
                                     <div class="w-75">
-                                        <h6>Task Details</h6>
+                                        <h6><?php echo e(__('messages.TaskDetail')); ?>
+
+                                        </h6>
                                         <div class="d-flex justify-content-between">
                                             <h2 class="gig-title"><?php echo e($gig->title); ?></h2>
                                         </div>
@@ -136,7 +158,9 @@
                                             <?php echo e($gig->task_date); ?> <?php echo e($gig->task_time); ?></p>
                                     </div>
                                     <div class="w-25 text-center align-self-center align-items-center">
-                                        <h6>Client Details</h6>
+                                        <h6><?php echo e(__('messages.ClientDetails')); ?>
+
+                                        </h6>
                                         <div class="m-auto freelancer-img">
                                             <?php if($gig->user && $gig->user->image): ?>
                                                 <img src="<?php echo e(asset('storage/profile_images/' . $gig->user->image)); ?>"
@@ -152,13 +176,15 @@
                                             <span class="text-center rating-star">★</span>
                                             <span><?php echo e($gig->user->rating); ?>
 
-                                                (<?php echo e($gig->user->clientreviews->count()); ?> reviews)
+                                                (<?php echo e($gig->user->clientreviews->count()); ?> <?php echo e(__('messages.reviews')); ?>)
                                             </span>
                                         </div>
 
                                         <!-- Display Gigs Count -->
                                         <div class="gig-count">
-                                            <p><strong>Gigs Posted:</strong> <?php echo e($gig->user->gigs->count()); ?></p>
+                                            <p><strong><?php echo e(__('messages.GigsPosted')); ?>
+
+                                                    :</strong> <?php echo e($gig->user->gigs->count()); ?></p>
                                         </div>
 
 
@@ -166,7 +192,10 @@
                                             action="<?php echo e(route('handyman.opengig', ['gigId' => $gig->id])); ?>" method="GET">
                                             <?php echo csrf_field(); ?>
                                             
-                                            <button type="submit" class="btn btn-success ml-2 w-100 ">Apply Now!</button>
+                                            <button type="submit"
+                                                class="btn btn-success ml-2 w-100 "><?php echo e(__('messages.ApplyNow')); ?>
+
+                                            </button>
                                         </form>
                                     </div>
                                 </div>

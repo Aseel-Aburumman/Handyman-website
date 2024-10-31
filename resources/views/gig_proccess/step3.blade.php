@@ -2,18 +2,22 @@
 
 @section('content')
     <!--==============================
-                                                Breadcumb
-                                            ============================== -->
+                                                                                Breadcumb
+                                                                            ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
+                <h1 class="breadcumb-title">{{ __('messages.BookAGig') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Book A Gig</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li>{{ __('messages.BookAGig') }}
+                    </li>
 
-                    <li>Step 3</li>
+                    <li>{{ __('messages.Step') }}
+                        3</li>
                 </ul>
             </div>
         </div>
@@ -39,12 +43,14 @@
                     <!-- Date -->
                     @if (!$handyman)
                         <div class="form-group">
-                            <label class="checkBudgetLabel" for="date">Choose Task Date</label>
+                            <label class="checkBudgetLabel" for="date">{{ __('messages.ChooseTaskDate') }}
+                            </label>
                             <input type="date" name="date" id="date" class="form-control"
                                 min="{{ now()->toDateString() }}" required>
                         </div>
                     @else
-                        <label class="checkBudgetLabel" for="date">Choose Task Date</label>
+                        <label class="checkBudgetLabel" for="date">{{ __('messages.ChooseTaskDate') }}
+                        </label>
 
                         <input type="text" name="date" id="task_date" class="form-control" required
                             placeholder="DD-MM-YYYY">
@@ -53,31 +59,37 @@
                     @endif
                     <!-- Time -->
                     <div class="form-group">
-                        <label class="checkBudgetLabel" for="time">Choose Start Time</label>
+                        <label class="checkBudgetLabel" for="time">{{ __('messages.ChooseStartTime') }}
+                        </label>
                         <input type="time" name="time" id="time" class="form-control" required>
                     </div>
 
                     @if (!$handyman)
-                        <label class="checkBudgetLabel">Choose Your Budget</label>
+                        <label class="checkBudgetLabel">{{ __('messages.ChoosYourBudget') }}
+                        </label>
 
                         <div class="checkBudget form-check form-group">
                             <input type="radio" class="form-check-input" id="budget1" name="budget" value="5"
                                 checked>
-                            <label class=" form-check-label" for="budget1">5-10 JD</label>
+                            <label class=" form-check-label" for="budget1">5-10 {{ __('messages.JD') }}
+                            </label>
                         </div>
 
                         <div class="checkBudget form-check form-group">
                             <input type="radio" class="form-check-input" id="budget2" name="budget" value="10">
-                            <label class=" form-check-label" for="budget2">10-20 JD</label>
+                            <label class=" form-check-label" for="budget2">10-20 {{ __('messages.JD') }}
+                            </label>
                         </div>
 
                         <div class="checkBudget form-check form-group">
                             <input type="radio" class="form-check-input" id="budget3" name="budget" value="20">
-                            <label class=" form-check-label" for="budget3">20+ JD</label>
+                            <label class=" form-check-label" for="budget3">20+ {{ __('messages.JD') }}
+                            </label>
                         </div>
                     @endif
 
-                    <button type="submit" class="btn btn-primary">Continue to Step 4</button>
+                    <button type="submit" class="btn btn-primary">{{ __('messages.ContinueStep') }}
+                        4</button>
                 </form>
             </div>
         </div>

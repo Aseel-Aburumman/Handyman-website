@@ -338,19 +338,105 @@ return [
     'paymentnotrecorded' => 'is there any payment are not recorded ?',
     'SubmitPayment' => 'Submit Payment',
     'MarkDone' => 'Mark as Done',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
-    'Proposal' => 'Proposal',
+
+    //    handyman home
+    'GigsAwarded' => 'Gigs Awarded',
+    'GigApplied' => 'Gigs Applied To',
+    'Profit' => ' Profit This Month',
+    'TotalProfit' => 'Total Profit',
+    'WaitingApproval' => 'Gigs Waiting for Approval',
+    'ClientDetails' => ' Client Details',
+    'GigsPosted' => 'Gigs Posted',
+    'HotGigs' => 'Hot Gigs to Apply To',
+
+    //    handyman dashboard
+    'MyGigs' => 'My Gigs',
+    'AwardedGigs' => 'Awarded Gigs',
+    'Experience' => 'Experience',
+    'StoreLocation' => 'Store Location',
+    'ViewTask' => 'View Task',
+    'AddSkill' => 'Add a New Skill',
+    'SelectSkill' => 'Select Skill',
+    'SkillCertificate' => 'Upload Skill Certificate (Image)',
+    'AddSkill' => 'Add Skill',
+    'ViewAsClient' => 'View As Client',
+
+    //    handyman profile
+    'Profile' => 'Profile',
+    'HandymanDetail' => 'Handyman Detail',
+    'yearexperince' => 'year of experince',
+    'TotalGigs' => 'Total Gigs',
+    'MySkills' => 'My Skills',
+    'MyReviews' => 'My Reviews',
+
+
+    // gig procces
+    'BookAGig' => 'Book A Gig',
+    'Step' => 'Step',
+    'BookAGigP1' => 'Tell us about your task. We use these details to show Taskers in your area who fit your needs.',
+    'TaskLocation' => 'Task Location',
+    'EndAddress' => 'End Address',
+    'Small' => 'Small - Est. 1 hr',
+    'Medium' => 'Medium - Est. 2-3 hrs',
+    'Large' => 'Large - Est. 4+ hrs',
+    'Tiltetask' => 'Tilte of the task',
+    'Detailstask' => 'Details about the task',
+    'ContinueStep' => 'Continue to Step',
+    'EstimatedTime' => 'Estimated Time',
+    'gigFilter' => ' Filter and sort to find your Tasker. Then view their availability to request your date and time.',
+    'SelectNumberofGigs' => 'Select Number of Gigs',
+    'SkipContinue' => 'Skip and Continue',
+    'SelectContinue' => 'Select & Continue',
+    'BookAGigP2' => 'You can chat with your Tasker, adjust task details, or change task time after booking.',
+
+    'ChooseTaskDate' => 'Select a Date',
+    'ChooseStartTime' => 'Available Hours',
+    'ChoosYourBudget' => 'Choose Your Budget',
+
+    'Confirmdetails' => 'Confirm details',
+    'Paymentmethod' => 'Payment method',
+    'PayCard' => 'Pay by Card',
+    'PayCash' => 'Pay by Cash',
+    'BookAGigP4' => ' You may see a temporary hold on your payment method in the amount of your Tasker\'s hourly rate. Don\'t worry - you\'re only billed when your task is complete!',
+    'ConfirmChat' => 'Confirm and chat',
+    'BookAGigP5' => ' Handymans will be bidding on you task',
+    'Time' => 'Time',
+    'hourminimum' => 'hour minimum',
+    'Cantbeblank' => 'Can\'t be blank',
+    'PriceDetails' => 'Price Details',
+    'HourlyRate' => 'Hourly Rate',
+    'Trust' => 'Trust and Support Fee (16%):',
+    'BookAGigP6' => 'You can cancel at any time. Tasks cancelled less than 24 hours before the start time may be billed a cancellation fee of one hour. Tasks have a one-hour minimum.',
+
+    // user dashboard
+    'MyTask' => 'My Task',
+    'MyOrders' => 'My Orders',
+    'SalesRecords' => 'Your Sales Records',
+    'Nosales' => ' No sales records found.',
+    'AwardedHandyman' => 'Awarded Handyman',
+    'perhour' => 'per hour',
+    'Nohandyman' => 'No awarded handyman yet, check out your task proposals.',
+    'TaskProposals' => 'View The Task Proposals',
+    'VeiwDetail' => ' Veiw Task Detail',
+
+    // chat
+    'Chatwith' => 'Chat with',
+    'Send' => 'Send',
+    'ChatHistory' => 'Chat History',
+    'Nomessages' => 'No messages yet',
+    'Nohistory' => 'No chat history available.',
+
+
+    'City' => 'City',
+    'City' => 'City',
+    'City' => 'City',
+    'City' => 'City',
+    'City' => 'City',
+    'City' => 'City',
+    'City' => 'City',
+    'City' => 'City',
+
+
 
 
 

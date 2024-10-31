@@ -6,12 +6,16 @@
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
+                <h1 class="breadcumb-title">{{ __('messages.BookAGig') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Book A Gig</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li>{{ __('messages.BookAGig') }}
+                    </li>
 
-                    <li>Step 3</li>
+                    <li>{{ __('messages.Step') }}
+                        3</li>
                 </ul>
             </div>
         </div>
@@ -35,25 +39,25 @@
                     @csrf
 
                     <div class="mr-3 w-75 form-group">
-                        <label for="date">Select a Date:</label>
+                        <label for="date">{{ __('messages.ChooseTaskDate') }}:</label>
                         <div id="calendar"></div>
                         @if (!$handyman)
-                            <label class="checkBudgetLabel">Choose Your Budget</label>
+                            <label class="checkBudgetLabel">{{ __('messages.ChoosYourBudget') }}</label>
 
                             <div class="checkBudget form-check form-group">
                                 <input type="radio" class="form-check-input" id="budget1" name="budget" value="5"
                                     checked>
-                                <label class=" form-check-label" for="budget1">5-10 JD</label>
+                                <label class=" form-check-label" for="budget1">5-10 {{ __('messages.JD') }}</label>
                             </div>
 
                             <div class="checkBudget form-check form-group">
                                 <input type="radio" class="form-check-input" id="budget2" name="budget" value="10">
-                                <label class=" form-check-label" for="budget2">10-20 JD</label>
+                                <label class=" form-check-label" for="budget2">10-20 {{ __('messages.JD') }}</label>
                             </div>
 
                             <div class="checkBudget form-check form-group">
                                 <input type="radio" class="form-check-input" id="budget3" name="budget" value="20">
-                                <label class=" form-check-label" for="budget3">20+ JD</label>
+                                <label class=" form-check-label" for="budget3">20+ {{ __('messages.JD') }}</label>
                             </div>
                         @endif
                     </div>
@@ -64,13 +68,13 @@
                     <input type="hidden" name="time" id="selected-hour">
                     <div class="ml-3 w-25 form-group">
                         <div class="form-group">
-                            <label for="available-hours">Available Hours:</label>
+                            <label for="available-hours">{{ __('messages.ChooseTaskDate') }}:</label>
                             <div id="available-hours" class="available-hours-grid">
                                 <!-- Available hours will be displayed here -->
                             </div>
                         </div>
                         <input type="hidden" id="selected-hour" name="selected_hour" value="">
-                        <button type="submit" class="btn btn-primary">Continue to Step 4</button>
+                        <button type="submit" class="btn btn-primary">{{ __('messages.ContinueStep') }} 4</button>
                     </div>
                 </form>
             </div>

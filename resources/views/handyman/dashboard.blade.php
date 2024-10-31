@@ -4,10 +4,13 @@
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Dashboard</h1>
+                <h1 class="breadcumb-title">{{ __('messages.Dashboard') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('handyman.Home') }}">Home</a></li>
-                    <li>Dashboard</li>
+                    <li><a href="{{ route('handyman.Home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li>{{ __('messages.Dashboard') }}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -37,35 +40,36 @@
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn active" id="description-tab" data-bs-toggle="tab" href="#description"
-                        role="tab" aria-controls="description" aria-selected="true">Account Detail</a>
+                        role="tab" aria-controls="description" aria-selected="true">{{ __('messages.AccountDetail') }}
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                        aria-controls="reviews" aria-selected="false">My Gigs</a>
+                        aria-controls="reviews" aria-selected="false">{{ __('messages.MyGigs') }}
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
-                        aria-controls="orders" aria-selected="false">Awarded Gigs</a>
+                        aria-controls="orders" aria-selected="false">{{ __('messages.AwardedGigs') }}
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="skills-tab" data-bs-toggle="tab" href="#skills" role="tab"
-                        aria-controls="skills" aria-selected="false">Skills</a>
+                        aria-controls="skills" aria-selected="false">{{ __('messages.Skills') }}
+                    </a>
                 </li>
+                <li class="nav-item" role="presentation">
 
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link th-btn" id="task-tab" data-bs-toggle="tab" href="#task" role="tab"
-                        aria-controls="task" aria-selected="false">My Task</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link th-btn" id="orders2-tab" data-bs-toggle="tab" href="#orders2" role="tab"
-                        aria-controls="orders2" aria-selected="false">My Orders</a>
+                    <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
+                        class=" th-btn">{{ __('messages.ViewAsClient') }}</a>
                 </li>
 
                 <li class="nav-item" role="presentation">
                     <form class="" action="{{ route('chat', ['receiverId' => $firstgigs->user->id]) }}"
                         method="GET">
                         @csrf
-                        <button type="submit" class="nav-link th-btn ">Chat Center</button>
+                        <button type="submit" class="nav-link th-btn ">{{ __('messages.ChatCenter') }}
+                        </button>
                     </form>
                     {{--  <a class="nav-link th-btn" id="chat-tab" data-bs-toggle="tab"
                         href="{{ route('chat', ['receiverId' => $firstgigs->handyman->user->id]) }}" role="tab"
@@ -78,8 +82,8 @@
                 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="profile-edit-wrapper">
                         <h2>Edit Profile</h2>
-                        <form action="{{ route('handyman.dashboard.update') }}" method="POST" enctype="multipart/form-data"
-                            class="profile-edit-form">
+                        <form action="{{ route('handyman.dashboard.update') }}" method="POST"
+                            enctype="multipart/form-data" class="profile-edit-form">
                             @csrf
                             {{--  @method('POST')  --}}
 
@@ -94,7 +98,8 @@
                                             alt="Default Profile Picture">
                                     @endif
                                 </div>
-                                <label for="image">Upload Profile Picture</label>
+                                <label for="image">{{ __('messages.UploadPic') }}
+                                </label>
                                 <input type="file" name="image" id="image" class="form-control">
                             </div>
 
@@ -102,14 +107,16 @@
                             <div class="d-flex justify-content-between">
 
                                 <div style="margin-right:5px;" class="mr-2 w-50 form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name">{{ __('messages.Name') }}
+                                    </label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         value="{{ $user->name }}" required>
                                 </div>
 
                                 <!-- Email -->
                                 <div style="margin-left:5px;" class=" w-50 form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('messages.Email') }}
+                                    </label>
                                     <input type="email" name="email" id="email" class="form-control"
                                         value="{{ $user->email }}" required>
                                 </div>
@@ -119,15 +126,18 @@
                             <div class="d-flex justify-content-between">
                                 <!-- Phone -->
                                 <div style="margin-right:5px;" class="mr-2 w-50 form-group">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone">{{ __('messages.Phone') }}
+                                    </label>
                                     <input type="text" name="phone" id="phone" class="form-control"
                                         value="{{ $user->delivery_info->phone ?? ' ' }}" required>
                                 </div>
                                 <!-- building_no -->
                                 <div style="margin-left:5px;" class=" w-50 form-group">
-                                    <label for="building_no">Building no</label>
-                                    <input type="text" name="building_no" id="building_no" class="ml-2 form-control"
-                                        value="{{ $user->delivery_info->building_no ?? ' ' }}" required>
+                                    <label for="building_no">{{ __('messages.BuildingNo') }}
+                                        /label>
+                                        <input type="text" name="building_no" id="building_no"
+                                            class="ml-2 form-control"
+                                            value="{{ $user->delivery_info->building_no ?? ' ' }}" required>
                                 </div>
                             </div>
 
@@ -135,14 +145,16 @@
 
                                 <!-- City -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="city">City</label>
+                                    <label for="city">{{ __('messages.City') }}
+                                    </label>
                                     <input type="text" name="city" id="city" class="form-control"
                                         value="{{ $user->delivery_info->city ?? ' ' }}" required>
                                 </div>
 
                                 <!-- Location -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="location">Location</label>
+                                    <label for="location">{{ __('messages.Location') }}
+                                    </label>
                                     <input type="text" name="location" id="location" class="form-control"
                                         value="{{ $user->delivery_info->location ?? ' ' }}" required>
                                 </div>
@@ -152,14 +164,16 @@
 
                                 <!-- Experience -->
                                 <div style="margin-right:5px;" class="w-50 form-group">
-                                    <label for="experience">Experience</label>
+                                    <label for="experience">{{ __('messages.Experience') }}
+                                    </label>
                                     <input type="number" name="experience" id="experience" class="form-control"
                                         value="{{ $handyman->experience ?? '0 ' }}" required>
                                 </div>
 
                                 <!-- price_per_hour -->
                                 <div style="margin-left:5px;" class="w-50 form-group">
-                                    <label for="price_per_hour">Price Per Hour</label>
+                                    <label for="price_per_hour">{{ __('messages.PPR') }}
+                                    </label>
                                     <input type="number" name="price_per_hour" id="price_per_hour" class="form-control"
                                         value="{{ $handyman->price_per_hour ?? ' ' }}" required>
                                 </div>
@@ -169,7 +183,8 @@
 
                                 <!-- BIO -->
                                 <div class="form-group">
-                                    <label for="bio">Bio</label>
+                                    <label for="bio">{{ __('messages.Bio') }}
+                                    </label>
                                     <input type="text" name="bio" id="bio" class="form-control"
                                         value="{{ $handyman->bio ?? ' ' }}" required>
                                 </div>
@@ -177,17 +192,17 @@
                             </div>
                             <!-- store_location -->
                             <div class="form-group">
-                                <label for="store_location">Store Location</label>
+                                <label for="store_location">{{ __('messages.StoreLocation') }}
+                                </label>
                                 <input type="text" name="store_location" id="store_location" class="form-control"
                                     value="{{ $handyman->store_location ?? ' ' }}" required>
                             </div>
 
 
-                            <button type="submit" class="th-btn">Save Changes</button>
+                            <button type="submit" class="th-btn">{{ __('messages.SaveChanges') }}
+                            </button>
 
-                            {{--  <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $handyman->id]) }}"
-                                class="mt-3 th-btn">View As
-                                Client</a>  --}}
+
 
                         </form>
                     </div>
@@ -200,7 +215,8 @@
 
                             <div class="d-flex justify-content-between gig-details">
                                 <div class="w-75">
-                                    <h6>Task Details</h6>
+                                    <h6>{{ __('messages.TaskDetail') }}
+                                    </h6>
                                     <div class="d-flex justify-content-between">
                                         <h2 class="gig-title">{{ $gig->title }}</h2>
                                     </div>
@@ -212,7 +228,8 @@
                                         {{ $gig->task_date }} {{ $gig->task_time }}</p>
                                 </div>
                                 <div class="w-25 text-center align-self-center align-items-center">
-                                    <h3>Client Details</h3>
+                                    <h3>{{ __('messages.ClientDetails') }}
+                                    </h3>
                                     <div class="m-auto freelancer-img">
                                         @if ($gig->user && $gig->user->image)
                                             <img src="{{ asset('storage/profile_images/' . $gig->user->image) }}"
@@ -227,28 +244,30 @@
                                     <div class="justify-content-center handyman-rating">
                                         <span class="text-center rating-star">★</span>
                                         <span>{{ $gig->user->rating }}
-                                            ({{ $gig->user->clientreviews->count() }} reviews)
+                                            ({{ $gig->user->clientreviews->count() }} {{ __('messages.reviews') }})
                                         </span>
                                     </div>
 
                                     <!-- Display Gigs Count -->
                                     <div class="gig-count">
-                                        <p><strong>Gigs Posted:</strong> {{ $gig->user->gigs->count() }}</p>
+                                        <p><strong>{{ __('messages.GigsPosted') }}
+                                                :</strong> {{ $gig->user->gigs->count() }}</p>
                                     </div>
 
                                     <form class="mt-3" action="{{ route('chat', ['receiverId' => $gig->user->id]) }}"
                                         method="GET">
                                         @csrf
-                                        <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
-                                            next!</button>
+                                        <button type="submit" class="btn btn-info w-100 ">{{ __('messages.ChatAnd') }}
+                                        </button>
                                     </form>
                                     <form class="mt-3 ml-2"
                                         action="{{ route('handyman.accept', ['gigId' => $gig->id]) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
-                                        <button type="submit" class="btn btn-success ml-2 w-100 ">Accept and Start The
-                                            Work</button>
+                                        <button type="submit"
+                                            class="btn btn-success ml-2 w-100 ">{{ __('messages.mygigAccept') }}
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -263,7 +282,8 @@
 
                             <div class="d-flex justify-content-between gig-details">
                                 <div class="w-75">
-                                    <h6>Task Details
+                                    <h6>{{ __('messages.TaskDetail') }}
+
 
                                     </h6>
                                     <div class="d-flex justify-content-between">
@@ -290,7 +310,8 @@
                                     @elseif($gig->status_id == 28)
                                         <button class="w-100 btn btn-warning">{{ $gig->status->name }}</button>
                                     @endif
-                                    <h3>Client Details</h3>
+                                    <h3>{{ __('messages.ClientDetails') }}
+                                    </h3>
                                     <div class="m-auto freelancer-img">
                                         @if ($gig->user && $gig->user->image)
                                             <img src="{{ asset('storage/profile_images/' . $gig->user->image) }}"
@@ -305,27 +326,30 @@
                                     <div class="justify-content-center handyman-rating">
                                         <span class="text-center rating-star">★</span>
                                         <span>{{ $gig->user->rating }}
-                                            ({{ $gig->user->clientreviews->count() }} reviews)
+                                            ({{ $gig->user->clientreviews->count() }} {{ __('messages.reviews') }})
                                         </span>
                                     </div>
 
                                     <!-- Display Gigs Count -->
                                     <div class="gig-count">
-                                        <p><strong>Gigs Posted:</strong> {{ $gig->user->gigs->count() }}</p>
+                                        <p><strong>{{ __('messages.GigsPosted') }}
+                                                :</strong> {{ $gig->user->gigs->count() }}</p>
                                     </div>
 
                                     <form class="mt-3" action="{{ route('chat', ['receiverId' => $gig->user->id]) }}"
                                         method="GET">
                                         @csrf
-                                        <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
-                                            next!</button>
+                                        <button type="submit" class="btn btn-info w-100 ">{{ __('messages.ChatAnd') }}
+                                        </button>
                                     </form>
                                     <form class="mt-3 ml-2"
                                         action="{{ route('handyman.assigned.task', ['gigId' => $gig->id]) }}"
                                         method="GET">
                                         @csrf
                                         {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
-                                        <button type="submit" class="btn btn-success ml-2 w-100 ">View Task</button>
+                                        <button type="submit"
+                                            class="btn btn-success ml-2 w-100 ">{{ __('messages.ViewTask') }}
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -337,7 +361,7 @@
                 <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
 
                     <!-- Add New Skill Button -->
-                    <button id="toggleAddSkillForm" class="mb-5 w-100 th-btn ">Add a New Skill</button>
+                    <button id="toggleAddSkillForm" class="mb-5 w-100 th-btn ">{{ __('messages.AddSkill') }} </button>
 
                     <!-- Add Skill Form (Initially Hidden) -->
                     <div id="addSkillForm" style="display: none;" class="mt-3">
@@ -346,9 +370,11 @@
 
                             <!-- Select Skill from Dropdown -->
                             <div class="form-group">
-                                <label for="skill_id">Select Skill:</label>
+                                <label for="skill_id">{{ __('messages.SelectSkill') }}
+                                    :</label>
                                 <select name="skill_id" class="form-control" required>
-                                    <option value="" disabled selected>Select a skill</option>
+                                    <option value="" disabled selected>{{ __('messages.SelectSkill') }}
+                                    </option>
                                     @foreach ($skills as $skill)
                                         <option value="{{ $skill->id }}">{{ $skill->name }}</option>
                                     @endforeach
@@ -357,18 +383,21 @@
 
                             <!-- Upload Skill Proof Image -->
                             <div class="form-group">
-                                <label for="certificate_image">Upload Skill Certificate (Image):</label>
+                                <label for="certificate_image">{{ __('messages.SkillCertificate') }}
+                                    :</label>
                                 <input type="file" name="certificate_image" class="form-control" required>
                             </div>
 
                             <!-- Description for the Certificate -->
                             <div class="form-group">
-                                <label for="description">Description:</label>
+                                <label for="description">{{ __('messages.Description') }}
+                                    :</label>
                                 <textarea name="description" class="form-control" rows="3" required></textarea>
                             </div>
 
                             <!-- Submit Button -->
-                            <button type="submit" class="btn btn-success">Add Skill</button>
+                            <button type="submit" class="btn btn-success">{{ __('messages.AddSkill') }}
+                            </button>
                         </form>
                     </div>
 
@@ -396,7 +425,8 @@
                                                             class="statusBtn1 custom-btn-success">{{ $certificate->status->name }}</button>
                                                     @endif
                                                 </div>
-                                                <p><strong>Description: </strong>{{ $certificate->skill->description }}</p>
+                                                <p><strong>{{ __('messages.Description') }}
+                                                        : </strong>{{ $certificate->skill->description }}</p>
 
 
                                             </div>
@@ -409,140 +439,7 @@
                 </div>
 
 
-                <!-- orders Details Tab -->
-                <div class="tab-pane fade  " id="orders2" role="tabpanel" aria-labelledby="orders2-tab">
-                    {{--  <div class="profile-edit-wrapper">  --}}
-                    <h1>Your Sales Records</h1>
-                    @if ($sales->isEmpty())
-                        <p>No sales records found.</p>
-                    @else
-                        @foreach ($sales as $saleDate => $saleGroup)
-                            @php
-                                // Calculate the total amount for all items in this group (all items in the card)
-                                $groupTotal = $saleGroup->sum('total_amount');
-                                // Get the store name from the first sale in the group (assuming all have the same store)
-                                $storeName = $saleGroup->first()->store->name;
-                            @endphp
 
-                            <!-- Card -->
-                            <div class="card mb-4 shadow-sm">
-                                <div class="d-flex justify-content-between card-header">
-                                    <h4 class="my-0 font-weight-normal">
-                                        Order from {{ $storeName }} on
-                                        {{ \Carbon\Carbon::parse($saleDate)->format('F j, Y g:i A') }}
-                                    </h4>
-                                    <span class="custom-total">
-                                        Total: JD {{ number_format($groupTotal, 2) }}
-                                    </span>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        @foreach ($saleGroup as $sale)
-                                            <li
-                                                class="p-0 mt-1   list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <!-- Compact product details -->
-                                                    <strong>Product:</strong> {{ $sale->product->name }}
-                                                    <span class="text-muted">(ID: {{ $sale->product_id }})</span> -
-                                                    <strong>Quantity:</strong> {{ $sale->quantity_sold }} -
-                                                    <strong>Total:</strong> JD {{ number_format($sale->total_amount, 2) }}
-                                                </div>
-                                                <div class="custom-status">
-                                                    @if ($sale->status_id == 16)
-                                                        <button
-                                                            class="statusBtn1 custom-btn-info">{{ $sale->status->name }}</button>
-                                                    @elseif($sale->status_id == 17)
-                                                        <button
-                                                            class="statusBtn1 custom-btn-primary">{{ $sale->status->name }}</button>
-                                                    @elseif($sale->status_id == 18)
-                                                        <button
-                                                            class="statusBtn1 custom-btn-success">{{ $sale->status->name }}</button>
-                                                    @elseif($sale->status_id == 19)
-                                                        <button
-                                                            class="statusBtn1 custom-btn-danger">{{ $sale->status->name }}</button>
-                                                    @endif
-
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-                    {{--  </div>  --}}
-                </div>
-
-                <!-- My Tasks Tab -->
-                <div class="tab-pane fade" id="task" role="tabpanel" aria-labelledby="task-tab">
-                    @foreach ($gigs_i_created as $gig)
-                        <div class="gig-card">
-                            <div class="gig-card-content">
-                                <!-- Left Side: Gig Details -->
-                                <div class="gig-details">
-                                    <h3>Task Details
-                                        @if ($gig->status_id == 7)
-                                            <button class="statusBtn btn  btn-info">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 8)
-                                            <button class="statusBtn btn  btn-primary">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 9)
-                                            <button class="statusBtn btn btn-success">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 10)
-                                            <button class="statusBtn btn btn-danger">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 11)
-                                            <button class="statusBtn btn btn-warning">{{ $gig->status->name }}</button>
-                                        @elseif($gig->status_id == 28)
-                                            <button class="statusBtn btn btn-warning">{{ $gig->status->name }}</button>
-                                        @endif
-                                    </h3>
-
-                                    <h2 class="gig-title">{{ $gig->title }}</h2>
-                                    <p class="gig-description">
-                                        {{ \Illuminate\Support\Str::limit($gig->description, 150) }}</p>
-                                    <p class="gig-location"><i class="fas fa-map-marker-alt"></i>
-                                        {{ $gig->location }}</p>
-                                    <p class="gig-time"><i class="far fa-calendar-alt"></i>
-                                        {{ $gig->task_date }} {{ $gig->task_time }}</p>
-                                    @if ($gig->handyman)
-                                        <p class="gig-total">Total: JD {{ $gig->total }}</p>
-                                    @else
-                                        <p class="gig-total">Estimated Total: JD {{ $gig->total }}</p>
-                                    @endif
-                                </div>
-
-                                <!-- Right Side: Freelancer Info -->
-                                <div class="freelancer-info">
-                                    <h3>Awarded Handyman</h3>
-                                    @if ($gig->handyman)
-                                        <div class="freelancer-img">
-                                            @if ($gig->handyman && $gig->handyman->user->image)
-                                                <img src="{{ asset('storage/profile_images/' . $gig->handyman->user->image) }}"
-                                                    alt="{{ $gig->handyman->name }} Picture">
-                                            @else
-                                                <img src="{{ asset('assets/img/team/team_1_1.jpg') }}"
-                                                    alt="Freelancer Picture">
-                                            @endif
-                                        </div>
-                                        <h3 class="freelancer-name">
-                                            {{ $gig->handyman->user->name ?? 'Unknown Handyman' }}</h3>
-                                        <p class="gig-price">Price: JD {{ $gig->price }}/ per hour</p>
-                                        <p class="gig-price"><a
-                                                href="{{ route('assigned.task', ['gigId' => $gig->id]) }}">Veiw Task
-                                                Detail</a></p>
-                                    @else
-                                        <div>
-                                            No awarded handyman yet, check out your task proposals.
-                                        </div>
-
-                                        <p class="gig-price"><a href="{{ route('Onegig', ['gigId' => $gig->id]) }}">View
-                                                The Task
-                                                Proposals</a></p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
 
 
             </div>

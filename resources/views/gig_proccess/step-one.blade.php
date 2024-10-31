@@ -2,18 +2,22 @@
 
 @section('content')
     <!--==============================
-                                            Breadcumb
-                                        ============================== -->
+                                                                                                                                                                            Breadcumb
+                                                                                                                                                                        ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Book A Gig</h1>
+                <h1 class="breadcumb-title">{{ __('messages.BookAGig') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Book A Gig</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li>{{ __('messages.BookAGig') }}
+                    </li>
 
-                    <li>Step 1</li>
+                    <li>{{ __('messages.Step') }}
+                        1</li>
                 </ul>
             </div>
         </div>
@@ -40,8 +44,9 @@
                     <span class="sub-title"><img src="{{ asset('assets/img/theme-img/title_icon.svg') }}"
                             alt="Icon">{{ $category->name }}</span>
                     <h4>{{ $service->name }}</h4>
-                    <p class="explanation-text">
-                        Tell us about your task. We use these details to show Taskers in your area who fit your needs.
+                    <p class="explanation-text">{{ __('messages.BookAGigP1') }}
+
+
                     </p>
                 </div>
 
@@ -55,48 +60,53 @@
                         <input type="hidden" name="category_id" value="{{ $category->id }}">
                         <input type="hidden" name="service_id" value="{{ $service->id }}">
                         <!-- Car Requirement -->
-                        {{--  <div class="form-group">
-                            <label for="car_req">Does the task require a car/truck?</label>
-                            <input type="checkbox" name="car_req" id="car_req">
-                        </div>  --}}
+
 
                         <!-- Task Location -->
                         <div class="form-group">
-                            <label for="location">Task Location</label>
+                            <label for="location">{{ __('messages.TaskLocation') }}
+                            </label>
                             <input type="text" name="location" id="location" class="form-control" required>
                         </div>
 
                         <!-- End Address (for moving category) -->
                         @if ($category->id == 3)
                             <div class="form-group">
-                                <label for="end_address">End Address</label>
+                                <label for="end_address">{{ __('messages.EndAddress') }}
+                                </label>
                                 <input type="text" name="end_address" id="end_address" class="form-control">
                             </div>
                         @endif
 
                         <!-- Estimated Time -->
                         <div class="form-group">
-                            <label for="estimated_time">Estimated Time</label>
+                            <label for="estimated_time">{{ __('messages.EstimatedTime') }}</label>
                             <select name="estimated_time" id="estimated_time" class="form-control">
-                                <option value="1">Small - Est. 1 hr</option>
-                                <option value="2">Medium - Est. 2-3 hrs</option>
-                                <option value="4">Large - Est. 4+ hrs</option>
+                                <option value="1">{{ __('messages.Small') }}
+                                </option>
+                                <option value="2">{{ __('messages.Medium') }}
+                                </option>
+                                <option value="4">{{ __('messages.Large') }}
+                                </option>
                             </select>
                         </div>
 
                         <!-- Task title -->
                         <div class="form-group">
-                            <label for="title">Tilte of the task</label>
+                            <label for="title">{{ __('messages.Tiltetask') }}
+                            </label>
                             <textarea name="title" id="title" class="form-control" required></textarea>
                         </div>
 
                         <!-- Task Description -->
                         <div class="form-group">
-                            <label for="description">Details about the task</label>
+                            <label for="description">{{ __('messages.Detailstask') }}
+                            </label>
                             <textarea name="description" id="description" class="form-control" required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Continue to Step 2</button>
+                        <button type="submit" class="btn btn-primary">{{ __('messages.ContinueStep') }}
+                            2</button>
                     </form>
                 </div>
             </div>

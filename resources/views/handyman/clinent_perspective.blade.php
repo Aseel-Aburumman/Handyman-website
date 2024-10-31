@@ -4,11 +4,15 @@
     <div class="breadcumb-wrapper" data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">{{ $handyman->user->name }} Profile</h1>
+                <h1 class="breadcumb-title">{{ $handyman->user->name }} {{ __('messages.Profile') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('handymen.index') }}">All Handyman</a></li>
-                    <li>Handyman Detail</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li><a href="{{ route('handymen.index') }}">{{ __('messages.taskerBtn') }}
+                        </a></li>
+                    <li>{{ __('messages.HandymanDetail') }}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -35,8 +39,8 @@
                                     <img src="{{ asset('storage/profile_images/' . $handyman->user->image) }}"
                                         alt="{{ $handyman->user->name }}" class="red-rectangle">
                                 @else
-                                    <img src="{{ asset('assets/img/team/team_1_1.jpg') }}" alt="{{ $handyman->user->name }}"
-                                        class="red-rectangle">
+                                    <img src="{{ asset('assets/img/team/team_1_1.jpg') }}"
+                                        alt="{{ $handyman->user->name }}" class="red-rectangle">
                                 @endif
 
                             </div>
@@ -44,7 +48,8 @@
                         </div>
                         <div class="year-box">
                             <div class="box-number box-numberRating ">{{ $handyman->user->rating }}/5</div>
-                            <p class="box-text">Rating</p>
+                            <p class="box-text">{{ __('messages.Rating') }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -54,14 +59,17 @@
                             <span class="sub-title"><span class="line"></span>
 
                                 <i class="fa-solid fa-bolt"></i>
-                                {{ $handyman->experience }} year of experince</span>
+                                {{ $handyman->experience }} {{ __('messages.yearexperince') }}
+                            </span>
                             <h2 class="sec-title">{{ $handyman->user->name }}</h2>
                             <p class="sec-text">{{ $handyman->bio }}</p>
                         </div>
                         <div class="checklist list-one-column fw-regular">
                             <ul>
-                                <li>Total Reviews: {{ $reviewCount }}</li>
-                                <li>Total Gigs: {{ $gigCount }}</li>
+                                <li>{{ __('messages.TotalReviews') }}
+                                    : {{ $reviewCount }}</li>
+                                <li>{{ __('messages.TotalGigs') }}
+                                    : {{ $gigCount }}</li>
 
 
 
@@ -78,11 +86,13 @@
             <ul class="nav product-tab-style1" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="description-tab" data-bs-toggle="tab" href="#description" role="tab"
-                        aria-controls="description" aria-selected="false">My Skills</a>
+                        aria-controls="description" aria-selected="false">{{ __('messages.MySkills') }}
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn active" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                        aria-controls="reviews" aria-selected="true">My Reviews</a>
+                        aria-controls="reviews" aria-selected="true">{{ __('messages.MyReviews') }}
+                    </a>
                 </li>
             </ul>
             <div class="tab-content" id="productTabContent">
@@ -116,7 +126,8 @@
                                                             class="statusBtn1 custom-btn-success">{{ $certificate->status->name }}</button>
                                                     @endif
                                                 </div>
-                                                <p><strong>Description: </strong>{{ $certificate->skill->description }}</p>
+                                                <p><strong>{{ __('messages.Description') }}
+                                                        : </strong>{{ $certificate->skill->description }}</p>
 
 
                                             </div>
