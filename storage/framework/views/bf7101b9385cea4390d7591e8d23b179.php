@@ -1,11 +1,9 @@
-<!--==============================
-    Mobile Menu
-  ============================== -->
+
 <div class="th-menu-wrapper">
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="<?php echo e(route('home')); ?>"><img src="<?php echo e(asset('assets/img/logoHorizantal.svg')); ?>" alt="kaafmuen"></a>
+            <a href="<?php echo e(route('home')); ?>"><img src="<?php echo e(asset('assets/img/logoHorizantal.png')); ?>" alt="kaafmuen"></a>
         </div>
         <div class="th-mobile-menu">
             <ul>
@@ -39,7 +37,8 @@
                     </a>
 
                 </li>
-
+                <li><a href="<?php echo e(route('cart')); ?>">Cart
+                    </a></li>
                 <li><a href="<?php echo e(route('aboutUs')); ?>"><?php echo e(__('messages.AboutUs')); ?>
 
                     </a></li>
@@ -58,24 +57,31 @@
                         <!-- Store Owner Dashboard -->
                         
                     <?php endif; ?>
-                <?php endif; ?> <li><a href="<?php echo e(route('shops.index')); ?>"><?php echo e(__('messages.Shops')); ?>
+                <?php endif; ?>
+                <li><a href="<?php echo e(route('shops.index')); ?>"><?php echo e(__('messages.Shops')); ?>
 
-                    </a></li>
-                <li><a href="<?php echo e(route('products.index')); ?>"><?php echo e(__('messages.Products')); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('products.index')); ?>"><?php echo e(__('messages.Products')); ?>
 
-                    </a></li>
-                <li><a href="<?php echo e(route('handymen.index')); ?>"><?php echo e(__('messages.Handymen')); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('handymen.index')); ?>"><?php echo e(__('messages.Handymen')); ?>
 
-                    </a></li>
+                    </a>
+                </li>
 
 
 
             </ul>
         </div>
     </div>
-</div><!--==============================
- Header Area
-==============================-->
+</div>
+
+
+
 <header class="th-header header-layout2 ">
     <div class="header-top">
         <div class="container">
@@ -162,7 +168,7 @@
                     </div>
                     <div class="col">
                         <div class="menu-area">
-                            <nav class="navbarTest main-menu d-none d-lg-inline-block">
+                            <nav class=" main-menu d-none d-lg-inline-block">
                                 <ul>
                                     <li>
                                         <a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
@@ -196,27 +202,29 @@
                                         </a></li>
 
 
-
-                                </ul>
-                                <?php if(auth()->guard()->check()): ?>
-                                    <ul style="margin-right:10px;">
+                                    <?php if(auth()->guard()->check()): ?>
+                                        
                                         <li><a href="<?php echo e(route('cart')); ?>"><i class="fa-solid fa-cart-shopping fa-lg"
                                                     style="top:50%;color: #f47629;"></i>
                                             </a></li>
-                                    </ul>
-                                <?php endif; ?>
+                                        
+                                    <?php endif; ?>
+                                </ul>
+
 
 
                             </nav>
-                            <button type="button" class="th-menu-toggle d-block d-lg-none"><i
-                                    class="fa-solid fa-bars"></i></button>
-
+                            <div class="header-button">
+                                <button type="button" class="th-menu-toggle d-block d-lg-none"><i
+                                        class="far fa-bars"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <?php if(auth()->guard()->guest()): ?>
                         <div class="col-auto d-none d-xxl-block">
-                            <a href="<?php echo e(route('register')); ?>" class="th-btn style3"><?php echo e(__('messages.Register')); ?>
-
+                            <a href="<?php echo e(route('register')); ?>" class="th-btn style3">
+                                <?php echo e(__('messages.Register')); ?>
 
                                 <i class="fas fa-arrow-right ms-2"></i>
                             </a>
@@ -226,25 +234,22 @@
                         <div class="col-auto d-none d-xxl-block">
                             <?php if(Auth::user()->role_id == 2): ?>
                                 <!-- Customer Dashboard -->
-                                <a href="<?php echo e(route('customer.dashboard')); ?>"
-                                    class="th-btn style3"><?php echo e(__('messages.Dashboard')); ?>
-
+                                <a href="<?php echo e(route('customer.dashboard')); ?>" class="th-btn style3">
+                                    <?php echo e(__('messages.Dashboard')); ?>
 
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                             <?php elseif(Auth::user()->role_id == 3): ?>
                                 <!-- Store Owner Dashboard -->
-                                <a href="<?php echo e(route('storeowner.dashboard')); ?>"
-                                    class="th-btn style3"><?php echo e(__('messages.Dashboard')); ?>
-
+                                <a href="<?php echo e(route('storeowner.dashboard')); ?>" class="th-btn style3">
+                                    <?php echo e(__('messages.Dashboard')); ?>
 
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                             <?php elseif(Auth::user()->role_id == 4): ?>
                                 <!-- Handyman Dashboard -->
-                                <a href="<?php echo e(route('handyman.dashboard')); ?>"
-                                    class="th-btn style3"><?php echo e(__('messages.Dashboard')); ?>
-
+                                <a href="<?php echo e(route('handyman.dashboard')); ?>" class="th-btn style3">
+                                    <?php echo e(__('messages.Dashboard')); ?>
 
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>

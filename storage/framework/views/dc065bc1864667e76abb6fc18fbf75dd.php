@@ -85,7 +85,8 @@
                                 <i class="fas fa-headset"></i> <a
                                     href="<?php echo e(route('contact')); ?>"><?php echo e(__('messages.Support')); ?> &nbsp</a>
                             </li>
-
+                            <li><a href="<?php echo e(route('cart')); ?>">Cart
+                                </a></li>
                             <?php if(auth()->guard()->guest()): ?>
 
                                 <li><i class="fas fa-user"></i> <a

@@ -434,7 +434,40 @@ return [
     'gigP5' => 'Chat with your handyman',
     'gigP6' => 'Report a Problem',
     'gigP7' => 'Has the handyman completed the first checkup?',
-    'City' => 'City',
+    'gigP8' => 'The work is currently in progress.',
+    'gigP9' => 'Your report has been submited , customer service will reach you as soon as possible',
+    'gigP10' => 'The task is ready for payment. Review and proceed with payments.',
+    'gigP11' => 'Pay now by creadit card',
+    'gigP12' => 'There is no more payments requst , is the task done ?',
+    'PayNow' => 'Pay Now',
+
+
+    // gig detail customer
+    'allproposal' => 'Check all the proposal you got',
+    'allproposalP' => ' Review their proposal thoroughly, including the services they are offering, the
+                            timeline they\'ve estimated for the job, and whether it aligns with your expectations. If it
+                            doesn\'t seem suitable, engage in a discussion to refine the details and find the best fit. Once
+                            you\'re satisfied with the adjustments, move forward with hiring them!',
+    'UnReject' => 'UnReject Proposal',
+    'ReportHandyman' => 'Report Handyman',
+    'Reject' => 'Reject Proposal',
+    'ChatFigure' => ' Chat and Figure what next!',
+    'Award' => 'Award This handyman ',
+    'Message' => 'Message ',
+    'Close' => 'Close ',
+    'SubmitReport' => 'Submit Report ',
+
+
+
+    'PayNow' => 'Pay ',
+    'PayNow' => 'Pay ',
+    'PayNow' => 'Pay ',
+    'PayNow' => 'Pay ',
+    'PayNow' => 'Pay ',
+    'PayNow' => 'Pay ',
+    'PayNow' => 'Pay ',
+
+
 
 
 

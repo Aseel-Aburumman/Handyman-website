@@ -2,7 +2,7 @@
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title"><?php echo e(__('messages.Cart')); ?>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.Checkout')); ?>
 
                 </h1>
                 <ul class="breadcumb-menu">
@@ -10,6 +10,9 @@
 
                         </a></li>
                     <li><?php echo e(__('messages.Cart')); ?>
+
+                    </li>
+                    <li><?php echo e(__('messages.Checkout')); ?>
 
                     </li>
                 </ul>

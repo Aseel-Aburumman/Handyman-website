@@ -2,11 +2,11 @@
     <div class="breadcumb-wrapper" data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Assigned Task Detail</h1>
+                <h1 class="breadcumb-title"><?php echo e(__('messages.AssignedTaskDetail')); ?></h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
-                    <li><a href="<?php echo e(route('customer.Home')); ?>">Dashboard</a></li>
-                    <li>Task Detail</li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?></a></li>
+                    <li><a href="<?php echo e(route('customer.Home')); ?>"><?php echo e(__('messages.Dashboard')); ?></a></li>
+                    <li><?php echo e(__('messages.TaskDetail')); ?></li>
                 </ul>
             </div>
         </div>
@@ -25,10 +25,12 @@
                 <div class="col-md-6">
                     <div class=" task-gig-card ">
                         <div class="gig-details">
-                            <h3>Task Details</h3>
+                            <h3><?php echo e(__('messages.TaskDetail')); ?></h3>
                             <div class="d-flex justify-content-between">
                                 <h2 class="gig-title"><?php echo e($gig->title); ?></h2>
-                                <p class="gig-total">Budget: JD <?php echo e($gig->total); ?>/per hour</p>
+                                <p class="gig-total"><?php echo e(__('messages.Budget')); ?>: <?php echo e(__('messages.JD')); ?>
+
+                                    <?php echo e($gig->total); ?>/<?php echo e(__('messages.perhour')); ?></p>
                             </div>
                             <p class="gig-description">
                                 <?php echo e(\Illuminate\Support\Str::limit($gig->description, 150)); ?></p>
@@ -44,18 +46,17 @@
                     <div class="progress-bar-section mt-4">
 
                         <?php if($gig->status_id == 9): ?>
-                            <h3>This Task Is Done!</h3>
-                            <p>Have something else on your to-do list?
-                                Book your next task or manage future to-dos with Kaaf Mueen </p>
+                            <h3><?php echo e(__('messages.TaskIsDone')); ?>!</h3>
+                            <p><?php echo e(__('messages.gigP1')); ?> </p>
 
                             <form class="mt-3" action="<?php echo e(route('customer.Home')); ?>" method="GET">
                                 <?php echo csrf_field(); ?>
-                                <button type="submit" class="btn btn-info w-100 ">Check It Off Your List!</button>
+                                <button type="submit" class="btn btn-info w-100 "><?php echo e(__('messages.gigP2')); ?></button>
                             </form>
                             <?php if($reviews->isEmpty()): ?>
                                 <div class="th-comment-form">
                                     <div class="form-title">
-                                        <h3 class="blog-inner-title">Add a review</h3>
+                                        <h3 class="blog-inner-title"><?php echo e(__('messages.AddReview')); ?></h3>
                                     </div>
                                     <form action="<?php echo e(route('reviews.clienttohandyman')); ?>" method="POST">
                                         <?php echo csrf_field(); ?> <!-- Add CSRF token for security -->
@@ -65,7 +66,7 @@
 
                                         <div class="row">
                                             <div class="form-group rating-select d-flex align-items-center">
-                                                <label>Your Rating</label>
+                                                <label><?php echo e(__('messages.YourRating')); ?></label>
                                                 <p class="stars">
                                                     <span>
                                                         <a class="star-1" href="#" data-rating="1">1</a>
@@ -84,7 +85,9 @@
                                                 <i class="text-title far fa-solid fa-pencil-alt"></i>
                                             </div>
                                             <div class="col-12 form-group mb-0">
-                                                <button type="submit" class="th-btn">Post Review</button>
+                                                <button type="submit" class="th-btn"><?php echo e(__('messages.PostReview')); ?>
+
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -137,7 +140,9 @@
                                                     </div>
                                                 </div>
                                             <?php endif; ?>
-                                            <p class="text text-start">Writen by :<?php echo e($review->user->name); ?></p>
+                                            <p class="text text-start"><?php echo e(__('messages.Writenby')); ?>
+
+                                                :<?php echo e($review->user->name); ?></p>
 
                                             <p class="text-start"><i class="far fa-clock"></i>
                                                 <?php echo e($review->created_at->format('Y-m-d H:i:s')); ?></p>
@@ -148,27 +153,22 @@
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endif; ?>
                         <?php elseif($gig->status_id == 28): ?>
-                            <h3>Waiting for your Handyman to accept!</h3>
-                            <p>Have something else on your to-do list?
-                                Book your next task or manage future to-dos with Kaaf Mueen </p>
+                            <h3><?php echo e(__('messages.gigP3')); ?></h3>
+                            <p><?php echo e(__('messages.gigP1')); ?> </p>
 
-                            <p>Lets figure it out,<a
-                                    href="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>">Chat
-                                    with
-                                    your
-                                    handyman</a>.</p>
+                            <p><?php echo e(__('messages.gigP4')); ?><a
+                                    href="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>"><?php echo e(__('messages.gigP5')); ?></a>.
+                            </p>
 
                             <form action="<?php echo e(route('report.gig.store')); ?>" method="POST">
                                 <?php echo csrf_field(); ?>
                                 <input type="hidden" name="handyman_id" value="<?php echo e($gig->handyman->id); ?>">
                                 <input type="hidden" name="gig_id" value="<?php echo e($gig->id); ?>">
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you want to report a problem?');">Report
-                                    a
-                                    Problem</button>
+                                    onclick="return confirm('Are you sure you want to report a problem?');"><?php echo e(__('messages.gigP6')); ?></button>
                             </form>
                         <?php elseif(in_array($gig->status_id, [7, 8, 11, 24])): ?>
-                            <h4>Task Progress</h4>
+                            <h4><?php echo e(__('messages.TaskProgress')); ?></h4>
                             <ul class="progress-bar">
                                 <li
                                     class="<?php echo e($gig->status_id >= 7 ? 'completed' : ($gig->status_id == 7 ? 'active' : '')); ?>">
@@ -187,60 +187,55 @@
 
                             <!-- Step Titles -->
                             <div class="progress-step-title">
-                                <span class="step-title">First Visit</span>
-                                <span class="step-title">Work in Progress</span>
-                                <span class="step-title">Payment</span>
+                                <span class="step-title"><?php echo e(__('messages.FirstVisit')); ?> </span>
+                                <span class="step-title"><?php echo e(__('messages.WorkinProgress')); ?></span>
+                                <span class="step-title"><?php echo e(__('messages.Payment')); ?></span>
                             </div>
 
                             <!-- Progress Content -->
                             <div class="step-content mt-3">
                                 <?php if($gig->status_id == 7): ?>
                                     <div class="progress-gig-card">
-                                        <p>Has the handyman completed the first checkup?</p>
+                                        <p><?php echo e(__('messages.gigP7')); ?></p>
 
                                         <form
                                             action="<?php echo e(route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 8])); ?>"
                                             method="POST">
                                             <?php echo csrf_field(); ?>
                                             <button type="submit" class="custom-btn btn btn-primary"
-                                                onclick="return confirm('Are you sure the first checkup is complete?');">Mark
-                                                as
-                                                Done</button>
+                                                onclick="return confirm('Are you sure the first checkup is complete?');"><?php echo e(__('messages.MarkDone')); ?></button>
                                         </form>
                                     </div>
                                 <?php elseif($gig->status_id == 8): ?>
                                     <div class="progress-gig-card">
 
-                                        <p>The work is currently in progress. <a
-                                                href="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>">Chat
-                                                with
-                                                your
-                                                handyman</a>.</p>
+                                        <p><?php echo e(__('messages.gigP8')); ?> <a
+                                                href="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>"><?php echo e(__('messages.gigP5')); ?></a>.
+                                        </p>
 
                                         <form action="<?php echo e(route('report.gig.store')); ?>" method="POST">
                                             <?php echo csrf_field(); ?>
                                             <input type="hidden" name="handyman_id" value="<?php echo e($gig->handyman->id); ?>">
                                             <input type="hidden" name="gig_id" value="<?php echo e($gig->id); ?>">
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to report a problem?');">Report
-                                                a
-                                                Problem</button>
+                                                onclick="return confirm('Are you sure you want to report a problem?');"><?php echo e(__('messages.gigP6')); ?>
+
+                                            </button>
                                         </form>
                                     </div>
                                 <?php elseif($gig->status_id == 11): ?>
                                     <div class="progress-gig-card">
 
-                                        <p>Your report has been submited , customer service will reach you as soon as
-                                            possible
-                                            <a href="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>">Chat
-                                                with
-                                                your
-                                                handyman</a>.
+                                        <p><?php echo e(__('messages.gigP9')); ?>
+
+                                            <a href="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>"><?php echo e(__('messages.gigP5')); ?>
+
+                                            </a>.
                                         </p>
                                     </div>
                                 <?php elseif($gig->status_id == 24): ?>
                                     <?php if($all_total): ?>
-                                        <p>The task is ready for payment. Review and proceed with payments.</p>
+                                        <p><?php echo e(__('messages.gigP10')); ?></p>
 
 
 
@@ -248,10 +243,14 @@
                                             <table class="cart_table mb-20">
                                                 <thead>
                                                     <tr>
-                                                        <th class="cart-col-productname">Payment ID</th>
-                                                        <th class="cart-col-quantity">Amount</th>
-                                                        <th class="cart-col-total">Description</th>
-                                                        <th class="cart-col-total">Action</th>
+                                                        <th class="cart-col-productname"><?php echo e(__('messages.PaymentID')); ?>
+
+                                                        </th>
+                                                        <th class="cart-col-quantity"><?php echo e(__('messages.Amount')); ?></th>
+                                                        <th class="cart-col-total"><?php echo e(__('messages.Description')); ?>
+
+                                                        </th>
+                                                        <th class="cart-col-total"><?php echo e(__('messages.Action')); ?></th>
 
                                                     </tr>
                                                 </thead>
@@ -261,7 +260,9 @@
                                                             <tr class="cart_item">
                                                                 <td><?php echo e($payment->id); ?></td>
                                                                 <td><?php echo e($payment->amount); ?></td>
-                                                                <td>JD <?php echo e($payment->description); ?></td>
+                                                                <td><?php echo e(__('messages.JD')); ?>
+
+                                                                    <?php echo e($payment->description); ?></td>
                                                                 <td>
                                                                     <form
                                                                         action="<?php echo e(route('gig.update.repot.paymet', ['paymentId' => $payment->id])); ?>"
@@ -269,7 +270,7 @@
                                                                         <?php echo csrf_field(); ?>
                                                                         <button type="submit"
                                                                             class="custom-btn btn btn-primary"
-                                                                            onclick="return confirm('Are you sure this payment request is false?');">Cancel</button>
+                                                                            onclick="return confirm('Are you sure this payment request is false?');"><?php echo e(__('messages.Cancel')); ?></button>
                                                                     </form>
                                                                 </td>
 
@@ -279,16 +280,19 @@
                                                 </tbody>
                                                 <tfoot class="checkout-ordertable">
                                                     <tr class="cart-subtotal">
-                                                        <th>Subtotal</th>
-                                                        <td colspan="2">JD <?php echo e($subtotal); ?></td>
+                                                        <th><?php echo e(__('messages.Subtotal')); ?></th>
+                                                        <td colspan="2"><?php echo e(__('messages.JD')); ?>
+
+                                                            <?php echo e($subtotal); ?></td>
                                                     </tr>
                                                     <tr class="woocommerce-shipping-totals shipping">
-                                                        <th>Trust and Support Fee (16%):</th>
+                                                        <th><?php echo e(__('messages.Trust')); ?>:</th>
                                                         <td colspan="2">16%</td>
                                                     </tr>
                                                     <tr class="order-total">
-                                                        <th>Total</th>
-                                                        <td colspan="2"><strong>JD
+                                                        <th><?php echo e(__('messages.Total')); ?></th>
+                                                        <td colspan="2"><strong><?php echo e(__('messages.JD')); ?>
+
                                                                 <?php echo e(number_format($subtotal * 0.16 + $subtotal, 2)); ?></strong>
                                                         </td>
                                                     </tr>
@@ -299,7 +303,7 @@
 
 
                                         <?php if($all_total): ?>
-                                            <h4>Pay now by creadit card</h4>
+                                            <h4><?php echo e(__('messages.gigP11')); ?></h4>
                                             <div id="card-payment-fields">
                                                 <div class="form-group">
                                                     <input type="text" id="card_number" name="card_number"
@@ -321,22 +325,23 @@
                                                     <?php echo csrf_field(); ?>
                                                     <input type="hidden" name="all_total" value="<?php echo e($all_total); ?>">
                                                     <button type="submit" class="th-btn"
-                                                        formaction="<?php echo e(route('payment.process', ['gigId' => $gig->id])); ?>">Pay
-                                                        Now</button>
+                                                        formaction="<?php echo e(route('payment.process', ['gigId' => $gig->id])); ?>"><?php echo e(__('messages.PayNow')); ?></button>
                                                 </form>
 
                                             </div>
                                         <?php endif; ?>
                                     <?php else: ?>
-                                        <p>There is no more payments requst , is the task done ?</p>
+                                        <p><?php echo e(__('messages.gigP12')); ?>
+
+                                        </p>
                                         <form
                                             action="<?php echo e(route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 9])); ?>"
                                             method="POST">
                                             <?php echo csrf_field(); ?>
                                             <button type="submit" class="custom-btn btn btn-primary"
-                                                onclick="return confirm('Are you ready to close this task?');">Mark
-                                                as
-                                                Done</button>
+                                                onclick="return confirm('Are you ready to close this task?');"><?php echo e(__('messages.MarkDone')); ?>
+
+                                            </button>
                                         </form>
                                     <?php endif; ?>
 
@@ -365,8 +370,9 @@
                                         <h4><?php echo e($gig->handyman->user->name); ?></h4>
 
                                         <div class=" handyman-tasks">
-                                            <span><i class="fa-solid fa-check-double"></i> Done
-                                                <?php echo e($gig->handyman->gigs_count); ?> tasks</span>
+                                            <span><i class="fa-solid fa-check-double"></i> <?php echo e(__('messages.Done')); ?>
+
+                                                <?php echo e($gig->handyman->gigs_count); ?> <?php echo e(__('messages.tasks')); ?></span>
                                         </div>
                                     </div>
 
@@ -375,11 +381,14 @@
                                             <span class="rating-star">★</span>
                                             <span><?php echo e($gig->handyman->user->rating); ?>
 
-                                                (<?php echo e($gig->handyman->user->reviews_count); ?> reviews)
+                                                (<?php echo e($gig->handyman->user->reviews_count); ?>
+
+                                                <?php echo e(__('messages.reviews')); ?>)
                                             </span>
                                         </div>
                                         <div class="handyman-price mt-1">
-                                            JD<?php echo e(number_format($gig->price_per_hour, 2)); ?>/hr
+                                            <?php echo e(__('messages.JD')); ?><?php echo e(number_format($gig->price_per_hour, 2)); ?>/<?php echo e(__('messages.hr')); ?>
+
                                         </div>
                                     </div>
 
@@ -388,8 +397,8 @@
                                             action="<?php echo e(route('chat', ['receiverId' => $gig->handyman->user->id])); ?>"
                                             method="GET">
                                             <?php echo csrf_field(); ?>
-                                            <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
-                                                next!</button>
+                                            <button type="submit"
+                                                class="btn btn-info w-100 "><?php echo e(__('messages.ChatAnd')); ?></button>
                                         </form>
                                     </div>
                                 </div>
@@ -397,29 +406,31 @@
 
                             <div class="handyman-description-gig">
                                 <div class="handyman-description">
-                                    <p class="mb-0">Handyman Description:</p>
+                                    <p class="mb-0"><?php echo e(__('messages.HandymanDescription')); ?>:</p>
                                     <p class="mb-0"><?php echo e(Str::limit($gig->handyman->bio, 200)); ?></p>
                                     <a href="<?php echo e(route('Onehandyman_clientVeiw', ['handymanId' => $gig->handyman->id])); ?>"
-                                        class="read-more-link">Read More</a>
+                                        class="read-more-link"><?php echo e(__('messages.ReadMore')); ?></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h3>Payments History</h3>
+                    <h3><?php echo e(__('messages.PaymentsHistory')); ?></h3>
                     <table class="cart_table mb-20">
                         <thead>
                             <tr>
-                                <th class="cart-col-productname">Payment ID</th>
-                                <th class="cart-col-total">Description</th>
-                                <th class="cart-col-quantity">Amount</th>
+                                <th class="cart-col-productname"><?php echo e(__('messages.PaymentID')); ?></th>
+                                <th class="cart-col-total"><?php echo e(__('messages.Description')); ?></th>
+                                <th class="cart-col-quantity"><?php echo e(__('messages.Amount')); ?></th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="cart_item">
                                 <td><?php echo e($gig->id); ?></td>
-                                <td>The initated amount</td>
-                                <td>JD<?php echo e(number_format($gig->price * $gig->estimated_time)); ?></td>
+                                <td><?php echo e(__('messages.initatedamount')); ?></td>
+                                <td><?php echo e(__('messages.JD')); ?><?php echo e(number_format($gig->price * $gig->estimated_time)); ?>
+
+                                </td>
 
                             </tr>
                             <?php $__currentLoopData = $paymentRepotr; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $payment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -428,7 +439,7 @@
                                         <td><?php echo e($payment->id); ?></td>
                                         <td> <?php echo e($payment->description); ?></td>
 
-                                        <td>JD<?php echo e($payment->amount); ?></td>
+                                        <td><?php echo e(__('messages.JD')); ?><?php echo e($payment->amount); ?></td>
 
                                     </tr>
                                 <?php endif; ?>
@@ -437,8 +448,9 @@
                         <tfoot class="checkout-ordertable">
 
                             <tr class="order-total">
-                                <th>Total</th>
-                                <td colspan="2"><strong>JD
+                                <th><?php echo e(__('messages.Total')); ?></th>
+                                <td colspan="2"><strong><?php echo e(__('messages.JD')); ?>
+
                                         <?php echo e($gig->total); ?></strong>
                                 </td>
                             </tr>
@@ -446,9 +458,9 @@
                     </table>
 
 
-                    <p>is there any payment are not recorded ?</p>
+                    <p><?php echo e(__('messages.paymentnotrecorded')); ?></p>
 
-                    <button class="custom-btn btn-primary" id="addPaymentBtn">Yes</button>
+                    <button class="custom-btn btn-primary" id="addPaymentBtn"><?php echo e(__('messages.Yes')); ?></button>
 
                     <!-- Hidden Form for Adding New Payment -->
                     <div id="newPaymentForm" style="display: none; margin-top: 20px;">
@@ -458,17 +470,19 @@
                             <input type="hidden" name="handyman_id" value="<?php echo e($gig->handyman_id); ?>">
 
                             <div class="form-group">
-                                <label for="amount">Amount</label>
+                                <label for="amount"><?php echo e(__('messages.Amount')); ?></label>
                                 <input type="number" name="amount" id="amount" class="form-control"
                                     placeholder="Enter Amount" required>
                             </div>
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description"><?php echo e(__('messages.Description')); ?></label>
                                 <input type="text" name="description" id="description" class="form-control"
                                     placeholder="Enter Description" required>
                             </div>
                             <input type="hidden" name="status_id" value="27">
-                            <button type="submit" class="custom-btn btn btn-success">Submit Payment</button>
+                            <button type="submit" class="custom-btn btn btn-success"><?php echo e(__('messages.SubmitPayment')); ?>
+
+                            </button>
                         </form>
                     </div>
 
@@ -776,7 +790,6 @@
         /* Media Queries */
         @media (max-width: 768px) {
             .progress-bar {
-                flex-direction: column;
                 align-items: center;
             }
 

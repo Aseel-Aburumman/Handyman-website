@@ -62,16 +62,16 @@
                             </div>
 
                             <!-- Name -->
-                            <div class="d-flex justify-content-between">
+                            <div class="formDashbord d-flex justify-content-between">
 
-                                <div style="margin-right:5px;" class="mr-2 w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement mr-2 w-50 form-group">
                                     <label for="name"><?php echo e(__('messages.Name')); ?></label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         value="<?php echo e($user->name); ?>" required>
                                 </div>
 
                                 <!-- Email -->
-                                <div style="margin-left:5px;" class=" w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="email"><?php echo e(__('messages.Email')); ?></label>
                                     <input type="email" name="email" id="email" class="form-control"
                                         value="<?php echo e($user->email); ?>" required>
@@ -79,32 +79,32 @@
                             </div>
 
 
-                            <div class="d-flex justify-content-between">
+                            <div class="formDashbord d-flex justify-content-between">
                                 <!-- Phone -->
-                                <div style="margin-right:5px;" class="mr-2 w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement mr-2 w-50 form-group">
                                     <label for="phone"><?php echo e(__('messages.Phone')); ?></label>
                                     <input type="text" name="phone" id="phone" class="form-control"
                                         value="<?php echo e($user->delivery_info->phone ?? ' '); ?>" required>
                                 </div>
                                 <!-- building_no -->
-                                <div style="margin-left:5px;" class=" w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="building_no"><?php echo e(__('messages.BuildingNo')); ?></label>
                                     <input type="text" name="building_no" id="building_no" class="ml-2 form-control"
                                         value="<?php echo e($user->delivery_info->building_no ?? ' '); ?>" required>
                                 </div>
                             </div>
 
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- City -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="city"><?php echo e(__('messages.City')); ?></label>
                                     <input type="text" name="city" id="city" class="form-control"
                                         value="<?php echo e($user->delivery_info->city ?? ' '); ?>" required>
                                 </div>
 
                                 <!-- Location -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="location"><?php echo e(__('messages.Location')); ?></label>
                                     <input type="text" name="location" id="location" class="form-control"
                                         value="<?php echo e($user->delivery_info->location ?? ' '); ?>" required>
@@ -114,51 +114,51 @@
 
                             <h6 class="mb-0">Store Detail Profile</h6>
                             <hr>
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- store_name -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="store_name"><?php echo e(__('messages.StoreNameEn')); ?></label>
                                     <input type="text" name="store_name" id="store_name" class="form-control"
                                         value="<?php echo e($storeowner->store_name ?? '0 '); ?>" required>
                                 </div>
 
                                 <!-- store_name_ar -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="store_name_ar"><?php echo e(__('messages.StoreNameAr')); ?></label>
                                     <input type="text" name="store_name_ar" id="store_name_ar" class="form-control"
                                         value="<?php echo e($storeowner->store_name_ar ?? ' '); ?>" required>
                                 </div>
                             </div>
 
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- contact_number -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="contact_number"><?php echo e(__('messages.ContactNumber')); ?></label>
                                     <input type="text" name="contact_number" id="contact_number" class="form-control"
                                         value="<?php echo e($storeowner->contact_number ?? '0 '); ?>" required>
                                 </div>
 
                                 <!-- location -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="location_sotre"><?php echo e(__('messages.StoreLocation')); ?></label>
                                     <input type="text" name="location_sotre" id="location_sotre" class="form-control"
                                         value="<?php echo e($store->location ?? ' '); ?>" required>
                                 </div>
                             </div>
 
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- address_ar -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="address_ar"><?php echo e(__('messages.AddressAr')); ?></label>
                                     <input type="text" name="address_ar" id="address_ar" class="form-control"
                                         value="<?php echo e($storeowner->address_ar ?? '0 '); ?>" required>
                                 </div>
 
                                 <!-- address -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="address"><?php echo e(__('messages.AddressEn')); ?></label>
                                     <input type="text" name="address" id="address" class="form-control"
                                         value="<?php echo e($storeowner->address ?? ' '); ?>" required>
@@ -268,7 +268,8 @@
                                             <?php endif; ?>
                                         </td>
                                         <td data-label="Name"><?php echo e($product->name); ?> / <?php echo e($product->name_ar); ?></td>
-                                        <td data-label="Description" style="width:300px"><?php echo e($product->description); ?> /
+                                        <td data-label="Description" style="padding-left:130px; ">
+                                            <?php echo e($product->description); ?> /
                                             <?php echo e($product->description_ar); ?></td>
                                         <td data-label="Price"><?php echo e($product->price); ?></td>
                                         <td data-label="Stock quantity"><?php echo e($product->stock_quantity); ?></td>
@@ -421,7 +422,7 @@
                                         <ul class="list-group list-group-flush">
                                             <?php $__currentLoopData = $saleGroup; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <li
-                                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                                    class="ListGroupDahboard list-group-item d-flex justify-content-between align-items-center">
                                                     <div>
                                                         <!-- Compact product details -->
                                                         <strong><?php echo e(__('messages.Product')); ?>:</strong>
@@ -437,7 +438,7 @@
 
                                                     </div>
                                                     <div class="d-flex ">
-                                                        <div style="margin-right:10px;" class="mr-3 custom-status">
+                                                        <div style="margin-right:10px;" class="d-flex mr-3 custom-status">
                                                             <strong><?php echo e(__('messages.Status')); ?>:</strong>
                                                             <?php if($sale->status_id == 16): ?>
                                                                 <button
@@ -455,7 +456,7 @@
                                                             
                                                         </div>
                                                         <!-- Action Buttons based on status -->
-                                                        <div>
+                                                        <div class="d-flex">
                                                             <?php if($sale->status_id == 16): ?>
                                                                 <!-- Pending Confirmation: Show Confirm and Cancel Buttons -->
                                                                 <form

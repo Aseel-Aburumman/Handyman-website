@@ -1,0 +1,32 @@
+@media (max-width: 555px) {
+    .formDashbord {
+        flex-direction: column;
+    }
+    .formDashbordElement {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 1010px) {
+    .ListGroupDahboard {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 829px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .statusCardsHandyman {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+@media (max-width: 481px) {
+    .statusCardsHandyman {
+        display: grid;
+        grid-template-columns: 2fr auto;
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+}

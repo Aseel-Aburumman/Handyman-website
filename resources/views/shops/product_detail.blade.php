@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
@@ -278,8 +278,8 @@
             </div>
 
             <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Related Product
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Related Product
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
             <div class="space-extra-top mb-30">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-auto">
@@ -500,7 +500,7 @@
             </div>
         </div>
     </section>
-    <style>
+    {{--  <style>
         .product-img {
             width: 300px;
             /* Set the width of the container */
@@ -522,5 +522,5 @@
             display: block;
             /* Removes the default inline spacing for images */
         }
-    </style>
+    </style>  --}}
 @endsection

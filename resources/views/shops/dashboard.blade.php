@@ -66,16 +66,16 @@
                             </div>
 
                             <!-- Name -->
-                            <div class="d-flex justify-content-between">
+                            <div class="formDashbord d-flex justify-content-between">
 
-                                <div style="margin-right:5px;" class="mr-2 w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement mr-2 w-50 form-group">
                                     <label for="name">{{ __('messages.Name') }}</label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         value="{{ $user->name }}" required>
                                 </div>
 
                                 <!-- Email -->
-                                <div style="margin-left:5px;" class=" w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="email">{{ __('messages.Email') }}</label>
                                     <input type="email" name="email" id="email" class="form-control"
                                         value="{{ $user->email }}" required>
@@ -83,32 +83,32 @@
                             </div>
 
 
-                            <div class="d-flex justify-content-between">
+                            <div class="formDashbord d-flex justify-content-between">
                                 <!-- Phone -->
-                                <div style="margin-right:5px;" class="mr-2 w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement mr-2 w-50 form-group">
                                     <label for="phone">{{ __('messages.Phone') }}</label>
                                     <input type="text" name="phone" id="phone" class="form-control"
                                         value="{{ $user->delivery_info->phone ?? ' ' }}" required>
                                 </div>
                                 <!-- building_no -->
-                                <div style="margin-left:5px;" class=" w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="building_no">{{ __('messages.BuildingNo') }}</label>
                                     <input type="text" name="building_no" id="building_no" class="ml-2 form-control"
                                         value="{{ $user->delivery_info->building_no ?? ' ' }}" required>
                                 </div>
                             </div>
 
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- City -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="city">{{ __('messages.City') }}</label>
                                     <input type="text" name="city" id="city" class="form-control"
                                         value="{{ $user->delivery_info->city ?? ' ' }}" required>
                                 </div>
 
                                 <!-- Location -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="location">{{ __('messages.Location') }}</label>
                                     <input type="text" name="location" id="location" class="form-control"
                                         value="{{ $user->delivery_info->location ?? ' ' }}" required>
@@ -118,51 +118,51 @@
 
                             <h6 class="mb-0">Store Detail Profile</h6>
                             <hr>
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- store_name -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="store_name">{{ __('messages.StoreNameEn') }}</label>
                                     <input type="text" name="store_name" id="store_name" class="form-control"
                                         value="{{ $storeowner->store_name ?? '0 ' }}" required>
                                 </div>
 
                                 <!-- store_name_ar -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="store_name_ar">{{ __('messages.StoreNameAr') }}</label>
                                     <input type="text" name="store_name_ar" id="store_name_ar" class="form-control"
                                         value="{{ $storeowner->store_name_ar ?? ' ' }}" required>
                                 </div>
                             </div>
 
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- contact_number -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="contact_number">{{ __('messages.ContactNumber') }}</label>
                                     <input type="text" name="contact_number" id="contact_number" class="form-control"
                                         value="{{ $storeowner->contact_number ?? '0 ' }}" required>
                                 </div>
 
                                 <!-- location -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="location_sotre">{{ __('messages.StoreLocation') }}</label>
                                     <input type="text" name="location_sotre" id="location_sotre" class="form-control"
                                         value="{{ $store->location ?? ' ' }}" required>
                                 </div>
                             </div>
 
-                            <div class="d-flex">
+                            <div class="formDashbord d-flex">
 
                                 <!-- address_ar -->
-                                <div style="margin-right:5px;" class="w-50 form-group">
+                                <div style="margin-right:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="address_ar">{{ __('messages.AddressAr') }}</label>
                                     <input type="text" name="address_ar" id="address_ar" class="form-control"
                                         value="{{ $storeowner->address_ar ?? '0 ' }}" required>
                                 </div>
 
                                 <!-- address -->
-                                <div style="margin-left:5px;" class="w-50 form-group">
+                                <div style="margin-left:5px;" class="formDashbordElement w-50 form-group">
                                     <label for="address">{{ __('messages.AddressEn') }}</label>
                                     <input type="text" name="address" id="address" class="form-control"
                                         value="{{ $storeowner->address ?? ' ' }}" required>
@@ -274,7 +274,8 @@
                                             @endif
                                         </td>
                                         <td data-label="Name">{{ $product->name }} / {{ $product->name_ar }}</td>
-                                        <td data-label="Description" style="width:300px">{{ $product->description }} /
+                                        <td data-label="Description" style="padding-left:130px; ">
+                                            {{ $product->description }} /
                                             {{ $product->description_ar }}</td>
                                         <td data-label="Price">{{ $product->price }}</td>
                                         <td data-label="Stock quantity">{{ $product->stock_quantity }}</td>
@@ -422,7 +423,7 @@
                                         <ul class="list-group list-group-flush">
                                             @foreach ($saleGroup as $sale)
                                                 <li
-                                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                                    class="ListGroupDahboard list-group-item d-flex justify-content-between align-items-center">
                                                     <div>
                                                         <!-- Compact product details -->
                                                         <strong>{{ __('messages.Product') }}:</strong>
@@ -435,7 +436,7 @@
                                                         {{ number_format($sale->total_amount, 2) }}
                                                     </div>
                                                     <div class="d-flex ">
-                                                        <div style="margin-right:10px;" class="mr-3 custom-status">
+                                                        <div style="margin-right:10px;" class="d-flex mr-3 custom-status">
                                                             <strong>{{ __('messages.Status') }}:</strong>
                                                             @if ($sale->status_id == 16)
                                                                 <button
@@ -453,7 +454,7 @@
                                                             {{--  <span class="badge badge-info">{{ $sale->status->name }}</span>  --}}
                                                         </div>
                                                         <!-- Action Buttons based on status -->
-                                                        <div>
+                                                        <div class="d-flex">
                                                             @if ($sale->status_id == 16)
                                                                 <!-- Pending Confirmation: Show Confirm and Cancel Buttons -->
                                                                 <form

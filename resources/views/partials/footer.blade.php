@@ -47,10 +47,10 @@
     <div class="widget-area">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="w-50 col-md-7 col-xl-auto">
-                    <div class="w-100 widget footer-widget">
-                        <div class="w-100">
-                            <div class="th-widget-about about-logo">
+                <div class="col-md-6 col-xl-auto">
+                    <div class=" widget footer-widget">
+                        <div class="th-widget-about ">
+                            <div class="about-logo">
                                 <a href="home-handyman.html"><img src="{{ asset('assets/img/logoHorizantal.png') }}"
                                         alt="Rakar"></a>
                             </div>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-25 col-md-6 col-xl-auto">
+                <div class="col-md-6 col-xl-auto">
                     <div class="widget widget_nav_menu footer-widget">
                         <h3 class="widget_title"><img src="{{ asset('assets/img/icon/footer_title.svg') }}"
                                 alt="icon"> Useful
@@ -85,24 +85,8 @@
                         </div>
                     </div>
                 </div>
-                {{--  <div class="col-md-6 col-xl-auto">
-                    <div class="widget widget_nav_menu footer-widget">
-                        <h3 class="widget_title"><img src="{{ asset('assets/img/icon/footer_title.svg') }}"
-                                alt="icon"> Our
-                            Services</h3>
-                        <div class="menu-all-pages-container">
-                            <ul class="menu">
-                                <li><a href="service-details.html">Refrigerator</a></li>
-                                <li><a href="service-details.html">Microwave</a></li>
-                                <li><a href="service-details.html">Cookware Stove</a></li>
-                                <li><a href="service-details.html">Washing Machine</a></li>
-                                <li><a href="service-details.html">Juicer Mixer</a></li>
-                                <li><a href="service-details.html">Generator Install</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>  --}}
-                <div class="w-25 col-md-6 col-xl-auto">
+
+                <div class="col-md-6 col-xl-auto">
                     <div class="widget newsletter-widget footer-widget">
                         <h3 class="widget_title"><img src="{{ asset('assets/img/icon/footer_title.svg') }}"
                                 alt="icon"> {{ __('messages.Newsletter') }}

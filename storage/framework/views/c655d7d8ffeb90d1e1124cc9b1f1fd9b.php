@@ -23,7 +23,7 @@
             <?php endif; ?>
             <div class="dashboard-container">
                 <!-- Left Sidebar with Stat Cards -->
-                <div class="stat-cards">
+                <div class="statusCardsHandyman stat-cards">
                     <div class="stat-card">
                         <i class="fas fa-award"></i>
                         <div class="stat-title"><?php echo e(__('messages.GigsAwarded')); ?>

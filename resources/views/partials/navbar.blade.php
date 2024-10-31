@@ -1,11 +1,11 @@
-<!--==============================
+{{--  <!--==============================
     Mobile Menu
-  ============================== -->
+  ============================== -->  --}}
 <div class="th-menu-wrapper">
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="{{ route('home') }}"><img src="{{ asset('assets/img/logoHorizantal.svg') }}" alt="kaafmuen"></a>
+            <a href="{{ route('home') }}"><img src="{{ asset('assets/img/logoHorizantal.png') }}" alt="kaafmuen"></a>
         </div>
         <div class="th-mobile-menu">
             <ul>
@@ -34,7 +34,8 @@
                     </a>
 
                 </li>
-
+                <li><a href="{{ route('cart') }}">Cart
+                    </a></li>
                 <li><a href="{{ route('aboutUs') }}">{{ __('messages.AboutUs') }}
                     </a></li>
                 @auth
@@ -50,21 +51,28 @@
                         <!-- Store Owner Dashboard -->
                         {{--  <li><a href="{{ route('service') }}">Our Service</a></li>  --}}
                     @endif
-                @endauth <li><a href="{{ route('shops.index') }}">{{ __('messages.Shops') }}
-                    </a></li>
-                <li><a href="{{ route('products.index') }}">{{ __('messages.Products') }}
-                    </a></li>
-                <li><a href="{{ route('handymen.index') }}">{{ __('messages.Handymen') }}
-                    </a></li>
+                @endauth
+                <li><a href="{{ route('shops.index') }}">{{ __('messages.Shops') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('products.index') }}">{{ __('messages.Products') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('handymen.index') }}">{{ __('messages.Handymen') }}
+                    </a>
+                </li>
 
 
 
             </ul>
         </div>
     </div>
-</div><!--==============================
- Header Area
-==============================-->
+</div>
+
+
+
 <header class="th-header header-layout2 ">
     <div class="header-top">
         <div class="container">
@@ -146,7 +154,7 @@
                     </div>
                     <div class="col">
                         <div class="menu-area">
-                            <nav class="navbarTest main-menu d-none d-lg-inline-block">
+                            <nav class=" main-menu d-none d-lg-inline-block">
                                 <ul>
                                     <li>
                                         <a href="{{ route('home') }}">{{ __('messages.Home') }}
@@ -173,27 +181,29 @@
                                         </a></li>
 
 
-
-                                </ul>
-                                @auth
-                                    <ul style="margin-right:10px;">
+                                    @auth
+                                        {{--  <ul style="margin-right:10px;">  --}}
                                         <li><a href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fa-lg"
                                                     style="top:50%;color: #f47629;"></i>
                                             </a></li>
-                                    </ul>
-                                @endauth
+                                        {{--  </ul>  --}}
+                                    @endauth
+                                </ul>
+
 
 
                             </nav>
-                            <button type="button" class="th-menu-toggle d-block d-lg-none"><i
-                                    class="fa-solid fa-bars"></i></button>
-
+                            <div class="header-button">
+                                <button type="button" class="th-menu-toggle d-block d-lg-none"><i
+                                        class="far fa-bars"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     @guest
                         <div class="col-auto d-none d-xxl-block">
-                            <a href="{{ route('register') }}" class="th-btn style3">{{ __('messages.Register') }}
-
+                            <a href="{{ route('register') }}" class="th-btn style3">
+                                {{ __('messages.Register') }}
                                 <i class="fas fa-arrow-right ms-2"></i>
                             </a>
                         </div>
@@ -202,23 +212,20 @@
                         <div class="col-auto d-none d-xxl-block">
                             @if (Auth::user()->role_id == 2)
                                 <!-- Customer Dashboard -->
-                                <a href="{{ route('customer.dashboard') }}"
-                                    class="th-btn style3">{{ __('messages.Dashboard') }}
-
+                                <a href="{{ route('customer.dashboard') }}" class="th-btn style3">
+                                    {{ __('messages.Dashboard') }}
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                             @elseif (Auth::user()->role_id == 3)
                                 <!-- Store Owner Dashboard -->
-                                <a href="{{ route('storeowner.dashboard') }}"
-                                    class="th-btn style3">{{ __('messages.Dashboard') }}
-
+                                <a href="{{ route('storeowner.dashboard') }}" class="th-btn style3">
+                                    {{ __('messages.Dashboard') }}
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                             @elseif (Auth::user()->role_id == 4)
                                 <!-- Handyman Dashboard -->
-                                <a href="{{ route('handyman.dashboard') }}"
-                                    class="th-btn style3">{{ __('messages.Dashboard') }}
-
+                                <a href="{{ route('handyman.dashboard') }}" class="th-btn style3">
+                                    {{ __('messages.Dashboard') }}
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                             @endif

@@ -29,7 +29,8 @@
                             <h3>{{ __('messages.TaskDetail') }}</h3>
                             <div class="d-flex justify-content-between">
                                 <h2 class="gig-title">{{ $gig->title }}</h2>
-                                <p class="gig-total">{{ __('messages.Budget') }}: {{ __('messages.JD') }} {{ $gig->total }}/{{ __('messages.perhour') }}</p>
+                                <p class="gig-total">{{ __('messages.Budget') }}: {{ __('messages.JD') }}
+                                    {{ $gig->total }}/{{ __('messages.perhour') }}</p>
                             </div>
                             <p class="gig-description">
                                 {{ \Illuminate\Support\Str::limit($gig->description, 150) }}</p>
@@ -46,7 +47,7 @@
 
                         @if ($gig->status_id == 9)
                             <h3>{{ __('messages.TaskIsDone') }}!</h3>
-                            <p>{{ __('messages.gigP1') }}  </p>
+                            <p>{{ __('messages.gigP1') }} </p>
 
                             <form class="mt-3" action="{{ route('customer.Home') }}" method="GET">
                                 @csrf
@@ -84,7 +85,8 @@
                                                 <i class="text-title far fa-solid fa-pencil-alt"></i>
                                             </div>
                                             <div class="col-12 form-group mb-0">
-                                                <button type="submit" class="th-btn">{{ __('messages.PostReview') }} </button>
+                                                <button type="submit" class="th-btn">{{ __('messages.PostReview') }}
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -137,7 +139,8 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <p class="text text-start">{{ __('messages.Writenby') }} :{{ $review->user->name }}</p>
+                                            <p class="text text-start">{{ __('messages.Writenby') }}
+                                                :{{ $review->user->name }}</p>
 
                                             <p class="text-start"><i class="far fa-clock"></i>
                                                 {{ $review->created_at->format('Y-m-d H:i:s') }}</p>
@@ -152,7 +155,8 @@
                             <p>{{ __('messages.gigP1') }} </p>
 
                             <p>{{ __('messages.gigP4') }}<a
-                                    href="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}">{{ __('messages.gigP5') }}</a>.</p>
+                                    href="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}">{{ __('messages.gigP5') }}</a>.
+                            </p>
 
                             <form action="{{ route('report.gig.store') }}" method="POST">
                                 @csrf
@@ -203,36 +207,30 @@
                                 @elseif ($gig->status_id == 8)
                                     <div class="progress-gig-card">
 
-                                        <p>{{ __('messages.Home') }}The work is currently in progress. <a
-                                                href="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}">{{ __('messages.Home') }}Chat
-                                                with
-                                                your
-                                                handyman</a>.</p>
+                                        <p>{{ __('messages.gigP8') }} <a
+                                                href="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}">{{ __('messages.gigP5') }}</a>.
+                                        </p>
 
                                         <form action="{{ route('report.gig.store') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="handyman_id" value="{{ $gig->handyman->id }}">
                                             <input type="hidden" name="gig_id" value="{{ $gig->id }}">
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to report a problem?');">{{ __('messages.Home') }}Report
-                                                a
-                                                Problem</button>
+                                                onclick="return confirm('Are you sure you want to report a problem?');">{{ __('messages.gigP6') }}
+                                            </button>
                                         </form>
                                     </div>
                                 @elseif ($gig->status_id == 11)
                                     <div class="progress-gig-card">
 
-                                        <p>{{ __('messages.Home') }}Your report has been submited , customer service will reach you as soon as
-                                            possible
-                                            <a href="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}">{{ __('messages.Home') }}Chat
-                                                with
-                                                your
-                                                handyman</a>.
+                                        <p>{{ __('messages.gigP9') }}
+                                            <a href="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}">{{ __('messages.gigP5') }}
+                                            </a>.
                                         </p>
                                     </div>
                                 @elseif ($gig->status_id == 24)
                                     @if ($all_total)
-                                        <p>{{ __('messages.Home') }}The task is ready for payment. Review and proceed with payments.</p>
+                                        <p>{{ __('messages.gigP10') }}</p>
 
 
 
@@ -240,10 +238,12 @@
                                             <table class="cart_table mb-20">
                                                 <thead>
                                                     <tr>
-                                                        <th class="cart-col-productname">{{ __('messages.Home') }}Payment ID</th>
-                                                        <th class="cart-col-quantity">{{ __('messages.Home') }}Amount</th>
-                                                        <th class="cart-col-total">{{ __('messages.Home') }}Description</th>
-                                                        <th class="cart-col-total">{{ __('messages.Home') }}Action</th>
+                                                        <th class="cart-col-productname">{{ __('messages.PaymentID') }}
+                                                        </th>
+                                                        <th class="cart-col-quantity">{{ __('messages.Amount') }}</th>
+                                                        <th class="cart-col-total">{{ __('messages.Description') }}
+                                                        </th>
+                                                        <th class="cart-col-total">{{ __('messages.Action') }}</th>
 
                                                     </tr>
                                                 </thead>
@@ -253,7 +253,8 @@
                                                             <tr class="cart_item">
                                                                 <td>{{ $payment->id }}</td>
                                                                 <td>{{ $payment->amount }}</td>
-                                                                <td>{{ __('messages.Home') }}JD {{ $payment->description }}</td>
+                                                                <td>{{ __('messages.JD') }}
+                                                                    {{ $payment->description }}</td>
                                                                 <td>
                                                                     <form
                                                                         action="{{ route('gig.update.repot.paymet', ['paymentId' => $payment->id]) }}"
@@ -261,7 +262,7 @@
                                                                         @csrf
                                                                         <button type="submit"
                                                                             class="custom-btn btn btn-primary"
-                                                                            onclick="return confirm('Are you sure this payment request is false?');">{{ __('messages.Home') }}Cancel</button>
+                                                                            onclick="return confirm('Are you sure this payment request is false?');">{{ __('messages.Cancel') }}</button>
                                                                     </form>
                                                                 </td>
 
@@ -271,16 +272,17 @@
                                                 </tbody>
                                                 <tfoot class="checkout-ordertable">
                                                     <tr class="cart-subtotal">
-                                                        <th>{{ __('messages.Home') }}Subtotal</th>
-                                                        <td colspan="2">{{ __('messages.Home') }}JD {{ $subtotal }}</td>
+                                                        <th>{{ __('messages.Subtotal') }}</th>
+                                                        <td colspan="2">{{ __('messages.JD') }}
+                                                            {{ $subtotal }}</td>
                                                     </tr>
                                                     <tr class="woocommerce-shipping-totals shipping">
-                                                        <th>{{ __('messages.Home') }}Trust and Support Fee (16%):</th>
+                                                        <th>{{ __('messages.Trust') }}:</th>
                                                         <td colspan="2">16%</td>
                                                     </tr>
                                                     <tr class="order-total">
-                                                        <th>{{ __('messages.Home') }}Total</th>
-                                                        <td colspan="2"><strong>{{ __('messages.Home') }}JD
+                                                        <th>{{ __('messages.Total') }}</th>
+                                                        <td colspan="2"><strong>{{ __('messages.JD') }}
                                                                 {{ number_format($subtotal * 0.16 + $subtotal, 2) }}</strong>
                                                         </td>
                                                     </tr>
@@ -291,7 +293,7 @@
 
 
                                         @if ($all_total)
-                                            <h4>{{ __('messages.Home') }}Pay now by creadit card</h4>
+                                            <h4>{{ __('messages.gigP11') }}</h4>
                                             <div id="card-payment-fields">
                                                 <div class="form-group">
                                                     <input type="text" id="card_number" name="card_number"
@@ -313,22 +315,21 @@
                                                     @csrf
                                                     <input type="hidden" name="all_total" value="{{ $all_total }}">
                                                     <button type="submit" class="th-btn"
-                                                        formaction="{{ route('payment.process', ['gigId' => $gig->id]) }}">{{ __('messages.Home') }}Pay
-                                                        Now</button>
+                                                        formaction="{{ route('payment.process', ['gigId' => $gig->id]) }}">{{ __('messages.PayNow') }}</button>
                                                 </form>
 
                                             </div>
                                         @endif
                                     @else
-                                        <p>{{ __('messages.Home') }}There is no more payments requst , is the task done ?</p>
+                                        <p>{{ __('messages.gigP12') }}
+                                        </p>
                                         <form
                                             action="{{ route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 9]) }}"
                                             method="POST">
                                             @csrf
                                             <button type="submit" class="custom-btn btn btn-primary"
-                                                onclick="return confirm('Are you ready to close this task?');">{{ __('messages.Home') }}Mark
-                                                as
-                                                Done</button>
+                                                onclick="return confirm('Are you ready to close this task?');">{{ __('messages.MarkDone') }}
+                                            </button>
                                         </form>
                                     @endif
 
@@ -357,8 +358,8 @@
                                         <h4>{{ $gig->handyman->user->name }}</h4>
 
                                         <div class=" handyman-tasks">
-                                            <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Home') }}Done
-                                                {{ $gig->handyman->gigs_count }} {{ __('messages.Home') }}tasks</span>
+                                            <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
+                                                {{ $gig->handyman->gigs_count }} {{ __('messages.tasks') }}</span>
                                         </div>
                                     </div>
 
@@ -366,11 +367,12 @@
                                         <div class="handyman-rating">
                                             <span class="rating-star">★</span>
                                             <span>{{ $gig->handyman->user->rating }}
-                                                ({{ $gig->handyman->user->reviews_count }} {{ __('messages.Home') }}reviews)
+                                                ({{ $gig->handyman->user->reviews_count }}
+                                                {{ __('messages.reviews') }})
                                             </span>
                                         </div>
                                         <div class="handyman-price mt-1">
-                                            {{ __('messages.Home') }}JD{{ number_format($gig->price_per_hour, 2) }}/{{ __('messages.Home') }}hr
+                                            {{ __('messages.JD') }}{{ number_format($gig->price_per_hour, 2) }}/{{ __('messages.hr') }}
                                         </div>
                                     </div>
 
@@ -379,8 +381,8 @@
                                             action="{{ route('chat', ['receiverId' => $gig->handyman->user->id]) }}"
                                             method="GET">
                                             @csrf
-                                            <button type="submit" class="btn btn-info w-100 ">{{ __('messages.Home') }}Chat and Figure what
-                                                next!</button>
+                                            <button type="submit"
+                                                class="btn btn-info w-100 ">{{ __('messages.ChatAnd') }}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -388,29 +390,30 @@
 
                             <div class="handyman-description-gig">
                                 <div class="handyman-description">
-                                    <p class="mb-0">{{ __('messages.Home') }}Handyman Description:</p>
+                                    <p class="mb-0">{{ __('messages.HandymanDescription') }}:</p>
                                     <p class="mb-0">{{ Str::limit($gig->handyman->bio, 200) }}</p>
                                     <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $gig->handyman->id]) }}"
-                                        class="read-more-link">{{ __('messages.Home') }}Read More</a>
+                                        class="read-more-link">{{ __('messages.ReadMore') }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h3>{{ __('messages.Home') }}Payments History</h3>
+                    <h3>{{ __('messages.PaymentsHistory') }}</h3>
                     <table class="cart_table mb-20">
                         <thead>
                             <tr>
-                                <th class="cart-col-productname">{{ __('messages.Home') }}Payment ID</th>
-                                <th class="cart-col-total">{{ __('messages.Home') }}Description</th>
-                                <th class="cart-col-quantity">{{ __('messages.Home') }}Amount</th>
+                                <th class="cart-col-productname">{{ __('messages.PaymentID') }}</th>
+                                <th class="cart-col-total">{{ __('messages.Description') }}</th>
+                                <th class="cart-col-quantity">{{ __('messages.Amount') }}</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="cart_item">
                                 <td>{{ $gig->id }}</td>
-                                <td>{{ __('messages.Home') }}The initated amount</td>
-                                <td>{{ __('messages.Home') }}JD{{ number_format($gig->price * $gig->estimated_time) }}</td>
+                                <td>{{ __('messages.initatedamount') }}</td>
+                                <td>{{ __('messages.JD') }}{{ number_format($gig->price * $gig->estimated_time) }}
+                                </td>
 
                             </tr>
                             @foreach ($paymentRepotr as $payment)
@@ -419,7 +422,7 @@
                                         <td>{{ $payment->id }}</td>
                                         <td> {{ $payment->description }}</td>
 
-                                        <td>{{ __('messages.Home') }}JD{{ $payment->amount }}</td>
+                                        <td>{{ __('messages.JD') }}{{ $payment->amount }}</td>
 
                                     </tr>
                                 @endif
@@ -428,8 +431,8 @@
                         <tfoot class="checkout-ordertable">
 
                             <tr class="order-total">
-                                <th>{{ __('messages.Home') }}Total</th>
-                                <td colspan="2"><strong>{{ __('messages.Home') }}JD
+                                <th>{{ __('messages.Total') }}</th>
+                                <td colspan="2"><strong>{{ __('messages.JD') }}
                                         {{ $gig->total }}</strong>
                                 </td>
                             </tr>
@@ -437,9 +440,9 @@
                     </table>
 
 
-                    <p>{{ __('messages.Home') }}is there any payment are not recorded ?</p>
+                    <p>{{ __('messages.paymentnotrecorded') }}</p>
 
-                    <button class="custom-btn btn-primary" id="addPaymentBtn">{{ __('messages.Home') }}Yes</button>
+                    <button class="custom-btn btn-primary" id="addPaymentBtn">{{ __('messages.Yes') }}</button>
 
                     <!-- Hidden Form for Adding New Payment -->
                     <div id="newPaymentForm" style="display: none; margin-top: 20px;">
@@ -449,17 +452,18 @@
                             <input type="hidden" name="handyman_id" value="{{ $gig->handyman_id }}">
 
                             <div class="form-group">
-                                <label for="amount">{{ __('messages.Home') }}Amount</label>
+                                <label for="amount">{{ __('messages.Amount') }}</label>
                                 <input type="number" name="amount" id="amount" class="form-control"
                                     placeholder="Enter Amount" required>
                             </div>
                             <div class="form-group">
-                                <label for="description">{{ __('messages.Home') }}Description</label>
+                                <label for="description">{{ __('messages.Description') }}</label>
                                 <input type="text" name="description" id="description" class="form-control"
                                     placeholder="Enter Description" required>
                             </div>
                             <input type="hidden" name="status_id" value="27">
-                            <button type="submit" class="custom-btn btn btn-success">{{ __('messages.Home') }}Submit Payment</button>
+                            <button type="submit" class="custom-btn btn btn-success">{{ __('messages.SubmitPayment') }}
+                            </button>
                         </form>
                     </div>
 
@@ -767,7 +771,6 @@
         /* Media Queries */
         @media (max-width: 768px) {
             .progress-bar {
-                flex-direction: column;
                 align-items: center;
             }
 

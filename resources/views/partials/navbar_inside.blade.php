@@ -95,7 +95,8 @@
                                 <i class="fas fa-headset"></i> <a
                                     href="{{ route('contact') }}">{{ __('messages.Support') }} &nbsp</a>
                             </li>
-
+                            <li><a href="{{ route('cart') }}">Cart
+                                </a></li>
                             @guest
 
                                 <li><i class="fas fa-user"></i> <a

@@ -76,6 +76,7 @@
     <!-- Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/responsiveStyle.css')); ?>">
 
 </head>
 

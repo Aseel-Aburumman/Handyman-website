@@ -60,8 +60,10 @@
 
 .containerStore {
     position: relative;
-    width: 612px; /* Adjust this size according to the black image's size */
-    height: 635px; /* Adjust this size according to the black image's size */
+    width: 100%; /* Make it adapt to container size */
+    max-width: 612px; /* Set a maximum width for larger screens */
+    height: auto; /* Adjust height to keep aspect ratio */
+    aspect-ratio: 612 / 635; /* Maintain aspect ratio for responsiveness */
 }
 
 .black-rectangle {
@@ -75,12 +77,97 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 530px !important; /* Adjust width as necessary */
-    height: 70%; /* Adjust height as necessary */
+    max-width: 530px; /* Ensure it doesn't exceed specific width */
+    height: 70%; /* Adjust this based on the aspect ratio */
     border-radius: 30px;
 }
 
 .box-numberRating {
-    font-size: 65px !important;
+    font-size: calc(2vw + 1em); /* Responsive font size */
+}
+@media (max-width: 1396px) {
+    .red-rectangle {
+        width: 450px !important; /* Adjust to fit smaller screens */
+    }
+    .ratingBox {
+        left: -8px !important;
+        top: 326px;
+    }
+}
+@media (max-width: 1058px) {
+    .red-rectangle {
+        width: 530px !important; /* Adjust to fit smaller screens */
+    }
+}
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    .containerStore {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+    .ratingBox {
+        width: 149px !important;
+        height: 148px !important;
+        left: -8px !important;
+        top: 326px;
+    }
+    .red-rectangle {
+        width: 450px !important; /* Adjust to fit smaller screens */
+    }
+
+    .box-numberRating {
+        font-size: 50px !important;
+    }
+}
+@media (max-width: 600px) {
+    .red-rectangle {
+        width: 390px !important; /* Adjust to fit smaller screens */
+    }
+    .ratingBox {
+        width: 149px !important;
+        height: 148px !important;
+        top: auto;
+    }
+    .box-numberRating {
+        font-size: 50px !important;
+    }
+    .box-text {
+        font-size: 15px !important;
+    }
+}
+@media (max-width: 464px) {
+    .red-rectangle {
+        width: 350px !important; /* Adjust to fit smaller screens */
+    }
+    .ratingBox {
+        width: 95px !important;
+        height: 115px !important;
+    }
+    .box-numberRating {
+        font-size: 30px !important;
+    }
+    .box-text {
+        font-size: 13px !important;
+    }
+}
+/* Media Query for extra small screens (like mobile devices) */
+@media (max-width: 361px) {
+    .containerStore {
+        max-width: 100%;
+    }
+
+    .red-rectangle {
+        width: 250px !important; /* Adjust to fit smaller screens */
+    }
+    .ratingBox {
+        width: 95px !important;
+        height: 115px !important;
+    }
+    .box-numberRating {
+        font-size: 30px !important;
+    }
+    .box-text {
+        font-size: 13px !important;
+    }
 }
 
 .comment-list {

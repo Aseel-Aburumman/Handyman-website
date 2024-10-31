@@ -784,7 +784,6 @@
         /* Media Queries */
         @media (max-width: 768px) {
             .progress-bar {
-                flex-direction: column;
                 align-items: center;
             }
 

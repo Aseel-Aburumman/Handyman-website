@@ -4,11 +4,15 @@
     <div class="breadcumb-wrapper" data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Task Detail</h1>
+                <h1 class="breadcumb-title">{{ __('messages.TaskDetail') }}
+                </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('customer.Home') }}">Dashboard</a></li>
-                    <li>Task Detail</li>
+                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                        </a></li>
+                    <li><a href="{{ route('customer.Home') }}">{{ __('messages.Dashboard') }}
+                        </a></li>
+                    <li>{{ __('messages.TaskDetail') }}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -28,14 +32,14 @@
                 <div class="col-xl-8 col-md-10">
                     <div class="title-area text-center">
                         <span class="sub-title"><img src="{{ asset('assets/img/theme-img/title_icon.svg') }}"
-                                alt="Icon">Lets Get it Done</span>
-                        <h2 class="sec-title">Check all the proposal you got </h2>
+                                alt="Icon">{{ __('messages.LetGetDone') }}
+                        </span>
+                        <h2 class="sec-title">{{ __('messages.allproposal') }}
+                        </h2>
 
 
-                        <p class="sec-text">Review their proposal thoroughly, including the services they are offering, the
-                            timeline they've estimated for the job, and whether it aligns with your expectations. If it
-                            doesn’t seem suitable, engage in a discussion to refine the details and find the best fit. Once
-                            you're satisfied with the adjustments, move forward with hiring them!</p>
+                        <p class="sec-text">{{ __('messages.allproposalP') }}
+                        </p>
                     </div>
                 </div>
 
@@ -53,10 +57,14 @@
             {{--  <div class="step2Form">  --}}
             <div class=" task-gig-card ">
                 <div class="gig-details">
-                    <h3>Task Details</h3>
+                    <h3>{{ __('messages.TaskDetail') }}
+                    </h3>
                     <div class="d-flex justify-content-between">
                         <h2 class="gig-title">{{ $gig->title }}</h2>
-                        <p class="gig-total">Budget: JD {{ $gig->total }}/per hour</p>
+                        <p class="gig-total">{{ __('messages.Budget') }}
+                            : {{ __('messages.JD') }}
+                            {{ $gig->total }}/{{ __('messages.perhour') }}
+                        </p>
                     </div>
                     <p class="gig-description">
                         {{ \Illuminate\Support\Str::limit($gig->description, 150) }}</p>
@@ -89,8 +97,9 @@
                                         <div>{{ $proposal->handyman->user->name }}</div>
 
                                         <div class=" handyman-tasks">
-                                            <span><i class="fa-solid fa-check-double"></i> Done
-                                                {{ $proposal->handyman->gigs_count }} tasks</span>
+                                            <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
+                                                {{ $proposal->handyman->gigs_count }} {{ __('messages.tasks') }}
+                                            </span>
                                         </div>
                                     </div>
 
@@ -98,11 +107,13 @@
                                         <div class="handyman-rating">
                                             <span class="rating-star">★</span>
                                             <span>{{ $proposal->handyman->user->rating }}
-                                                ({{ $proposal->handyman->user->reviews_count }} reviews)
+                                                ({{ $proposal->handyman->user->reviews_count }}
+                                                {{ __('messages.reviews') }})
                                             </span>
                                         </div>
-                                        <div class="handyman-price mt-1">
-                                            JD{{ number_format($proposal->price_per_hour, 2) }}/hr</div>
+                                        <div class="handyman-price mt-1">{{ __('messages.JD') }}
+                                            {{ number_format($proposal->price_per_hour, 2) }}/{{ __('messages.hr') }}
+                                        </div>
                                     </div>
 
 
@@ -120,7 +131,8 @@
                                             method="POST">
                                             @csrf
                                             @method('PATCH')
-                                            <button type="submit" class="btn btn-light ">UnReject Proposal</button>
+                                            <button type="submit" class="btn btn-light ">{{ __('messages.UnReject') }}
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -129,16 +141,18 @@
 
                             <div class="handyman-description-gig">
                                 <div class="handyman-description">
-                                    <p class="mb-0">Handyman Description:</p>
+                                    <p class="mb-0">{{ __('messages.HandymanDescription') }}
+                                        :</p>
                                     <p class="mb-0">{{ Str::limit($proposal->handyman->bio, 200) }}</p>
                                     <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $proposal->handyman->id]) }}"
-                                        class="read-more-link">Read More</a>
+                                        class="read-more-link">{{ __('messages.ReadMore') }}</a>
                                 </div>
 
                             </div>
                             <div class="handyman-description-gig">
                                 <div class="handyman-description">
-                                    <h6>How I can help:</h6>
+                                    <h6>{{ __('messages.Howhelp') }}
+                                        :</h6>
                                     <p>{{ Str::limit($proposal->proposal, 200) }}</p>
                                 </div>
 
@@ -176,8 +190,10 @@
                                         <h4>{{ $proposal->handyman->user->name }}</h4>
 
                                         <div class=" handyman-tasks">
-                                            <span><i class="fa-solid fa-check-double"></i> Done
-                                                {{ $proposal->handyman->gigs_count }} tasks</span>
+                                            <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
+
+                                                {{ $proposal->handyman->gigs_count }} {{ __('messages.tasks') }}
+                                            </span>
                                         </div>
                                     </div>
 
@@ -185,11 +201,14 @@
                                         <div class="handyman-rating">
                                             <span class="rating-star">★</span>
                                             <span>{{ $proposal->handyman->user->rating }}
-                                                ({{ $proposal->handyman->user->reviews_count }} reviews)
+                                                ({{ $proposal->handyman->user->reviews_count }}
+                                                {{ __('messages.reviews') }})
                                             </span>
                                         </div>
                                         <div class="handyman-price mt-1">
-                                            JD{{ number_format($proposal->price_per_hour, 2) }}/hr</div>
+                                            {{ __('messages.JD') }}
+                                            {{ number_format($proposal->price_per_hour, 2) }}/{{ __('messages.hr') }}
+                                        </div>
                                     </div>
 
 
@@ -199,7 +218,8 @@
                                         <button class="btn btn-danger report-btn mr-3 "
                                             data-handyman-id="{{ $proposal->handyman->id }}"
                                             data-gig-id="{{ $gig->id }}">
-                                            Report Handyman
+                                            {{ __('messages.ReportHandyman') }}
+
                                         </button>
                                         <!-- Reject Button -->
                                         <form class="ml-2"
@@ -207,7 +227,8 @@
                                             method="POST">
                                             @csrf
                                             @method('PATCH')
-                                            <button type="submit" class="btn btn-warning ">Reject Proposal</button>
+                                            <button type="submit" class="btn btn-warning ">{{ __('messages.Reject') }}
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -216,16 +237,19 @@
 
                             <div class="handyman-description-gig">
                                 <div class="handyman-description">
-                                    <p class="mb-0">Handyman Description:</p>
+                                    <p class="mb-0">{{ __('messages.HandymanDescription') }}
+                                        :</p>
                                     <p class="mb-0">{{ Str::limit($proposal->handyman->bio, 200) }}</p>
                                     <a href="{{ route('Onehandyman_clientVeiw', ['handymanId' => $proposal->handyman->id]) }}"
-                                        class="read-more-link">Read More</a>
+                                        class="read-more-link">{{ __('messages.ReadMore') }}
+                                    </a>
                                 </div>
 
                             </div>
                             <div class="handyman-description-gig">
                                 <div class="handyman-description">
-                                    <h6>How I can help:</h6>
+                                    <h6>{{ __('messages.Howhelp') }}
+                                        :</h6>
                                     <p>{{ Str::limit($proposal->proposal, 200) }}</p>
                                 </div>
 
@@ -237,8 +261,9 @@
                                         action="{{ route('chat', ['receiverId' => $proposal->handyman->user->id]) }}"
                                         method="GET">
                                         @csrf
-                                        <button type="submit" class="btn btn-info w-100 ">Chat and Figure what
-                                            next!</button>
+                                        <button type="submit"
+                                            class="btn btn-info w-100 ">{{ __('messages.ChatFigure') }}
+                                        </button>
                                     </form>
                                 </div>
                                 <div class="w-50 ">
@@ -248,8 +273,9 @@
                                         @csrf
                                         @method('PATCH')
                                         {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
-                                        <button type="submit" class="btn btn-success ml-2 w-100 ">Award This
-                                            handyman</button>
+                                        <button type="submit"
+                                            class="btn btn-success ml-2 w-100 ">{{ __('messages.Award') }}
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -272,20 +298,24 @@
                     <input type="hidden" name="handyman_id" id="modal-handyman-id">
                     <input type="hidden" name="gig_id" id="modal-gig-id">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="reportHandymanModalLabel">Report Handyman</h5>
+                        <h5 class="modal-title" id="reportHandymanModalLabel">{{ __('messages.ReportHandyman') }}
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="report-message">Message:</label>
+                            <label for="report-message">{{ __('messages.Message') }}
+                                :</label>
                             <textarea name="message" id="report-message" class="form-control" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">Submit Report</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.Close') }}
+                        </button>
+                        <button type="submit" class="btn btn-danger">{{ __('messages.SubmitReport') }}
+                        </button>
                     </div>
                 </form>
             </div>
