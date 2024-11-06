@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
         <div class="container">
             <div class="breadcumb-content">
@@ -9,14 +9,25 @@
 
                 </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+                    <?php if(app()->getLocale() == 'en'): ?>
+                        <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
 
-                        </a></li>
-                    <li><a href="<?php echo e(route('products.index')); ?>"><?php echo e(__('messages.AllProduct')); ?>
+                            </a></li>
+                        <li><a href="<?php echo e(route('products.index')); ?>"><?php echo e(__('messages.AllProduct')); ?>
 
-                        </a></li>
+                            </a></li>
 
-                    <li><?php echo e($product->name); ?></li>
+                        <li><?php echo e($product->name); ?></li>
+                    <?php else: ?>
+                        <li><?php echo e($product->name); ?></li>
+                        <li><a href="<?php echo e(route('products.index')); ?>"><?php echo e(__('messages.AllProduct')); ?>
+
+                            </a></li>
+                        <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
+
+                            </a></li>
+                    <?php endif; ?>
+
                 </ul>
             </div>
         </div>
@@ -88,7 +99,7 @@
                             </p>
                         </div>
 
-                        <div class="actions">
+                        <div class="actions ">
                             <?php if($userId): ?>
                                 <form action="<?php echo e(route('cart.add')); ?>" method="POST" id="add-to-cart-form">
                                     <?php echo csrf_field(); ?>
@@ -148,7 +159,8 @@
                                     });
                                 </script>
                             <?php else: ?>
-                                <span style="text-decoration:underline;"><?php echo e(__('messages.cartLogin')); ?></span>
+                                <span class="aboutUsContainer"
+                                    style="text-decoration:underline;"><?php echo e(__('messages.cartLogin')); ?></span>
                             <?php endif; ?>
 
                         </div>
@@ -284,8 +296,8 @@
             </div>
 
             <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Related Product
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Related Product
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
             <div class="space-extra-top mb-30">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-auto">

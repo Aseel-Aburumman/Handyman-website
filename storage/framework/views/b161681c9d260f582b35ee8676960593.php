@@ -55,11 +55,16 @@
     <!-- Swiper Js -->
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/swiper-bundle.min.css')); ?>">
     <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/indexstyle.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/responsiveStyle.css')); ?>">
-
-
+    <?php if(app()->getLocale() == 'en'): ?>
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/indexstyle.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/responsiveStyle.css')); ?>">
+    <?php else: ?>
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/indexstyle.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/responsiveStyle.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/languageStyle.css')); ?>">
+    <?php endif; ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 

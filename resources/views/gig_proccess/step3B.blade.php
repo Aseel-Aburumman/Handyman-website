@@ -35,10 +35,10 @@
                 </div>
 
                 <!-- Task Date and Time Form -->
-                <form class="d-flex w-100" action="{{ route('gig.storeStep3') }}" method="POST">
+                <form class="calenderForm d-flex w-100" action="{{ route('gig.storeStep3') }}" method="POST">
                     @csrf
 
-                    <div class="mr-3 w-75 form-group">
+                    <div class="calenderFormDate  w-75 form-group">
                         <label for="date">{{ __('messages.ChooseTaskDate') }}:</label>
                         <div id="calendar"></div>
                         @if (!$handyman)
@@ -66,7 +66,7 @@
 
                     <!-- Hidden input for storing the selected hour -->
                     <input type="hidden" name="time" id="selected-hour">
-                    <div class="ml-3 w-25 form-group">
+                    <div class="calenderFormTime ml-3 w-25 form-group">
                         <div class="form-group">
                             <label for="available-hours">{{ __('messages.ChooseTaskDate') }}:</label>
                             <div id="available-hours" class="available-hours-grid">

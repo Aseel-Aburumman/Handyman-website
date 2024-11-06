@@ -6,7 +6,7 @@ return [
     'bannerTitleA2' => 'for Home Repairs',
     'bannerTitleA3' => '& Renovations',
     'bannerSubTitleA1' => 'We believe in providing top quality workman and are so confident in our level of service that we back it up',
-
+    'Profilep' => 'Profile',
     'bannerBtn' => 'Our All Services',
 
     'bannerTitleB1' => 'Your Home. ',
@@ -25,6 +25,7 @@ return [
     'serviveDescription' => 'We bring people together—thats the core of what we do. Whether its someone needing their pipes fixed , a nursery set up for a newborn, or a TV mounted for game day, theres always someone nearby, ready and eager to help, right when its needed. When these two people connect, they make a meaningful impact on each others lives, creating a better way to live.',
     'serviveTitleCustomers' => 'Book your next task!',
     'serviveDescriptionCustomers' => 'Lets get everything on you to do list done.',
+    'BookNow' => 'Book Now',
 
     // About us
     'circularText' => 'Kaf Mueen The Best Service Provider',
@@ -32,7 +33,7 @@ return [
     'aboutBigTitle' => 'Book trusted help for home tasks',
     'aboutDescriptiopA' => 'We proudly serve both commercial and residential clients, offering fast and reliable home repair services, 24 hours a day. From plumbing and electrical work to furniture assembly, we’re here to help with every need.',
     'aboutDescriptiopB' => 'At Kaf Mueen, we provide comprehensive, high-quality handyman services tailored to meet your specific needs. Whether you need quick fixes or full-scale renovations, our commitment to quality ensures every job is done right the first time.',
-    'aboutCard1' => 'Electrical Services & Fixes',
+    'aboutCard1' => 'Moving & Assemply Services',
     'aboutCard2' => 'General Handyman Services',
     'aboutBtn' => 'Discover More',
     'aboutCallUs' => 'Call Us',
@@ -58,6 +59,11 @@ return [
     'whyTitle6' => 'Flexible Pricing',
     'whyText6' => 'Pricing is tailored to fit your budget, flexible range that ensure you get the best service without breaking the bank.',
 
+
+
+
+
+    
     // process
     'processBigTitle' => 'How it works?',
     'processSmallTitle' => 'Working Process',

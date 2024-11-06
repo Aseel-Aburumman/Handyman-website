@@ -2,20 +2,29 @@
 
 @section('content')
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Breadcumb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">{{ $product->name }} {{ __('messages.Detail') }}
                 </h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
-                        </a></li>
-                    <li><a href="{{ route('products.index') }}">{{ __('messages.AllProduct') }}
-                        </a></li>
+                    @if (app()->getLocale() == 'en')
+                        <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                            </a></li>
+                        <li><a href="{{ route('products.index') }}">{{ __('messages.AllProduct') }}
+                            </a></li>
 
-                    <li>{{ $product->name }}</li>
+                        <li>{{ $product->name }}</li>
+                    @else
+                        <li>{{ $product->name }}</li>
+                        <li><a href="{{ route('products.index') }}">{{ __('messages.AllProduct') }}
+                            </a></li>
+                        <li><a href="{{ route('home') }}">{{ __('messages.Home') }}
+                            </a></li>
+                    @endif
+
                 </ul>
             </div>
         </div>
@@ -86,7 +95,7 @@
                             </p>
                         </div>
 
-                        <div class="actions">
+                        <div class="actions ">
                             @if ($userId)
                                 <form action="{{ route('cart.add') }}" method="POST" id="add-to-cart-form">
                                     @csrf
@@ -146,7 +155,8 @@
                                     });
                                 </script>
                             @else
-                                <span style="text-decoration:underline;">{{ __('messages.cartLogin') }}</span>
+                                <span class="aboutUsContainer"
+                                    style="text-decoration:underline;">{{ __('messages.cartLogin') }}</span>
                             @endif
 
                         </div>
@@ -278,8 +288,8 @@
             </div>
 
             <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Related Product
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Related Product
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
             <div class="space-extra-top mb-30">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-auto">

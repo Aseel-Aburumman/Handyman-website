@@ -55,11 +55,16 @@
     <!-- Swiper Js -->
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
     <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/indexstyle.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsiveStyle.css') }}">
-
-
+    @if (app()->getLocale() == 'en')
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/indexstyle.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/responsiveStyle.css') }}">
+    @else
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/indexstyle.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/responsiveStyle.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/languageStyle.css') }}">
+    @endif
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 

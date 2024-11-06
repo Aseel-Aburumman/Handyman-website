@@ -11,6 +11,15 @@
     .ListGroupDahboard {
         flex-direction: column;
     }
+    .calenderForm {
+        flex-direction: column;
+    }
+    .calenderFormDate {
+        width: 100% !important;
+    }
+    .calenderFormTime {
+        width: 100% !important;
+    }
 }
 
 @media (max-width: 829px) {
@@ -30,3 +39,9 @@
         row-gap: 10px;
     }
 }
+
+/* @if (app()->getLocale() == 'en')
+    <link rel="stylesheet" href="{{ asset('css/style-en.css') }}">
+@else
+    <link rel="stylesheet" href="{{ asset('css/style-other.css') }}">
+@endif */

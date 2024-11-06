@@ -60,9 +60,7 @@
     <!-- Swiper Js -->
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/swiper-bundle.min.css')); ?>">
     <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/gigs_steps_style.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/shops.css')); ?>">
+
 
     <script src="https://kit.fontawesome.com/5009c5b097.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -76,8 +74,21 @@
     <!-- Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/responsiveStyle.css')); ?>">
 
+
+
+    <?php if(app()->getLocale() == 'en'): ?>
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/gigs_steps_style.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/shops.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/responsiveStyle.css')); ?>">
+    <?php else: ?>
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/gigs_steps_style.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/shops.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/responsiveStyle.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/languageStyle.css')); ?>">
+    <?php endif; ?>
 </head>
 
 <body>

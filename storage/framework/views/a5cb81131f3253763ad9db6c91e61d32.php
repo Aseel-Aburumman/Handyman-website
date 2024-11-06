@@ -28,9 +28,18 @@
                                 </h1>
                                 <p class="hero-text" data-ani="slideinup" data-ani-delay="0.8s">
                                     <?php echo e(__('messages.bannerSubTitleA1')); ?></p>
-                                <a href="<?php echo e(route('service')); ?>" class="th-btn style3" data-ani="slideinup"
-                                    data-ani-delay="1s"><?php echo e(__('messages.bannerBtn')); ?><i
-                                        class="fas fa-arrow-right ms-2"></i></a>
+                                <?php if(app()->getLocale() == 'en'): ?>
+                                    <a href="<?php echo e(route('service')); ?>" class=" th-btn style3" data-ani="slideinup"
+                                        data-ani-delay="1s"><?php echo e(__('messages.bannerBtn')); ?><i
+                                            class="fas fa-arrow-right ms-2"></i>
+                                    </a>
+                                <?php else: ?>
+                                    <a href="<?php echo e(route('service')); ?>" class="bannerBtn th-btn style3" data-ani="slideinup"
+                                        data-ani-delay="1s"><i class="fas fa-arrow-left ms-2"></i> &nbsp
+                                        <?php echo e(__('messages.bannerBtn')); ?>
+
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s">
@@ -61,9 +70,18 @@
                                 </h1>
                                 <p class="hero-text" data-ani="slideinup" data-ani-delay="0.8s">
                                     <?php echo e(__('messages.bannerSubTitleB1')); ?></p>
-                                <a href="<?php echo e(route('service')); ?>" class="th-btn style3" data-ani="slideinup"
-                                    data-ani-delay="1s"><?php echo e(__('messages.bannerBtn')); ?><i
-                                        class="fas fa-arrow-right ms-2"></i></a>
+                                <?php if(app()->getLocale() == 'en'): ?>
+                                    <a href="<?php echo e(route('service')); ?>" class="bannerBtn th-btn style3" data-ani="slideinup"
+                                        data-ani-delay="1s"><?php echo e(__('messages.bannerBtn')); ?><i
+                                            class="fas fa-arrow-right ms-2"></i></a>
+                                <?php else: ?>
+                                    <a href="<?php echo e(route('service')); ?>" class="bannerBtn th-btn style3" data-ani="slideinup"
+                                        data-ani-delay="1s"><i class="fas fa-arrow-left ms-2"></i> &nbsp
+                                        <?php echo e(__('messages.bannerBtn')); ?>
+
+                                    </a>
+                                <?php endif; ?>
+
                             </div>
                         </div>
                         <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s">
@@ -94,14 +112,24 @@
                                 </h1>
                                 <p class="hero-text" data-ani="slideinup" data-ani-delay="0.8s">
                                     <?php echo e(__('messages.bannerSubTitleC1')); ?></p>
-                                <a href="service.html" class="th-btn style3" data-ani="slideinup"
-                                    data-ani-delay="1s"><?php echo e(__('messages.bannerBtn')); ?><i
-                                        class="fas fa-arrow-right ms-2"></i></a>
+                                <?php if(app()->getLocale() == 'en'): ?>
+                                    <a href="<?php echo e(route('service')); ?>" class=" th-btn style3" data-ani="slideinup"
+                                        data-ani-delay="1s"><?php echo e(__('messages.bannerBtn')); ?><i
+                                            class="fas fa-arrow-right ms-2"></i>
+                                    </a>
+                                <?php else: ?>
+                                    <a href="<?php echo e(route('service')); ?>" class="bannerBtn th-btn style3"
+                                        data-ani="slideinup" data-ani-delay="1s"><i class="fas fa-arrow-left ms-2"></i>
+                                        &nbsp
+                                        <?php echo e(__('messages.bannerBtn')); ?>
+
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s">
                             <div class="shape1">
-                                <img src="<?php echo e(asset('assets/img/hero/hero_shape_1_1v.svg')); ?>" alt="shape">
+                                <img src="<?php echo e(asset('assets/img/hero/hero_shape_1_1.svg')); ?>" alt="shape">
                             </div>
                             <img src="<?php echo e(asset('assets/img/hero/hero_1_3.png')); ?>" alt="Image">
                         </div>
@@ -116,8 +144,8 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Brand Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brand Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
     <div class="brand-sec1">
         <div class="top-shape"><img src="<?php echo e(asset('assets/img/shape/triangle_shape_1.svg')); ?>" alt="shape"></div>
         <div class="brand-list-area">
@@ -163,8 +191,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Service Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Service Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img
                 src="<?php echo e(asset('assets/img/shape/lines_1.png')); ?>" alt="shape"></div>
@@ -365,9 +393,15 @@
                                         <h3 class="box-title"><a href="service-details.html"><?php echo e($service->name); ?></a>
                                         </h3>
                                         <p class="box-text"><?php echo e($service->description); ?></p>
-                                        <a href="javascript:void(0);" class="th-btn btn-sm">Book Now<i
-                                                class="far fa-arrow-right ms-2"></i></a>
-
+                                        <?php if(app()->getLocale() == 'en'): ?>
+                                            <a href="javascript:void(0);"
+                                                class="th-btn btn-sm"><?php echo e(__('messages.BookNow')); ?>&nbsp
+                                                <i class="far fa-arrow-right ms-2"></i></a>
+                                        <?php else: ?>
+                                            <a href="javascript:void(0);" class="th-btn btn-sm">
+                                                <i class="far fa-arrow-left ms-2"></i>&nbsp
+                                                <?php echo e(__('messages.BookNow')); ?></a>
+                                        <?php endif; ?>
                                         
                                         <script>
                                             $(document).ready(function() {
@@ -426,8 +460,8 @@
 
 
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            About Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                About Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img
                 src="<?php echo e(asset('assets/img/shape/dots_1.svg')); ?>" alt="shape"></div>
@@ -468,8 +502,8 @@
                         <img src="<?php echo e(asset('assets/img/shape/dots_1.svg')); ?>" alt="icon" class="dot-shape">
                     </div>
                 </div>
-                <div class="col-xl-6 text-center text-xl-start">
-                    <div class="title-area mb-30 pe-xxl-5">
+                <div class="aboutUsContainer col-xl-6 text-center text-xl-start">
+                    <div class="titleAreaAboutUs title-area mb-30 pe-xxl-5">
                         <span class="sub-title shape-white"><img
                                 src="<?php echo e(asset('assets/img/theme-img/title_icon_white.svg')); ?>"
                                 alt="shape"><?php echo e(__('messages.aboutSmallTitle')); ?></span>
@@ -480,20 +514,27 @@
                     <div class="about-feature-wrap">
                         <div class="about-feature">
                             <div class="box-icon">
-                                <img src="<?php echo e(asset('assets/img/icon/about_feature_1.svg')); ?>" alt="Icon">
+                                <img src="<?php echo e(asset('assets/img/icon/choose_feature_3.svg')); ?>" alt="Icon">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.aboutCard1')); ?></h3>
                         </div>
                         <div class="about-feature">
                             <div class="box-icon">
-                                <img src="<?php echo e(asset('assets/img/icon/about_feature_2.svg')); ?>s" alt="Icon">
+                                <img src="<?php echo e(asset('assets/img/icon/about_feature_2.svg')); ?>" alt="Icon">
                             </div>
                             <h3 class="box-title"><?php echo e(__('messages.aboutCard2')); ?></h3>
                         </div>
                     </div>
-                    <div class="btn-group justify-content-center">
-                        <a href="<?php echo e(route('aboutUs')); ?>" class="th-btn style3"><?php echo e(__('messages.aboutBtn')); ?><i
-                                class="far fa-arrow-right ms-2"></i></a>
+                    <div class="aboutUsBtnsCall btn-group justify-content-center">
+                        <?php if(app()->getLocale() == 'en'): ?>
+                            <a href="<?php echo e(route('aboutUs')); ?>" class="th-btn style3"><?php echo e(__('messages.aboutBtn')); ?><i
+                                    class="far fa-arrow-right ms-2"></i></a>
+                        <?php else: ?>
+                            <a href="<?php echo e(route('aboutUs')); ?>" class="th-btn style3"><i
+                                    class="far fa-arrow-left ms-2"></i>
+                                &nbsp
+                                <?php echo e(__('messages.aboutBtn')); ?></a>
+                        <?php endif; ?>
                         <div class="call-btn">
                             <div class="play-btn">
                                 <i class="fal fa-phone"></i>
@@ -509,17 +550,17 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Stores Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Stores Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup spin" data-top="5%" data-left="0%"><img
                 src="<?php echo e(asset('assets/img/shape/lines_1.png')); ?>" alt="shape"></div>
         <div class="shape-mockup spin" data-bottom="5%" data-right="4%"><img
                 src="<?php echo e(asset('assets/img/shape/dots_2.svg')); ?>" alt="shape"></div>
         <div class="container">
-            <div class="row justify-content-between align-items-center">
+            <div class="storeContainerTitle row justify-content-between align-items-center">
                 <div class="col-md">
-                    <div class="title-area text-center text-md-start">
+                    <div class="storeContainerTitleSpecific title-area text-center text-md-start">
                         <span class="sub-title"><img src="<?php echo e(asset('assets/img/theme-img/title_icon.svg')); ?>"
                                 alt="shape"><?php echo e(__('messages.storesSmallTitle')); ?></span>
                         <h2 class="sec-title"><?php echo e(__('messages.storesBigTitle')); ?></h2>
@@ -527,8 +568,15 @@
                 </div>
                 <div class="col-md-auto">
                     <div class="sec-btn mt-n3 mt-md-0">
-                        <a href="<?php echo e(route('shops.index')); ?>" class="th-btn style4"><?php echo e(__('messages.storesBtn')); ?><i
-                                class="far fa-arrow-right ms-2"></i></a>
+                        <?php if(app()->getLocale() == 'en'): ?>
+                            <a href="<?php echo e(route('shops.index')); ?>" class="th-btn style4"><?php echo e(__('messages.storesBtn')); ?><i
+                                    class="far fa-arrow-right ms-2"></i></a>
+                        <?php else: ?>
+                            <a href="<?php echo e(route('shops.index')); ?>" class="th-btn style4"><i
+                                    class="far fa-arrow-left ms-2"></i>
+                                &nbsp
+                                <?php echo e(__('messages.storesBtn')); ?></a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -590,8 +638,13 @@
                                             </DIV>
 
                                             <!-- More details link -->
-                                            <a href="<?php echo e(route('Oneshops', ['shopId' => $store->id])); ?>"
-                                                class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                                            <?php if(app()->getLocale() == 'en'): ?>
+                                                <a href="<?php echo e(route('Oneshops', ['shopId' => $store->id])); ?>"
+                                                    class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                                            <?php else: ?>
+                                                <a href="<?php echo e(route('Oneshops', ['shopId' => $store->id])); ?>"
+                                                    class="icon-btn"><i class="far fa-arrow-left"></i></a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -615,17 +668,13 @@
             </div>
         </div>
     </section>
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Devider Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
+    <!--==============================-->
     <div class="overflow-hidden bg-white">
         <h3> </h3>
 
     </div>
-    <!--==============================
+    <!--==============================-->
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Feature Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup" data-top="0%" data-left="0%"><img src="<?php echo e(asset('assets/img/bg/why_bg_2.png')); ?>"
                 alt="shape">
@@ -701,10 +750,8 @@
             </div>
         </div>
     </section>
-    <!--==============================
+    <!--==============================-->
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Process Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
     <section class="space" id="process-sec" data-bg-src="<?php echo e(asset('assets/img/bg/process_bg_2.jpg')); ?>">
         <div class="container">
             <div class="row justify-content-center">
@@ -750,11 +797,7 @@
             </div>
         </div>
     </section>
-    <!--==============================
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Team Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
+    
     <section class="space">
         <div class="container z-index-common">
             <div class="row justify-content-between align-items-center">
@@ -829,8 +872,8 @@
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Counter Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Counter Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
     <div class="space-bottom">
 
 

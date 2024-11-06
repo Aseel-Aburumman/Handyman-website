@@ -4,7 +4,7 @@
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Welcome <?php echo e($user->name); ?></h1>
                 <ul class="breadcumb-menu">
-                    <li>Home</li>
+                    <li><?php echo e(__('messages.Home')); ?></li>
                 </ul>
             </div>
         </div>
