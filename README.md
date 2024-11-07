@@ -1,10 +1,13 @@
+
+---
+
 <div align="center">
 
-![HandyHelper Logo](./images/logo.png)  
-[![Powered by Laravel](https://img.shields.io/badge/Framework-Laravel-FF2D20.svg)](https://laravel.com/)
-[![Project Stage](https://img.shields.io/badge/Status-In%20Development-orange.svg)](https://github.com/yourusername/HandyHelper/commits/main)
-![Documentation](https://img.shields.io/badge/Documentation-WIP-blue.svg)
-![Supported Language](https://img.shields.io/badge/Language-English-green.svg)
+![KafMueen Logo](./images/logo.png)  
+[![Powered by Laravel](https://img.shields.io/badge/Framework-Laravel-FF2D20.svg)](https://laravel.com/)  
+[![Project Stage](https://img.shields.io/badge/Status-In%20Development-orange.svg)](https://github.com/yourusername/KafMueen/commits/main)  
+![Documentation](https://img.shields.io/badge/Documentation-WIP-blue.svg)  
+![Supported Language](https://img.shields.io/badge/Language-English-green.svg)(https://img.shields.io/badge/Language-Arabic-green.svg)
 
 </div>
 
@@ -12,9 +15,9 @@
 
 <div align="center">
 
-**[VISION](#-vision) •
-[FEATURE HIGHLIGHTS](#-feature-highlights) •
-[DATA MODEL](#-data-model) •
+**[VISION](#-vision) •  
+[FEATURE HIGHLIGHTS](#-feature-highlights) •  
+[DATA MODEL](#-data-model) •  
 [INSTALLATION](#-installation)**
 
 </div>
@@ -23,57 +26,73 @@
 
 # 🌟 Vision
 
-**HandyHelper** is built to revolutionize how clients find, book, and interact with local service professionals. By focusing on accessibility, transparency, and quality, our platform is a one-stop solution for anyone needing trusted handymen, from electricians to landscapers.
+**KafMueen** is designed to transform how clients find, book, and connect with trusted service professionals. With a strong focus on accessibility, transparency, and quality, our platform is a comprehensive solution for finding reliable handymen and essential tools through an integrated e-commerce experience.
 
-Whether you’re a homeowner in need of quick repairs or a handyman looking for steady client leads, HandyHelper makes it easy, reliable, and efficient. We aim to build a digital community where everyone can connect with confidence.
+Whether you're a homeowner needing repairs, a handyman seeking clients, an admin managing the platform, or a store owner selling essential tools, KafMueen brings convenience, reliability, and community into one platform.
 
 # 🚀 Feature Highlights
 
 ### Admin Dashboard
 
-Our comprehensive admin panel enables platform management with ease and control:
+Manage the platform seamlessly with an array of administrative features:
 
--   **Service Approval**: Review and approve handyman profiles and listings.
--   **User Management**: Oversee both client and handyman accounts.
--   **Analytics**: Monitor platform activity, service demand, and performance through actionable insights.
+-   **Service Approval**: Review and approve handyman profiles, listings, and store products.
+-   **User Management**: Oversee accounts for clients, handymen, and store owners.
+-   **Analytics**: Monitor platform activity, service demand, and sales data to drive performance.
 
 ### Handyman Dashboard
 
-Handymen can create, customize, and manage their profiles, making them stand out to clients:
+Handymen can create, customize, and manage their profiles to attract clients:
 
--   **Availability Management**: Set and update available hours directly.
+-   **Availability Management**: Set and update available hours.
 -   **Booking Management**: Accept, reschedule, or decline appointments.
--   **Direct Messaging**: Communicate with clients seamlessly for clarifications or updates.
+-   **Direct Messaging**: Communicate with clients directly for clarifications or updates.
 
 ### Client Portal
 
-For clients, HandyHelper provides a smooth experience with features designed to ensure quality and reliability:
+Providing clients with a seamless experience, KafMueen ensures a reliable, transparent service:
 
--   **Service Search**: Quickly find handymen based on service type and location.
--   **Profile Reviews**: Access genuine reviews and ratings to choose the best professional.
--   **Real-time Tracking**: Track service requests and status updates directly on the dashboard.
+-   **Service Search**: Find handymen based on service type, location, and ratings.
+-   **Profile Reviews**: Access reviews and ratings to help choose the best professionals.
+-   **Real-time Tracking**: Follow service requests and updates via the dashboard.
+
+### Store Owner Dashboard
+
+Store owners can manage their inventory and reach clients directly on the platform:
+
+-   **Product Listings**: Add tools, materials, and other products essential for handymen and clients.
+-   **Sales Management**: Track orders, manage inventory, and offer promotions to clients and handymen.
+-   **Analytics**: View insights into product sales and client demand.
+
+### E-commerce for Tools and Supplies
+
+KafMueen also features a marketplace where clients and handymen can purchase tools and supplies directly:
+
+-   **Tool Categories**: Organize products for quick access to specific types of tools and supplies.
+-   **Cart and Checkout**: A streamlined shopping experience with secure checkout options.
+-   **Special Offers**: Store owners can provide discounts and special offers to clients and handymen.
 
 # 📊 Data Model
 
-The **HandyHelper** data structure is tailored to enable flexibility and efficiency across different user roles. The data model includes:
+The **KafMueen** data structure supports flexibility across diverse user roles and e-commerce functionality. The data model includes:
 
--   **Users** (Admin, Handyman, Client) with tailored permissions.
--   **Services** tied to specific categories and subcategories, ensuring clients can easily search and filter.
--   **Bookings** with timestamps, status updates, and real-time tracking for seamless scheduling.
--   **Reviews** that contribute to each handyman’s public profile, encouraging transparency and trust.
+-   **Users** (Admin, Handyman, Client, Store Owner) with specific permissions.
+-   **Services** tied to categories for easy search and filtering.
+-   **Bookings** with timestamps, status updates, and tracking.
+-   **Products** under various categories for e-commerce, supporting inventory and pricing management.
+-   **Reviews** that contribute to each handyman and product profile, fostering transparency and trust.
 
 ![Data Model Diagram](./images/data_model.png)
 
 # ⚙️ Installation
 
-To set up HandyHelper on your local environment, please ensure you have PHP, Composer, and MySQL installed.
+To set up KafMueen on your local environment, please ensure you have PHP, Composer, and MySQL installed.
 
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/yourusername/HandyHelper.git
-    cd HandyHelper
-
+    git clone https://github.com/Aseel-Aburumman/Handyman-website.git
+    cd Handyman-website
     ```
 
 2. **Install Dependencies**  
@@ -90,7 +109,7 @@ To set up HandyHelper on your local environment, please ensure you have PHP, Com
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
-    DB_DATABASE=handyhelper
+    DB_DATABASE=Handyman-website
     DB_USERNAME=root
     DB_PASSWORD=
     ```
@@ -116,10 +135,14 @@ To set up HandyHelper on your local environment, please ensure you have PHP, Com
     php artisan serve
     ```
 
-    HandyHelper is now live on [http://localhost:8000](http://localhost:8000)!
+    KafMueen is now live on [http://localhost:8000](http://localhost:8000)!
 
 ---
 
 # 🎉 Get Started
 
-With HandyHelper, clients can trust they’re getting the right professionals, and handymen have access to an engaged client base. Join us in building a community that puts quality, ease, and reliability first.
+With KafMueen, clients are assured of quality service, handymen gain access to consistent client leads, and store owners can reach a dedicated market for their tools and supplies. Join us in building a community that prioritizes quality, ease, and reliability.
+
+---
+
+
