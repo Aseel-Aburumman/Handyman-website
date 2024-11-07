@@ -3,7 +3,7 @@
 
 <div align="center">
 
-![KafMueen Logo](./images/logo.png)  
+![KafMueen Logo](./public/pic/logoArabic.png)  
 [![Powered by Laravel](https://img.shields.io/badge/Framework-Laravel-FF2D20.svg)](https://laravel.com/)  
 [![Project Stage](https://img.shields.io/badge/Status-In%20Development-orange.svg)](https://github.com/yourusername/KafMueen/commits/main)  
 ![Documentation](https://img.shields.io/badge/Documentation-WIP-blue.svg)  
@@ -82,7 +82,6 @@ The **KafMueen** data structure supports flexibility across diverse user roles a
 - **Products** under various categories for e-commerce, supporting inventory and pricing management.
 - **Reviews** that contribute to each handyman and product profile, fostering transparency and trust.
 
-![Data Model Diagram](./images/data_model.png)
 
 # ⚙️ Installation
 
