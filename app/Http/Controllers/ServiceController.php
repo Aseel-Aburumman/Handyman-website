@@ -223,6 +223,7 @@ class ServiceController extends Controller
     {
         $handyman = session('handyman_id') ? Handyman::find(session('handyman_id')) : null;
         session()->put('from_step_3', true);
+        session()->put('redirect_after_login', url()->current());
 
         if ($handyman) {
             $handymanId = $request->handyman_id;

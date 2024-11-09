@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
     <!--==============================
-                                                                                                                                                                            Breadcumb
-                                                                                                                                                                        ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="<?php echo e(asset('assets/img/bg/breadcumb-bg.jpg')); ?>">
 
         <div class="container">
@@ -53,75 +53,109 @@
                     </p>
                 </div>
 
-                <!-- Task Form -->
-                <div class="task-form">
-                    <form action="<?php echo e(route('gig.storeStep1')); ?>" method="POST">
-                        <?php echo csrf_field(); ?>
-
-
-                        <!-- Add hidden input to pass the category_id -->
-                        <input type="hidden" name="category_id" value="<?php echo e($category->id); ?>">
-                        <input type="hidden" name="service_id" value="<?php echo e($service->id); ?>">
-                        <!-- Car Requirement -->
-
-
-                        <!-- Task Location -->
-                        <div class="form-group">
-                            <label for="location"><?php echo e(__('messages.TaskLocation')); ?>
-
-                            </label>
-                            <input type="text" name="location" id="location" class="form-control" required>
-                        </div>
-
-                        <!-- End Address (for moving category) -->
-                        <?php if($category->id == 3): ?>
+                <div class="taskFormStepsContainer d-flex w-100">
+                    <!-- Task Form -->
+                    <div class="w-75 task-form-fommm  task-form">
+                        <form action="<?php echo e(route('gig.storeStep1')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <!-- Add hidden input to pass the category_id -->
+                            <input type="hidden" name="category_id" value="<?php echo e($category->id); ?>">
+                            <input type="hidden" name="service_id" value="<?php echo e($service->id); ?>">
+                            <!-- Car Requirement -->
+                            <!-- Task Location -->
                             <div class="form-group">
-                                <label for="end_address"><?php echo e(__('messages.EndAddress')); ?>
+                                <label for="location"><?php echo e(__('messages.TaskLocation')); ?>
 
                                 </label>
-                                <input type="text" name="end_address" id="end_address" class="form-control">
+                                <input type="text" name="location" id="location" class="form-control" required>
                             </div>
-                        <?php endif; ?>
+                            <!-- End Address (for moving category) -->
+                            <?php if($category->id == 3): ?>
+                                <div class="form-group">
+                                    <label for="end_address"><?php echo e(__('messages.EndAddress')); ?>
 
-                        <!-- Estimated Time -->
-                        <div class="form-group">
-                            <label for="estimated_time"><?php echo e(__('messages.EstimatedTime')); ?></label>
-                            <select name="estimated_time" id="estimated_time" class="form-control">
-                                <option value="1"><?php echo e(__('messages.Small')); ?>
+                                    </label>
+                                    <input type="text" name="end_address" id="end_address" class="form-control">
+                                </div>
+                            <?php endif; ?>
+                            <!-- Estimated Time -->
+                            <div class="form-group">
+                                <label for="estimated_time"><?php echo e(__('messages.EstimatedTime')); ?></label>
+                                <select name="estimated_time" id="estimated_time" class="form-control">
+                                    <option value="1"><?php echo e(__('messages.Small')); ?>
 
-                                </option>
-                                <option value="2"><?php echo e(__('messages.Medium')); ?>
+                                    </option>
+                                    <option value="2"><?php echo e(__('messages.Medium')); ?>
 
-                                </option>
-                                <option value="4"><?php echo e(__('messages.Large')); ?>
+                                    </option>
+                                    <option value="4"><?php echo e(__('messages.Large')); ?>
 
-                                </option>
-                            </select>
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- Task title -->
+                            <div class="form-group">
+                                <label for="title"><?php echo e(__('messages.Tiltetask')); ?>
+
+                                </label>
+                                <textarea name="title" id="title" class="form-control" required></textarea>
+                            </div>
+                            <!-- Task Description -->
+                            <div class="form-group">
+                                <label for="description"><?php echo e(__('messages.Detailstask')); ?>
+
+                                </label>
+                                <textarea name="description" id="description" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><?php echo e(__('messages.ContinueStep')); ?>
+
+                                2</button>
+                        </form>
+                    </div>
+                    <div class="taskFormSteps w-25 task-form">
+                        <div class="contact-process-wrap no-bg">
+                            <h6><?php echo e(__('messages.processBigTitleb')); ?></h6>
+
+                            <div class="contact-process">
+                                <div class="box-number">01</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title"><?php echo e(__('messages.processTitle1')); ?>
+
+                                    </h3>
+                                    <p class="box-text text-body"><?php echo e(__('messages.process1')); ?> </p>
+                                </div>
+                            </div>
+                            <div class="contact-process">
+                                <div class="box-number">02</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title"><?php echo e(__('messages.processTitle2')); ?> </h3>
+                                    <p class="box-text text-body"><?php echo e(__('messages.process2')); ?> </p>
+                                </div>
+                            </div>
+                            <div class="contact-process">
+                                <div class="box-number">03</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title"><?php echo e(__('messages.processTitle3')); ?> </h3>
+                                    <p class="box-text text-body"><?php echo e(__('messages.process3')); ?> </p>
+                                </div>
+                            </div>
+                            <div class="contact-process">
+                                <div class="box-number">04</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title"><?php echo e(__('messages.processTitle4')); ?> </h3>
+                                    <p class="box-text text-body"><?php echo e(__('messages.process4')); ?> </p>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- Task title -->
-                        <div class="form-group">
-                            <label for="title"><?php echo e(__('messages.Tiltetask')); ?>
-
-                            </label>
-                            <textarea name="title" id="title" class="form-control" required></textarea>
-                        </div>
-
-                        <!-- Task Description -->
-                        <div class="form-group">
-                            <label for="description"><?php echo e(__('messages.Detailstask')); ?>
-
-                            </label>
-                            <textarea name="description" id="description" class="form-control" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary"><?php echo e(__('messages.ContinueStep')); ?>
-
-                            2</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <style>
+            .taskFormSteps {
+                margin-left: 10px;
+            }
+        </style>
     </section>
 <?php $__env->stopSection(); ?>
 

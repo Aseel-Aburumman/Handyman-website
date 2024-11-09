@@ -206,7 +206,9 @@ class MasterController extends Controller
 
     public function service()
     {
-        return view('main_strc.service');
+        $categories = Category::with('services')->get();
+
+        return view('main_strc.service', compact('categories'));
     }
 
     public function btasker()
@@ -316,7 +318,9 @@ class MasterController extends Controller
 
     public function aboutUs()
     {
-        return view('main_strc.about');
+        $categories = Category::with('services')->get();
+
+        return view('main_strc.about', compact('categories'));
     }
 
     public function terms()

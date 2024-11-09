@@ -48,67 +48,73 @@
         </div>
     </div>
     <div class="widget-area">
+
+
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-md-6 col-xl-auto">
-                    <div class=" widget footer-widget">
-                        <div class="th-widget-about ">
+            <div class="row justify-content-between align-items-start">
+                <!-- About Section -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="widget footer-widget">
+                        <div class="th-widget-about">
                             <div class="about-logo">
-                                <a href="home-handyman.html"><img src="<?php echo e(asset('assets/img/logoHorizantal.png')); ?>"
-                                        alt="Rakar"></a>
+                                <a href="home-handyman.html">
+                                    <img src="<?php echo e(asset('assets/img/logoHorizantal.png')); ?>" alt="Rakar"
+                                        class="logo-img">
+                                </a>
                             </div>
-                            <p class="w-75  about-text"><?php echo e(__('messages.aboutFooter')); ?>
-
-                            </p>
+                            <p class="about-text"><?php echo e(__('messages.aboutFooter')); ?></p>
                             <div class="th-social">
-                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://www.facebook.com/" aria-label="Facebook"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.twitter.com/" aria-label="Twitter"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a href="https://www.instagram.com/" aria-label="Instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/" aria-label="LinkedIn"><i
+                                        class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-auto">
+
+                <!-- Useful Links Section -->
+                <div class="col-md-6 col-lg-3">
                     <div class="widget widget_nav_menu footer-widget">
-                        <h3 class="widget_title"><img src="<?php echo e(asset('assets/img/icon/footer_title.svg')); ?>"
-                                alt="icon"> Useful
-                            Links</h3>
-                        <div class="menu-all-pages-container">
-                            <ul class="menu">
-                                <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?>
-
-                                    </a></li>
-                                <li><a href="<?php echo e(route('aboutUs')); ?>"><?php echo e(__('messages.AboutUs')); ?>
-
-                                    </a></li>
-                                
-                                <li><a href="<?php echo e(route('service')); ?>"><?php echo e(__('messages.OurService')); ?>
-
-                                    </a></li>
-                                
-                                <li><a href="<?php echo e(route('shops.index')); ?>"><?php echo e(__('messages.Shops')); ?></a></li>
-                            </ul>
-                        </div>
+                        <h3 class="widget_title">
+                            <img src="<?php echo e(asset('assets/img/icon/footer_title.svg')); ?>" alt="icon"> Useful Links
+                        </h3>
+                        <ul class="menuFooter menu">
+                            <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('messages.Home')); ?></a></li>
+                            <li><a href="<?php echo e(route('aboutUs')); ?>"><?php echo e(__('messages.AboutUs')); ?></a></li>
+                            <li><a href="<?php echo e(route('service')); ?>"><?php echo e(__('messages.OurService')); ?></a></li>
+                            <li><a href="<?php echo e(route('shops.index')); ?>"><?php echo e(__('messages.Shops')); ?></a></li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-auto">
+                <!-- Newsletter Section -->
+                <div class="col-md-6 col-lg-4">
                     <div class="widget newsletter-widget footer-widget">
-                        <h3 class="widget_title"><img src="<?php echo e(asset('assets/img/icon/footer_title.svg')); ?>"
-                                alt="icon"> <?php echo e(__('messages.Newsletter')); ?>
+                        <h3 class="widget_title">
+                            <img src="<?php echo e(asset('assets/img/icon/footer_title.svg')); ?>" alt="icon">
+                            <?php echo e(__('messages.Newsletter')); ?>
 
                         </h3>
                         <p class="footer-text"><?php echo e(__('messages.NewsletterText')); ?></p>
                         <form class="newsletter-form">
-                            <input class="form-control" type="email" placeholder="Enter email address" required="">
-                            <button type="submit" class="th-btn style3"><?php echo e(__('messages.Subscribe')); ?><i
-                                    class="far fa-arrow-right ms-2"></i></button>
+                            <input class="form-control" type="email" placeholder="Enter email address" required>
+                            <button type="submit" class="th-btn style3">
+                                <?php echo e(__('messages.Subscribe')); ?> <i class="fa fa-arrow-right ms-2"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+        
     </div>
     <div class="copyright-wrap">
         <div class="container">
@@ -129,5 +135,7 @@
             </div>
         </div>
     </div>
+    
+
 </footer>
 <?php /**PATH C:\xampp\htdocs\Handyman-website\resources\views/partials/footer.blade.php ENDPATH**/ ?>

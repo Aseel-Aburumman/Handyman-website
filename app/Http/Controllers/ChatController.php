@@ -117,19 +117,18 @@ class ChatController extends Controller
     }
 
     public function fetchMessages($receiverId)
-{
-    $userId = Auth::id();
-    $messages = Message::where(function ($query) use ($userId, $receiverId) {
-        $query->where('sender_id', $userId)
-              ->where('receiver_id', $receiverId);
-    })->orWhere(function ($query) use ($userId, $receiverId) {
-        $query->where('sender_id', $receiverId)
-              ->where('receiver_id', $userId);
-    })
-    ->orderBy('created_at', 'asc')
-    ->get();
+    {
+        $userId = Auth::id();
+        $messages = Message::where(function ($query) use ($userId, $receiverId) {
+            $query->where('sender_id', $userId)
+                ->where('receiver_id', $receiverId);
+        })->orWhere(function ($query) use ($userId, $receiverId) {
+            $query->where('sender_id', $receiverId)
+                ->where('receiver_id', $userId);
+        })
+            ->orderBy('created_at', 'asc')
+            ->get();
 
-    return response()->json($messages);
-}
-
+        return response()->json($messages);
+    }
 }

@@ -66,6 +66,9 @@
         <link rel="stylesheet" href="<?php echo e(asset('assets/css/languageStyle.css')); ?>">
     <?php endif; ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 
 </head>

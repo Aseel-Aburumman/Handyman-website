@@ -1,3 +1,10 @@
+.serviceAboutUs {
+    border: 1px solid #bfbbbb !important;
+}
+.serviceAboutUsSmall {
+    border: 1px solid #bfbbbb !important;
+    border-radius: 30px !important;
+}
 .pagination {
     display: flex;
     justify-content: center;

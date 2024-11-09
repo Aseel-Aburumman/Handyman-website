@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==============================
-                                                                                                                                                                            Breadcumb
-                                                                                                                                                                        ============================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                    Breadcumb
+                                                                                                                                                                                                                                                                                                                                                                                                                ============================== -->
     <div class="breadcumb-wrapper " data-bg-src="{{ asset('assets/img/bg/breadcumb-bg.jpg') }}">
 
         <div class="container">
@@ -50,66 +50,99 @@
                     </p>
                 </div>
 
-                <!-- Task Form -->
-                <div class="task-form">
-                    <form action="{{ route('gig.storeStep1') }}" method="POST">
-                        @csrf
-
-
-                        <!-- Add hidden input to pass the category_id -->
-                        <input type="hidden" name="category_id" value="{{ $category->id }}">
-                        <input type="hidden" name="service_id" value="{{ $service->id }}">
-                        <!-- Car Requirement -->
-
-
-                        <!-- Task Location -->
-                        <div class="form-group">
-                            <label for="location">{{ __('messages.TaskLocation') }}
-                            </label>
-                            <input type="text" name="location" id="location" class="form-control" required>
-                        </div>
-
-                        <!-- End Address (for moving category) -->
-                        @if ($category->id == 3)
+                <div class="taskFormStepsContainer d-flex w-100">
+                    <!-- Task Form -->
+                    <div class="w-75 task-form-fommm  task-form">
+                        <form action="{{ route('gig.storeStep1') }}" method="POST">
+                            @csrf
+                            <!-- Add hidden input to pass the category_id -->
+                            <input type="hidden" name="category_id" value="{{ $category->id }}">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <!-- Car Requirement -->
+                            <!-- Task Location -->
                             <div class="form-group">
-                                <label for="end_address">{{ __('messages.EndAddress') }}
+                                <label for="location">{{ __('messages.TaskLocation') }}
                                 </label>
-                                <input type="text" name="end_address" id="end_address" class="form-control">
+                                <input type="text" name="location" id="location" class="form-control" required>
                             </div>
-                        @endif
+                            <!-- End Address (for moving category) -->
+                            @if ($category->id == 3)
+                                <div class="form-group">
+                                    <label for="end_address">{{ __('messages.EndAddress') }}
+                                    </label>
+                                    <input type="text" name="end_address" id="end_address" class="form-control">
+                                </div>
+                            @endif
+                            <!-- Estimated Time -->
+                            <div class="form-group">
+                                <label for="estimated_time">{{ __('messages.EstimatedTime') }}</label>
+                                <select name="estimated_time" id="estimated_time" class="form-control">
+                                    <option value="1">{{ __('messages.Small') }}
+                                    </option>
+                                    <option value="2">{{ __('messages.Medium') }}
+                                    </option>
+                                    <option value="4">{{ __('messages.Large') }}
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- Task title -->
+                            <div class="form-group">
+                                <label for="title">{{ __('messages.Tiltetask') }}
+                                </label>
+                                <textarea name="title" id="title" class="form-control" required></textarea>
+                            </div>
+                            <!-- Task Description -->
+                            <div class="form-group">
+                                <label for="description">{{ __('messages.Detailstask') }}
+                                </label>
+                                <textarea name="description" id="description" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">{{ __('messages.ContinueStep') }}
+                                2</button>
+                        </form>
+                    </div>
+                    <div class="taskFormSteps w-25 task-form">
+                        <div class="contact-process-wrap no-bg">
+                            <h6>{{ __('messages.processBigTitleb') }}</h6>
 
-                        <!-- Estimated Time -->
-                        <div class="form-group">
-                            <label for="estimated_time">{{ __('messages.EstimatedTime') }}</label>
-                            <select name="estimated_time" id="estimated_time" class="form-control">
-                                <option value="1">{{ __('messages.Small') }}
-                                </option>
-                                <option value="2">{{ __('messages.Medium') }}
-                                </option>
-                                <option value="4">{{ __('messages.Large') }}
-                                </option>
-                            </select>
+                            <div class="contact-process">
+                                <div class="box-number">01</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title">{{ __('messages.processTitle1') }}
+                                    </h3>
+                                    <p class="box-text text-body">{{ __('messages.process1') }} </p>
+                                </div>
+                            </div>
+                            <div class="contact-process">
+                                <div class="box-number">02</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title">{{ __('messages.processTitle2') }} </h3>
+                                    <p class="box-text text-body">{{ __('messages.process2') }} </p>
+                                </div>
+                            </div>
+                            <div class="contact-process">
+                                <div class="box-number">03</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title">{{ __('messages.processTitle3') }} </h3>
+                                    <p class="box-text text-body">{{ __('messages.process3') }} </p>
+                                </div>
+                            </div>
+                            <div class="contact-process">
+                                <div class="box-number">04</div>
+                                <div class="media-body">
+                                    <h3 class="box-title text-title">{{ __('messages.processTitle4') }} </h3>
+                                    <p class="box-text text-body">{{ __('messages.process4') }} </p>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- Task title -->
-                        <div class="form-group">
-                            <label for="title">{{ __('messages.Tiltetask') }}
-                            </label>
-                            <textarea name="title" id="title" class="form-control" required></textarea>
-                        </div>
-
-                        <!-- Task Description -->
-                        <div class="form-group">
-                            <label for="description">{{ __('messages.Detailstask') }}
-                            </label>
-                            <textarea name="description" id="description" class="form-control" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">{{ __('messages.ContinueStep') }}
-                            2</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <style>
+            .taskFormSteps {
+                margin-left: 10px;
+            }
+        </style>
     </section>
 @endsection

@@ -141,8 +141,8 @@
     </div>
     <!--======== / Hero Section ========-->
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brand Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Brand Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
     <div class="brand-sec1">
         <div class="top-shape"><img src="{{ asset('assets/img/shape/triangle_shape_1.svg') }}" alt="shape"></div>
         <div class="brand-list-area">
@@ -188,8 +188,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Service Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Service Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img
                 src="{{ asset('assets/img/shape/lines_1.png') }}" alt="shape"></div>
@@ -389,17 +389,17 @@
                             @endif  --}}
                                         </div>
 
-                                        <p class="box-subtitle">{{ $service->name }}</p>
+                                        <p class="box-subtitle">{{ $service->category->name }}</p>
                                         <h3 class="box-title"><a href="service-details.html">{{ $service->name }}</a>
                                         </h3>
                                         <p class="box-text">{{ $service->description }}</p>
                                         @if (app()->getLocale() == 'en')
                                             <a href="javascript:void(0);"
                                                 class="th-btn btn-sm">{{ __('messages.BookNow') }}&nbsp
-                                                <i class="far fa-arrow-right ms-2"></i></a>
+                                                <i class="fa fa-arrow-right ms-2"></i></a>
                                         @else
                                             <a href="javascript:void(0);" class="th-btn btn-sm">
-                                                <i class="far fa-arrow-left ms-2"></i>&nbsp
+                                                <i class="fa fa-arrow-left ms-2"></i>&nbsp
                                                 {{ __('messages.BookNow') }}</a>
                                         @endif
                                         {{--  <a href="service-details.html" class="th-btn btn-sm">Read More<i
@@ -456,13 +456,17 @@
             </script>
 
 
+
+
+
+
         </div>
     </section>
 
 
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                About Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    About Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img
                 src="{{ asset('assets/img/shape/dots_1.svg') }}" alt="shape"></div>
@@ -550,8 +554,8 @@
         </div>
     </div>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Stores Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Stores Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
     <section class="overflow-hidden space">
         <div class="shape-mockup spin" data-top="5%" data-left="0%"><img
                 src="{{ asset('assets/img/shape/lines_1.png') }}" alt="shape"></div>
@@ -868,8 +872,8 @@ Team Area
         </div>
     </section>
     <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Counter Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Counter Area
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
     <div class="space-bottom">
 
 

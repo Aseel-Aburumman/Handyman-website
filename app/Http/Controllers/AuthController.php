@@ -23,12 +23,17 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            if (session()->has('redirect_after_login')) {
+            // if (session()->has('redirect_after_login')) {
+            if (session()->has('from_step_3')) {
+
                 // Remove the session flag after redirection
-                $redirectUrl = session('redirect_after_login');
-                session()->forget('redirect_after_login');
-                session()->forget('from_step_3');
-                return redirect($redirectUrl);
+                // $redirectUrl = session('redirect_after_login');
+                // $redirectUrl = session('redirect_after_login');
+
+                // session()->forget('redirect_after_login');
+                // session()->forget('from_step_3');
+                // return redirect($redirectUrl);
+                return redirect()->route('gig.step4');
             } else {
                 $request->session()->regenerate();
 
