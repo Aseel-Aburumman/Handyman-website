@@ -62,6 +62,7 @@ Route::get('/storeowner/apply', [MasterController::class, 'showApplicationForm_s
 Route::post('/storeowner/apply', [MasterController::class, 'storeApplication_storeowner'])->name('storeowner.apply.store');
 
 Route::get('/contact', [MasterController::class, 'contact'])->name('contact');
+Route::post('/contact/store-ticket', [MasterController::class, 'storeTicket'])->name('contact.storeTicket');
 
 
 
@@ -253,9 +254,12 @@ Route::group([
     Route::get('/admin/manage_tickets', [AdminController::class, 'manageTickets'])->name('admin.manage_tickets');
     Route::put('/admin/update_ticket_status/{id}', [AdminController::class, 'updateTicketStatus'])->name('admin.update_ticket_status');
     Route::get('/admin/view_ticket/{id}', [AdminController::class, 'viewTicket'])->name('admin.view_ticket');
-    Route::get('/admin/message_user/{user_id}/{ticketId}', [AdminController::class, 'messageUser'])->name('admin.message_user');
+    // Route::get('/admin/message_user/{recipient_id}/{ticketId}', [AdminController::class, 'messageUser'])->name('admin.message_user');
+    Route::get('/admin/chat/{receiverId}/{ticketId}', [AdminController::class, 'indexmessageUser'])->name('chatadmin');
+    Route::post('/admin/chat/send', [AdminController::class, 'sendMessage'])->name('chat.sendadmin');
+    Route::get('/admin/chat/fetch/{receiverId}', [AdminController::class, 'fetchMessages'])->name('chat.fetchadmin');
 
-    Route::post('/admin/send_message/{user_id}', [AdminController::class, 'sendMessage'])->name('admin.send_message');
+    // Route::post('/admin/send_message/{user_id}', [AdminController::class, 'sendMessage'])->name('admin.send_message');
 
     Route::get('/manage-gigs', [AdminController::class, 'manageGigs'])->name('admin.manage_gigs');
     Route::put('/update-gig-status/{id}', [AdminController::class, 'updateGigStatus'])->name('admin.update_gig_status');

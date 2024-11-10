@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use App\Models\Ticket;
 
 use App\Models\Category;
 use App\Models\Store;
@@ -315,6 +316,31 @@ class MasterController extends Controller
     {
         return view('main_strc.contact');
     }
+
+    public function storeTicket(Request $request)
+    {
+        // Validate the required fields
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'number' => 'required|string|max:20',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Determine the user ID
+        $userId = Auth::check() ? Auth::id() : 29;
+
+        // Create a new ticket
+        Ticket::create([
+            'user_id' => $userId,
+            'subject' => $request->subject,
+            'description' => $request->message,
+            'status_id' => 13, // Set an initial status ID or adjust as needed
+        ]);
+        return redirect()->back()->with('success', 'Ticket submitted successfully.');
+    }
+
 
     public function aboutUs()
     {

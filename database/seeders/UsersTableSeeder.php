@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 4, // Assuming role 2 is User
             'rating' => 4.5,
             'reported' => false,
-            'image' => 'sadcat.png',
+            'image' => 'AhmedPic.jpg',
 
             'date_created' => now(),
         ]);
@@ -319,6 +319,17 @@ class UsersTableSeeder extends Seeder
             'date_created' => now(),
         ]);
 
+        User::create([
+            'name' => 'guest user',
+            'email' => 'guest@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'image' => 'FadiPic.jpg',
+
+            'date_created' => now(),
+        ]);
 
         // Create additional users using a factory
         // User::factory(10)->create(); // Creates 10 dummy users

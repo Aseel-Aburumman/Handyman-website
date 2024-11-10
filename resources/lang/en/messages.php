@@ -530,7 +530,10 @@ return [
 
 
 
-    'PayNow' => 'Pay ',
+    'Edit' => 'Edit ',
+
+
+
     'PayNow' => 'Pay ',
     'PayNow' => 'Pay ',
     'PayNow' => 'Pay ',

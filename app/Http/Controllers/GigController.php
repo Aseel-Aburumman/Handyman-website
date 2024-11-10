@@ -160,8 +160,11 @@ class GigController extends Controller
     // Reported Gigs
     public function reportedGigs()
     {
-        $reportedGigs = Gig::where('status_id', 11)->get(); // Assuming '7' is the 'reported'
-        return view('admin.gigs.reported_gigs', compact('reportedGigs'));
+        $reportedGigs = Gig::where('status_id', 11)->get();
+        $reportedGiges = Report::whereNotNull('gig_id')
+            ->get();
+
+        return view('admin.gigs.reported_gigs', compact('reportedGigs', 'reportedGiges'));
     }
 
     // Gig Categories and Types

@@ -37,7 +37,8 @@ class AdminController extends Controller
     }
 
 
-public function profileNavbar(){
+    public function profileNavbar()
+    {
 
 
         $user = Auth::user();
@@ -45,8 +46,7 @@ public function profileNavbar(){
 
         // dd($user);
         return view('admin.profile', compact('user', 'deliveryInfo'));
-
-}
+    }
     public function dashboard()
     {
         $user_id = Auth::id();
@@ -235,54 +235,167 @@ public function profileNavbar(){
     }
 
 
-    public function messageUser($recipient_id, $ticketId)
+    // public function messageUser($recipient_id, $ticketId)
+    // {
+    //     $adminId = 1; // This should be replaced with `auth()->id()` after authentication is implemented
+
+    //     $recipient = User::findOrFail($recipient_id);
+
+    //     // Get all messages where either the admin or the recipient is involved
+    //     $chatMessages = Message::where(function ($query) use ($recipient_id) {
+    //         $query->where('receiver_id', $recipient_id)
+    //             ->orWhere('sender_id', $recipient_id);
+    //     })
+    //         ->orderBy('created_at', 'asc') // Ensure the messages are ordered chronologically
+    //         ->get();
+
+    //     $ticketDetail = Ticket::findOrFail($ticketId);
+
+    //     return view('admin.message_center', compact('recipient', 'chatMessages', 'ticketDetail', 'adminId'));
+    // }
+
+
+
+
+    // public function sendMessage(Request $request, $user_id)
+    // {
+
+
+
+    //     // Save the message
+    //     $newmessage = new Message();
+    //     // $message->sender_id = auth()->id();
+
+    //     $newmessage->sender_id = 1; // Static ID for the admin (replace with auth()->id() after implementing authentication)
+    //     $newmessage->receiver_id = $request->user_id; // ID of the user receiving the message
+    //     $newmessage->message_content = $request->input('message_content');
+    //     $newmessage->save();
+
+
+    //     // Fetch the related ticket subject
+    //     $ticket = Ticket::find($request->input('ticket_id'));
+
+
+
+
+    //     // Create a notification for the user
+    //     $notification = new Notification();
+    //     $notification->user_id = $newmessage->receiver_id; // Assign the notification to the user
+    //     $notification->message = 'You have received a message from the support team regarding the ticket: ' . $ticket->subject;
+    //     $notification->message_ar = 'تلقيت رسالة جديدة من فريق الدعم بما يتعلق بالتذكرة: ' . $ticket->subject;
+
+    //     $notification->category = 'primary'; // Set the notification category as 'primary'
+    //     $notification->is_read = 0; // Mark the notification as unread
+    //     $notification->save();
+
+
+
+    //     return redirect()->back();
+    // }
+
+
+    public function indexmessageUser($receiverId, $ticketId)
     {
-        $adminId = 1; // This should be replaced with `auth()->id()` after authentication is implemented
 
-        $recipient = User::findOrFail($recipient_id);
+        $userId = Auth::id();
+        $ticket = Ticket::with('status', 'user')->findOrFail($ticketId);
+        // Fetch all chat partners
+        $chatPartners = Message::where('sender_id', $userId)
+            ->orWhere('receiver_id', $userId)
+            ->with('sender', 'receiver')
+            ->get()
+            ->map(function ($message) use ($userId) {
+                return $message->sender_id == $userId ? $message->receiver : $message->sender;
+            })
+            ->unique('id'); // Prevent duplicates
 
-        // Get all messages where either the admin or the recipient is involved
-        $chatMessages = Message::where(function ($query) use ($recipient_id) {
-            $query->where('receiver_id', $recipient_id)
-                ->orWhere('sender_id', $recipient_id);
-        })
-            ->orderBy('created_at', 'asc') // Ensure the messages are ordered chronologically
-            ->get();
+        // Get the last message with each chat partner
+        $chatPartners->map(function ($partner) use ($userId) {
+            $lastMessage = Message::where(function ($query) use ($userId, $partner) {
+                $query->where('sender_id', $userId)
+                    ->where('receiver_id', $partner->id);
+            })
+                ->orWhere(function ($query) use ($userId, $partner) {
+                    $query->where('sender_id', $partner->id)
+                        ->where('receiver_id', $userId);
+                })
+                ->orderBy('created_at', 'desc')
+                ->first();
 
-        $ticketDetail = Ticket::findOrFail($ticketId);
+            $partner->lastMessage = $lastMessage; // Attach last message to the partner
+            return $partner;
+        });
 
-        return view('admin.message_center', compact('recipient', 'chatMessages', 'ticketDetail', 'adminId'));
+        $messages = collect();
+        $receiver = null; // Default receiver to null
+
+        if ($receiverId) {
+            // Fetch the messages between the logged-in user and the selected receiver
+            $messages = Message::where(function ($query) use ($userId, $receiverId) {
+                $query->where('sender_id', $userId)
+                    ->where('receiver_id', $receiverId);
+            })
+                ->orWhere(function ($query) use ($userId, $receiverId) {
+                    $query->where('sender_id', $receiverId)
+                        ->where('receiver_id', $userId);
+                })
+                ->orderBy('created_at', 'asc')
+                ->get();
+
+            // Update all messages sent to the logged-in user to mark them as read
+            $unreadMessages = Message::where('receiver_id', $userId)
+                ->where('sender_id', $receiverId)
+                ->where('is_read', 0)
+                ->update(['is_read' => 1]);
+
+            $unreadMessages2 = Message::where('receiver_id', $receiverId)
+                ->where('sender_id', $userId)
+                ->where('is_read', 0)
+                ->update(['is_read' => 1]);
+
+            // Log::info('Unread messages marked as read', ['updatedRows' => $unreadMessages]);
+            // Log::info('Unread messages marked as read', ['updatedRows' => $unreadMessages2]);
+
+
+            // Fetch the user details of the receiver
+            $receiver = User::find($receiverId);
+        }
+
+        return view('admin.message_center', compact('messages', 'receiverId', 'chatPartners', 'receiver', 'ticket'));
     }
 
 
 
-
-    public function sendMessage(Request $request, $user_id)
+    public function sendMessage(Request $request)
     {
+        $request->validate([
+            'message_content' => 'required',
+            'receiver_id' => 'required|exists:users,id',
+        ]);
 
+        Message::create([
+            'sender_id' => Auth::id(),
+            'receiver_id' => $request->receiver_id,
+            'message_content' => $request->message_content,
+            'is_read' => 0,
+        ]);
+        $userId = Auth::id();
+        $user = User::where('id', $userId)->first();
 
+        // $notification = new Notification();
+        // $notification->user_id = $request->receiver_id; // Assign the notification to the user
+        // $notification->message = 'Your received a new message from ' . $user->name;
+        // $notification->message_ar = 'تلقيت رسالة جديدة من  ' . $user->name;
 
-        // Save the message
-        $newmessage = new Message();
-        // $message->sender_id = auth()->id();
-
-        $newmessage->sender_id = 1; // Static ID for the admin (replace with auth()->id() after implementing authentication)
-        $newmessage->receiver_id = $request->user_id; // ID of the user receiving the message
-        $newmessage->message_content = $request->input('message_content');
-        $newmessage->save();
-
-
-        // Fetch the related ticket subject
-        $ticket = Ticket::find($request->input('ticket_id'));
-
-
-
+        // $notification->category = 'primary'; // Set the notification category as 'primary'
+        // $notification->is_read = 0; // Mark the notification as unread
+        // $notification->save();
 
         // Create a notification for the user
         $notification = new Notification();
-        $notification->user_id = $newmessage->receiver_id; // Assign the notification to the user
-        $notification->message = 'You have received a message from the support team regarding the ticket: ' . $ticket->subject;
-        $notification->message_ar = 'تلقيت رسالة جديدة من فريق الدعم بما يتعلق بالتذكرة: ' . $ticket->subject;
+        $notification->user_id =  $request->receiver_id; // Assign the notification to the user
+        $notification->message = 'You have received a message from the support team regarding your ticket ';
+        $notification->message_ar = 'تلقيت رسالة جديدة من فريق الدعم بما يتعلق بتذكرتك: ';
 
         $notification->category = 'primary'; // Set the notification category as 'primary'
         $notification->is_read = 0; // Mark the notification as unread
@@ -290,15 +403,34 @@ public function profileNavbar(){
 
 
 
-        return redirect()->back();
+        return redirect()->route('chatadmin', ['receiverId' => $request->receiver_id, 'ticketId' => $request->ticket_id]);
     }
+
+    public function fetchMessages($receiverId)
+    {
+        $userId = Auth::id();
+        $messages = Message::where(function ($query) use ($userId, $receiverId) {
+            $query->where('sender_id', $userId)
+                ->where('receiver_id', $receiverId);
+        })->orWhere(function ($query) use ($userId, $receiverId) {
+            $query->where('sender_id', $receiverId)
+                ->where('receiver_id', $userId);
+        })
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        return response()->json($messages);
+    }
+
+
+
 
     public function manageGigs()
     {
         $gigs = Gig::with('status')->orderBy('created_at', 'desc')->get();
         $statuses = Status::where('status_category', 'gig')->get(); // Filter status for gigs
 
-        return view('admin.gigs_manage', compact('gigs', 'statuses'));
+        return view('admin.gigs.gigs_manage', compact('gigs', 'statuses'));
     }
 
     public function updateGigStatus(Request $request, $id)

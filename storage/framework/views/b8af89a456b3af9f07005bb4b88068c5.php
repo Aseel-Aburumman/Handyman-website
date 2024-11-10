@@ -344,7 +344,7 @@
                                         </p>
                                     </div>
                                 <?php elseif($gig->status_id == 24): ?>
-                                    <p><?php echo e(__('messages.gigs11C')); ?>
+                                    <p><?php echo e(__('messages.gigs24A')); ?>
 
                                     </p>
                                 <?php endif; ?>
@@ -546,6 +546,58 @@
         </div>
     </section>
 
+    <!-- Report Handyman Modal -->
+    <div class="modal fade" id="reportHandymanModal" tabindex="-1" role="dialog"
+        aria-labelledby="reportHandymanModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="<?php echo e(route('report.store')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" name="handyman_id" id="modal-handyman-id">
+                    <input type="hidden" name="gig_id" id="modal-gig-id">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reportHandymanModalLabel"><?php echo e(__('messages.ReportHandyman')); ?>
+
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="report-message"><?php echo e(__('messages.Message')); ?>
+
+                                :</label>
+                            <textarea name="message" id="report-message" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal"><?php echo e(__('messages.Close')); ?>
+
+                        </button>
+                        <button type="submit" class="btn btn-danger"><?php echo e(__('messages.SubmitReport')); ?>
+
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Handle the report button click and populate the modal with handyman and gig IDs
+        document.querySelectorAll('.report-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const handymanId = this.getAttribute('data-handyman-id');
+                const gigId = this.getAttribute('data-gig-id');
+
+                document.getElementById('modal-handyman-id').value = handymanId;
+                document.getElementById('modal-gig-id').value = gigId;
+
+                $('#reportHandymanModal').modal('show');
+            });
+        });
+    </script>
     <script>
         document.getElementById('addPaymentBtn').addEventListener('click', function() {
             var form = document.getElementById('newPaymentForm');
@@ -841,7 +893,6 @@
         /* Media Queries */
         @media (max-width: 768px) {
             .progress-bar {
-                flex-direction: column;
                 align-items: center;
             }
 

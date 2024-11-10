@@ -79,9 +79,17 @@
         ==============================-->  --}}
     <div class="space" data-bg-src="assets/img/bg/contact_bg_6.jpg">
         <div class="container">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="row align-items-center">
                 <div class="col-xl-6 text-center text-xl-start">
-                    <form id="contactForm" action="mail.php" method="POST" class="contact-form ajax-contact">
+                    <form id="contactForm" action="{{ route('contact.storeTicket') }}" method="POST"
+                        class="contact-form ajax-contact">
+                        @csrf
+
                         <h2 class="sec-title">{{ __('messages.GetQuote') }}
                         </h2>
                         <div class="row">
@@ -127,7 +135,7 @@
                                 </button>
                             </div>
                         </div>
-                        <p class="form-messages mb-0 mt-3"></p>
+                        {{--  <p class="form-messages mb-0 mt-3"></p>  --}}
                     </form>
                 </div>
                 <div class="col-xl-6 mt-5 mt-xl-0">
