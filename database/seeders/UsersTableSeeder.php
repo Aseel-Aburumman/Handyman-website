@@ -403,7 +403,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'name' => 'Yousef Mustafa',
-            'email' => 'yousef@example.com',
+            'email' => 'yousef2@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 2,
             'rating' => 4.7,

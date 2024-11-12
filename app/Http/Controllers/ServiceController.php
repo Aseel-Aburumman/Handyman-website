@@ -182,9 +182,10 @@ class ServiceController extends Controller
             $gigCount = $request->input('gig_count');
 
             // Assuming the rating is part of the 'user' relationship
-            $handymenQuery->whereHas('user', function ($query) use ($gigCount) {
-                $query->where('gigs_count', '>=', $gigCount); // Filter handymen with rating >= selected rating
-            });
+            // $handymenQuery->whereHas('user', function ($query) use ($gigCount) {
+            //     $query->where('gigs_count', '>=', $gigCount); // Filter handymen with rating >= selected rating
+            // });
+            $handymenQuery->having('gigs_count', '>=', $gigCount);
         }
 
 

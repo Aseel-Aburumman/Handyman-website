@@ -32,11 +32,12 @@ class DatabaseSeeder extends Seeder
             ShoppingCartsTableSeeder::class,
             SalesTableSeeder::class,
             TicketsTableSeeder::class,
-            ReviewsTableSeeder::class,
             MessagesTableSeeder::class,
             NotificationsTableSeeder::class,
             FollowsTableSeeder::class,
             GigsTableSeeder::class,
+            ReviewsTableSeeder::class,
+
             GigPolicySeeder::class,
             ReportsSeeder::class,
             ImageSeeder::class,
@@ -45,6 +46,8 @@ class DatabaseSeeder extends Seeder
             AgreementSeeder::class,
             HandymanApplicationsSeeder::class,
             StoreOwnerApplicationsSeeder::class,
+            ProposalSeeder::class,
+
 
 
 

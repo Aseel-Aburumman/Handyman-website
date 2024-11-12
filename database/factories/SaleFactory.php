@@ -19,7 +19,7 @@ class SaleFactory extends Factory
         $preferredStoreIds = [12, 13, 14, 15, 16, 17];
 
         return [
-            'store_id' => $this->faker->boolean(80) // 80% chance for preferred store IDs
+            'store_id' => $this->faker->boolean(95) // 80% chance for preferred store IDs
                 ? $this->faker->randomElement($preferredStoreIds)
                 : Store::inRandomOrder()->first()->id, // 20% chance for random store ID
             'product_id' => $this->faker->numberBetween(1, 36), // Assuming Product IDs from 1 to 50 exist

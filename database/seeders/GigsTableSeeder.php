@@ -62,6 +62,8 @@ class GigsTableSeeder extends Seeder
                 'status_id' => 9,
             ],
 
+
+
             [
                 'user_id' => 13,
                 'handyman_id' => 1,
@@ -161,7 +163,7 @@ class GigsTableSeeder extends Seeder
             ],
 
             [
-                'user_id' => 13,
+                'user_id' => 2,
                 'handyman_id' => 2,
                 'category_id' => 6,
                 'service_id' => 37,
@@ -229,7 +231,7 @@ class GigsTableSeeder extends Seeder
                 'user_id' => 11,
                 'handyman_id' => 3,
                 'category_id' => 7,
-                'service_id' => 47,
+                'service_id' => 40,
                 'title' => 'Repaint Bedroom Walls',
                 'description' => 'Need fresh coat of paint in the bedroom to cover old color.',
                 'location' => '124 Maple Lane',
@@ -277,7 +279,7 @@ class GigsTableSeeder extends Seeder
                 'user_id' => 14,
                 'handyman_id' => 4,
                 'category_id' => 7,
-                'service_id' => 47,
+                'service_id' => 40,
                 'title' => 'Interior Wall Painting',
                 'description' => 'Requesting painting services to refresh the living room walls.',
                 'location' => '123 Cedar Blvd',
@@ -358,7 +360,7 @@ class GigsTableSeeder extends Seeder
                 'user_id' => 13,
                 'handyman_id' => 5,
                 'category_id' => 7,
-                'service_id' => 47,
+                'service_id' => 40,
                 'title' => 'Painting Job in Kitchen',
                 'description' => 'Looking to refresh the kitchen walls with a new paint color.',
                 'location' => '34 Cedar Avenue',
@@ -422,7 +424,7 @@ class GigsTableSeeder extends Seeder
                 'user_id' => 11,
                 'handyman_id' => 6,
                 'category_id' => 7,
-                'service_id' => 48,
+                'service_id' => 40,
                 'title' => 'Paint Living Room Walls',
                 'description' => 'Repaint living room with a new color scheme.',
                 'location' => '78 Willow Avenue',
@@ -520,6 +522,8 @@ class GigsTableSeeder extends Seeder
                 'status_id' => 7,
             ],
 
+
+
         ];
         foreach ($gigs as $gigData) {
             $gig = Gig::create($gigData);
@@ -528,11 +532,128 @@ class GigsTableSeeder extends Seeder
         // }
         // Sync availability for the newly created gig
         // $this->syncHandymanAvailability($gig);
+        // 32
+        Gig::create([
+            'user_id' => 2,
+            'handyman_id' => null,
+            'category_id' => 1,
+            'service_id' => 1,
+            'title' => 'Assemble a Large Bookshelf and bed ',
+            'description' => 'Require assistance with assembling a large bookshelf in the living room, in addition to Need help assembling an IKEA bed with intricate design specifications.',
+            'location' => '456 Oak Lane',
+            'estimated_time' => 3,
+            'price' => 60,
+            'task_date' => '2024-11-17',
+            'task_time' => '09:00:00',
+            'total' => 180,
+            'status_id' => 28,
+        ]);
 
+        Gig::create([
+            'user_id' => 29,
+            'handyman_id' => null,
+            'category_id' => 2,
+            'service_id' => 9,
+            'title' => 'Install Window Blinds',
+            'description' => 'Need blinds installed in two bedrooms and the living room and i am moving some stuff so Assistance required for loading large furniture items into a moving truck.',
+            'location' => '456 Maple Drive',
+            'estimated_time' => 4,
+            'price' => 85,
+            'task_date' => '2024-11-05',
+            'task_time' => '11:30:00',
+            'total' => 340,
+            'status_id' => 28,
+        ]);
+
+        Gig::create([
+            'user_id' => 30,
+            'handyman_id' => null,
+            'category_id' => 7,
+            'service_id' => 1,
+            'title' => 'Paint Living Room Walls',
+            'description' => 'Seeking a handyman to paint the living room walls in a calming blue shade. Includes prep work like removing old paint, priming, and clean-up afterward. Furniture in the area may need slight repositioning.',
+            'location' => '123 Oak Avenue',
+            'estimated_time' => 6,
+            'price' => 150,
+            'task_date' => '2024-11-07',
+            'task_time' => '09:00:00',
+            'total' => 900,
+            'status_id' => 28,
+        ]);
+
+        Gig::create([
+            'user_id' => 31,
+            'handyman_id' => null,
+            'category_id' => 1,
+            'service_id' => 5,
+            'title' => 'Assemble New Office Furniture',
+            'description' => 'Need assistance assembling several pieces of new office furniture, including desks, chairs, and a filing cabinet. Must have tools and experience in furniture assembly, as instructions can be complex.',
+            'location' => '789 Birch Street',
+            'estimated_time' => 5,
+            'price' => 100,
+            'task_date' => '2024-11-09',
+            'task_time' => '14:00:00',
+            'total' => 500,
+            'status_id' => 28,
+        ]);
+
+        Gig::create([
+            'user_id' => 32,
+            'handyman_id' => null,
+            'category_id' => 2,
+            'service_id' => 7,
+            'title' => 'Install Security Camera System',
+            'description' => 'Looking for an experienced technician to install a four-camera security system around my home. Requires setting up wiring, configuring software, and demonstrating system use.',
+            'location' => '342 Pine Road',
+            'estimated_time' => 7,
+            'price' => 120,
+            'task_date' => '2024-11-12',
+            'task_time' => '10:00:00',
+            'total' => 840,
+            'status_id' => 28,
+        ]);
+
+        Gig::create([
+            'user_id' => 33,
+            'handyman_id' => 1,
+            'category_id' => 6,
+            'service_id' => 2,
+            'title' => 'Fix Leaking Kitchen Sink',
+            'description' => 'Urgent need for a plumber to fix a leaking kitchen sink. Issue involves replacing old pipes and checking the garbage disposal for leaks or damage. Fast service preferred.',
+            'location' => '567 Cedar Lane',
+            'estimated_time' => 2,
+            'price' => 90,
+            'task_date' => '2024-11-14',
+            'task_time' => '16:00:00',
+            'total' => 180,
+            'status_id' => 28,
+        ]);
+
+        Gig::create([
+            'user_id' => 34,
+            'handyman_id' => 1,
+            'category_id' => 4,
+            'service_id' => 1,
+            'title' => 'Clean Out Basement',
+            'description' => 'Need help clearing out and organizing the basement. Includes removing old boxes, disposing of unwanted items, and moving heavier furniture. Looking for someone experienced in organizing and decluttering.',
+            'location' => '234 Elm Street',
+            'estimated_time' => 8,
+            'price' => 110,
+            'task_date' => '2024-11-17',
+            'task_time' => '08:30:00',
+            'total' => 880,
+            'status_id' => 28,
+        ]);
         // Create more gigs using the factory and sync availability for each
         Gig::factory()->count(50)->create()->each(function ($gig) {
             $this->syncHandymanAvailability($gig);
         });
+
+        HandymanAvailability::create([
+            'handyman_id' => 1,
+            'start_time' => '2024-11-13 00:00:00',
+            'end_time' => '2024-11-14 23:59:59',
+        ]);
     }
 
     private function syncHandymanAvailability($gig)

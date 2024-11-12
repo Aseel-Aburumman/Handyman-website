@@ -179,7 +179,7 @@
 
             function generateTimeSlots() {
                 const slots = [];
-                for (let hour = 8; hour <= 18; hour++) { // Adjust time range as needed
+                for (let hour = 0; hour <= 23; hour++) { // Adjust time range as needed
                     slots.push(`${hour}:00`);
                 }
                 return slots;
