@@ -91,6 +91,13 @@ class ImageSeeder extends Seeder
             ['product_id' => 55, 'name' => 'MetalToolBox16inch.webp'],
             ['product_id' => 56, 'name' => 'Measuring-Tapes-Tools7-scaled.webp'],
             ['product_id' => 57, 'name' => 'Measuring-Tapes-Tools28-scaled.webp'],
+
+            ['store_id' => 1, 'name' => 'store1.webp'],
+            ['store_id' => 1, 'name' => 'store2.jpg'],
+            ['store_id' => 3, 'name' => 'store3.webp'],
+            ['store_id' => 4, 'name' => 'store4.jpg'],
+            ['store_id' => 5, 'name' => 'store5.jpg'],
+            ['store_id' => 6, 'name' => 'store6.png'],
         ];
         foreach ($images as $image) {
             Image::create($image);

@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
     {
         // Create an admin user
         User::create([
-            'name' => 'Admin User',
+            'name' => 'Mohammad Ayoub',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
             'role_id' => 1, // Assuming role 1 is Admin
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
 
         // Create a regular user
         User::create([
-            'name' => 'Regular User',
+            'name' => 'Ahmad Abdel Ra\'uof',
             'email' => 'user@example.com',
             'password' => bcrypt('password'),
             'role_id' => 2, // Assuming role 2 is User
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
         ]);
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         User::create([
-            'name' => 'Handyman User',
+            'name' => 'Osama Mousa',
             'email' => 'handyman@example.com',
             'password' => bcrypt('password'),
             'role_id' => 4, // Assuming role 2 is User
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Store Owner User',
+            'name' => 'Omar Ibrahem',
             'email' => 'storeowner@example.com',
             'password' => bcrypt('password'),
             'role_id' => 3, // Assuming role 3 is User
@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         User::create([
-            'name' => 'suspended Handyman User',
+            'name' => 'Zaid Abdulrahman ',
             'email' => 'suspendedhandyman@example.com',
             'password' => bcrypt('password'),
             'role_id' => 4, // Assuming role 2 is User
@@ -327,7 +327,87 @@ class UsersTableSeeder extends Seeder
             'rating' => 4.7,
             'reported' => false,
             'image' => 'FadiPic.jpg',
+            'date_created' => now(),
+        ]);
 
+
+        User::create([
+            'name' => 'Qutaiba Wasfi',
+            'email' => 'qutaiba@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Rafat Mohammad',
+            'email' => 'rafat@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Rami Mahmoud',
+            'email' => 'rami@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Samer Seran',
+            'email' => 'samer@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Tala Amjad',
+            'email' => 'tala@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Yazan Haitham',
+            'email' => 'yazan@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Yousef Jammal',
+            'email' => 'yousef@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
+            'date_created' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Yousef Mustafa',
+            'email' => 'yousef@example.com',
+            'password' => bcrypt('password123'),
+            'role_id' => 2,
+            'rating' => 4.7,
+            'reported' => false,
             'date_created' => now(),
         ]);
 
