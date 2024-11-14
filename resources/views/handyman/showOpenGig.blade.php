@@ -228,7 +228,9 @@
                                 <div class="handyman-rating">
                                     <span class="rating-star">★</span>
                                     <span>{{ $gig->user->rating }}
-                                        ({{ $gig->user->clientreviews }} {{ __('messages.reviews') }})
+                                        ({{ $gig->user->clientreviews->count() }} {{ __('messages.reviews') }})
+
+                                        {{--  ({{ $reviewClient->review ?? ' ' }} {{ __('messages.reviews') }})  --}}
                                     </span>
                                 </div>
                                 <div class="handyman-price mt-1">
@@ -257,7 +259,7 @@
                 </div>
             </div>
             <div class=" handyman-card filter-step2-handyman-card">
-                <h6>{{ __('HowTo.TotalTime') }} </h6>
+                <h6>{{ __('messages.HowTo') }} </h6>
                 {{ __('messages.tips1') }}<br>
                 {{ __('messages.tips2') }}<br>
                 {{ __('messages.tips3') }}<br>

@@ -9,6 +9,7 @@ class StatusesTableSeeder extends Seeder
 {
     public function run()
     {
+// id = 1
         Status::create([
             'status_category' => 'skill',
             'name' => 'Approved',
@@ -16,6 +17,7 @@ class StatusesTableSeeder extends Seeder
             'description' => 'Skill is Approved',
             'description_ar' => 'المهارة مقبولة'
         ]);
+// id = 2
 
         Status::create([
             'status_category' => 'skill',
@@ -24,6 +26,7 @@ class StatusesTableSeeder extends Seeder
             'description' => 'Skill is Disapproved',
             'description_ar' => 'المهارة مرفوضة'
         ]);
+// id = 3
 
         Status::create([
             'status_category' => 'skill',

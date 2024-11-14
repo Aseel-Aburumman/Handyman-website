@@ -208,9 +208,9 @@ class HandymanController extends Controller
             ->join('skills', 'skill_certificates.skill_id', '=', 'skills.id')
             ->join('skilltocategories', 'skills.id', '=', 'skilltocategories.skill_id')
             ->pluck('skilltocategories.category_id');
-
+        // dd(SkillCertificate::where('handyman_id', 1)->get());
         $gigtoaply = Gig::whereIn('category_id', $categoryIds)
-            ->where('handyman_id', null)
+            ->whereNull('handyman_id') // Retrieves only gigs where handyman_id is null
             ->take(2)
             ->get();
 
@@ -268,11 +268,12 @@ class HandymanController extends Controller
     public function showOpenGig($gigId)
     {
         $gig = Gig::findOrFail($gigId);
+        $reviewClient = Review::where('client_id', $gig->user_id)->first();
         $userId = Auth::id();
         $handyman = Handyman::where('user_id', $userId)->first();
         $existingProposal = Proposal::where('handyman_id', $handyman->id)->where('gig_id', $gigId)->first();
 
-        return view('handyman.showOpenGig', compact('gig', 'existingProposal'));
+        return view('handyman.showOpenGig', compact('gig', 'existingProposal', 'reviewClient'));
     }
 
     public function submitProposal(Request $request, $gigId)
@@ -353,6 +354,7 @@ class HandymanController extends Controller
         // Retrieve the assigned proposal
 
         $userId = Auth::id();
+        $reviewClient = Review::where('client_id', $gig->user_id)->first();
 
         $paymentRepotr = Payment::where('gig_id', $gigId)->get();
         $reviews = Review::where('user_id', $userId)
@@ -368,12 +370,12 @@ class HandymanController extends Controller
             $all_total = $subtotal * 0.16 + $subtotal;
             // dd($reviews);
 
-            return view('handyman.mygig', compact('gig', 'paymentRepotr', 'subtotal', 'all_total', 'reviews'));
+            return view('handyman.mygig', compact('gig', 'paymentRepotr', 'subtotal', 'all_total', 'reviews', 'reviewClient'));
             // dd($total);
         }
         // dd($reviews);
         $all_total = 0;
 
-        return view('handyman.mygig', compact('gig', 'paymentRepotr', 'subtotal', 'all_total', 'reviews'));
+        return view('handyman.mygig', compact('gig', 'paymentRepotr', 'subtotal', 'all_total', 'reviews', 'reviewClient'));
     }
 }

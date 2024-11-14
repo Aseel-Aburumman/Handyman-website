@@ -106,7 +106,8 @@
                     <?php $__empty_1 = true; $__currentLoopData = $unreadMessages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unreadMessage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <li class="message-item">
                             <a href="#">
-                                <img src="assets/img/default-avatar.png" alt="" class="rounded-circle">
+                                <img src="<?php echo e(asset('storage/profile_images/' . $unreadMessage->sender->image)); ?>"
+                                    alt="" class="rounded-circle">
                                 <div>
                                     <h4><?php echo e($unreadMessage->sender->name); ?></h4>
                                     

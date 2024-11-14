@@ -51,9 +51,9 @@ class ShopsController extends Controller
     public function getOne(Request $request, $shopId)
     {
         $store = Store::findOrFail($shopId);
-
+        $products = Product::where('store_id', $shopId)->get();
         // Count the number of reviews for this store
-        $reviewCount = $store->reviews()->count();
+        $reviewCount = Review::whereIn('product_id', $products->pluck('id'))->count();
 
         // Sum the total sales for this store
         $totalSales = $store->sales()->sum('quantity_sold'); // or 'total_amount' if you prefer to sum the amount

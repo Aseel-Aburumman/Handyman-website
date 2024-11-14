@@ -388,7 +388,8 @@
                                             <span class="rating-star">★</span>
                                             <span><?php echo e($gig->user->rating); ?>
 
-                                                (<?php echo e($gig->user->clientreviews); ?> <?php echo e(__('messages.reviews')); ?>
+                                                (<?php echo e($gig->user->clientreviews->count()); ?> <?php echo e(__('messages.reviews')); ?>
+
 
                                                 )
                                             </span>

@@ -145,7 +145,8 @@
                     @forelse ($unreadMessages as $unreadMessage)
                         <li class="message-item">
                             <a href="#">
-                                <img src="assets/img/default-avatar.png" alt="" class="rounded-circle">
+                                <img src="{{ asset('storage/profile_images/' . $unreadMessage->sender->image) }}"
+                                    alt="" class="rounded-circle">
                                 <div>
                                     <h4>{{ $unreadMessage->sender->name }}</h4>
                                     {{--  <!-- Display the sender's name -->  --}}

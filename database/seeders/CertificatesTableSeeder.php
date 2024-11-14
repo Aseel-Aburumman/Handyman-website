@@ -9,24 +9,19 @@ class CertificatesTableSeeder extends Seeder
 {
     public function run()
     {
-        Certificate::create(['name' => 'Plumbing License', 'description' => 'Certified Plumbing License']);
-        Certificate::create(['name' => 'Electrical Certification', 'description' => 'Certified Electrical Work']);
-        Certificate::create(['name' => 'Hardware Certification', 'description' => 'Certified Hardware Work']);
-        Certificate::create(['name' => 'Garden Tools Certification', 'description' => 'Certified Garden Tools Work']);
-        Certificate::create(['name' => 'Supplies Certification', 'description' => 'Certified Supplies Work']);
-        Certificate::create(['name' => 'Gear Certification', 'description' => 'Certified Gear Work']);
-        Certificate::create(['name' => 'DIY Certification', 'description' => 'Certified DIY Work']);
-        Certificate::create(['name' => 'Paint Certification', 'description' => 'Certified Paint Work']);
-        Certificate::create(['name' => 'Parts Certification', 'description' => 'Certified Parts Work']);
-        Certificate::create(['name' => 'Kitchenware Certification', 'description' => 'Certified Kitchenware Work']);
-        Certificate::create(['name' => 'Supplies Certification', 'description' => 'Certified Supplies Work']);
-        Certificate::create(['name' => 'Plumbing Certification', 'description' => 'Certified Plumbing Work']);
-        Certificate::create(['name' => 'storecertification.png', 'description' => 'Certified store Work']);
-
-
-
-        // Add more certificates as needed
-
-        // Certificate::factory(10)->create();
+        Certificate::create(['name' => 'PlumbingLicense.webp', 'description' => 'Certified Plumbing License']);
+        Certificate::create(['name' => 'ElectricalCertification.webp', 'description' => 'Certified Electrical Work']);
+        Certificate::create(['name' => 'HardwareCertification.webp', 'description' => 'Certified Hardware Work']);
+        Certificate::create(['name' => 'GardenToolsCertification.webp', 'description' => 'Certified Garden Tools Work']);
+        Certificate::create(['name' => 'SuppliesCertification.webp', 'description' => 'Certified Supplies Work']);
+        Certificate::create(['name' => 'GearCertification.webp', 'description' => 'Certified Gear Work']);
+        Certificate::create(['name' => 'DIYCertification.webp', 'description' => 'Certified DIY Work']);
+        Certificate::create(['name' => 'PaintCertification.webp', 'description' => 'Certified Paint Work']);
+        Certificate::create(['name' => 'PartsCertification.webp', 'description' => 'Certified Parts Work']);
+        Certificate::create(['name' => 'KitchenwareCertification.webp', 'description' => 'Certified Kitchenware Work']);
+        Certificate::create(['name' => 'SuppliesCertification.webp', 'description' => 'Certified Supplies Work']);
+        Certificate::create(['name' => 'PlumbingCertification.webp', 'description' => 'Certified Plumbing Work']);
+        Certificate::create(['name' => 'storecertification.webp', 'description' => 'Certified store Work']);
+        Certificate::create(['name' => 'certification.webp', 'description' => 'Certified  Work']);
     }
 }

@@ -13,7 +13,9 @@ class StoreOwnersTableSeeder extends Seeder
 
 
         StoreOwner::create([
-            'user_id' => 6,
+            'user_id' => 4,
+            // 'user_id' => 6,
+
             'store_name' => 'Garden Tools Store',
             'store_name_ar' => 'متجر أدوات الحديقة',
             'contact_number' => '555-9876',

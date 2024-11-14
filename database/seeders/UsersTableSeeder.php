@@ -15,10 +15,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
             'role_id' => 1, // Assuming role 1 is Admin
-            'rating' => 5.0,
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
-            'image' => 'sadcat.png',
+            'image' => 'user_image1.jpg',
         ]);
 
         // Create a regular user
@@ -27,8 +27,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'user@example.com',
             'password' => bcrypt('password'),
             'role_id' => 2, // Assuming role 2 is User
-            'rating' => 4.5,
-            'image' => 'sadcat.png',
+            'rating' => 0,
+            'image' => 'user_image2.jpg',
             'reported' => false,
 
             'date_created' => now(),
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'handyman@example.com',
             'password' => bcrypt('password'),
             'role_id' => 4, // Assuming role 2 is User
-            'rating' => 4.5,
+            'rating' => 0,
             'reported' => false,
             'image' => 'AhmedPic.jpg',
 
@@ -51,9 +51,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'storeowner@example.com',
             'password' => bcrypt('password'),
             'role_id' => 3, // Assuming role 3 is User
-            'rating' => 4.5,
+            'rating' => 0,
             'reported' => false,
-            'image' => 'sadcat.png',
+            'image' => 'user_image3.jpg',
 
             'date_created' => now(),
         ]);
@@ -64,8 +64,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'suspendedhandyman@example.com',
             'password' => bcrypt('password'),
             'role_id' => 4, // Assuming role 2 is User
-            'rating' => 4.5,
+            'rating' => 0,
             'reported' => true,
+            'image' => 'user_image1.jpg',
 
             'date_created' => now(),
         ]);
@@ -75,8 +76,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'johndoe@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.8,
+            'rating' => 0,
             'reported' => false,
+            'image' => 'user_image2.jpg',
+
             'date_created' => now(),
         ]);
 
@@ -85,8 +88,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'janesmith@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
+            'image' => 'user_image3.jpg',
+
             'date_created' => now(),
         ]);
 
@@ -95,7 +100,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'tombrown@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.9,
+            'rating' => 0,
+            'image' => 'user_image4.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -105,7 +111,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'lucydavis@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.8,
+            'rating' => 0,
+            'image' => 'user_image5.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -115,8 +122,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'markevans@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.6,
+            'rating' => 0,
             'reported' => false,
+            'image' => 'user_image6.jpg',
             'date_created' => now(),
         ]);
 
@@ -125,7 +133,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'annajohnson@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.7,
+            'image' => 'user_image7.jpg',
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -135,7 +144,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'ahmedali@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3, // Regular User
-            'rating' => 4.8,
+            'rating' => 0,
+            'image' => 'user_image8.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -145,7 +155,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'fatimahassan@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3, // Regular User
-            'rating' => 4.7,
+            'rating' => 0,
+            'image' => 'user_image9.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -155,7 +166,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'omarkhaled@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3, // Store Owner
-            'rating' => 4.9,
+            'rating' => 0,
+            'image' => 'user_image10.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -165,7 +177,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'aishamohammed@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.6,
+            'rating' => 0,
+            'image' => 'user_image11.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -175,7 +188,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'youssefibrahim@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.7,
+            'rating' => 0,
+            'image' => 'user_image12.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -185,7 +199,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Bshiti@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.7,
+            'rating' => 0,
+            'image' => 'user_image13.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -196,7 +211,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Manaseer@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.3,
+            'rating' => 0,
+            'image' => 'user_image14.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -207,7 +223,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Subhi@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.5,
+            'rating' => 0,
+            'image' => 'user_image15.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -219,7 +236,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Almeimari@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.7,
+            'rating' => 0,
+            'image' => 'user_image1.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -230,7 +248,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Jotun@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 3,
-            'rating' => 4.0,
+            'rating' => 0,
+            'image' => 'user_image2.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -240,8 +259,9 @@ class UsersTableSeeder extends Seeder
             'name' => 'Lafarge owner',
             'email' => 'Lafarge@example.com',
             'password' => bcrypt('password123'),
+            'image' => 'user_image3.jpg',
             'role_id' => 3,
-            'rating' => 4.9,
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -253,7 +273,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'tomybrown@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
-            'rating' => 4.9,
+            'rating' => 0,
             'reported' => false,
             'image' => 'tomPic.jpg',
             'date_created' => now(),
@@ -264,7 +284,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'lucyydavis@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
-            'rating' => 4.8,
+            'rating' => 0,
             'reported' => false,
             'image' => 'LucyPic.jpg',
 
@@ -276,7 +296,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'markyevans@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
-            'rating' => 4.6,
+            'rating' => 0,
             'reported' => false,
             'image' => 'MarkPic.jpg',
 
@@ -288,7 +308,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'annayjohnson@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
             'image' => 'AnnaPic.jpg',
 
@@ -300,7 +320,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'ahmedyali@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
-            'rating' => 4.8,
+            'rating' => 0,
             'reported' => false,
             'image' => 'AhmedPic.jpg',
 
@@ -312,7 +332,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'fadiyhassan@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 4,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
             'image' => 'FadiPic.jpg',
 
@@ -324,7 +344,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'guest@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 2,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
             'image' => 'FadiPic.jpg',
             'date_created' => now(),
@@ -336,7 +356,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'qutaiba@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 2,
-            'rating' => 4.7,
+            'rating' => 0,
+            'image' => 'user_image4.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -346,7 +367,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'rafat@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 2,
-            'rating' => 4.7,
+            'image' => 'user_image5.jpg',
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -355,8 +377,9 @@ class UsersTableSeeder extends Seeder
             'name' => 'Rami Mahmoud',
             'email' => 'rami@example.com',
             'password' => bcrypt('password123'),
+            'image' => 'user_image6.jpg',
             'role_id' => 2,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -365,8 +388,9 @@ class UsersTableSeeder extends Seeder
             'name' => 'Samer Seran',
             'email' => 'samer@example.com',
             'password' => bcrypt('password123'),
+            'image' => 'user_image7.jpg',
             'role_id' => 2,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -375,8 +399,9 @@ class UsersTableSeeder extends Seeder
             'name' => 'Tala Amjad',
             'email' => 'tala@example.com',
             'password' => bcrypt('password123'),
+            'image' => 'user_image8.jpg',
             'role_id' => 2,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -385,8 +410,9 @@ class UsersTableSeeder extends Seeder
             'name' => 'Yazan Haitham',
             'email' => 'yazan@example.com',
             'password' => bcrypt('password123'),
+            'image' => 'user_image9.jpg',
             'role_id' => 2,
-            'rating' => 4.7,
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -396,7 +422,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'yousef@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 2,
-            'rating' => 4.7,
+            'image' => 'user_image10.jpg',
+            'rating' => 0,
             'reported' => false,
             'date_created' => now(),
         ]);
@@ -406,7 +433,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'yousef2@example.com',
             'password' => bcrypt('password123'),
             'role_id' => 2,
-            'rating' => 4.7,
+            'rating' => 0,
+            'image' => 'user_image11.jpg',
             'reported' => false,
             'date_created' => now(),
         ]);

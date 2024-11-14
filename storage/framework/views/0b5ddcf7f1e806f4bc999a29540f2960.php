@@ -239,7 +239,7 @@
                                     <span class="rating-star">★</span>
                                     <span><?php echo e($gig->user->rating); ?>
 
-                                        (<?php echo e($gig->user->clientreviews); ?> <?php echo e(__('messages.reviews')); ?>)
+                                        (<?php echo e($reviewClient->review ?? ' '); ?> <?php echo e(__('messages.reviews')); ?>)
                                     </span>
                                 </div>
                                 <div class="handyman-price mt-1">
@@ -270,7 +270,7 @@
                 </div>
             </div>
             <div class=" handyman-card filter-step2-handyman-card">
-                <h6><?php echo e(__('HowTo.TotalTime')); ?> </h6>
+                <h6><?php echo e(__('messages.HowTo')); ?> </h6>
                 <?php echo e(__('messages.tips1')); ?><br>
                 <?php echo e(__('messages.tips2')); ?><br>
                 <?php echo e(__('messages.tips3')); ?><br>

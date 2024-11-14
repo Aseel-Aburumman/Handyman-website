@@ -55,7 +55,8 @@
                                     <td>
                                         <a href="<?php echo e(route('admin.view_gig', $gig->id)); ?>"
                                             class="btn btn-primary btn-sm">View</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Cancel</a>
+                                        <a href="<?php echo e(route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 10])); ?>"
+                                            class="btn btn-danger btn-sm">Cancel</a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

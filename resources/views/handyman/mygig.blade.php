@@ -350,7 +350,8 @@
                                         <div class="handyman-rating">
                                             <span class="rating-star">★</span>
                                             <span>{{ $gig->user->rating }}
-                                                ({{ $gig->user->clientreviews }} {{ __('messages.reviews') }}
+                                                ({{ $gig->user->clientreviews->count() }} {{ __('messages.reviews') }}
+
                                                 )
                                             </span>
                                         </div>

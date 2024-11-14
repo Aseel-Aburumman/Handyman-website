@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Gig;
+use App\Models\Review;
+
 use App\Models\HandymanAvailability;
 use Carbon\Carbon;
 
@@ -645,14 +647,24 @@ class GigsTableSeeder extends Seeder
             'status_id' => 28,
         ]);
         // Create more gigs using the factory and sync availability for each
-        Gig::factory()->count(50)->create()->each(function ($gig) {
+        Gig::factory()->count(30)->create()->each(function ($gig) {
             $this->syncHandymanAvailability($gig);
+
+            if ($gig->status_id === 9) {
+                Review::create([
+                    'user_id' => $gig->user_id, // Assuming the gig has a user_id related to it
+                    'handyman_id' => $gig->handyman_id, // Assuming the gig has a handyman_id related to it
+                    'gig_id' => $gig->id,
+                    'review' => 'Incredibly professional and efficient!',
+                    'rating' => 4.5,
+                ]);
+            }
         });
 
         HandymanAvailability::create([
             'handyman_id' => 1,
-            'start_time' => '2024-11-13 00:00:00',
-            'end_time' => '2024-11-14 23:59:59',
+            'start_time' => '2024-11-17 00:00:00',
+            'end_time' => '2024-11-18 23:59:59',
         ]);
     }
 
