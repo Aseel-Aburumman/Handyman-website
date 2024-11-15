@@ -49,6 +49,11 @@
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
+                    <a class="nav-link th-btn" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab"
+                        aria-controls="completed" aria-selected="false">{{ __('messages.CompletedGigs') }}
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
                     <a class="nav-link th-btn" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
                         aria-controls="orders" aria-selected="false">{{ __('messages.AwardedGigs') }}
                     </a>
@@ -278,6 +283,88 @@
                 <!-- My Tasks Tab -->
                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                     @foreach ($mygigs as $gig)
+                        <div class="content-box gigs-approval">
+
+                            <div class="d-flex justify-content-between gig-details">
+                                <div class="w-75">
+                                    <h6>{{ __('messages.TaskDetail') }}
+
+
+                                    </h6>
+                                    <div class="d-flex justify-content-between">
+                                        <h2 class="gig-title">{{ $gig->title }}</h2>
+                                    </div>
+                                    <p class="gig-description">
+                                        {{ \Illuminate\Support\Str::limit($gig->description, 150) }}</p>
+                                    <p class="gig-location"><i class="fas fa-map-marker-alt"></i>
+                                        {{ $gig->location }}</p>
+                                    <p class="gig-time"><i class="far fa-calendar-alt"></i>
+                                        {{ $gig->task_date }} {{ $gig->task_time }}</p>
+                                </div>
+                                <div class="w-25 text-center align-self-center align-items-center">
+                                    @if ($gig->status_id == 7)
+                                        <button class="w-100   btn  btn-info">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 8)
+                                        <button class="w-100 btn  btn-primary">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 9)
+                                        <button class="w-100 btn btn-success">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 10)
+                                        <button class="w-100 btn btn-danger">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 11)
+                                        <button class="w-100 btn btn-warning">{{ $gig->status->name }}</button>
+                                    @elseif($gig->status_id == 28)
+                                        <button class="w-100 btn btn-warning">{{ $gig->status->name }}</button>
+                                    @endif
+                                    <h3>{{ __('messages.ClientDetails') }}
+                                    </h3>
+                                    <div class="m-auto freelancer-img">
+                                        @if ($gig->user && $gig->user->image)
+                                            <img src="{{ asset('storage/profile_images/' . $gig->user->image) }}"
+                                                alt="{{ $gig->user->name }} Picture">
+                                        @else
+                                            <img src="{{ asset('assets/img/team/team_1_1.jpg') }}"
+                                                alt="Freelancer Picture">
+                                        @endif
+                                    </div>
+                                    <h6 class="freelancer-name">
+                                        {{ $gig->user->name ?? 'Unknown User' }}</h6>
+                                    <div class="justify-content-center handyman-rating">
+                                        <span class="text-center rating-star">★</span>
+                                        <span>{{ $gig->user->rating }}
+                                            ({{ $gig->user->clientreviews->count() }} {{ __('messages.reviews') }})
+                                        </span>
+                                    </div>
+
+                                    <!-- Display Gigs Count -->
+                                    <div class="gig-count">
+                                        <p><strong>{{ __('messages.GigsPosted') }}
+                                                :</strong> {{ $gig->user->gigs->count() }}</p>
+                                    </div>
+
+                                    <form class="mt-3" action="{{ route('chat', ['receiverId' => $gig->user->id]) }}"
+                                        method="GET">
+                                        @csrf
+                                        <button type="submit" class="btn btn-info w-100 ">{{ __('messages.ChatAnd') }}
+                                        </button>
+                                    </form>
+                                    <form class="mt-3 ml-2"
+                                        action="{{ route('handyman.assigned.task', ['gigId' => $gig->id]) }}"
+                                        method="GET">
+                                        @csrf
+                                        {{--  <input type="hidden" name="category_id" value="{{ $proposal->id }}">  --}}
+                                        <button type="submit"
+                                            class="btn btn-success ml-2 w-100 ">{{ __('messages.ViewTask') }}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- My Tasks Tab -->
+                <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                    @foreach ($complitedGigs as $gig)
                         <div class="content-box gigs-approval">
 
                             <div class="d-flex justify-content-between gig-details">

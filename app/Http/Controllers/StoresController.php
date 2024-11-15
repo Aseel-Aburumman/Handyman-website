@@ -29,6 +29,8 @@ class StoresController extends Controller
 
         // Total sales this month and revenue
         $currentMonth = Carbon::now()->startOfMonth();
+        $currentYear = Carbon::now()->startOfYear();
+
         $totalMonthlySales = Sale::where('sale_date', '>=', $currentMonth)->count();
         $monthlyRevenue = Sale::where('sale_date', '>=', $currentMonth)->sum('total_amount');
 
@@ -39,12 +41,14 @@ class StoresController extends Controller
 
         // Total new customers this month
         $newCustomersThisMonth = User::where('created_at', '>=', $currentMonth)->count();
+        $newCustomersThisYear = User::where('created_at', '>=', $currentYear)->count();
+
 
         // Total products
         $totalProducts = Product::count();
 
         // Top rated products
-        $topRatedProducts = Product::orderBy('rating', 'desc')->take(5)->get();
+        $topRatedProducts = Product::orderBy('rating', 'desc')->take(2)->get();
 
         // Dynamic sales data for the line chart (from the database)
         $salesData = Sale::selectRaw('MONTH(sale_date) as month, COUNT(*) as sales_count')
@@ -77,6 +81,7 @@ class StoresController extends Controller
             'totalProducts',
             'topRatedProducts',
             'salesMonths',
+            'newCustomersThisYear',
             'monthlySalesData'
         ));
     }
@@ -112,15 +117,19 @@ class StoresController extends Controller
 
     public function viewStore($id)
     {
+        $store = Store::findOrFail($id);
+        $StoreOwner = StoreOwner::where('id', $store->store_owner_id)->first();
+        // dd($StoreOwner);
+
+        $userId = $StoreOwner->user_id;
         // Fetch the store owner user record with related data
         $store_owner = User::with([
             'storeOwner.store.sales.product', // Fetch the store and its purchases along with the product details
             'deliveryInfo' // Fetch delivery information
-        ])->findOrFail($id);
+        ])->findOrFail($userId);
 
         // Fetch related data
         $deliveryInfo = $store_owner->deliveryInfo;
-        $store = Store::findOrFail($id);
         $storePurchases = $store ? $store->sales : collect(); // Fetch the store's purchases or return an empty collection
 
         return view('admin.store_control_center.view_store', compact('store_owner', 'deliveryInfo', 'store', 'storePurchases'));
@@ -179,10 +188,11 @@ class StoresController extends Controller
         $store = Store::with('products', 'storeOwner')->findOrFail($storeId);
         $storeReport = Report::where('store_id', $storeId)->latest()->first();
         $storeReviews = Review::where('store_id', $storeId)->orderBy('created_at', 'desc')->take(15)->get();
+        $sales = sale::where('store_id', $storeId)->orderBy('created_at', 'desc')->take(1)->get();
 
 
 
-        return view('admin.store_control_center.resolve_store', compact('store', 'storeReport', 'storeReviews'));
+        return view('admin.store_control_center.resolve_store', compact('store', 'storeReport', 'sales'));
     }
 
     public function clearReportStore($storeId)

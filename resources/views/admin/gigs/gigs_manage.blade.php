@@ -21,24 +21,24 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th class="tableHide" scope="col">#</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">Estimated Time</th>
-                                <th scope="col">Price</th>
+                                <th class="tableHide" scope="col">Location</th>
+                                <th class="tableHide" scope="col">Estimated Time</th>
+                                <th class="tableHide2" scope="col">Price</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Date Created</th>
+                                <th class="tableHide" scope="col">Date Created</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($gigs as $gig)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <th class="tableHide" scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $gig->title }}</td>
-                                    <td>{{ $gig->location }}</td>
-                                    <td>{{ $gig->estimated_time }} hours</td>
-                                    <td>${{ $gig->price }}</td>
+                                    <td class="tableHide">{{ $gig->location }}</td>
+                                    <td class="tableHide">{{ $gig->estimated_time }} hours</td>
+                                    <td class="tableHide2">${{ $gig->price }}</td>
                                     <td>
                                         <form action="{{ route('admin.update_gig_status', $gig->id) }}" method="POST"
                                             style="display:inline;">
@@ -53,12 +53,19 @@
                                             </select>
                                         </form>
                                     </td>
-                                    <td>{{ \Carbon\Carbon::parse($gig->created_at)->format('Y-m-d') }}</td>
+                                    <td class="tableHide">{{ \Carbon\Carbon::parse($gig->created_at)->format('Y-m-d') }}
+                                    </td>
                                     <td>
                                         <a href="{{ route('admin.view_gig', $gig->id) }}"
                                             class="btn btn-primary btn-sm">View</a>
-                                        <a href="{{ route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 10]) }}"
-                                            class="btn btn-danger btn-sm">Cancel</a>
+                                        {{--  <a href="{{ route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 10]) }}"
+                                            class="btn btn-danger btn-sm">Cancel</a>  --}}
+                                        <form
+                                            action="{{ route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 10]) }}"
+                                            method="POST" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -41,12 +41,12 @@
     <div class="col-lg-6 d-flex">
         <div class="card w-100">
             <div class="card-body">
-                <h5 class="card-title">Recent Reviews</h5>
+                <h5 class="card-title">Lastest Sales</h5>
                 <ul class="list-group">
-                    @foreach($storeReviews as $review)
+                    @foreach($sales as $review)
                         <li class="list-group-item">
-                            <strong>{{ $review->user->name }}:</strong> {{ $review->review }}
-                            <span class="badge bg-primary">{{ $review->rating }} Stars</span>
+                            <strong>{{ $review->user->name }}:</strong> {{ $review->product->name }}
+                            {{--  <span class="badge bg-primary">{{ $review->quantity }} </span>  --}}
                             <br>
                             <small>{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</small>
                         </li>

@@ -251,10 +251,8 @@
                                             method="POST">
                                             @csrf
                                             <button type="submit" class=" custom-btn btn btn-primary"
-                                                onclick="return confirm('Are you sure everything is complete?');">{{ __('messages.code_text') }}
-                                                No, Mark
-                                                as
-                                                Done</button>
+                                                onclick="return confirm('Are you sure everything is complete?');">{{ __('messages.gigP13') }}
+                                            </button>
                                         </form>
                                         <button class="custom-btn btn-primary mt-2"
                                             id="addPaymentBtn">{{ __('messages.Yes') }}
@@ -341,7 +339,7 @@
                                         <div class=" handyman-tasks">
                                             <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
 
-                                                {{ $gig->gigs_count }} {{ __('messages.tasks') }}
+                                                {{ $gig->user->gigs->count() }} {{ __('messages.tasks') }}
                                             </span>
                                         </div>
                                     </div>
@@ -357,7 +355,8 @@
                                         </div>
                                         <div class="handyman-price mt-1">
                                             {{ __('messages.JD') }}
-                                            {{ number_format($gig->price, 2) }}/{{ __('messages.hr') }}
+                                            {{ number_format($gig->price, 2) }}/{{ __('messages.hr') }}<br>
+                                            {{ $gig->estimated_time }} hr Estimated time
                                         </div>
                                     </div>
 
@@ -524,7 +523,15 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
+        document.querySelectorAll('[data-dismiss="modal"]').forEach(button => {
+            button.addEventListener('click', function() {
+                $('#reportHandymanModal').modal('hide');
+            });
+        });
         // Handle the report button click and populate the modal with handyman and gig IDs
         document.querySelectorAll('.report-btn').forEach(btn => {
             btn.addEventListener('click', function() {

@@ -73,7 +73,7 @@
                                 <!-- Available hours will be displayed here -->
                             </div>
                         </div>
-                        <input type="hidden" id="selected-hour" name="selected_hour" value="">
+                        <input type="hidden" id="selected-hour" name="selected_hour" >
                         <button type="submit" class="btn btn-primary">{{ __('messages.ContinueStep') }} 4</button>
                     </div>
                 </form>

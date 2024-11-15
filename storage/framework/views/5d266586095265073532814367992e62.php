@@ -40,13 +40,13 @@
     <div class="col-lg-6 d-flex">
         <div class="card w-100">
             <div class="card-body">
-                <h5 class="card-title">Recent Reviews</h5>
+                <h5 class="card-title">Lastest Sales</h5>
                 <ul class="list-group">
-                    <?php $__currentLoopData = $storeReviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li class="list-group-item">
-                            <strong><?php echo e($review->user->name); ?>:</strong> <?php echo e($review->review); ?>
+                            <strong><?php echo e($review->user->name); ?>:</strong> <?php echo e($review->product->name); ?>
 
-                            <span class="badge bg-primary"><?php echo e($review->rating); ?> Stars</span>
+                            
                             <br>
                             <small><?php echo e(\Carbon\Carbon::parse($review->created_at)->diffForHumans()); ?></small>
                         </li>

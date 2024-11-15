@@ -35,6 +35,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary">Filter</button>
+                                    <button href="<?php echo e(route('admin.all_gigs')); ?>" type="submit"
+                                        class="btn btn-primary">Reset</button>
+
                                 </div>
                             </div>
                         </form>
@@ -44,8 +47,8 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Handyman</th>
-                                    <th>Location</th>
-                                    <th>Status</th>
+                                    <th class="tableHide">Location</th>
+                                    <th class="tableHide2">Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -56,8 +59,8 @@
                                         
                                         <td><?php echo e($gig->handyman->user->name ?? 'Not selected yet'); ?></td>
 
-                                        <td><?php echo e($gig->location); ?></td>
-                                        <td><?php echo e($gig->status->name); ?></td>
+                                        <td class="tableHide"><?php echo e($gig->location); ?></td>
+                                        <td class="tableHide2"><?php echo e($gig->status->name); ?></td>
                                         <td>
                                             <a href="<?php echo e(route('admin.view_gig', $gig->id)); ?>"
                                                 class="btn btn-info btn-sm">View</a>

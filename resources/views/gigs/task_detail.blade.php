@@ -359,7 +359,7 @@
 
                                         <div class=" handyman-tasks">
                                             <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
-                                                {{ $gig->handyman->gigs_count }} {{ __('messages.tasks') }}</span>
+                                                {{ $gig->handyman->gigs->count() }} {{ __('messages.tasks') }}</span>
                                         </div>
                                     </div>
 

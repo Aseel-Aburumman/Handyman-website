@@ -18,9 +18,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="card-title">List Of Handymans</h5>
-<a href="<?php echo e(route('admin.create_handyman')); ?>" class="btn btn-success mb-3">
-                            <i class="fa-solid fa-user-plus"></i> Add New Handyman
-                        </a>
+
                     </div>
 
                     <form action="<?php echo e(route('admin.manage_handymans')); ?>" method="GET" class="d-flex mb-3">
@@ -43,7 +41,7 @@
                         <tbody>
                             <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <th scope="row"><?php echo e($user->id); ?></th>
+                                    <th scope="row"><?php echo e($loop->iteration); ?></th>
                                     <td><?php echo e($user->name); ?></td>
                                     <td><?php echo e($user->email); ?></td>
                                     <td><?php echo e($user->rating); ?></td>

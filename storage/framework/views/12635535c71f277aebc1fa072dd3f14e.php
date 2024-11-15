@@ -12,7 +12,6 @@
     <section class="section dashboard">
         <div class="row">
 
-            
 
             <div class="card pt-3">
                 <p><strong>Subject:</strong> <?php echo e($ticket->subject); ?></p>

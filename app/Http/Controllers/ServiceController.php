@@ -256,13 +256,14 @@ class ServiceController extends Controller
 
     public function storeStep3(Request $request)
     {
+        // dd($request);
+
         // Validate the selected date and time
         $request->validate([
             'date' => 'required|date|after_or_equal:today',  // Ensure the date is valid and in the future
             'time' => 'required|date_format:H:i',            // Ensure the time is in the correct format (hourly)
             'budget' => 'nullable|string',                   // Optional budget field
         ]);
-
         // Capture the budget option from the form
         $budget = $request->input('budget');
 

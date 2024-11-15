@@ -112,7 +112,7 @@
 
                                     <div class=" handyman-tasks">
                                         <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
-                                            {{ $existingProposal->handyman->gigs_count }}
+                                            {{ $existingProposal->handyman->gigs->count() }}
                                             {{ __('messages.tasks') }}</span>
                                     </div>
                                 </div>
@@ -121,12 +121,13 @@
                                     <div class="handyman-rating">
                                         <span class="rating-star">★</span>
                                         <span>{{ $existingProposal->handyman->user->rating }}
-                                            ({{ $existingProposal->handyman->user->reviews_count }}
+                                            ({{ $existingProposal->handyman->user->reviews->count() }}
                                             {{ __('messages.reviews') }})
                                         </span>
                                     </div>
                                     <div class="handyman-price mt-1">
-                                        JD{{ number_format($existingProposal->price_per_hour, 2) }}/hr</div>
+                                        JD{{ number_format($existingProposal->price_per_hour, 2) }}/hr<br>
+                                        {{ $existingProposal->time }} hr Estimated time</div>
                                 </div>
 
 
@@ -219,8 +220,8 @@
                                 <h4>{{ $gig->user->name }}</h4>
 
                                 <div class=" handyman-tasks">
-                                    <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
-                                        {{ $gig->gigs_count }} {{ __('messages.tasks') }}</span>
+                                    <span><i class="fa-solid fa-check-double"></i> Have
+                                        {{ $gig->user->gigs->count() }} {{ __('messages.tasks') }}</span>
                                 </div>
                             </div>
 
@@ -252,8 +253,63 @@
 
                     </div>
 
+                    <!-- Report Handyman Modal -->
+                    <div class="modal fade" id="reportHandymanModal" tabindex="-1" role="dialog"
+                        aria-labelledby="reportHandymanModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form action="{{ route('report.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="handyman_id" id="modal-handyman-id">
+                                    <input type="hidden" name="gig_id" id="modal-gig-id">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="reportHandymanModalLabel">
+                                            {{ __('messages.ReportClient') }}
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="report-message">{{ __('messages.Message') }}
+                                                :</label>
+                                            <textarea name="message" id="report-message" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">{{ __('messages.Close') }}
+                                        </button>
+                                        <button type="submit" class="btn btn-danger">{{ __('messages.SubmitReport') }}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+                    <script>
+                        document.querySelectorAll('[data-dismiss="modal"]').forEach(button => {
+                            button.addEventListener('click', function() {
+                                $('#reportHandymanModal').modal('hide');
+                            });
+                        });
+                        // Handle the report button click and populate the modal with handyman and gig IDs
+                        document.querySelectorAll('.report-btn').forEach(btn => {
+                            btn.addEventListener('click', function() {
+                                const handymanId = this.getAttribute('data-handyman-id');
+                                const gigId = this.getAttribute('data-gig-id');
 
+                                document.getElementById('modal-handyman-id').value = handymanId;
+                                document.getElementById('modal-gig-id').value = gigId;
+
+                                $('#reportHandymanModal').modal('show');
+                            });
+                        });
+                    </script>
 
 
                 </div>

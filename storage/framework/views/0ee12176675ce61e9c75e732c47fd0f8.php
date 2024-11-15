@@ -19,20 +19,22 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th class="tableHide" scope="col">#</th>
                                 <th scope="col">Subject</th>
-                                <th scope="col">Description</th>
+                                <th class="tableHide2" scope="col">Description</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Created At</th>
+                                <th class="tableHide" scope="col">Created At</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $__currentLoopData = $tickets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ticket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <th scope="row"><?php echo e($ticket->id); ?></th>
+                                    <th class="tableHide" scope="row"><?php echo e($loop->iteration); ?>
+
+                                    </th>
                                     <td><?php echo e($ticket->subject); ?></td>
-                                    <td><?php echo e($ticket->description); ?></td>
+                                    <td class="tableHide2"><?php echo e($ticket->description); ?></td>
                                     <td>
                                         <form action="<?php echo e(route('admin.update_ticket_status', $ticket->id)); ?>"
                                             method="POST">
@@ -49,7 +51,9 @@
                                             </select>
                                         </form>
                                     </td>
-                                    <td><?php echo e(\Carbon\Carbon::parse($ticket->created_at)->format('Y-m-d')); ?></td>
+                                    <td class="tableHide"><?php echo e(\Carbon\Carbon::parse($ticket->created_at)->format('Y-m-d')); ?>
+
+                                    </td>
                                     <td>
                                         <a href="<?php echo e(route('admin.view_ticket', $ticket->id)); ?>"
                                             class="btn btn-primary">View</a>

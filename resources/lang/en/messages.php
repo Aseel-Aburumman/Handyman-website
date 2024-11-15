@@ -423,6 +423,8 @@ return [
     //    handyman dashboard
     'MyGigs' => 'My Gigs',
     'AwardedGigs' => 'Awarded Gigs',
+    'CompletedGigs' => 'Completed Gigs',
+
     'Experience' => 'Experience',
     'StoreLocation' => 'Store Location',
     'ViewTask' => 'View Task',
@@ -510,6 +512,8 @@ return [
     'gigP10' => 'The task is ready for payment. Review and proceed with payments.',
     'gigP11' => 'Pay now by creadit card',
     'gigP12' => 'There is no more payments requst , is the task done ?',
+    'gigP13' => ' No, Mark as Done',
+
     'PayNow' => 'Pay Now',
 
 

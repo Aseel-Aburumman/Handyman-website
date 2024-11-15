@@ -259,6 +259,11 @@ Route::group([
     Route::post('/admin/chat/send', [AdminController::class, 'sendMessage'])->name('chat.sendadmin');
     Route::get('/admin/chat/fetch/{receiverId}', [AdminController::class, 'fetchMessages'])->name('chat.fetchadmin');
 
+
+    Route::get('/admin/chat2/{receiverId}', [AdminController::class, 'indexmessageUser2'])->name('chatadmin2');
+    Route::post('/admin/chat2/send', [AdminController::class, 'sendMessage2'])->name('chat.sendadmin2');
+    Route::get('/admin/chat2/fetch/{receiverId}', [AdminController::class, 'fetchMessages2'])->name('chat.fetchadmin2');
+
     // Route::post('/admin/send_message/{user_id}', [AdminController::class, 'sendMessage'])->name('admin.send_message');
 
     Route::get('/manage-gigs', [AdminController::class, 'manageGigs'])->name('admin.manage_gigs');

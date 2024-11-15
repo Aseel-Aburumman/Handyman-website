@@ -55,18 +55,7 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
                 <div class="card-body">
                     <h5 class="card-title">Revenue <span>| This Month</span></h5>
 
@@ -75,7 +64,7 @@
                             <i class="bi bi-currency-dollar"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>$<?php echo e(number_format($currentMonthRevenue, 2)); ?></h6>
+                            <h6>JD<?php echo e(number_format($currentMonthRevenue, 2)); ?></h6>
                             <?php if($percentageChange >= 0): ?>
                                 <span class="text-success small pt-1 fw-bold"><?php echo e($percentageChange); ?>%</span>
                                 <span class="text-muted small pt-2 ps-1">increase</span>
@@ -97,18 +86,7 @@
 
               <div class="card info-card customers-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
 
                 <div class="card-body">
                     <h5 class="card-title">Customers <span>| This Year</span></h5>
@@ -136,27 +114,17 @@
             
 
             <!-- Reports -->
-            <div class="col-6" >
+            <div class="col-12" >
               <div class="card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
 
                 <div class="card-body">
                     <h5 class="card-title">Reports <span>/Month</span></h5>
 
                     
-                    <div id="reportsChart"></div>
+                    <div id="reportsChart" style="HEIGHT: 615PX;"></div>
+
 
                     <script>
                         document.addEventListener("DOMContentLoaded", () => {
@@ -172,7 +140,7 @@
                                     data: <?php echo json_encode($usersData, 15, 512) ?>
                                 }],
                                 chart: {
-                                    height: 350,
+                                    height: 615,
                                     type: 'area',
                                     toolbar: {
                                         show: false
@@ -219,7 +187,7 @@
             
 
             
-            <div class="col-6">
+            <div class="col-6 col-md-12">
               <div class="card recent-sales overflow-auto">
 
                 <div class="filter">
@@ -278,7 +246,7 @@
             
 
             
-            <div class="col-6">
+            <div class="col-6 col-md-12">
               <div class="card top-selling overflow-auto">
 
                 <div class="filter">

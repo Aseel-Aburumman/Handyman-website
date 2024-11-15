@@ -21,20 +21,21 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th class="tableHide" scope="col">#</th>
                                 <th scope="col">Subject</th>
-                                <th scope="col">Description</th>
+                                <th class="tableHide2" scope="col">Description</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Created At</th>
+                                <th class="tableHide" scope="col">Created At</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($tickets as $ticket)
                                 <tr>
-                                    <th scope="row">{{ $ticket->id }}</th>
+                                    <th class="tableHide" scope="row">{{ $loop->iteration }}
+                                    </th>
                                     <td>{{ $ticket->subject }}</td>
-                                    <td>{{ $ticket->description }}</td>
+                                    <td class="tableHide2">{{ $ticket->description }}</td>
                                     <td>
                                         <form action="{{ route('admin.update_ticket_status', $ticket->id) }}"
                                             method="POST">
@@ -50,7 +51,8 @@
                                             </select>
                                         </form>
                                     </td>
-                                    <td>{{ \Carbon\Carbon::parse($ticket->created_at)->format('Y-m-d') }}</td>
+                                    <td class="tableHide">{{ \Carbon\Carbon::parse($ticket->created_at)->format('Y-m-d') }}
+                                    </td>
                                     <td>
                                         <a href="{{ route('admin.view_ticket', $ticket->id) }}"
                                             class="btn btn-primary">View</a>

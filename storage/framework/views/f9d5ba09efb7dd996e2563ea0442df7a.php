@@ -19,24 +19,24 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th class="tableHide" scope="col">#</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">Estimated Time</th>
-                                <th scope="col">Price</th>
+                                <th class="tableHide" scope="col">Location</th>
+                                <th class="tableHide" scope="col">Estimated Time</th>
+                                <th class="tableHide2" scope="col">Price</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Date Created</th>
+                                <th class="tableHide" scope="col">Date Created</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $__currentLoopData = $gigs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <th scope="row"><?php echo e($loop->iteration); ?></th>
+                                    <th class="tableHide" scope="row"><?php echo e($loop->iteration); ?></th>
                                     <td><?php echo e($gig->title); ?></td>
-                                    <td><?php echo e($gig->location); ?></td>
-                                    <td><?php echo e($gig->estimated_time); ?> hours</td>
-                                    <td>$<?php echo e($gig->price); ?></td>
+                                    <td class="tableHide"><?php echo e($gig->location); ?></td>
+                                    <td class="tableHide"><?php echo e($gig->estimated_time); ?> hours</td>
+                                    <td class="tableHide2">$<?php echo e($gig->price); ?></td>
                                     <td>
                                         <form action="<?php echo e(route('admin.update_gig_status', $gig->id)); ?>" method="POST"
                                             style="display:inline;">
@@ -51,12 +51,19 @@
                                             </select>
                                         </form>
                                     </td>
-                                    <td><?php echo e(\Carbon\Carbon::parse($gig->created_at)->format('Y-m-d')); ?></td>
+                                    <td class="tableHide"><?php echo e(\Carbon\Carbon::parse($gig->created_at)->format('Y-m-d')); ?>
+
+                                    </td>
                                     <td>
                                         <a href="<?php echo e(route('admin.view_gig', $gig->id)); ?>"
                                             class="btn btn-primary btn-sm">View</a>
-                                        <a href="<?php echo e(route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 10])); ?>"
-                                            class="btn btn-danger btn-sm">Cancel</a>
+                                        
+                                        <form
+                                            action="<?php echo e(route('gig.updateStatus', ['gigId' => $gig->id, 'status' => 10])); ?>"
+                                            method="POST" style="display: inline;">
+                                            <?php echo csrf_field(); ?>
+                                            <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -98,7 +98,7 @@
 
                                         <div class=" handyman-tasks">
                                             <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
-                                                {{ $proposal->handyman->gigs_count }} {{ __('messages.tasks') }}
+                                                {{ $proposal->handyman->gigs->count() }} {{ __('messages.tasks') }}
                                             </span>
                                         </div>
                                     </div>
@@ -112,7 +112,8 @@
                                             </span>
                                         </div>
                                         <div class="handyman-price mt-1">{{ __('messages.JD') }}
-                                            {{ number_format($proposal->price_per_hour, 2) }}/{{ __('messages.hr') }}
+                                            {{ number_format($proposal->price_per_hour, 2) }}/{{ __('messages.hr') }}<br>
+                                            {{ $proposal->time }} hr Estimated time
                                         </div>
                                     </div>
 
@@ -192,7 +193,7 @@
                                         <div class=" handyman-tasks">
                                             <span><i class="fa-solid fa-check-double"></i> {{ __('messages.Done') }}
 
-                                                {{ $proposal->handyman->gigs_count }} {{ __('messages.tasks') }}
+                                                {{ $proposal->handyman->gigs->count() }} {{ __('messages.tasks') }}
                                             </span>
                                         </div>
                                     </div>
@@ -207,7 +208,8 @@
                                         </div>
                                         <div class="handyman-price mt-1">
                                             {{ __('messages.JD') }}
-                                            {{ number_format($proposal->price_per_hour, 2) }}/{{ __('messages.hr') }}
+                                            {{ number_format($proposal->price_per_hour, 2) }}/{{ __('messages.hr') }}<br>
+                                            {{ $proposal->time }} hr Estimated time
                                         </div>
                                     </div>
 
@@ -322,7 +324,15 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
+        document.querySelectorAll('[data-dismiss="modal"]').forEach(button => {
+            button.addEventListener('click', function() {
+                $('#reportHandymanModal').modal('hide');
+            });
+        });
         // Handle the report button click and populate the modal with handyman and gig IDs
         document.querySelectorAll('.report-btn').forEach(btn => {
             btn.addEventListener('click', function() {

@@ -234,7 +234,7 @@
                             <hr>
                             <div class="form-group">
                                 <p>Your Gig details</p>
-                                <textarea class="form-control task-details-textarea" placeholder="Your Gig details" required></textarea>
+                                <p class="form-control task-details-textarea" placeholder="Your Gig details" required>{{ session('description') }}</p>
                                 <span class="error-text">{{ __('messages.Cantbeblank') }}
                                 </span>
                             </div>

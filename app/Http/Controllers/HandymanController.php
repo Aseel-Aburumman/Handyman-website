@@ -69,9 +69,12 @@ class HandymanController extends Controller
             ->get();
 
         $mygigs = Gig::where('handyman_id', $handyman->id)
-            ->whereIn('status_id', [7, 8, 9, 10, 11, 24])
+            ->whereIn('status_id', [7, 8,  10, 11, 24])
             ->get();
 
+        $complitedGigs = Gig::where('handyman_id', $handyman->id)
+            ->where('status_id', 9)
+            ->get();
 
         $skills = Skill::all(); // Fetch all available skills for the dropdown
 
@@ -145,7 +148,7 @@ class HandymanController extends Controller
             return redirect()->route('handyman.dashboard')->with('status', 'Profile updated successfully!');
         }
 
-        return view('handyman.dashboard', compact('gigs_i_created', 'firstgigs', 'sales', 'skills', 'handyman', 'user', 'awardedgig', 'mygigs'));
+        return view('handyman.dashboard', compact('gigs_i_created', 'firstgigs', 'sales', 'skills', 'handyman', 'user', 'awardedgig', 'mygigs', 'complitedGigs'));
     }
 
     public function addSkill(Request $request)
