@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Rakar - Handyman Multipurpose Repairing Services HTML Template - Our Services</title>
+    <title>Kaf Mueen - Handyman Multipurpose Repairing Services</title>
     <meta name="author" content="Rakar">
     <meta name="description" content="Rakar - Handyman Multipurpose Repairing Services HTML Template">
     <meta name="keywords" content="Rakar - Handyman Multipurpose Repairing Services HTML Template">

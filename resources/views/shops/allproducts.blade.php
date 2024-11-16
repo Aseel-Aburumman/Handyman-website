@@ -35,7 +35,7 @@
                         <form action="{{ route('products.index') }}" method="GET" class="d-flex mb-5">
                             <!-- Search Input -->
                             <input class="shop-search" type="text" name="search" class="form-control"
-                                placeholder="Search by shop name" value="{{ request('search') }}">
+                                placeholder="Search by product name" value="{{ request('search') }}">
                             <!-- Search Button -->
                             <button type="submit"
                                 class="btn btn-primary ms-2 searchBtn">{{ __('messages.Search') }}</button>
@@ -63,8 +63,8 @@
                                         <img src="{{ $product->image ? asset('storage/product_images/' . $product->image->name) : asset('assets/img/product/product_1_2.png') }}"
                                             alt="{{ $product->name }} pic">
                                         <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i
-                                                    class="far fa-eye"></i></a>
+                                            {{--  <a href="#QuickView" class="icon-btn popup-content"><i
+                                                    class="far fa-eye"></i></a>  --}}
 
                                             @if (Auth::check())
                                                 <!-- If the user is logged in, show the Add to Cart button -->

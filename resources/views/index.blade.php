@@ -187,9 +187,9 @@
             </div>
         </div>
     </div>
-    <!--==============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Service Area
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
+    {{--  <!--==============================
+      Service Area
+              ==============================-->  --}}
     <section class="overflow-hidden space" id="service-sec">
         <div class="shape-mockup spin" data-bottom="0%" data-left="0%"><img
                 src="{{ asset('assets/img/shape/lines_1.png') }}" alt="shape"></div>
@@ -464,9 +464,10 @@
     </section>
 
 
-    <!--==============================
+    {{--  <!--==============================
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     About Area
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ==============================-->
+      --}}
     <div class="overflow-hidden space" data-bg-color="#101840" id="about-sec">
         <div class="shape-mockup spin" data-top="6%" data-left="3%"><img
                 src="{{ asset('assets/img/shape/dots_1.svg') }}" alt="shape"></div>

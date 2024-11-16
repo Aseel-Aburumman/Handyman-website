@@ -29,7 +29,7 @@
                                 class="btn btn-primary ms-2 searchBtn">{{ __('messages.Search') }}</button>
                             <!-- Reset Button -->
                             <a href="{{ route('shops.index') }}"
-                                class="btn btn-secondary ms-2 resetBtn">{{ __('messages.Reset') }}</a>
+                                class="btn btn-secondary pt-3 ms-2 resetBtn">{{ __('messages.Reset') }}</a>
                         </form>
                     </div>
                 </div>
